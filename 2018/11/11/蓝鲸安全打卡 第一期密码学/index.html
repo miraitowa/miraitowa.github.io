@@ -27,6 +27,7 @@
 	<!-- font-awesome -->
 	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
+
 	<body>	
 		<!--Preloader-->
 <div id="preloader">
@@ -125,16 +126,16 @@
            		<a href="/categories" title="分类">分类</a>	
       		</li>
     		
-      		<li class="fa fa-/tags">
-           		<a href="/tags" title="标签">标签</a>	
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
       		</li>
     		
       		<li class="fa fa-/about">
            		<a href="/about" title="关于">关于</a>	
       		</li>
     		
-      		<li class="fa fa-/gallery">
-           		<a href="/gallery" title="相册">相册</a>	
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
       		</li>
     		
     		
@@ -198,16 +199,14 @@
 <p>放在解密工具里面就会得到：</p>
 <p><img src="https://i.imgur.com/raFCrt1.png" alt=""></p>
 <p>最后得到答案：<strong>key{4osj6nyg7p9dd2z235aj}</strong></p>
-<p>###二： 密钥生成 ###</p>
-<p><img src="https://i.imgur.com/4wPDTW7.png" alt=""></p>
+<h3 id="二：-密钥生成"><a href="#二：-密钥生成" class="headerlink" title="二： 密钥生成"></a>二： 密钥生成</h3><p><img src="https://i.imgur.com/4wPDTW7.png" alt=""></p>
 <h4 id="知识点-1"><a href="#知识点-1" class="headerlink" title="知识点"></a>知识点</h4><p><code>RSA</code>密钥生成 <code>RSA-Tool</code>工具的使用</p>
 <h4 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h4><p>首先放一张关于<code>RSA-Tool</code>工具使用的方法图；</p>
 <p><img src="https://i.imgur.com/mINaxG4.jpg" alt=""></p>
 <p>我们只需要根据上面的解释以及下面一些关于<code>RSA</code>算法的资料就可以得到：</p>
 <p><img src="https://i.imgur.com/bDAh3ko.png" alt=""></p>
 <p>即最后答案：<strong>key{125631357777427553}</strong></p>
-<p>###三： RSA解密 ###</p>
-<p><img src="https://i.imgur.com/w6hut1U.png" alt=""></p>
+<h3 id="三：-RSA解密"><a href="#三：-RSA解密" class="headerlink" title="三： RSA解密"></a>三： RSA解密</h3><p><img src="https://i.imgur.com/w6hut1U.png" alt=""></p>
 <h4 id="知识点-2"><a href="#知识点-2" class="headerlink" title="知识点"></a>知识点</h4><p><code>zip</code>伪加密、<code>RSA</code>解密，<code>openssl</code>用法</p>
 <h4 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h4><p>下载下来题目，告诉我们需要解压密码</p>
 <p>这里就要涉及到伪加密的知识了</p>
@@ -238,8 +237,7 @@ BWaxHtc/ByfAisj9cfq2CY/fEoeGqLagZ5tG5G81V9VZ
 <p>使用命令：<code>openssl rsautl -decrypt  -in flag -inkey imhere -out flag.txt</code></p>
 <p><img src="https://i.imgur.com/2b3Nl7v.png" alt=""></p>
 <p>打开<code>flag.txt</code>文件就会得到答案：<strong>key{c42bcf773d54cf03}</strong></p>
-<p>###四： 公平交易 ###</p>
-<p><img src="https://i.imgur.com/y20fli4.png" alt=""></p>
+<h3 id="四：-公平交易"><a href="#四：-公平交易" class="headerlink" title="四： 公平交易"></a>四： 公平交易</h3><p><img src="https://i.imgur.com/y20fli4.png" alt=""></p>
 <h4 id="知识点-3"><a href="#知识点-3" class="headerlink" title="知识点"></a>知识点</h4><p><code>playfair</code>加密 <code>pycipher</code>库使用</p>
 <h4 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h4><p>第一种方法：</p>
 <p>使用<code>pycipher</code>库，就可以得到答案</p>
@@ -359,6 +357,12 @@ Rxc+X0H782ubIQIQL2kzJ1i8luHD5eQlbYjXgg==
 
 		<ul class="am-pagination">
     
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2018/11/11/记一次使用Ubuntu 14.04 LTS搭建FBctf平台/" title="记一次使用Ubuntu 14.04 LTS搭建FBctf平台">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
 	
 		<li class="am-pagination-next">
 		<a class="pull-right" href="/2018/11/11/蓝鲸安全CTF打卡题——第一期MISC writeup/" title="记一份蓝鲸安全打卡MISC writeup">
@@ -453,7 +457,7 @@ Rxc+X0H782ubIQIQL2kzJ1i8luHD5eQlbYjXgg==
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#蓝鲸安全打卡-第一期密码学"><span class="post-toc-text">蓝鲸安全打卡 第一期密码学</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一：检查符号"><span class="post-toc-text">一：检查符号</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路"><span class="post-toc-text">解题思路</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-1"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-1"><span class="post-toc-text">解题思路</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-2"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-2"><span class="post-toc-text">解题思路</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-3"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-3"><span class="post-toc-text">解题思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五：填空题"><span class="post-toc-text">五：填空题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-4"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-4"><span class="post-toc-text">解题思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六：RSA破解"><span class="post-toc-text">六：RSA破解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-5"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-5"><span class="post-toc-text">解题思路</span></a></li></ol></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#蓝鲸安全打卡-第一期密码学"><span class="post-toc-text">蓝鲸安全打卡 第一期密码学</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一：检查符号"><span class="post-toc-text">一：检查符号</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路"><span class="post-toc-text">解题思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二：-密钥生成"><span class="post-toc-text">二： 密钥生成</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-1"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-1"><span class="post-toc-text">解题思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三：-RSA解密"><span class="post-toc-text">三： RSA解密</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-2"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-2"><span class="post-toc-text">解题思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四：-公平交易"><span class="post-toc-text">四： 公平交易</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-3"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-3"><span class="post-toc-text">解题思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五：填空题"><span class="post-toc-text">五：填空题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-4"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-4"><span class="post-toc-text">解题思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六：RSA破解"><span class="post-toc-text">六：RSA破解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-5"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-5"><span class="post-toc-text">解题思路</span></a></li></ol></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
@@ -470,19 +474,13 @@ Rxc+X0H782ubIQIQL2kzJ1i8luHD5eQlbYjXgg==
 		<div class="theme-annie-social">
 				
 				
-					<a href="http://github.com/" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
 					
 				
-					<a href="http://github.com/" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
 				
-				
-					<a href="http://github.com/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
 					
-				
-					<a href="http://github.com/" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
 					
-				
-					<a href="http://github.com/" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
 						
 				
 		</div>
