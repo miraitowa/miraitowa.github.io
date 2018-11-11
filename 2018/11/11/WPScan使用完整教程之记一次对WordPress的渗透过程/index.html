@@ -1,0 +1,594 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>miraitowa</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-1" style="background-image: url( https://source.unsplash.com/collection/954550/1920x1080 );">	
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		11/11/2018 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="标签">标签</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/11/11/WPScan使用完整教程之记一次对WordPress的渗透过程/" itemprop="url">
+	<time datetime="2018-11-11T03:34:23.563Z" itemprop="datePublished">
+  		2018-11-11
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<hr>
+<h2 id="title-WPScan使用完整教程之记一次对WordPress的渗透过程"><a href="#title-WPScan使用完整教程之记一次对WordPress的渗透过程" class="headerlink" title="title:WPScan使用完整教程之记一次对WordPress的渗透过程"></a>title:<code>WPScan</code>使用完整教程之记一次对<code>WordPress</code>的渗透过程</h2><h2 id="WPScan使用完整教程之记一次对WordPress的渗透过程"><a href="#WPScan使用完整教程之记一次对WordPress的渗透过程" class="headerlink" title="WPScan使用完整教程之记一次对WordPress的渗透过程"></a><code>WPScan</code>使用完整教程之记一次对<code>WordPress</code>的渗透过程</h2><p>渣渣一枚，萌新一个，会划水，会喊六六</p>
+<p>个人博客：<a href="https://www.cnblogs.com/lxz-1263030049/" title="落花四月" target="_blank" rel="noopener">https://www.cnblogs.com/lxz-1263030049/</a></p>
+<p>本次简单的记录优下自己关于WPScan渗透实战的案例，以及对于WPScan的一些使用方法，有什么错误的地方希望各位大佬指正(Orz）</p>
+<h3 id="一：什么是WPScan"><a href="#一：什么是WPScan" class="headerlink" title="一：什么是WPScan"></a>一：什么是<code>WPScan</code></h3><p><code>WPScan</code>是一个扫描 <code>WordPress</code> 漏洞的黑盒子扫描器，它可以为所有 <code>Web</code> 开发人员扫描 <code>WordPress</code> 漏洞并在他们开发前找到并解决问题。</p>
+<p>我们还使用了 <code>Nikto</code> ，它是一款非常棒的<code>Web</code> 服务器评估工具，我们认为这个工具应该成为所有针对 <code>WordPress</code>网站进行的渗透测试的一部分。</p>
+<p><code>Wordpress</code>作为三大建站模板之一，在全世界范围内有大量的用户,这也导致白帽子都会去跟踪 <code>WordPress</code>的安全漏洞，<code>Wordpress</code>自诞生起</p>
+<p>也出现了很多漏洞.<code>Wordpress</code>还可以使用插件、主题。于是<code>Wordpress</code>本身很难挖掘什么安全问题的时候，安全研究者开始研究其插件、主题的</p>
+<p>漏洞。通过插件,主题的漏洞去渗透<code>Wordpress</code>站点，于是<code>WPScan</code>应运而生，收集 <code>Wordpress</code>的各种漏洞，形成一个<code>Wordpress</code>专用扫描器。</p>
+<p>该扫描器可以实现获取站点用户名，获取安装的所有插件、主题，以及存在漏洞的插件、主题，并提供漏洞信息。同时还可以实现对未加防护的 </p>
+<p><code>Wordpress</code>站点暴力破解用户名密码。</p>
+<p><code>WPScan</code>已经被预安装在以下<code>Linux</code>系统中：</p>
+<p>  <strong>1: BackBox Linux</strong></p>
+<p>  <strong>2: Kali Linux</strong></p>
+<p>  <strong>3: Pentoo</strong></p>
+<p>  <strong>4: SamuraiWTF</strong></p>
+<p>  <strong>5:BlackArch</strong></p>
+<h3 id="二：预备知识之WPscan安装与使用"><a href="#二：预备知识之WPscan安装与使用" class="headerlink" title="二：预备知识之WPscan安装与使用"></a>二：预备知识之<code>WPscan</code>安装与使用</h3><p>由于<code>Windows</code>不支持<code>WPScan</code>。最新版本的<code>WPScan</code>可以在<code>Linux</code>或<code>Mac</code>上下载使用：</p>
+<p><strong>在Ubuntu上安装</strong></p>
+<pre><code>sudo apt-get install libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essential libgmp-dev zlib1g-dev
+</code></pre><p><strong>在Debian上安装</strong></p>
+<pre><code>sudo apt-get install gcc git ruby ruby-dev libcurl4-openssl-dev make zlib1g-dev
+</code></pre><p><strong>在Fedora上安装</strong></p>
+<pre><code>sudo dnf install gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel libcurl-devel patch rpm-build
+</code></pre><p><strong>在Arch Linux上安装</strong></p>
+<pre><code>pacman -Syu ruby
+pacman -Syu libyaml
+</code></pre><p><strong>在macOS上安装</strong></p>
+<p>需要<code>Apple Xcode</code>，命令行工具和<code>libffi</code>(能够安装<code>FFI gem</code>）<a href="https://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error" target="_blank" rel="noopener">具体安装过程请点击这里</a></p>
+<p>常用参数选项：</p>
+<pre><code>--update  更新到最新版本
+
+--url   | -u &lt;target url&gt;  要扫描的`WordPress`站点.
+
+--force | -f   不检查网站运行的是不是`WordPress`
+
+--enumerate | -e [option(s)]  枚举
+</code></pre><p><strong>option:</strong></p>
+<pre><code>u 枚举用户名，默认从1-10
+
+u[10-20] 枚举用户名，配置从10-20
+
+p 枚举插件
+
+vp 只枚举有漏洞的插件
+
+ap 枚举所有插件，时间较长
+
+tt 列举缩略图相关的文件
+
+t 枚举主题信息
+
+vt 只枚举存在漏洞的主题
+
+at 枚举所有主题，时间较长
+
+可以指定多个扫描选项，例：&quot;-e tt,p&quot;
+
+如果没有指定选项，默认选项为：&quot;vt,tt,u,vp&quot;
+
+--exclude-content-based &quot;&lt;regexp or string&gt;&quot;
+
+当使用枚举选项时，可以使用该参数做一些过滤，基于正则或者字符串，可以不写正则分隔符，但要用单引号或双引号包裹
+
+--config-file | -c &lt;config file使用指定的配置文件
+
+--user-agent | -a &lt;User-Agent指定User-Agent
+
+--cookie &lt;String指定cookie
+
+--random-agent | -r 使用随机User-Agent
+
+--follow-redirection 如果目标包含一个重定向，则直接跟随跳转
+
+--batch 无需用户交互，都使用默认行为
+
+--no-color 不要采用彩色输出
+
+--wp-content-dir &lt;wp content dirWPScan会去发现wp-content目录，用户可手动指定
+
+--wp-plugins-dir &lt;wp plugins dir指定wp插件目录，默认是wp-content/plugins
+
+--proxy &lt;[protocol://]host:port设置一个代理，可以使用HTTP、SOCKS4、SOCKS4A、SOCKS5，如果未设置默认是HTTP协议
+
+--proxy-auth &lt;username:password设置代理登陆信息
+
+--basic-auth &lt;username:password设置基础认证信息
+
+--wordlist | -w &lt;wordlist指定密码字典
+
+--username | -U &lt;username指定爆破的用户名
+
+--usernames &lt;path-to-file指定爆破用户名字典
+
+--threads | -t &lt;number of threads指定多线程
+
+--cache-ttl &lt;cache-ttl设置 cache TTL
+
+--request-timeout &lt;request-timeout请求超时时间
+
+--connect-timeout &lt;connect-timeout连接超时时间
+
+--max-threads &lt;max-threads最大线程数
+
+--throttle &lt;milliseconds当线程数设置为1时，设置两个请求之间的间隔
+
+--help | -h 输出帮助信息
+
+--verbose | -v 输出Verbose
+
+--version 输出当前版本
+</code></pre><h3 id="三：渗透站点演示"><a href="#三：渗透站点演示" class="headerlink" title="三：渗透站点演示"></a>三：渗透站点演示</h3><h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><p><strong>kali linux</strong></p>
+<p><strong>Debian 9</strong></p>
+<p><strong>WPScan</strong>(linux中已经与安装）</p>
+<p><img src="https://i.imgur.com/RJBAxDY.png" alt=""></p>
+<h4 id="渗透过程"><a href="#渗透过程" class="headerlink" title="渗透过程"></a>渗透过程</h4><p><strong>1：安装及更新数据漏洞库</strong></p>
+<p>你可以使用下列命令在自己的设备中安装WPScan</p>
+<pre><code>git clone https://github.com/wpscanteam/wpscan.git
+</code></pre><p>更新漏洞库，使用命令：<code>wpscan --update</code></p>
+<p><img src="https://i.imgur.com/ixFJ66t.png" alt=""></p>
+<p><strong>2：扫描<code>WordPress</code>漏洞 </strong></p>
+<p>接下来使用下面的命令来扫描可能存在的漏洞网站：</p>
+<pre><code>wpscan --url [wordpress url]
+</code></pre><p>z这里我直接用一个不认识的人的站点为例子进行演示(是我的好友HHHHH)</p>
+<pre><code>wpscan --url https://www.xxxxx.wiki/ 
+</code></pre><p><img src="https://i.imgur.com/zJi6eCB.png" alt=""></p>
+<p><strong>3：扫描<code>wordpress</code>用户</strong></p>
+<p>我们可以对其用户进行枚举：</p>
+<pre><code>wpscan --url https://www.xxxxxxx.wiki/ --enumerate u
+</code></pre><p><img src="https://i.imgur.com/tHnskrS.png" alt=""></p>
+<p>得到的用户信息：</p>
+<p><img src="https://i.imgur.com/5XFgSIt.png" alt=""></p>
+<p><strong>4：暴力破解得到密码</strong></p>
+<p>在进行暴力破解攻击之前，我们需要创建对应的字典文件 </p>
+<pre><code>wpscan --url https://www.xxxxx.wiki/ -e u --wordlist /root/桌面/password.txt
+</code></pre><p><img src="https://i.imgur.com/8Z48IXR.png" alt=""></p>
+<p>效果图如下：</p>
+<p><img src="https://i.imgur.com/sMIqJOQ.png" alt=""></p>
+<p><strong>5：扫描插件漏洞</strong></p>
+<p>插件可以扩展<code>WordPress</code>站点的功能，但很多插件中都存在安全漏洞，而这也会给攻击者提供可乘之机。</p>
+<p>我们可以使用下列命令扫描<code>WordPress</code>站点中安装的插件：</p>
+<pre><code>wpscan -u https://www.xxxxx.wiki/ -enumerate p
+</code></pre><p><img src="https://i.imgur.com/QoHAYlm.png" alt=""></p>
+<p>我们可以看到该网站中安装了<code>easy-wp-smtp</code>,<code>theme-my-login</code>插件：</p>
+<p><img src="https://i.imgur.com/uWfrRxv.png" alt=""></p>
+<p>接下来，我们可以使用下列命令来扫描目标插件中的安全漏洞：</p>
+<pre><code>wpscan --url https://www.xxxxx.wiki/ --enumerate vp
+</code></pre><p><img src="https://i.imgur.com/7n1RIYJ.png" alt=""></p>
+<p>效果演示：</p>
+<p><img src="https://i.imgur.com/emjkOHI.png" alt=""></p>
+<p><strong>6:主题漏洞扫描</strong></p>
+<p>使用下列命令对主题进行扫描：</p>
+<pre><code>wpscan --url https://www.xxxxx.wiki --enumerate t
+</code></pre><p>发现一个主题：</p>
+<p><img src="https://i.imgur.com/Tml7o9c.png" alt=""></p>
+<p>使用下列命令扫描主题中存在的漏洞：</p>
+<pre><code>wpscan --url https://www.xxxxxx.wiki --enumerate vt
+</code></pre><p><img src="https://i.imgur.com/g7AYCoP.png" alt=""></p>
+<p><strong>7:<code>TimThumbs</code>文件漏洞扫描</strong></p>
+<pre><code>wpscan -u https://www.xxxxxx.wiki/ -enumerate tt
+</code></pre><p><img src="https://i.imgur.com/YdGM6TU.png" alt=""></p>
+<p><img src="https://i.imgur.com/ivWsTbO.png" alt=""></p>
+<h4 id="四：WordPress的防护措施"><a href="#四：WordPress的防护措施" class="headerlink" title="四：WordPress的防护措施"></a>四：<code>WordPress</code>的防护措施</h4><p><strong>1:关于密码爆出防护措施</strong></p>
+<p>如果你想要避免<code>WordPress</code>用户列表被列举，不要把用户名作为昵称，并且不要使用已经被大众知道的用户名。最好的方式是选择一个包含随机字</p>
+<p>符的名字做用户名并且使用其他名字作为昵称。 <code>WPScan</code>扫描<code>URL</code>来获取用户名，所以如果你不使用这个用户名，你肯定不会被<code>WPScan</code>搜索到。</p>
+<p>防止暴力破解的最好方式是限制一个<code>IP</code>地址的尝试登录次数。<code>WordPress</code>有很多插件可以实现这个功能。列如有一个插件叫</p>
+<p><code>Brute Force Login Protection</code>(当然你也可以写一个脚本防止爆出个人密码)</p>
+<p><strong>2：如何防范扫描插件、主题、<code>TimThumb</code>文件</strong></p>
+<p>使用<code>Block Bad Queries (BBQ)</code>插件，就可以屏蔽和禁止这类扫描</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/11/11/2018web安全测试秋季选拔赛部分题目writeup/" title="安恒杯秋季选拔赛部分题目WP">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment valine -->
+			<!-- show valine comment -->
+<div id="valineComment" class="comment"></div>
+
+<!-- valine`s js & css -->
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/valine.min.js"></script>
+<link rel="stylesheet" href="/css/comment.css">
+
+<script>
+	var checkExistComment = setInterval(function() {
+		if( $('#valineComment').length ) {
+			new Valine({
+				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+				av: AV,
+				//使用id寻找div元素（使用class可能找不到）
+				el: '#valineComment',
+				emoticon_url: 'https://cloud.panjunwen.com/alu',
+				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
+				app_id: "3333....", //获取APP ID
+				app_key: "3333......", //获取APP KEY
+				placeholder: "no any!", //评论框占位提示文字        			
+			});
+			clearInterval(checkExistComment);
+		}
+	}, 100);
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#title-WPScan使用完整教程之记一次对WordPress的渗透过程"><span class="post-toc-text">title:WPScan使用完整教程之记一次对WordPress的渗透过程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#WPScan使用完整教程之记一次对WordPress的渗透过程"><span class="post-toc-text">WPScan使用完整教程之记一次对WordPress的渗透过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一：什么是WPScan"><span class="post-toc-text">一：什么是WPScan</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二：预备知识之WPscan安装与使用"><span class="post-toc-text">二：预备知识之WPscan安装与使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三：渗透站点演示"><span class="post-toc-text">三：渗透站点演示</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#环境准备"><span class="post-toc-text">环境准备</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#渗透过程"><span class="post-toc-text">渗透过程</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#四：WordPress的防护措施"><span class="post-toc-text">四：WordPress的防护措施</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="http://github.com/" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
+				
+				
+					<a href="http://github.com/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2017 - 2018, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
