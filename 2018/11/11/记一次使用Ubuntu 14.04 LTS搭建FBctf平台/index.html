@@ -1,0 +1,497 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>记一次使用Ubuntu 14.04 LTS搭建FBctf平台</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《记一次使用Ubuntu 14.04 LTS搭建FBctf平台》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		11/11/2018 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="标签">标签</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/11/11/记一次使用Ubuntu 14.04 LTS搭建FBctf平台/" itemprop="url">		
+			记一次使用Ubuntu 14.04 LTS搭建FBctf平台		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/11/11/记一次使用Ubuntu 14.04 LTS搭建FBctf平台/" itemprop="url">
+	<time datetime="2018-11-11T08:11:33.030Z" itemprop="datePublished">
+  		2018-11-11
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="记一次使用Ubuntu-14-04-LTS搭建FBctf平台"><a href="#记一次使用Ubuntu-14-04-LTS搭建FBctf平台" class="headerlink" title="记一次使用Ubuntu 14.04 LTS搭建FBctf平台"></a>记一次使用Ubuntu 14.04 LTS搭建FBctf平台</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>FBCTF是Facebook开发的一套开源的CTF平台，使用PHP开发，github地址：<a href="https://github.com/facebook/fbctf/" target="_blank" rel="noopener">https://github.com/facebook/fbctf/</a></p>
+<p>由于我们在墙内，部署起来还是有些麻烦的，需要更换一些国内的源。</p>
+<p>搭建起来是挺浪费时间的(QAQ)</p>
+<h3 id="0x00-环境准备"><a href="#0x00-环境准备" class="headerlink" title="0x00 环境准备"></a>0x00 环境准备</h3><p>由于FBCTF只能安装在Ubuntu 14.04 LTS，因此我们需要先安装一个Ubuntu 14.04 LTS。然后进行更新(这一点也许已经坑了很多小伙伴了）</p>
+<pre><code> sudo apt-get update &amp;&amp; sudo apt-get upgrade -y
+</code></pre><p>更新之后我们安装一些必要软件</p>
+<pre><code>sudo apt-get install git vim g++ -y
+</code></pre><p>git是用来从github拉取FBCTF源码的。g++在自动安装nodejs时会用到。</p>
+<h3 id="0x01-拉取FBCTF源码"><a href="#0x01-拉取FBCTF源码" class="headerlink" title="0x01 拉取FBCTF源码"></a>0x01 拉取FBCTF源码</h3><p>创建目录，要是桌面版的Ubuntu就直接右键新建了</p>
+<pre><code>sudo mkdir /fbctf
+sudo chmod 777 -R /fbctf
+</code></pre><p>拉取源码</p>
+<pre><code>git clone https://github.com/facebook/fbctf
+cd fbctf
+</code></pre><p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110454316-381169507.png" alt=""></p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110508534-1023463758.png" alt=""></p>
+<p>由于我是再home目录下执行的git指令，因此源码会放在当前用户目录下</p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110545863-1411690119.png" alt=""></p>
+<p>接下来我们将源码移动到/fbctf目录下</p>
+<pre><code>mv fbctf/* /fbctf
+</code></pre><p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110625409-1324190240.png" alt=""></p>
+<h3 id="0x02-修改安装脚本"><a href="#0x02-修改安装脚本" class="headerlink" title="0x02 修改安装脚本"></a>0x02 修改安装脚本</h3><p>由于我们有些源无法访问，因此需要使用国内的一些镜像，接下来我们修改安装脚本extra/lib.sh。</p>
+<pre><code>vim /fbctf/extra/lib.sh
+</code></pre><p>搜索 <a href="http://dl.hhvm.com/ubuntu" target="_blank" rel="noopener">http://dl.hhvm.com/ubuntu </a> 替换为 <a href="http://dl.hiphop-php.com/ubuntu" target="_blank" rel="noopener">http://dl.hiphop-php.com/ubuntu</a></p>
+<p><a href="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110912374-1764968105.png" target="_blank" rel="noopener">https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110912374-1764968105.png</a></p>
+<p>搜索 <a href="https://getcomposer.org/installer" target="_blank" rel="noopener">https://getcomposer.org/installer</a>   替换为 <a href="https://install.phpcomposer.com/installer" target="_blank" rel="noopener">https://install.phpcomposer.com/installer</a></p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110953062-25937302.png" alt=""></p>
+<h3 id="0x03-添加-npmrc配置信息"><a href="#0x03-添加-npmrc配置信息" class="headerlink" title="0x03 添加.npmrc配置信息"></a>0x03 添加.npmrc配置信息</h3><p>创建~/.npmrc文件，添加下面的代码</p>
+<pre><code>registry = https://registry.npm.taobao.org
+</code></pre><p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111035031-56250020.png" alt=""></p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111047609-1043276688.png" alt=""></p>
+<h3 id="0x04-安装"><a href="#0x04-安装" class="headerlink" title="0x04 安装"></a>0x04 安装</h3><p>官方有很多种安装方式，我们使用快速安装，安装时间比较长，大约1小时，取决于网速，特别是访问<a href="nodesource.com">nodesource.com</a>网站的速度。</p>
+<pre><code>cd /fbctf/
+source ./extra/lib.sh
+quick_setup install prod
+</code></pre><p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111131546-694163769.png" alt=""></p>
+<p>安装过程中会有很多次让我们输入sudo密码，也有可能会有很多次因为下载文件失败而退出，</p>
+<p>当退出时我们可以直接再次使用quick_setup install prod进行重复安装即可。</p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111204984-1884002653.png" alt=""></p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111212906-803145738.png" alt=""></p>
+<p>当有下面的安装错误时，我们可以跳过前面的安装过程，只用下面的脚本来安装</p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111224624-526339828.png" alt=""></p>
+<pre><code>curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+</code></pre><p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111240343-481977940.png" alt=""></p>
+<p>然后再使用quick_setup install prod继续安装</p>
+<p>出现一下界面说明安装成功，一定要记住标出的字符串，那个就是管理员admin的密码。da8a54c4a651549a37f34509b3106079</p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111320937-1071005732.png" alt=""></p>
+<h3 id="0x05-使用"><a href="#0x05-使用" class="headerlink" title="0x05 使用"></a>0x05 使用</h3><p>访问：<a href="https://localhost" target="_blank" rel="noopener">https://localhost</a><br>这时候会提示证书错误，我们加到例外中继续访问。</p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111347062-930700262.png" alt=""></p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111354656-193485786.png" alt=""></p>
+<p>使用我们再安装完成时保存的密码进行登录</p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111404718-1932520043.png" alt=""></p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111421890-1065232778.png" alt=""></p>
+<p>在页面的最下面能够更改语言为中文，不过这个地方的中文指的时繁体中文。</p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111434702-1042201881.png" alt=""></p>
+<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111442468-1766701085.png" alt=""></p>
+<p>为了能够让其他人也能访问，关闭ubuntu的防火墙、</p>
+<pre><code>sudo ufw disable
+</code></pre><p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111452890-630970428.png" alt=""></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2018/11/11/记一次使用Ubuntu搭建CTFd平台/" title="记一次使用Ubuntu搭建CTFd平台">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/11/11/记一次对`vulnhub`中`Android4`靶机渗透测试全过程/" title="记一次对`vulnhub`中`Android4`靶机渗透测试全过程">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment valine -->
+			<!-- show valine comment -->
+<div id="valineComment" class="comment"></div>
+
+<!-- valine`s js & css -->
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/valine.min.js"></script>
+<link rel="stylesheet" href="/css/comment.css">
+
+<script>
+	var checkExistComment = setInterval(function() {
+		if( $('#valineComment').length ) {
+			new Valine({
+				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+				av: AV,
+				//使用id寻找div元素（使用class可能找不到）
+				el: '#valineComment',
+				emoticon_url: 'https://cloud.panjunwen.com/alu',
+				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
+				app_id: "3333....", //获取APP ID
+				app_key: "3333......", //获取APP KEY
+				placeholder: "no any!", //评论框占位提示文字        			
+			});
+			clearInterval(checkExistComment);
+		}
+	}, 100);
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#记一次使用Ubuntu-14-04-LTS搭建FBctf平台"><span class="post-toc-text">记一次使用Ubuntu 14.04 LTS搭建FBctf平台</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x00-环境准备"><span class="post-toc-text">0x00 环境准备</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-拉取FBCTF源码"><span class="post-toc-text">0x01 拉取FBCTF源码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-修改安装脚本"><span class="post-toc-text">0x02 修改安装脚本</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-添加-npmrc配置信息"><span class="post-toc-text">0x03 添加.npmrc配置信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x04-安装"><span class="post-toc-text">0x04 安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x05-使用"><span class="post-toc-text">0x05 使用</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="http://github.com/" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
+				
+				
+					<a href="http://github.com/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2017 - 2018, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>Hello World</title>
+	<title>记一次使用Ubuntu搭建CTFd平台</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -54,7 +54,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《Hello World》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《记一次使用Ubuntu搭建CTFd平台》</p>
 			
 		
 	
@@ -160,8 +160,8 @@
 					
 					
 	
-		<a href="/2018/11/11/hello-world/" itemprop="url">		
-			Hello World		
+		<a href="/2018/11/11/记一次使用Ubuntu搭建CTFd平台/" itemprop="url">		
+			记一次使用Ubuntu搭建CTFd平台		
 		</a>
 	
 
@@ -170,8 +170,8 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2018/11/11/hello-world/" itemprop="url">
-	<time datetime="2018-11-11T02:11:13.457Z" itemprop="datePublished">
+						<a href="/2018/11/11/记一次使用Ubuntu搭建CTFd平台/" itemprop="url">
+	<time datetime="2018-11-11T08:12:37.017Z" itemprop="datePublished">
   		2018-11-11
   </time>
 </a>    
@@ -187,20 +187,14 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo server
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo generate
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo deploy
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+						<h2 id="Ubuntu搭建CTFd平台"><a href="#Ubuntu搭建CTFd平台" class="headerlink" title="Ubuntu搭建CTFd平台"></a>Ubuntu搭建CTFd平台</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>国庆七天乐！！回家待了一天，感觉不是太好，就会到学校继续做自己喜欢的事情，想到搭建一个CTF平台，FBCTF也是个很棒的比赛平台，</p>
+<p>界面很炫酷，但是资源占用比较大，在本地虚拟机的环境下，还是有些吃不消的，再加上刷一些平台的题目时，他们大多数使用CTFd，比较熟悉，</p>
+<p>所以最后还是选择了CTFd，进行搭建测试！</p>
+<p><img src="https://raw.githubusercontent.com/CTFd/CTFd/master/CTFd/themes/core/static/img/logo.png" alt=""></p>
+<h3 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h3><p>系统：ubuntu-17.10.1-desktop-amd64</p>
+<p>使用的是VMware安装虚拟镜像</p>
+<h3 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h3><h4 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h4><pre><code>sudo apt install git
+</code></pre>
 					
 				</div>
 			</div>
@@ -209,12 +203,18 @@
 		<ul class="am-pagination">
     
     	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2018/11/11/记一份SQLmap使用手册小结(一）/" title="sqlmap注入详细使用方法(一）">
+   		<a class="pull-left" href="/2018/11/11/记一次关于HTTP服务的七层架构技术解析及运用/" title="记一次关于HTTP服务的七层架构技术解析及运用">
       		&laquo; 上一篇
 		</a>
 		</li>
 	
 	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/11/11/记一次使用Ubuntu 14.04 LTS搭建FBctf平台/" title="记一次使用Ubuntu 14.04 LTS搭建FBctf平台">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
  </ul>
         
 
@@ -302,7 +302,7 @@
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Quick-Start"><span class="post-toc-text">Quick Start</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Create-a-new-post"><span class="post-toc-text">Create a new post</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Run-server"><span class="post-toc-text">Run server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Generate-static-files"><span class="post-toc-text">Generate static files</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Deploy-to-remote-sites"><span class="post-toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Ubuntu搭建CTFd平台"><span class="post-toc-text">Ubuntu搭建CTFd平台</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#准备阶段"><span class="post-toc-text">准备阶段</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#搭建过程"><span class="post-toc-text">搭建过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-安装git"><span class="post-toc-text">1.安装git</span></a></li></ol></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
