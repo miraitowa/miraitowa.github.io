@@ -1,0 +1,583 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>记一份蓝鲸安全打卡MISC writeup</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《记一份蓝鲸安全打卡MISC writeup》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		11/12/2018 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/11/12/蓝鲸安全CTF打卡题——第一期MISC writeup/" itemprop="url">		
+			记一份蓝鲸安全打卡MISC writeup		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/11/12/蓝鲸安全CTF打卡题——第一期MISC writeup/" itemprop="url">
+	<time datetime="2018-11-12T03:43:21.389Z" itemprop="datePublished">
+  		2018-11-12
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="记一份蓝鲸安全打卡MISC-writeup"><a href="#记一份蓝鲸安全打卡MISC-writeup" class="headerlink" title="记一份蓝鲸安全打卡MISC writeup"></a>记一份蓝鲸安全打卡MISC writeup</h2><p>上一篇文章：<a href="https://www.cnblogs.com/lxz-1263030049/p/9686404.html" target="_blank" rel="noopener">蓝鲸安全CTF打卡题——第一期密码学</a></p>
+<p>本文首发先知社区：<a href="https://xz.aliyun.com/t/2788" title="蓝鲸安全CTF打卡题——第一期隐写术" target="_blank" rel="noopener">蓝鲸安全CTF打卡题——第一期隐写术</a></p>
+<p>i春秋：<a href="https://bbs.ichunqiu.com/thread-46162-1-1.html" target="_blank" rel="noopener">蓝鲸安全CTF打卡题——第一期隐写术</a></p>
+<p>再过几天就是中秋节了，我打算尽自己最大的能力把蓝鲸安全平台上面的打卡题目的<code>writeup</code>整理出来。</p>
+<p>有什么错误的地方 希望各位大佬指正(谢谢Orz)</p>
+<p><img src="https://i.imgur.com/652NPUR.jpg" alt=""></p>
+<h3 id="一：雨中龙猫"><a href="#一：雨中龙猫" class="headerlink" title="一：雨中龙猫"></a>一：雨中龙猫</h3><p><img src="https://i.imgur.com/QLpTgtM.png" alt=""></p>
+<h4 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h4><p>图片源码隐写、base64编码</p>
+<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>使用普通的记事本打卡图片就可以了，这一题感觉有点坑(MISC不按常规套路出牌)，使用常规的方法没有想出来，后来看了塔主的解题视频(5分钟的) 里面说了一下关于<code>base64</code>的内容，所以想到了方法(HHHH）</p>
+<p>由于题目中提示有答案的格式，所以先对<code>whalectf</code>进行<code>base64</code>加密(<a href="https://base64.supfree.net/" target="_blank" rel="noopener">base64加解密平台</a>)</p>
+<p><img src="https://i.imgur.com/mHm6lK5.png" alt=""></p>
+<p>在记事本中搜索内容<code>d2hhbGVjd</code>(一次一次的尝试，每一次尝试就减少几个字符)</p>
+<p><img src="https://i.imgur.com/wlv1DeN.png" alt=""></p>
+<p>我们能够看到最后提供的提示是：<code>py</code>，同样的操作，我们进行<code>base64</code>操作</p>
+<p><img src="https://i.imgur.com/rr9NLKr.png" alt=""></p>
+<p>我们继续刚刚的操作就会得到</p>
+<p><img src="https://i.imgur.com/LmU8lLE.png" alt=""></p>
+<p>合并两次得到的结果就会得到：<code>d2hhbGVjdGZ7TG9uZ19tYW9faXNfaGFwcHl9</code></p>
+<p><code>base64</code>解密之后得到：</p>
+<p><img src="https://i.imgur.com/IQbMPMq.png" alt=""></p>
+<p>最后得到答案：<strong>whalectf{Long_mao_is_happy}</strong></p>
+<h3 id="二：追加数据"><a href="#二：追加数据" class="headerlink" title="二：追加数据"></a>二：追加数据</h3><p><img src="https://i.imgur.com/iE1rAgL.png" alt=""></p>
+<h4 id="知识点-1"><a href="#知识点-1" class="headerlink" title="知识点"></a>知识点</h4><p>文件绑定、<code>word</code>隐藏</p>
+<p><strong>文件绑定的方法</strong></p>
+<p>   <code>在cmd中</code></p>
+<pre><code>copy /b 1.jpg+2.txt 3.jpg
+</code></pre><h4 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h4><p>拿到图片，在<code>kali</code>里面使用<code>binwalk</code>工具进行分析</p>
+<p>使用命令：</p>
+<pre><code>binwalk whalediary.jpg 
+</code></pre><p><img src="https://i.imgur.com/PTTVoHq.png" alt=""></p>
+<p>可以看到一个<code>zip</code>压缩包隐藏在里面，使用<code>foremost</code>命令</p>
+<p>使用命令：<code>foremost whalediary.jpg</code></p>
+<p><img src="https://i.imgur.com/ZtykRuF.png" alt=""></p>
+<p>使用<code>word</code>，打开<code>docx</code>文件就会得到(由于我事先把<code>word</code>中的隐藏关闭了，所以打开的文档可能和没有关闭的人的不同)</p>
+<p><img src="https://i.imgur.com/xx0ItUg.png" alt=""></p>
+<p>我们只需要注意每一段后面的字母就好，把他们组合起来就是答案(可是我没有读懂QAQ)</p>
+<h3 id="三：追加数据"><a href="#三：追加数据" class="headerlink" title="三：追加数据"></a>三：追加数据</h3><p><img src="https://i.imgur.com/p2yqUEk.png" alt=""></p>
+<h4 id="知识点-2"><a href="#知识点-2" class="headerlink" title="知识点"></a>知识点</h4><p><code>PNG</code>文件格式、<code>zlib</code>压缩数据、二维码识别</p>
+<h4 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h4><p>首先使用<code>pngcheck</code>工具检查图片的<code>IDAT</code>位</p>
+<p>使用的命令为：<code>pngcheck.exe -v whalectf.png</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11900959-4e2155156baec752.png?imageMogr2/auto-orient/" alt=""></p>
+<p>可以看到一个IDAT位为0x17345，长度为193 用winhex打开图片，找到IDTA块对应的位置 如图所示截取：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11900959-aa0760806b9fa483.png?imageMogr2/auto-orient/" alt=""></p>
+<p>这里不需要截取长度标志位<code>C1</code>和<code>IDA</code>T图像数据块和最后四位的<code>CRC</code>冗余校验码，使用如下脚本进行分析即可：</p>
+<pre><code># python2
+#! /usr/bin/env python
+import zlib
+import binascii
+IDAT=&#39;789CA552B911C3300C5B09D87FB99C65E2A11A17915328FC8487C0C7E17BCEF57CCFAFA27CAB749B8A8E3E754C4C15EF25F934CDFF9DD7C0D413EB7D9E18D16F15D2EB0B2BF1D44C6AE6CAB1664F11933436A9D0D8AA6B5A2D09BA785E58EC8AB264111C0330A148170B90DA0E582CF388073676D2022C50CA86B63175A3FD26AE1ECDF2C658D148E0391591C9916A795432FBDDF27F6D2B71476C6C361C052FAA846A91B22C76A25878681B7EA904A950E28887562FDBC59AF6DFF901E0DBC1AB&#39;.decode(&#39;hex&#39;)
+result = binascii.hexlify(zlib.decompress(IDAT))
+bin = result.decode(&#39;hex&#39;)
+print bin
+print &#39;\r\n&#39;
+print len(bin)
+</code></pre><p>就会得到如下所示：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11900959-0424693a743e5ada.png?imageMogr2/auto-orient/" alt=""></p>
+<p>一串<code>0和1</code>的数据 长度为<code>1024</code>是一个正方形 可以想到是要生成一个二维码，把生成的0和1放在<code>result.txt</code>里面，用如下脚本生成二维码</p>
+<pre><code>    # python2 
+#! /usr/bin/env python
+import  Image
+MAX = 32
+pic = Image.new(&#39;RGB&#39;,(MAX*9,MAX*9))
+f = open(&#39;result.txt&#39;,&#39;r&#39;)
+str = f.read()
+i = 0
+for y in range(0,MAX*9,9):
+for x in range(0,MAX*9,9):
+if(str[i] == &#39;1&#39;):
+for n in range(9):
+for j in range(9):
+pic.putpixel([x+j,y+n],(0,0,0))
+else:
+for k in range(9):
+for l in range(9):
+pic.putpixel([x+l,y+k],(255,255,255))
+i = i+1
+
+pic.show()
+pic.save(&quot;flag.png&quot;)
+f.close()
+</code></pre><p>得到二维码：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11900959-62de09fe880fa4da.png?imageMogr2/auto-orient/" alt=""></p>
+<p>使用<code>QR_Research</code>或者其它工具也是可以的，扫描后就出现<code>flag</code></p>
+<p><img src="https://i.imgur.com/3B0voOp.png" alt=""></p>
+<p>最后得到答案：<strong>whale{QR_code_and_png}</strong></p>
+<h3 id="四：破碎的心"><a href="#四：破碎的心" class="headerlink" title="四：破碎的心"></a>四：破碎的心</h3><p><img src="https://i.imgur.com/nP0gYuR.png" alt=""></p>
+<h4 id="知识点-3"><a href="#知识点-3" class="headerlink" title="知识点"></a>知识点</h4><p>条形码</p>
+<h4 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h4><p>我们把图片下载下来之后会发现这是一个不完整的条形码</p>
+<p><img src="https://i.imgur.com/fiuDD4E.png" alt=""></p>
+<p>我们选择其中的条形码还原即可 在画图里，先用矩形框选择一些连续的条纹，按住<code>ctrl</code>，按上下键不断还原即可</p>
+<p><img src="https://i.imgur.com/3to3WDp.png" alt=""></p>
+<p>最后用<code>BcTester</code>打开即可得到<code>flag</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11900959-97e8d3c22961a335.png?imageMogr2/auto-orient/" alt=""></p>
+<p>最后得到答案：<strong>whale{BarC0d3_Pick}</strong></p>
+<h3 id="五：我们不一样"><a href="#五：我们不一样" class="headerlink" title="五：我们不一样"></a>五：我们不一样</h3><p><img src="https://i.imgur.com/03W9Lt7.png" alt=""></p>
+<h4 id="知识点-4"><a href="#知识点-4" class="headerlink" title="知识点"></a>知识点</h4><p>双图对比 <code>compare</code>命令的使用</p>
+<h4 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h4><p>首先使用<code>Linux</code>中的<code>binwalk</code>命令</p>
+<p><img src="https://i.imgur.com/EfCqhRX.png" alt=""></p>
+<p>我们可以看到有两张图 使用compare命令</p>
+<p><img src="https://i.imgur.com/PuZgvu2.png" alt=""></p>
+<p>看到图片左下角有一个非常小的变化，使用<code>python</code>脚本打印出来</p>
+<pre><code># python2
+#coding:utf-8
+
+import Image
+import random
+
+img1 = Image.open(&quot;1.png&quot;)
+im1 = img1.load()
+
+img2 = Image.open(&quot;2.png&quot;)
+im2 = img2.load()
+
+
+a=&#39;&#39;
+i=0
+s=&#39;&#39;
+
+for y in range(img1.size[1]):
+for x in range(img1.size[0]):
+if(im1[x,y]!=im2[x,y]):
+print im1[x,y],im2[x,y]
+if i == 8:   #以8个为一组 打印出字符串
+s=s+chr(int(a,2))
+a=&#39;&#39;
+i=0
+
+a=a+str(im2[x,y][2])
+i=i+1
+s=s+&#39;}&#39;
+print s
+</code></pre><p>运行之后就会得到：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11900959-b39521f117b433a0.png?imageMogr2/auto-orient/" alt=""></p>
+<p>我们可以看到它的蓝色通道不一样，它是把蓝色像素转换成为<strong>0和1</strong>，<strong>8</strong>个位一组转换成字符，当然 <strong>flag</strong>也是在</p>
+<p>最后的答案：<strong>whale{w3_ar3_d1ffe2en7}</strong></p>
+<h3 id="六：黑白打字机"><a href="#六：黑白打字机" class="headerlink" title="六：黑白打字机"></a>六：黑白打字机</h3><p><img src="https://i.imgur.com/sWgbDcO.png" alt=""></p>
+<h4 id="知识点-5"><a href="#知识点-5" class="headerlink" title="知识点"></a>知识点</h4><p>二维码、<code>steganography</code>、五笔编码</p>
+<h4 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h4><p>把图片下载之后发现，不是正确的二维码，需要使用光影魔术手进行反色处理，再使用<code>QR_Research</code>就可以得到：</p>
+<p><img src="https://i.imgur.com/x5g9NQU.png" alt=""></p>
+<p>提示我<strong>‘你会五笔吗’</strong></p>
+<p>图片的名字<code>yhpargonagets</code>反过来是<code>steganography</code>，</p>
+<p>百度得到这个工具(下载需要积分，不过我有)我们使用这个工具解密，勾选<code>Decode</code>和<code>Decrypt</code>，发现需要密码</p>
+<p><img src="https://i.imgur.com/igEga2L.png" alt=""></p>
+<p>之前提示我们的话，我们针对每个字都进行五笔解密查询(一定要86版五笔)</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11900959-b5dab0ebcbcfa377.jpg?imageMogr2/auto-orient/" alt=""></p>
+<p>最终得到一串字符<code>wqiywfcugghgttfnkcg</code>，以此当密码输入,就会得到：</p>
+<p><img src="https://i.imgur.com/YIYyT01.png" alt=""></p>
+<p>最后得到答案：<strong>venusctf{V3nus_St3gan0graph1_1s_g00d}</strong></p>
+<p>参考资料：</p>
+<p><strong>Image Steganography：</strong> <a href="https://download.csdn.net/download/qq_41187256/10682803" target="_blank" rel="noopener">https://download.csdn.net/download/qq_41187256/10682803</a></p>
+<p><strong>CTF Wiki：</strong>  <a href="https://ctf-wiki.github.io/ctf-wiki/misc/introduction/" target="_blank" rel="noopener">https://ctf-wiki.github.io/ctf-wiki/misc/introduction/</a></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2018/11/12/记一份SQLmap使用手册小结(一）/" title="sqlmap注入详细使用方法(一）">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/11/12/蓝鲸安全打卡 第一期密码学/" title="蓝鲸安全打卡 第一期密码学">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment valine -->
+			<!-- show valine comment -->
+<div id="valineComment" class="comment"></div>
+
+<!-- valine`s js & css -->
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/valine.min.js"></script>
+<link rel="stylesheet" href="/css/comment.css">
+
+<script>
+	var checkExistComment = setInterval(function() {
+		if( $('#valineComment').length ) {
+			new Valine({
+				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+				av: AV,
+				//使用id寻找div元素（使用class可能找不到）
+				el: '#valineComment',
+				emoticon_url: 'https://cloud.panjunwen.com/alu',
+				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
+				app_id: "3333....", //获取APP ID
+				app_key: "3333......", //获取APP KEY
+				placeholder: "no any!", //评论框占位提示文字        			
+			});
+			clearInterval(checkExistComment);
+		}
+	}, 100);
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#记一份蓝鲸安全打卡MISC-writeup"><span class="post-toc-text">记一份蓝鲸安全打卡MISC writeup</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一：雨中龙猫"><span class="post-toc-text">一：雨中龙猫</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路"><span class="post-toc-text">解题思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二：追加数据"><span class="post-toc-text">二：追加数据</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-1"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-1"><span class="post-toc-text">解题思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三：追加数据"><span class="post-toc-text">三：追加数据</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-2"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-2"><span class="post-toc-text">解题思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四：破碎的心"><span class="post-toc-text">四：破碎的心</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-3"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-3"><span class="post-toc-text">解题思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五：我们不一样"><span class="post-toc-text">五：我们不一样</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-4"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-4"><span class="post-toc-text">解题思路</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六：黑白打字机"><span class="post-toc-text">六：黑白打字机</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知识点-5"><span class="post-toc-text">知识点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路-5"><span class="post-toc-text">解题思路</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018, content by miraitowa. All Rights Reserved. 			   
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
