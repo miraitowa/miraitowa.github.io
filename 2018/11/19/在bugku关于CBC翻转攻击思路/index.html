@@ -1,0 +1,734 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>在bugku关于CBC翻转攻击思路</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《在bugku关于CBC翻转攻击思路》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		11/19/2018 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/11/19/在bugku关于CBC翻转攻击思路/" itemprop="url">		
+			在bugku关于CBC翻转攻击思路		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/11/19/在bugku关于CBC翻转攻击思路/" itemprop="url">
+	<time datetime="2018-11-18T17:04:41.047Z" itemprop="datePublished">
+  		2018-11-19
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<p>今天在bugku遇到关于CBC翻转攻击的题目，总结了一下关于CBC翻转攻击的原理，以及关于这道题目的解题思路</p>
+<p>CBC翻转攻击的主要目的：通过损坏密文字节来改变明文字节。(注：借助CBC内部的模式) 通过添加单引号等恶意字符来绕过过滤器，</p>
+<p>或通过将用户ID更改为admin来提升权限，或者更改应用程序所需的明文的任何其他后果。</p>
+<p>加密过程：</p>
+<p><img src="https://i.imgur.com/GLXXHNA.png" alt=""></p>
+<p>上图CBC加密原理图</p>
+<p>1：Plaintext：待加密的数据。</p>
+<p>2：IV：用于随机化加密的比特块，保证即使对相同明文多次加密，也可以得到不同的密文。</p>
+<p>3： Ciphertext：加密后的数据</p>
+<p>4：Key:分组加密使用的密钥</p>
+<p>这里重要的一点是CBC在一个固定长度的位组上工作，称为块。在本文中，我们将使用每个16字节的块。</p>
+<p>整个加密的过程简单说来就是：</p>
+<p>首先将明文分组(常见的以16字节为一组)，位数不足的使用特殊字符填充。</p>
+<p>生成一个随机的初始化向量(IV)和一个密钥。</p>
+<p>将IV和第一组明文异或。</p>
+<p>用密钥对3中xor后产生的密文加密。</p>
+<p>用4中产生的密文对第二组明文进行xor操作。</p>
+<p>用密钥对5中产生的密文加密。</p>
+<p>重复4-7，到最后一组明文。</p>
+<p>将IV和加密后的密文拼接在一起，得到最终的密文</p>
+<p>从第一块开始，首先与一个初始向量IV异或（IV只在第一处作用），然后把异或的结果配合Key进行加密，得到第一块的密文，</p>
+<p>并且把加密的结果与下一块的明文进行异或，一直这样进行下去。因此这种模式最重要的特点就是：前一块的密文用来产生后一块的密文。</p>
+<p><img src="https://i.imgur.com/CgyNGLc.png" alt=""></p>
+<p>这是解密过程，解密的过程其实只要理解了加密，反过来看解密过程就也很简单了，同样的，前一块密文参与下一块密文的还原。</p>
+<p>从密文中提取出IV，然后将密文分组。<br>使用密钥对第一组的密文解密，然后和IV进行xor得到明文。<br>使用密钥对第二组密文解密，然后和2中的密文xor得到明文。<br>重复2-3，直到最后一组密文。<br>下图是为解释翻转攻击的原理图：</p>
+<p><img src="https://i.imgur.com/5HUeJtV.png" alt=""></p>
+<p>这里可以注意到前一块Ciphertext用来产生下一块明文，如果我们改变前一块Ciphertext中的一个字节，然后和下一块解密后的密文xor，就可以得到一个不同的明文，而这个明文是我们可以控制的。利用这一点，我们就欺骗服务端或者绕过过滤器</p>
+<p>再解释一下：</p>
+<p>根据解密方式我们可以知道，</p>
+<p>A=ciphertext(N-1),B=plaintext(N)</p>
+<p>,C为第N块待异或且经过解密的字符，C’为我们经过翻转要得到的明文。</p>
+<p>所以我们可以打得到关系：</p>
+<p>A = B ^ C</p>
+<p>C = A ^ B</p>
+<p>A ^ B ^ C = 0</p>
+<p>A ^ B ^ C ^ C’ = C’<br>根据关系式可以得到</p>
+<p>A’ = A ^ C ^ C’</p>
+<p>所以说我们只需要修改前一组密文所对应的本组明文相同位置的字符，即可得到想要的明文</p>
+<p>下面就是关于Bugku的题目</p>
+<p><a href="http://118.89.219.210:49168/" target="_blank" rel="noopener">http://118.89.219.210:49168/</a></p>
+<p>这一题属于常规思路，可是不容易想到，我记得以前做过类似的题目，毕竟是萌新总会有很多知识点会忘记(QAQ)</p>
+<p>使用备份文件脚本进行扫描就会得到：脚本代码：</p>
+<p>运行之后就会得到：</p>
+<p> <img src="https://i.imgur.com/CEJSufS.png" alt=""></p>
+<p>打开链接发现是应该可以下载的文件并且文件是以.swp为后缀名</p>
+<p>关于swp文件： </p>
+<p>使用vi，经常可以看到swp这个文件。那这个文件是怎么产生的呢，当打开一个文件，vi就会生成这么一个.(filename)swp文件 </p>
+<p>以备不测（比如非正常退出），如果你正常退出，那么这个这个swp文件将会自动删除</p>
+<p>怎么恢复.swp：<br>可以使用<br>vim -r：命令来查看当前目录下的所有swp文件<br>vi -r {your file name} ：命令恢复文件<br>rm .{your file name}.swp：命令删除swp文件，不然每一次编辑时总是有这个提示。</p>
+<p><img src="https://i.imgur.com/4TnDXcQ.png" alt=""></p>
+<p>就会得到html文档：</p>
+<p> <img src="https://i.imgur.com/pp3XCC9.png" alt=""></p>
+<p>看到该题的代码：</p>
+<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+
+&lt;title&gt;Login Form&lt;/title&gt;
+
+&lt;link href=&quot;static/css/style.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;static/js/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+
+$(document).ready(function() {
+
+$(&quot;.username&quot;).focus(function() {
+
+    $(&quot;.user-icon&quot;).css(&quot;left&quot;,&quot;-48px&quot;);
+
+});
+
+$(&quot;.username&quot;).blur(function() {
+
+    $(&quot;.user-icon&quot;).css(&quot;left&quot;,&quot;0px&quot;);
+
+});
+
+$(&quot;.password&quot;).focus(function() {
+
+    $(&quot;.pass-icon&quot;).css(&quot;left&quot;,&quot;-48px&quot;);
+
+});
+
+$(&quot;.password&quot;).blur(function() {
+
+    $(&quot;.pass-icon&quot;).css(&quot;left&quot;,&quot;0px&quot;);
+
+});
+
+});
+
+&lt;/script&gt;
+
+&lt;/head&gt;
+
+&lt;?php
+
+define(&quot;SECRET_KEY&quot;, file_get_contents(&#39;/root/key&#39;));
+
+define(&quot;METHOD&quot;, &quot;aes-128-cbc&quot;);
+
+session_start();
+
+function get_random_iv(){
+
+$random_iv=&#39;&#39;;
+
+for($i=0;$i&lt;16;$i++){
+
+    $random_iv.=chr(rand(1,255));
+
+}
+
+return $random_iv;
+
+}
+
+function login($info){
+
+$iv = get_random_iv();
+
+$plain = serialize($info);
+
+$cipher = openssl_encrypt($plain, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, $iv);
+
+$_SESSION[&#39;username&#39;] = $info[&#39;username&#39;];
+
+setcookie(&quot;iv&quot;, base64_encode($iv));
+
+setcookie(&quot;cipher&quot;, base64_encode($cipher));
+
+}
+
+function check_login(){
+
+if(isset($_COOKIE[&#39;cipher&#39;]) &amp;&amp; isset($_COOKIE[&#39;iv&#39;])){
+
+    $cipher = base64_decode($_COOKIE[&#39;cipher&#39;]);
+
+    $iv = base64_decode($_COOKIE[&quot;iv&quot;]);
+
+    if($plain = openssl_decrypt($cipher, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, $iv)){
+
+        $info = unserialize($plain) or die(&quot;&lt;p&gt;base64_decode(&#39;&quot;.base64_encode($plain).&quot;&#39;) can&#39;t unserialize&lt;/p&gt;&quot;);
+
+        $_SESSION[&#39;username&#39;] = $info[&#39;username&#39;];
+
+    }else{
+
+        die(&quot;ERROR!&quot;);
+
+    }
+
+}
+
+}
+
+function show_homepage(){
+
+if ($_SESSION[&quot;username&quot;]===&#39;admin&#39;){
+
+    echo &#39;&lt;p&gt;Hello admin&lt;/p&gt;&#39;;
+
+    echo &#39;&lt;p&gt;Flag is $flag&lt;/p&gt;&#39;;
+
+}else{
+
+    echo &#39;&lt;p&gt;hello &#39;.$_SESSION[&#39;username&#39;].&#39;&lt;/p&gt;&#39;;
+
+    echo &#39;&lt;p&gt;Only admin can see flag&lt;/p&gt;&#39;;
+
+}
+
+echo &#39;&lt;p&gt;&lt;a href=&quot;loginout.php&quot;&gt;Log out&lt;/a&gt;&lt;/p&gt;&#39;;
+
+}
+
+if(isset($_POST[&#39;username&#39;]) &amp;&amp; isset($_POST[&#39;password&#39;])){
+
+$username = (string)$_POST[&#39;username&#39;];
+
+$password = (string)$_POST[&#39;password&#39;];
+
+if($username === &#39;admin&#39;){
+
+    exit(&#39;&lt;p&gt;admin are not allowed to login&lt;/p&gt;&#39;);
+
+}else{
+
+    $info = array(&#39;username&#39;=&gt;$username,&#39;password&#39;=&gt;$password);
+
+    login($info);
+
+    show_homepage();
+
+}
+
+}else{
+
+if(isset($_SESSION[&quot;username&quot;])){
+
+    check_login();
+
+    show_homepage();
+
+}else{
+
+    echo &#39;&lt;body class=&quot;login-body&quot;&gt;
+
+            &lt;div id=&quot;wrapper&quot;&gt;
+
+                &lt;div class=&quot;user-icon&quot;&gt;&lt;/div&gt;
+
+                &lt;div class=&quot;pass-icon&quot;&gt;&lt;/div&gt;
+
+                &lt;form name=&quot;login-form&quot; class=&quot;login-form&quot; action=&quot;&quot; method=&quot;post&quot;&gt;
+
+                    &lt;div class=&quot;header&quot;&gt;
+
+                    &lt;h1&gt;Login Form&lt;/h1&gt;
+
+                    &lt;span&gt;Fill out the form below to login to my super awesome imaginary control panel.&lt;/span&gt;
+
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;content&quot;&gt;
+
+                    &lt;input name=&quot;username&quot; type=&quot;text&quot; class=&quot;input username&quot; value=&quot;Username&quot; onfocus=&quot;this.value=\&#39;\&#39;&quot; /&gt;
+
+                    &lt;input name=&quot;password&quot; type=&quot;password&quot; class=&quot;input password&quot; value=&quot;Password&quot; onfocus=&quot;this.value=\&#39;\&#39;&quot; /&gt;
+
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;footer&quot;&gt;
+
+                    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Login&quot; class=&quot;button&quot; /&gt;
+
+                    &lt;/div&gt;
+
+                &lt;/form&gt;
+
+            &lt;/div&gt;
+
+        &lt;/body&gt;&#39;;
+
+}
+
+}
+
+?&gt;
+
+&lt;/html&gt;
+</code></pre><p><img src="https://i.imgur.com/NxYK8RI.png" alt=""></p>
+<p>GO一下可以看到cookie中返回的iv和cipher</p>
+<p> <img src="https://i.imgur.com/GxGs1gI.png" alt=""></p>
+<p>将输入序列化得s:2:{s:8:”username”;s:5:”adcin”;s:8:”password”;s:3:”123”;}</p>
+<p>然后每16字节分组得</p>
+<p>① a : 2 : { s : 8 : “ u s e r n a</p>
+<p>② m e “ ; s : 5 : “ a d c i n “ ;</p>
+<p>③ s : 8 : “ p a s s w o r d “ ; s</p>
+<p>④ : 3 : “ 1 2 3 “ ; }</p>
+<p>可见，如果我们想要将②中的c变成m就需要对①中的s进行改变</p>
+<p>于是我们编写脚本：</p>
+<h1 id="coding-utf-8"><a href="#coding-utf-8" class="headerlink" title="-- coding: utf-8 --"></a>-<em>- coding: utf-8 -</em>-</h1><p>import base64,urllib</p>
+<p>def get_newCipher():</p>
+<pre><code>cipher = &#39;&#39;#输入所得cipher
+
+cipher = base64.b64decode(urllib.unquote(cipher))
+
+newCipher = cipher[0:x] + chr(ord(cipher[x])^ord(&#39;&#39;)^ord(&#39;&#39;)) + cipher[x+1:]#x为需要改变值所在的字节数，第二个ord中为输入值，第三个ord中为目标值
+
+print urllib.quote(base64.b64encode(newCipher))
+</code></pre><p>def get_newIV():</p>
+<pre><code>cipher = &#39;&#39;#get_newCipher提交后所得的无法反序列化密文
+
+iv = &#39;&#39;#所得iv
+
+#cipher = urllib.unquote(cipher)
+
+cipher = base64.b64decode(cipher)
+
+iv = base64.b64decode(urllib.unquote(iv))
+
+newIv = &#39;&#39;
+
+right = &#39;&#39;#被损坏前正确的明文
+
+for i in range(16):
+
+    newIv += chr(ord(right[i])^ord(iv[i])^ord(cipher[i]))
+
+print urllib.quote(base64.b64encode(newIv))
+</code></pre><p>if <strong>name</strong> == ‘<strong>main</strong>‘:</p>
+<pre><code>#get_newCipher()
+
+#get_newIV()
+</code></pre><p> <img src="https://i.imgur.com/JpbwiAd.png" alt=""></p>
+<p>发现新密文无法反序列化，这是因为，我们将c修改成m时破坏了①中的结构</p>
+<p>于是我们将新得到的密文复制，通过base64解密过后的iv与新密文解密的明文与原始①中数据对应异或</p>
+<p><img src="https://i.imgur.com/uFqqHB9.png" alt=""></p>
+<p>提交新的iv和刚才得到的cipher即可</p>
+<p> <img src="https://i.imgur.com/xwixA8m.png" alt=""></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/11/19/对于sqli-labs基础篇全程使用sqlmap不用手工注入/" title="对于sqli-labs基础篇全程使用sqlmap不用手工注入">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment valine -->
+			<!-- show valine comment -->
+<div id="valineComment" class="comment"></div>
+
+<!-- valine`s js & css -->
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/valine.min.js"></script>
+<link rel="stylesheet" href="/css/comment.css">
+
+<script>
+	var checkExistComment = setInterval(function() {
+		if( $('#valineComment').length ) {
+			new Valine({
+				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+				av: AV,
+				//使用id寻找div元素（使用class可能找不到）
+				el: '#valineComment',
+				emoticon_url: 'https://cloud.panjunwen.com/alu',
+				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
+				app_id: "3333....", //获取APP ID
+				app_key: "3333......", //获取APP KEY
+				placeholder: "no any!", //评论框占位提示文字        			
+			});
+			clearInterval(checkExistComment);
+		}
+	}, 100);
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#coding-utf-8"><span class="post-toc-text">-- coding: utf-8 --</span></a></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018, content by miraitowa. All Rights Reserved. 			   
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
