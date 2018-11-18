@@ -457,7 +457,8 @@ if(isset($_SESSION[&quot;username&quot;])){
 <p>④ : 3 : “ 1 2 3 “ ; }</p>
 <p>可见，如果我们想要将②中的c变成m就需要对①中的s进行改变</p>
 <p>于是我们编写脚本：</p>
-<h1 id="coding-utf-8"><a href="#coding-utf-8" class="headerlink" title="-- coding: utf-8 --"></a>-<em>- coding: utf-8 -</em>-</h1><p>import base64,urllib</p>
+<pre><code># -*- coding: utf-8 -*-
+</code></pre><p>import base64,urllib</p>
 <p>def get_newCipher():</p>
 <pre><code>cipher = &#39;&#39;#输入所得cipher
 
@@ -590,18 +591,6 @@ print urllib.quote(base64.b64encode(newIv))
 	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
 -->
 
-	
-		<aside class="post-widget">
-			<nav class="post-toc-wrap" id="post-toc">
-				
-					<strong>文章目录</strong>
-				
-				
-				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#coding-utf-8"><span class="post-toc-text">-- coding: utf-8 --</span></a></li></ol>
-			</nav>
-			<div class="post-toc-bar"><div>
-		</div></div></aside>
 	
 
 	</div>
