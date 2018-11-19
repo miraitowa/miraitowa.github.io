@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>浅析CTF-web</title>
+	<title>简记web常见思路一</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《浅析CTF-web》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《简记web常见思路一》</p>
 			
 		
 	
@@ -162,7 +162,7 @@
 					
 	
 		<a href="/2018/11/19/简记web常见思路一/" itemprop="url">		
-			浅析CTF-web		
+			简记web常见思路一		
 		</a>
 	
 
@@ -188,8 +188,7 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="浅析CTF-web"><a href="#浅析CTF-web" class="headerlink" title="浅析CTF-web"></a>浅析CTF-web</h2><p>web题目的套路</p>
-<h3 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h3><p>1、看源代码</p>
+						<h2 id="简记web常见思路一"><a href="#简记web常见思路一" class="headerlink" title="简记web常见思路一"></a>简记web常见思路一</h2><h3 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h3><p>1、看源代码</p>
 <p>2、F5审查元素</p>
 <p>3、抓包看回显，需要注意的头部的信息。</p>
 <p>4、扫目录</p>
@@ -204,14 +203,12 @@
 <h3 id="host解析"><a href="#host解析" class="headerlink" title="host解析"></a>host解析</h3><p>win中<code>c:\windows\system32\drivers\etc\hosts</code>添加<code>ip domian</code></p>
 <p>linux中<code>/etc/hosts</code>添加<code>ip+domian</code></p>
 <p>也可以抓包改host(ip)-&gt;host(domian)</p>
-<p><img src="/pic/bp_change_host.png" alt="image"></p>
+<p><img src="https://i.imgur.com/DfRCnrb.png" alt=""></p>
 <h3 id="细心观察"><a href="#细心观察" class="headerlink" title="细心观察"></a>细心观察</h3><p>没有思路时，连续发包看回显</p>
 <p>例如:<a href="http://123.206.87.240:8002/web12/" target="_blank" rel="noopener">http://123.206.87.240:8002/web12/</a></p>
 <p>每次发包回显有一定可能有变化</p>
 <p>技巧：n次<code>repeater == intruder</code></p>
-<blockquote>
-<p><img src="/pic/bp_intruder.png" alt="image"></p>
-</blockquote>
+<p><img src="https://i.imgur.com/lj54hKR.png" alt=""></p>
 <h3 id="代码执行"><a href="#代码执行" class="headerlink" title="代码执行"></a>代码执行</h3><p>场景：存在<code>assert/eval....</code>，并且参数可控<br>例如：</p>
 <pre><code>&lt;?php
 
@@ -578,7 +575,7 @@ parse_str($str) //把查询字符串解析到变量中，该题目中相当于$_
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浅析CTF-web"><span class="post-toc-text">浅析CTF-web</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#信息收集"><span class="post-toc-text">信息收集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编码与解码"><span class="post-toc-text">编码与解码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#host解析"><span class="post-toc-text">host解析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#细心观察"><span class="post-toc-text">细心观察</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码执行"><span class="post-toc-text">代码执行</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可变变量与-GLOBALS"><span class="post-toc-text">可变变量与$GLOBALS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于header的题目"><span class="post-toc-text">关于header的题目</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#requests"><span class="post-toc-text">requests</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#reponse"><span class="post-toc-text">reponse</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#php文件包含"><span class="post-toc-text">php文件包含</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#暴力破解-gt-bp-intruder"><span class="post-toc-text">暴力破解-&gt;bp-intruder</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sql注入"><span class="post-toc-text">sql注入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#sql注入之注释"><span class="post-toc-text">sql注入之注释</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#简单的回显注入"><span class="post-toc-text">简单的回显注入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#基于报错的注入"><span class="post-toc-text">基于报错的注入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#万能密码"><span class="post-toc-text">万能密码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#盲注之异或注入"><span class="post-toc-text">盲注之异或注入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#约束攻击"><span class="post-toc-text">约束攻击</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#insert-into-基于时间的盲注"><span class="post-toc-text">insert into 基于时间的盲注</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注入之bypass"><span class="post-toc-text">注入之bypass</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#源码泄漏"><span class="post-toc-text">源码泄漏</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简记web常见思路一"><span class="post-toc-text">简记web常见思路一</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#信息收集"><span class="post-toc-text">信息收集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编码与解码"><span class="post-toc-text">编码与解码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#host解析"><span class="post-toc-text">host解析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#细心观察"><span class="post-toc-text">细心观察</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码执行"><span class="post-toc-text">代码执行</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可变变量与-GLOBALS"><span class="post-toc-text">可变变量与$GLOBALS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于header的题目"><span class="post-toc-text">关于header的题目</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#requests"><span class="post-toc-text">requests</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#reponse"><span class="post-toc-text">reponse</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#php文件包含"><span class="post-toc-text">php文件包含</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#暴力破解-gt-bp-intruder"><span class="post-toc-text">暴力破解-&gt;bp-intruder</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sql注入"><span class="post-toc-text">sql注入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#sql注入之注释"><span class="post-toc-text">sql注入之注释</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#简单的回显注入"><span class="post-toc-text">简单的回显注入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#基于报错的注入"><span class="post-toc-text">基于报错的注入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#万能密码"><span class="post-toc-text">万能密码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#盲注之异或注入"><span class="post-toc-text">盲注之异或注入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#约束攻击"><span class="post-toc-text">约束攻击</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#insert-into-基于时间的盲注"><span class="post-toc-text">insert into 基于时间的盲注</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注入之bypass"><span class="post-toc-text">注入之bypass</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#源码泄漏"><span class="post-toc-text">源码泄漏</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
