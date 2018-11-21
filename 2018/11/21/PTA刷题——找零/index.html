@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>记一次使用Ubuntu 14.04 LTS搭建FBctf平台</title>
+	<title>PTA刷题——找零</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《记一次使用Ubuntu 14.04 LTS搭建FBctf平台》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《PTA刷题——找零》</p>
 			
 		
 	
@@ -161,8 +161,8 @@
 					
 					
 	
-		<a href="/2018/11/12/记一次使用Ubuntu 14.04 LTS搭建FBctf平台/" itemprop="url">		
-			记一次使用Ubuntu 14.04 LTS搭建FBctf平台		
+		<a href="/2018/11/21/PTA刷题——找零/" itemprop="url">		
+			PTA刷题——找零		
 		</a>
 	
 
@@ -171,9 +171,9 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2018/11/12/记一次使用Ubuntu 14.04 LTS搭建FBctf平台/" itemprop="url">
-	<time datetime="2018-11-12T03:43:21.406Z" itemprop="datePublished">
-  		2018-11-12
+						<a href="/2018/11/21/PTA刷题——找零/" itemprop="url">
+	<time datetime="2018-11-21T05:33:49.725Z" itemprop="datePublished">
+  		2018-11-21
   </time>
 </a>    
 &nbsp;
@@ -188,66 +188,141 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="记一次使用Ubuntu-14-04-LTS搭建FBctf平台"><a href="#记一次使用Ubuntu-14-04-LTS搭建FBctf平台" class="headerlink" title="记一次使用Ubuntu 14.04 LTS搭建FBctf平台"></a>记一次使用Ubuntu 14.04 LTS搭建FBctf平台</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>FBCTF是Facebook开发的一套开源的CTF平台，使用PHP开发，github地址：<a href="https://github.com/facebook/fbctf/" target="_blank" rel="noopener">https://github.com/facebook/fbctf/</a></p>
-<p>由于我们在墙内，部署起来还是有些麻烦的，需要更换一些国内的源。</p>
-<p>搭建起来是挺浪费时间的(QAQ)</p>
-<h3 id="0x00-环境准备"><a href="#0x00-环境准备" class="headerlink" title="0x00 环境准备"></a>0x00 环境准备</h3><p>由于FBCTF只能安装在Ubuntu 14.04 LTS，因此我们需要先安装一个Ubuntu 14.04 LTS。然后进行更新(这一点也许已经坑了很多小伙伴了）</p>
-<pre><code> sudo apt-get update &amp;&amp; sudo apt-get upgrade -y
-</code></pre><p>更新之后我们安装一些必要软件</p>
-<pre><code>sudo apt-get install git vim g++ -y
-</code></pre><p>git是用来从github拉取FBCTF源码的。g++在自动安装nodejs时会用到。</p>
-<h3 id="0x01-拉取FBCTF源码"><a href="#0x01-拉取FBCTF源码" class="headerlink" title="0x01 拉取FBCTF源码"></a>0x01 拉取FBCTF源码</h3><p>创建目录，要是桌面版的Ubuntu就直接右键新建了</p>
-<pre><code>sudo mkdir /fbctf
-sudo chmod 777 -R /fbctf
-</code></pre><p>拉取源码</p>
-<pre><code>git clone https://github.com/facebook/fbctf
-cd fbctf
-</code></pre><p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110454316-381169507.png" alt=""></p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110508534-1023463758.png" alt=""></p>
-<p>由于我是再home目录下执行的git指令，因此源码会放在当前用户目录下</p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110545863-1411690119.png" alt=""></p>
-<p>接下来我们将源码移动到/fbctf目录下</p>
-<pre><code>mv fbctf/* /fbctf
-</code></pre><p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110625409-1324190240.png" alt=""></p>
-<h3 id="0x02-修改安装脚本"><a href="#0x02-修改安装脚本" class="headerlink" title="0x02 修改安装脚本"></a>0x02 修改安装脚本</h3><p>由于我们有些源无法访问，因此需要使用国内的一些镜像，接下来我们修改安装脚本extra/lib.sh。</p>
-<pre><code>vim /fbctf/extra/lib.sh
-</code></pre><p>搜索 <a href="http://dl.hhvm.com/ubuntu" target="_blank" rel="noopener">http://dl.hhvm.com/ubuntu </a> 替换为 <a href="http://dl.hiphop-php.com/ubuntu" target="_blank" rel="noopener">http://dl.hiphop-php.com/ubuntu</a></p>
-<p><a href="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110912374-1764968105.png" target="_blank" rel="noopener">https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110912374-1764968105.png</a></p>
-<p>搜索 <a href="https://getcomposer.org/installer" target="_blank" rel="noopener">https://getcomposer.org/installer</a>   替换为 <a href="https://install.phpcomposer.com/installer" target="_blank" rel="noopener">https://install.phpcomposer.com/installer</a></p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208110953062-25937302.png" alt=""></p>
-<h3 id="0x03-添加-npmrc配置信息"><a href="#0x03-添加-npmrc配置信息" class="headerlink" title="0x03 添加.npmrc配置信息"></a>0x03 添加.npmrc配置信息</h3><p>创建~/.npmrc文件，添加下面的代码</p>
-<pre><code>registry = https://registry.npm.taobao.org
-</code></pre><p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111035031-56250020.png" alt=""></p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111047609-1043276688.png" alt=""></p>
-<h3 id="0x04-安装"><a href="#0x04-安装" class="headerlink" title="0x04 安装"></a>0x04 安装</h3><p>官方有很多种安装方式，我们使用快速安装，安装时间比较长，大约1小时，取决于网速，特别是访问<a href="nodesource.com">nodesource.com</a>网站的速度。</p>
-<pre><code>cd /fbctf/
-source ./extra/lib.sh
-quick_setup install prod
-</code></pre><p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111131546-694163769.png" alt=""></p>
-<p>安装过程中会有很多次让我们输入sudo密码，也有可能会有很多次因为下载文件失败而退出，</p>
-<p>当退出时我们可以直接再次使用quick_setup install prod进行重复安装即可。</p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111204984-1884002653.png" alt=""></p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111212906-803145738.png" alt=""></p>
-<p>当有下面的安装错误时，我们可以跳过前面的安装过程，只用下面的脚本来安装</p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111224624-526339828.png" alt=""></p>
-<pre><code>curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt-get install -y nodejs
-</code></pre><p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111240343-481977940.png" alt=""></p>
-<p>然后再使用quick_setup install prod继续安装</p>
-<p>出现一下界面说明安装成功，一定要记住标出的字符串，那个就是管理员admin的密码。da8a54c4a651549a37f34509b3106079</p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111320937-1071005732.png" alt=""></p>
-<h3 id="0x05-使用"><a href="#0x05-使用" class="headerlink" title="0x05 使用"></a>0x05 使用</h3><p>访问：<a href="https://localhost" target="_blank" rel="noopener">https://localhost</a><br>这时候会提示证书错误，我们加到例外中继续访问。</p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111347062-930700262.png" alt=""></p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111354656-193485786.png" alt=""></p>
-<p>使用我们再安装完成时保存的密码进行登录</p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111404718-1932520043.png" alt=""></p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111421890-1065232778.png" alt=""></p>
-<p>在页面的最下面能够更改语言为中文，不过这个地方的中文指的时繁体中文。</p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111434702-1042201881.png" alt=""></p>
-<p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111442468-1766701085.png" alt=""></p>
-<p>为了能够让其他人也能访问，关闭ubuntu的防火墙、</p>
-<pre><code>sudo ufw disable
-</code></pre><p><img src="https://images2017.cnblogs.com/blog/384154/201712/384154-20171208111452890-630970428.png" alt=""></p>
+						<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这一题折磨我好久(QAQ)，给的样例测试是正确的，提交上去就是错误的答案。</p>
+<p>首先：这一题找零需要考虑的有没有分这个数，有进行对分位置上的值进行考虑，而其中分上面有的有值，有的没有数</p>
+<p>例如：</p>
+<pre><code> 9.90   
+
+ 9.91
+</code></pre><p>这都是带有分的测试样例，但上面一个分上面有相应的数值，而下面一个却没有数值，这个是需要分开进行考虑的</p>
+<p>其次：</p>
+<p>就是输出格式的问题，空格以及最后取小数点后两位这个也需要进行注意的</p>
+<h3 id="7-10-G-找零-（100-分）"><a href="#7-10-G-找零-（100-分）" class="headerlink" title="7-10 G. 找零 （100 分）"></a>7-10 G. 找零 （100 分）</h3><p>超市收银台出了故障,需要帮忙完成收银和找零的工作,如果顾客买的东西的总价值含有”分”,就进位计算.如:购买了总价值9.91元的物品,收到20元,应找零10元整.如钱不够，输出-1</p>
+<p><strong>输入格式:</strong></p>
+<p>第一行输入正整数T，表示数据的组数。</p>
+<p>每组数据的第一行是购买的物品的种类数n 和顾客给的钱的总数m(顾客给的钱不会有”分”),接下来有n行[1,100],每行两个数字,</p>
+<p>第一个数字是该物品的价格Pi([0.01,10000]),第二个数字是该物品的数量Ci([1,10])。</p>
+<p><strong>输出格式:</strong></p>
+<p>对于每组数据，输出一行，格式为’case t: x’，t 为数据的组号，x 为题目要求的结果。</p>
+<p><strong>输入样例:</strong></p>
+<pre><code> 3
+ 5 200.00
+ 9.99 1
+ 8.88 1
+ 0.50 1
+ 1.00 1
+ 2.33 3
+ 1 10.00
+ 9.99 1
+ 2 100.00
+ 98.99 1
+ 1.02 1
+</code></pre><p><strong>输出样例:</strong></p>
+<pre><code>case 1: 172.60
+case 2: 0.00
+case 3: -1
+</code></pre><p>给出三个代码仅供参考</p>
+<p>一：自己写的经过各方的努力进行修改得到的</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int main() {
+    int t,b;
+    double m,a;
+    cin&gt;&gt;t;
+    for(int j=1; j&lt;=t; j++) {
+        int n;
+        int x,y,s;
+        double sum=0.0,c=0.0,h=0.0;
+        cin&gt;&gt;n&gt;&gt;m;
+        for(int i=0; i&lt;n; i++) {
+            cin&gt;&gt;a&gt;&gt;b;
+            sum+=a*100*b;
+        }
+        s=sum;
+        x=s%10;//取余
+        y=s/10;//取商
+        if(x!=0) {
+            c=(y*10+10)*0.01;
+            //cout&lt;&lt;c&lt;&lt;endl;
+        }
+        else
+            c=sum/100;//就是给出的样例中是9.90的 
+        h=m-c;
+    //    cout&lt;&lt;m&lt;&lt;&quot;-&quot;&lt;&lt;c&lt;&lt;endl;
+        if(c&gt;m)
+            // cout&lt;&lt; &quot;case &quot; &lt;&lt; j &lt;&lt; &quot;: -1&quot; &lt;&lt; endl;
+            printf(&quot;case %d: -1\n&quot;,j);
+        else
+            printf(&quot;case %d: %0.2f\n&quot;,j,h);
+    }
+    return 0;
+}
+</code></pre><p>二：学长写的，使用数组以及调用函数的</p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+double jindu(double num) {
+    int a = num*100;
+    if((a%10)!=0)
+        a = a/10*10+10;
+    return (double)a/100;
+}
+int main() {
+    int t=-1;
+    cin&gt;&gt;t;
+    double r[100];
+    for(int k = 0; k &lt; t; k++) {
+        int n = -1;
+        double sum = 0, m = -1;
+        cin &gt;&gt; n &gt;&gt; m;
+        for(int count = 0; count &lt; n; count++) {
+            double pi = -1;
+            int ci = -1;
+            cin&gt;&gt;pi&gt;&gt; ci;
+            pi *= ci;
+            sum +=pi;
+        }
+        sum=jindu(sum);
+        if(sum &gt; m)
+            r[k]=-1;
+        else
+            r[k]=m-sum;
+    }
+    for(int j=0; j&lt;t; j++) {
+        if(r[j]==-1)
+            printf(&quot;case %d: -1\n&quot;,j+1);
+        else
+            printf(&quot;case %d: %.2lf\n&quot;,j+1,r[j]);
+    }
+    return 0;
+}
+</code></pre><p>三：网上一个大神给出的代码</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int main() {
+    cout.setf(ios::fixed); 
+    int t,b;
+    double m,a;
+    double money=0;
+    scanf(&quot;%d&quot;,&amp;t);
+    for(int j=1; j&lt;=t; j++) {
+        int n;
+        double sum=0.0;
+        cin&gt;&gt;n&gt;&gt;m;
+            for(int i=0; i&lt;n; i++) {
+                cin&gt;&gt;a&gt;&gt;b;
+                sum+=a*10*b;
+            }
+            sum = ceil(sum);
+            sum /=10;
+            money=m-sum;
+        if(sum&gt;m)
+        cout&lt;&lt; &quot;case &quot; &lt;&lt; j &lt;&lt; &quot;: -1&quot; &lt;&lt; endl;
+        else
+    cout &lt;&lt; &quot;case &quot; &lt;&lt; j &lt;&lt;setprecision(2) &lt;&lt; &quot;: &quot; &lt;&lt; money &lt;&lt; endl;
+    }
+    return 0;
+}
+</code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>卡精度卡到疯，代码是越写越垃圾</p>
 
 					
 				</div>
@@ -256,15 +331,9 @@ sudo apt-get install -y nodejs
 
 		<ul class="am-pagination">
     
-    	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2018/11/12/记一次关于HTTP服务的七层架构技术解析及运用/" title="记一次关于HTTP服务的七层架构技术解析及运用">
-      		&laquo; 上一篇
-		</a>
-		</li>
-	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2018/11/12/记一次在实战靶机中使用`SearchSploit`的总结/" title="记一次在实战靶机中使用SearchSploit的总结">
+		<a class="pull-right" href="/2018/11/19/简记web常见思路一/" title="简记web常见思路一">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -393,7 +462,7 @@ sudo apt-get install -y nodejs
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#记一次使用Ubuntu-14-04-LTS搭建FBctf平台"><span class="post-toc-text">记一次使用Ubuntu 14.04 LTS搭建FBctf平台</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x00-环境准备"><span class="post-toc-text">0x00 环境准备</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-拉取FBCTF源码"><span class="post-toc-text">0x01 拉取FBCTF源码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-修改安装脚本"><span class="post-toc-text">0x02 修改安装脚本</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-添加-npmrc配置信息"><span class="post-toc-text">0x03 添加.npmrc配置信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x04-安装"><span class="post-toc-text">0x04 安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x05-使用"><span class="post-toc-text">0x05 使用</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-10-G-找零-（100-分）"><span class="post-toc-text">7-10 G. 找零 （100 分）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-text">总结</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
