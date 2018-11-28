@@ -181,13 +181,14 @@
 					
 						<p>
 							
-								2018web安全测试秋季省赛Writeup
+								前言
 上周日安恒web安全测试秋季省赛打的我好无力呀！！本来早就应该拿出来的writeup因为好多事情耽误了(QAQ)
 对于后面两个300的题目进行复现整理出来得到的writeup。
 如有错误，希望各位师傅进行指正(ths)
 常规操作常规操作，试一试 http://114.55.36.69:8009/
 看到zip于是猜测是phar://伪协议读取。
-于是写个	
+于是写个小马打包成zip文件传上去。
+例如我写的	
 							  
 						</p> 
 					
@@ -279,10 +280,9 @@
 					
 						<p>
 							
-								WPScan使用完整教程之记一次对WordPress的渗透过程渣渣一枚，萌新一个，会划水，会喊六六
-个人博客：https://www.cnblogs.com/lxz-1263030049/
-本次简单的记录优下自己关于WPScan渗透实战的案例，以及对于WPScan的一些使用方法，有什么错误的地方希望各位大佬指正(Orz）
-一：什么是WPScanWPScan是一个扫描 WordPress 漏洞的黑盒	
+								前言本次简单的记录优下自己关于WPScan渗透实战的案例，以及对于WPScan的一些使用方法，有什么错误的地方希望各位大佬指正(Orz）
+一：什么是WPScanWPScan是一个扫描 WordPress 漏洞的黑盒子扫描器，它可以为所有 Web 开发人员扫描 WordPress 漏洞并在他们开发前找到并解决问题。
+我们还使用了 Nikto ，它是一款非常棒的Web 服务器评估工具，我们认为这个工具	
 							  
 						</p> 
 					
@@ -326,12 +326,11 @@
 					
 						<p>
 							
-								##记一次HTTP与HTTPS的区别 ##
-HTTP与HTTPS的区别超文本传输协议HTTP协议被用于在Web浏览器和网站服务器之间传递信息，HTTP协议以明文方式发送内容，不提供任何方式的数据加密，
+								前言HTTP与HTTPS的区别超文本传输协议HTTP协议被用于在Web浏览器和网站服务器之间传递信息，HTTP协议以明文方式发送内容，不提供任何方式的数据加密，
 如果攻击者截取了Web浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，因此，HTTP协议不适合传输一些敏感信息，
 比如：信用卡号、密码等支付信息。
 
-为了解决HTTP协议的这一缺陷，需要	
+为了解决HTTP协议的这一缺陷，需要使用另一种协议：安全套接字层超文本传输协	
 							  
 						</p> 
 					
@@ -375,7 +374,7 @@ HTTP与HTTPS的区别超文本传输协议HTTP协议被用于在Web浏览器和�
 					
 						<p>
 							
-								记一次对vulnhub中Android4靶机渗透测试全过程
+								前言
 Android4靶机简介名称：Android4
 操作系统：Android v4.4
 标志：/data/root/（在此目录中）
@@ -388,7 +387,9 @@ Android4靶机简介名称：Android4
 
 端口扫描和IP发现
 
-	
+
+
+使用adb_server_exec攻击端口8080	
 							  
 						</p> 
 					
@@ -432,9 +433,10 @@ Android4靶机简介名称：Android4
 					
 						<p>
 							
-								记一次对Vulnerable Docker靶机渗透全过程Vulnhub它是一个提供各种漏洞环境的平台，里面大部分的环境是要用VMware或者VirtualBox打开运行的。
+								前言Vulnhub它是一个提供各种漏洞环境的平台，里面大部分的环境是要用VMware或者VirtualBox打开运行的。
 今天我主要是使用VMware搭建一个Vulnerable Docker靶机环境，主要是为了练习使用。
-完整找出所有flag只是基本任务，实现提权才是终极目标。我并不追求最快夺旗，而是尽可能运用所学的知识完整的运用在这套靶机中，	
+完整找出所有flag只是基本任务，实现提权才是终极目标。我并不追求最快夺旗，而是尽可能运用所学的知识完整的运用在这套靶机中，所以，
+这篇文章中，或许某些内容对拿到flag无直接	
 							  
 						</p> 
 					
@@ -478,12 +480,12 @@ Android4靶机简介名称：Android4
 					
 						<p>
 							
-								记一次关于HTTP服务的七层架构技术解析及运用今天简单记录一下关于HTTP服务的七层架构技术解析及运用
+								前言今天简单记录一下关于HTTP服务的七层架构技术解析及运用
 一般来说，计算机领域的体系结构普遍采用了分层的方式，从整体结构来看：
 从最底层的硬件往高层依次有：
 操作系统 -&gt; 驱动程序 -&gt; 运行库 -&gt; 系统程序 -&gt; 应用程序等等。
 从网络分层模型OSI来讲，由上至下为：
-应用层 -&gt; 表示层 -&gt; 会话层 -&g	
+应用层 -&gt; 表示层 -&gt; 会话层 -&gt; 传输层 -&gt; 网络层 -&gt	
 							  
 						</p> 
 					
@@ -527,10 +529,10 @@ Android4靶机简介名称：Android4
 					
 						<p>
 							
-								记一次使用Ubuntu 14.04 LTS搭建FBctf平台前言FBCTF是Facebook开发的一套开源的CTF平台，使用PHP开发，github地址：https://github.com/facebook/fbctf/
+								前言FBCTF是Facebook开发的一套开源的CTF平台，使用PHP开发，github地址：https://github.com/facebook/fbctf/
 由于我们在墙内，部署起来还是有些麻烦的，需要更换一些国内的源。
 搭建起来是挺浪费时间的(QAQ)
-0x00 环境准备由于FBCTF只能安装在Ubuntu 14.04 LTS，因	
+0x00 环境准备由于FBCTF只能安装在Ubuntu 14.04 LTS，因此我们需要先安装一个Ubuntu 14.04 LTS。然后进	
 							  
 						</p> 
 					
@@ -574,9 +576,9 @@ Android4靶机简介名称：Android4
 					
 						<p>
 							
-								记一次在实战靶机中使用SearchSploit的总结什么是SearchSploit？GitHub上的漏洞数据库存储库中包含 “searchsploit”，这是一个Exploit-DB的命令行搜索工具，它还允许您随身携带漏洞利用数据库的副本。
+								前言什么是SearchSploit？GitHub上的漏洞数据库存储库中包含 “searchsploit”，这是一个Exploit-DB的命令行搜索工具，它还允许您随身携带漏洞利用数据库的副本。
 SearchSploit使您能够通过本地检出的存储库副本执行详细的离线搜索。此功能对于无法访问Internet的隔离或空中网络的安全评估特别有用。
-许多漏洞包	
+许多漏洞包含指向未包含在标准存储库中的二进制文件的链接，但	
 							  
 						</p> 
 					
@@ -620,11 +622,11 @@ SearchSploit使您能够通过本地检出的存储库副本执行详细的离�
 					
 						<p>
 							
-								记一份SQLmap使用手册小结(二)
+								前言
 上一篇文章：记一份SQLmap使用手册小结（一）
 其他高级用户自定义函数注入参数：–udf-inject,–shared-lib
 你可以通过编译MySQL注入你自定义的函数（UDFs）或PostgreSQL在windows中共享库，DLL，或者Linux/Unix中共享对象，
-sqlmap将会问你一些问题，上传到服务器数据库自定义函数，然后根据你的选择执行他们	
+sqlmap将会问你一些问题，上传到服务器数据库自定义函数，然后根据你的选择执行他们，当你注入完成后，sqlmap将	
 							  
 						</p> 
 					
