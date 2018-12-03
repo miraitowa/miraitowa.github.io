@@ -188,7 +188,8 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="正则表达式是什么"><a href="#正则表达式是什么" class="headerlink" title="正则表达式是什么"></a>正则表达式是什么</h2><p>正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、</p>
+						<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>简单记录一下个人对于PHP的一些利用技巧，希望能够对各位有帮助</p>
+<h3 id="正则表达式是什么"><a href="#正则表达式是什么" class="headerlink" title="正则表达式是什么"></a>正则表达式是什么</h3><p>正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、</p>
 <p>将匹配的子串替换或者从某个串中取出符合某个条件的子串等。包括普通字符（例如，a 到 z 之间的字母）和特殊字符（称为”元字符”）。</p>
 <p>另外正则引擎主要可以分为基本不同的两大类：一种是DFA(确定性有穷自动机），另一种是NFA（非确定性有穷自动机）。</p>
 <p>在NFA中由于表达式主导的串行匹配方式，所以用到了回溯（backtracking），这个是NFA最重要的部分，每一次某个分支的匹配失败都会导-致一次回溯。</p>
@@ -197,7 +198,7 @@
 <p>不过可以预先把对不同正则表达式的分析结果建好，DFA就可以获得比NFA更优的速度。</p>
 <p>虽然NFA速度更慢，并且实现复杂，但是它又有着比DFA强大的多的功能，比如支持环视，支持反向引用（虽然这个是非正则的）等，</p>
 <p>因此大多数程序语言都使用了NFA作为正则引擎，其中也包括PHP使用的PCRE库。</p>
-<h3 id="0x02-扩展表示法"><a href="#0x02-扩展表示法" class="headerlink" title="0x02 扩展表示法"></a>0x02 扩展表示法</h3><p>扩展表示是以问号开始（?…）,通常用于在判断匹配之前提供标记，实现一个前视（或者后视）匹配，或者条件检查。</p>
+<h3 id="扩展表示法"><a href="#扩展表示法" class="headerlink" title="扩展表示法"></a>扩展表示法</h3><p>扩展表示是以问号开始（?…）,通常用于在判断匹配之前提供标记，实现一个前视（或者后视）匹配，或者条件检查。</p>
 <p>尽管圆括号使用这些符号，但是只有（?P<name>）表述一个分组匹配。</name></p>
 <pre><code>正则表达式 | 匹配字符串
 
@@ -209,7 +210,7 @@
 (?&lt;!192\.168\.) |如果一个字符串之前不是“192.168.”才做匹配操作，假定用于过滤掉一组 C 类 IP 地址
 (?(1)y\|x)  |如果一个匹配组 1（\1）存在，就与 y 匹配；否则，就与 x 匹配
 \(((?&gt;[^()]+)\|(?R))* \) | 进行循环匹配
-</code></pre><h2 id="循环匹配探索"><a href="#循环匹配探索" class="headerlink" title="循环匹配探索"></a>循环匹配探索</h2><p>在上述的扩展表达式中有一个循环模式， 特殊项(?R)提供了递归的这种特殊用法，在PRCE模式中，考虑匹配圆括号内字符串的问题，</p>
+</code></pre><h3 id="循环匹配探索"><a href="#循环匹配探索" class="headerlink" title="循环匹配探索"></a>循环匹配探索</h3><p>在上述的扩展表达式中有一个循环模式， 特殊项(?R)提供了递归的这种特殊用法，在PRCE模式中，考虑匹配圆括号内字符串的问题，</p>
 <p>允许无限嵌套括号。如果不使用递归， 最好的方式是使用一个模式匹配固定深度的嵌套。</p>
 <p>这个PCRE模式解决了圆括号问题(假设 PCRE_EXTENDED 选项被设置了， 因此空白字符被忽略)：<code>\( ( (?&gt;[^()]+) | (?R) )* \)。</code></p>
 <p><strong>IN:</strong></p>
@@ -583,7 +584,7 @@ $____($_[$__]);
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#正则表达式是什么"><span class="post-toc-text">正则表达式是什么</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-扩展表示法"><span class="post-toc-text">0x02 扩展表示法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#循环匹配探索"><span class="post-toc-text">循环匹配探索</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#从一道ctf题浅析利用"><span class="post-toc-text">从一道ctf题浅析利用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#php回溯机制"><span class="post-toc-text">php回溯机制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用php的pcre-backtrack-limit限制绕过"><span class="post-toc-text">使用php的pcre.backtrack_limit限制绕过</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用无字母数字方式绕过"><span class="post-toc-text">使用无字母数字方式绕过</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法一：使用异或"><span class="post-toc-text">方法一：使用异或</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法二：使用取反"><span class="post-toc-text">方法二：使用取反</span></a></li></ol></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#正则表达式是什么"><span class="post-toc-text">正则表达式是什么</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#扩展表示法"><span class="post-toc-text">扩展表示法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#循环匹配探索"><span class="post-toc-text">循环匹配探索</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#从一道ctf题浅析利用"><span class="post-toc-text">从一道ctf题浅析利用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#php回溯机制"><span class="post-toc-text">php回溯机制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用php的pcre-backtrack-limit限制绕过"><span class="post-toc-text">使用php的pcre.backtrack_limit限制绕过</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用无字母数字方式绕过"><span class="post-toc-text">使用无字母数字方式绕过</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法一：使用异或"><span class="post-toc-text">方法一：使用异或</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法二：使用取反"><span class="post-toc-text">方法二：使用取反</span></a></li></ol></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
