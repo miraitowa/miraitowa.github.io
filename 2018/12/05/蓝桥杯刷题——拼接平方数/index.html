@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>PTA刷题——最大子列和问题</title>
+	<title>蓝桥杯刷题——拼接平方数</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《PTA刷题——最大子列和问题》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《蓝桥杯刷题——拼接平方数》</p>
 			
 		
 	
@@ -161,8 +161,8 @@
 					
 					
 	
-		<a href="/2018/12/03/PTA刷题——最大子列和问题/" itemprop="url">		
-			PTA刷题——最大子列和问题		
+		<a href="/2018/12/05/蓝桥杯刷题——拼接平方数/" itemprop="url">		
+			蓝桥杯刷题——拼接平方数		
 		</a>
 	
 
@@ -171,9 +171,9 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2018/12/03/PTA刷题——最大子列和问题/" itemprop="url">
-	<time datetime="2018-12-03T08:30:14.181Z" itemprop="datePublished">
-  		2018-12-03
+						<a href="/2018/12/05/蓝桥杯刷题——拼接平方数/" itemprop="url">
+	<time datetime="2018-12-05T15:37:43.028Z" itemprop="datePublished">
+  		2018-12-05
   </time>
 </a>    
 &nbsp;
@@ -188,65 +188,129 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h3 id="7-69-最大子列和问题-（20-分）"><a href="#7-69-最大子列和问题-（20-分）" class="headerlink" title="7-69 最大子列和问题 （20 分）"></a>7-69 最大子列和问题 （20 分）</h3><p>给定K个整数组成的序列<code>{N1,N2,...,NK}</code>，“连续子列”被定义为{Ni,Ni+1 , …,Nj}，其中 1≤i≤j≤K。“最大子列和”则被定义为所有连续子列元素的和</p>
-<p>中最大者。例如给定序列{ -2, 11, -4, 13, -5, -2 }，其连续子列{ 11, -4, 13 }有最大的和20。现要求你编写程序，计算给定整数序列的最大子列和。</p>
-<p>本题旨在测试各种不同的算法在各种数据情况下的表现。各组测试数据特点如下：</p>
-<p>数据1：与样例等价，测试基本正确性；<br>数据2：102个随机整数；<br>数据3：103个随机整数；<br>数据4：104个随机整数；<br>数据5：105个随机整数；</p>
-<p><strong>输入格式:</strong></p>
-<p>输入第1行给出正整数K (≤100000)；第2行给出K个整数，其间以空格分隔。</p>
-<p><strong>输出格式:</strong></p>
-<p>在一行中输出最大子列和。如果序列中所有整数皆为负数，则输出0。</p>
-<p><strong>输入样例:</strong></p>
-<pre><code>6
--2 11 -4 13 -5 -2
-</code></pre><p><strong>输出样例:</strong>‘</p>
-<pre><code>20
-</code></pre><h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>还是比较简单的一道题目，只需要每一次读入计算总和就可以了，并且对读入的数字出现相加小于0的现象进行排除就可以了</p>
+						<h3 id="问题-1821-蓝桥杯-2014年第五届真题-拼接平方数"><a href="#问题-1821-蓝桥杯-2014年第五届真题-拼接平方数" class="headerlink" title="问题 1821: [蓝桥杯][2014年第五届真题]拼接平方数"></a>问题 1821: [蓝桥杯][2014年第五届真题]拼接平方数</h3><p>时间限制: 1Sec 内存限制: 128MB 提交: 35 解决: 18</p>
+<p><strong>题目描述</strong></p>
+<p> 小明发现49很有趣，首先，它是个平方数。它可以拆分为4和9，拆分出来的部分也是平方数。169也有这个性质，我们权且称它们为：拼接平方数。</p>
+<pre><code>100可拆分1 00，这有点勉强，我们规定，0 00 000 等都不算平方数。
+
+小明想：还有哪些数字是这样的呢？
+
+你的任务出现了：找到某个区间的所有拼接平方数。
+</code></pre><p><strong>输入</strong></p>
+<p>两个正整数  a b (a&lt;b&lt;10^6)</p>
+<p><strong>输出</strong></p>
+<p>若干行，每行一个正整数。表示所有的区间[a,b]中的拼接平方数</p>
+<p><strong>样例输入</strong></p>
+<p>1 200</p>
+<p><strong>样例输出</strong></p>
+<pre><code>49
+169
+
+提示
+无
+来源
+无
+</code></pre><h4 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h4><p>这一题属于上周，我们实验室进行考核的一道题目，由于上一道题目关于字符串的，耗了很长的时间，导致最后一些简单的题目都没有做出来。。。。</p>
+<p>当时看这个题目的时候并没有思路，但是现在看的时候感觉还好吧(其实自己想了很久的QAQ)</p>
+<p><strong>代码解析</strong></p>
+<p>这里的拼接平方数是完全平方数的一种特殊情况，要求求出的数本身是完全平方数，并且要求存在对数的一种划分，使得两部分都是完全平方数，且不为0。</p>
 <pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
-int main() {
-    int i,a,n;
-    int sum=0,max=0;
-    cin&gt;&gt;n;
-    for(i=0; i&lt;n; i++) {
-        cin&gt;&gt;a;
-        sum+=a;
-        if(sum&gt;max) {
-            max=sum;
-        }
-        if(sum&lt;0) {
-            sum=0;
-        }
+int getDigit(int n) {  //求一个正整数n的位数
+    int num=n;
+    int digit=0;
+    while(num) {
+        digit++;
+        num/=10;
     }
-    cout&lt;&lt;max&lt;&lt;endl;
+    return digit;
+}
+int is_pownum(int n) { //判断正整数n是否是完全平方数
+    int temp;
+    temp=sqrt(n);
+    if(temp*temp==n)
+        return 1;
+    else
+        return 0;
+}
+int main() {
+    int a,b;
+    int i,j,k;
+    int n,n1,n2,suc;   //n1.n2-数n的两部分 n-拼接后的数 suc-拼接平方数判断标记
+    scanf(&quot;%d %d&quot;,&amp;a,&amp;b);
+    for(i=a; i&lt;=b; i++) {
+        if(!is_pownum(i))  //如果区间[a,b]内的某个数i不是完全平方数，直接返回，不再判断
+            continue;
+        suc=0; //是完全平方数，置标记suc=0
+        for(j=1; j&lt;getDigit(i); j++) { //求n1与n2
+            n=i;
+            n1=0,n2=0;
+            for(k=1; k&lt;=j; k++) {   //n1最少1位，最多getDigit(i)位，并且要含上可能出现的0
+                n1+=((n%10)*pow(10,k-1));
+                n/=10;
+            }
+            n2=(i-n1)/pow(10,j);//n2=n1未包含的数位对应的数字
+            if(is_pownum(n1) &amp;&amp; is_pownum(n2) &amp;&amp; n1!=0 &amp;&amp; n2!=0) { //n1 n2均为完全平方数且均不为0（排除0 00 000等情况）
+                suc=1;  //置标记suc=1，说明找到符合条件的拼接平方数，并退出所有循环
+                break;
+            }
+        }
+        if(suc)
+            printf(&quot;%d\n&quot;,i);
+    }
     return 0;
 }
-</code></pre><p><strong>另一种思路</strong></p>
-<p>当然和我的这种思路也是类似的只是使用一个标志</p>
+</code></pre><p><strong>还有一个大佬另一种写法</strong></p>
+<p>分成两部分，如果两部分都死平方数，返回true</p>
 <pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
-int main() {
-    int a[100005];
-    int n,sum=0,max=0;
-    int f=0;//判断是否输入数字；
-    cin&gt;&gt;n;
-    for(int i=0; i&lt;n; i++) {
-        cin&gt;&gt;a[i];
-        f=1;
+bool ccc(int i) {
+    int s = sqrt(i);
+    if(s*s==i)
+        return true;
+    return false;
+}
+bool check(int n) {
+    int flag[8]= {0},i=0;
+    while(n) {
+        flag[i++]=n%10;
+        n/=10;
     }
-    if(f=0)
-        cout&lt;&lt;0;
-    else {
-        for(int i=0; i&lt;n; i++) {
-            sum+=a[i];
-            if(sum&lt;0) {
-                sum=0;
-            }
-            if(sum&gt;max) {
-                max=sum;
-            }
+    int j,k=i-1;
+    int s=0,s2=0;
+    for(i--; i&gt;0; i--) {
+        s+=flag[i];
+        if(!ccc(s)) { //如果当前不是平方数，继续往后加
+            s*=10;
+            continue;
         }
-        cout&lt;&lt;max;
+        //如果当前是平方数，判断后半段
+        for(j=i-1; j&gt;=0; j--) {
+            s2+=flag[j];
+            if(j==0)
+                continue;
+            s2*=10;
+        }
+        if(s2==0)
+            continue;
+
+        if(ccc(s2)) {
+            return true;
+        }
+        s2=0;
+        s*=10;
+    }
+    return false;
+}
+int main() {
+    int x,y;
+    cin&gt;&gt;x&gt;&gt;y;
+    for(long i=x; i&lt;=y; i++) {
+        if(ccc(i)) {
+            //cout&lt;&lt;i&lt;&lt;&quot;  &quot;&lt;&lt;s&lt;&lt;endl;
+            if(check(i))
+                cout&lt;&lt;i&lt;&lt;endl;
+        }
     }
     return 0;
 }
@@ -258,15 +322,9 @@ int main() {
 
 		<ul class="am-pagination">
     
-    	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2018/12/05/蓝桥杯刷题——拼接平方数/" title="蓝桥杯刷题——拼接平方数">
-      		&laquo; 上一篇
-		</a>
-		</li>
-	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2018/12/03/PTA刷题——猜数字/" title="PTA刷题——猜数字">
+		<a class="pull-right" href="/2018/12/03/PTA刷题——最大子列和问题/" title="PTA刷题——最大子列和问题">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -395,7 +453,7 @@ int main() {
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-69-最大子列和问题-（20-分）"><span class="post-toc-text">7-69 最大子列和问题 （20 分）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目分析"><span class="post-toc-text">题目分析</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题-1821-蓝桥杯-2014年第五届真题-拼接平方数"><span class="post-toc-text">问题 1821: [蓝桥杯][2014年第五届真题]拼接平方数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目解析"><span class="post-toc-text">题目解析</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
