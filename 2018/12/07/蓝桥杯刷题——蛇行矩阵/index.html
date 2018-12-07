@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>蓝桥杯刷题——母牛的故事</title>
+	<title>蓝桥杯刷题——蛇行矩阵</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《蓝桥杯刷题——母牛的故事》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《蓝桥杯刷题——蛇行矩阵》</p>
 			
 		
 	
@@ -161,8 +161,8 @@
 					
 					
 	
-		<a href="/2018/12/07/蓝桥杯刷题——母牛的故事/" itemprop="url">		
-			蓝桥杯刷题——母牛的故事		
+		<a href="/2018/12/07/蓝桥杯刷题——蛇行矩阵/" itemprop="url">		
+			蓝桥杯刷题——蛇行矩阵		
 		</a>
 	
 
@@ -171,8 +171,8 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2018/12/07/蓝桥杯刷题——母牛的故事/" itemprop="url">
-	<time datetime="2018-12-07T10:06:16.853Z" itemprop="datePublished">
+						<a href="/2018/12/07/蓝桥杯刷题——蛇行矩阵/" itemprop="url">
+	<time datetime="2018-12-07T15:50:28.493Z" itemprop="datePublished">
   		2018-12-07
   </time>
 </a>    
@@ -188,70 +188,53 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="蓝桥杯刷题——母牛的故事"><a href="#蓝桥杯刷题——母牛的故事" class="headerlink" title="蓝桥杯刷题——母牛的故事"></a>蓝桥杯刷题——母牛的故事</h2><h3 id="问题-1004-母牛的故事"><a href="#问题-1004-母牛的故事" class="headerlink" title="问题 1004: 母牛的故事"></a>问题 1004: 母牛的故事</h3><p>时间限制: 1Sec 内存限制: 128MB 提交: 15678 解决: 4143</p>
+						<h2 id="蓝桥杯刷题——蛇行矩阵"><a href="#蓝桥杯刷题——蛇行矩阵" class="headerlink" title="蓝桥杯刷题——蛇行矩阵"></a>蓝桥杯刷题——蛇行矩阵</h2><h3 id="问题-1097-蛇行矩阵"><a href="#问题-1097-蛇行矩阵" class="headerlink" title="问题 1097: 蛇行矩阵"></a>问题 1097: 蛇行矩阵</h3><p>时间限制: 1Sec 内存限制: 64MB 提交: 1890 解决: 1110</p>
 <p><strong>题目描述</strong></p>
-<p>有一头母牛，它每年年初生一头小母牛。每头小母牛从第四个年头开始，每年年初也生一头小母牛。请编程实现在第n年的时候，共有多少头母牛？</p>
-<p><strong>输入</strong></p>
-<p>输入数据由多个测试实例组成，每个测试实例占一行，包括一个整数n(0&lt;n&lt;55)，n的含义如题目中描述。<br>n=0表示输入数据的结束，不做处理。</p>
-<p><strong>输出</strong></p>
-<p>对于每个测试实例，输出在第n年的时候母牛的数量。每个输出占一行。</p>
+<p>蛇形矩阵是由1开始的自然数依次排列成的一个矩阵上三角形。<br><strong>输入</strong></p>
+<p>本题有多组数据，每组数据由一个正整数N组成。（N不大于100）<br><strong>输出</strong></p>
+<p>对于每一组数据，输出一个N行的蛇形矩阵。两组输出之间不要额外的空行。矩阵三角中同一行的数字用一个空格分开。行尾不要多余的空格。</p>
 <p><strong>样例输入</strong></p>
-<pre><code>2
-4
-5
-0
-</code></pre><p><strong>样例输出</strong></p>
-<pre><code>2
-4
-6
-</code></pre><h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>根据题意，先列出前几年的牛头数，试着找找规律：</p>
-<p><img src="https://i.imgur.com/z9Ybrb5.png" alt=""></p>
-<p>在列出这个序列的过程中，应当能找出规律。</p>
-<p>以n=6为例，fn=9头牛可以分解为6+3，其中6是上一年（第5年）的牛，3是新生的牛（因为第3年有3头牛，这3头在第6年各生一头牛）。</p>
-<p>我们可以得出这样一个公式：fn=fn-1+fn-3。再理解一下，fn-1是前一年的牛，第n年仍然在，fn-3是前三年那一年的牛，</p>
-<p>但换句话说也就是第n年具有生育能力的牛，也就是第n年能生下的小牛数。编程序，求解这个公式就行了。</p>
-<p>当然，第1-3年的数目，需要直接给出。很像斐波那契数列，有不一样之处，道理、方法一样。其实，在编程之前，讲究先用这样的方式建模。</p>
-<p><strong>迭代法求解</strong></p>
-<pre><code>#include &lt;iostream&gt;
+<p>5</p>
+<p><strong>样例输出</strong></p>
+<pre><code>1 3 6 10 15
+2 5 9 14
+4 8 13
+7 12
+11
+</code></pre><h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>分析出数字规律，只要记录每次加的数据是多少就可以很快输出了</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
 int main() {
-    int n,i;
-    int f1, f2, f3, fn;
-    while(cin&gt;&gt;n&amp;&amp;n!=0) {
-        //下面求第n年有几头牛
-        f1=1;
-        f2=2;
-        f3=3;
-        if(n==1)
-            cout&lt;&lt;f1&lt;&lt;endl;
-        else if(n==2)
-            cout&lt;&lt;f2&lt;&lt;endl;
-        else if(n==3)
-            cout&lt;&lt;f3&lt;&lt;endl;
-        else {
-            for(i=4; i&lt;=n; i++) {
-                fn=f3+f1;
-                f1=f2;  //f1代表前3年
-                f2=f3;  //f2代表前2年
-                f3=fn;  //f3代表前1年
+    int n;
+    while (cin&gt;&gt;n) {
+        int beg=1;
+        for(int i=1; i&lt;=n; i++) {
+            cout&lt;&lt;beg;
+            int tmp = beg;
+            for(int j=i+1; j&lt;=n; j++) {
+                tmp+=j;
+                cout&lt;&lt;&quot; &quot;&lt;&lt;tmp;
             }
-            cout&lt;&lt;fn&lt;&lt;endl;
+            cout&lt;&lt;endl;
+            beg+=i;
         }
     }
     return 0;
 }
-</code></pre><p><strong>数组求解</strong></p>
+</code></pre><p><strong> 通项公式解题 </strong></p>
 <pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
 int main() {
-    int n,f[56]= {0,1,2,3};
-    for(int i=4; i&lt;=55; i++) {
-        f[i]=f[i-1]+f[i-3];
+    int num;
+    while (cin &gt;&gt; num) {
+        for(int i=0; i&lt;=num-1; i++) {
+            for(int j=0; j&lt;=num-1-i; j++) {
+                cout&lt;&lt;(i*i+i+2*i*j+j*j+3*j)/2+1&lt;&lt;&#39; &#39;;
+            }
+            cout &lt;&lt; endl;
+        }
     }
-    while(cin&gt;&gt;n&amp;&amp;n!=0) {
-        cout&lt;&lt;f[n]&lt;&lt;endl;
-    }
-    return 0;
+    return 0;  
 }
 </code></pre>
 					
@@ -261,15 +244,9 @@ int main() {
 
 		<ul class="am-pagination">
     
-    	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2018/12/07/蓝桥杯刷题——蛇行矩阵/" title="蓝桥杯刷题——蛇行矩阵">
-      		&laquo; 上一篇
-		</a>
-		</li>
-	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2018/12/07/蓝桥杯刷题——数字游戏/" title="蓝桥杯刷题——数字游戏">
+		<a class="pull-right" href="/2018/12/07/蓝桥杯刷题——母牛的故事/" title="蓝桥杯刷题——母牛的故事">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -398,7 +375,7 @@ int main() {
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#蓝桥杯刷题——母牛的故事"><span class="post-toc-text">蓝桥杯刷题——母牛的故事</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题-1004-母牛的故事"><span class="post-toc-text">问题 1004: 母牛的故事</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目分析"><span class="post-toc-text">题目分析</span></a></li></ol></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#蓝桥杯刷题——蛇行矩阵"><span class="post-toc-text">蓝桥杯刷题——蛇行矩阵</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题-1097-蛇行矩阵"><span class="post-toc-text">问题 1097: 蛇行矩阵</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目分析"><span class="post-toc-text">题目分析</span></a></li></ol></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
