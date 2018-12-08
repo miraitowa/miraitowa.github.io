@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>PTA刷题——最佳情侣身高差</title>
+	<title>浅析宽字节注入</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《PTA刷题——最佳情侣身高差》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《浅析宽字节注入》</p>
 			
 		
 	
@@ -161,8 +161,8 @@
 					
 					
 	
-		<a href="/2018/11/27/PTA刷题——最佳情侣身高差/" itemprop="url">		
-			PTA刷题——最佳情侣身高差		
+		<a href="/2018/12/08/浅析宽字节注入/" itemprop="url">		
+			浅析宽字节注入		
 		</a>
 	
 
@@ -171,9 +171,9 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2018/11/27/PTA刷题——最佳情侣身高差/" itemprop="url">
-	<time datetime="2018-11-26T16:08:44.763Z" itemprop="datePublished">
-  		2018-11-27
+						<a href="/2018/12/08/浅析宽字节注入/" itemprop="url">
+	<time datetime="2018-12-08T07:42:18.021Z" itemprop="datePublished">
+  		2018-12-08
   </time>
 </a>    
 &nbsp;
@@ -188,45 +188,101 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h3 id="7-12-最佳情侣身高差-（10-分）"><a href="#7-12-最佳情侣身高差-（10-分）" class="headerlink" title="7-12 最佳情侣身高差 （10 分）"></a>7-12 最佳情侣身高差 （10 分）</h3><p>专家通过多组情侣研究数据发现，最佳的情侣身高差遵循着一个公式：（女方的身高）×1.09 =（男方的身高）。</p>
-<p>如果符合，你俩的身高差不管是牵手、拥抱、接吻，都是最和谐的差度。</p>
-<p>下面就请你写个程序，为任意一位用户计算他/她的情侣的最佳身高。</p>
-<p><strong>输入格式：</strong></p>
-<p>输入第一行给出正整数N（≤10），为前来查询的用户数。随后N行，每行按照“性别 身高”的格式给出前来查询的用户的性别和身高，</p>
-<p>其中“性别”为“F”表示女性、“M”表示男性；“身高”为区间 [1.0, 3.0] 之间的实数。</p>
-<p><strong>输出格式：</strong></p>
-<p>对每一个查询，在一行中为该用户计算出其情侣的最佳身高，保留小数点后2位。</p>
-<p><strong>输入样例：</strong></p>
-<pre><code>2
-M 1.75
-F 1.8
-</code></pre><p><strong>输出样例：</strong></p>
-<pre><code>1.61
-1.96
-</code></pre><h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>注意精度，输入格式</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main() {
-    int N;
-    double n,h;
-    char m;
-    scanf(&quot;%d&quot;,&amp;N);
-while(N--)
-{
-    cin&gt;&gt;m&gt;&gt;n;
-    if(m==&#39;M&#39;)
-    {
-        h=n/1.09;
-        }
-        else
-        {
-            h=n*1.09;
-        }
-        printf(&quot;%.2lf\n&quot;,h);
-    }
-    return 0;
+						<h2 id="浅析宽字节注入"><a href="#浅析宽字节注入" class="headerlink" title="浅析宽字节注入"></a>浅析宽字节注入</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先我们了解下宽字节注入，宽字节注入主要是源于程序员设置数据库编码与<code>PHP</code>编码设置为不同的两个编码那么就有可能产生宽字节注入</p>
+<p>例如说PHP的编码为<code>UTF-8</code>而<code>MySql</code>的编码设置为了</p>
+<p><code>SET NAMES &#39;gbk&#39;</code>或是<code>SET character_set_client =gbk</code>，这样配置会引发编码转换从而导致的注入漏洞。</p>
+<p>这里要说明一小点的是：</p>
+<p>SET NAMES ‘x’语句与这三个语句等价：</p>
+<pre><code>mysql&gt;SET character_set_client =x;
+mysql&gt;SET character_set_results =x;
+mysql&gt;SET character_set_connection =x;
+</code></pre><p>也就是说你设置了<code>SET NAMES &#39;x&#39;</code>时就等于同时执行了上面的3条语句</p>
+<p>而我认为的宽字节注入就是PHP发送请求到MySql时使用了语句</p>
+<p><code>SET NAMES &#39;gbk&#39;</code>或是<code>SET character_set_client =gbk</code>进行了一次编码，但是又由于一些不经意的字符集转换导致了宽字节注入</p>
+<h4 id="宽字节注入原理"><a href="#宽字节注入原理" class="headerlink" title="宽字节注入原理"></a>宽字节注入原理</h4><p>1：在我们正常情况下使用<code>addslashes</code>函数或是开启<code>PHPGPC</code>（注：在php5.4已上已给删除，并且需要说明特别说明一点，</p>
+<p><code>GPC</code>无法过滤<code>$_SERVER</code>提交的参数）时过滤<code>GET、POST、COOKIE、REQUSET</code>提交的参数时，</p>
+<p>黑客们使用的预定义字符会给转义成添加反斜杠的字符串如下面的例子</p>
+<p><strong>例子：</strong></p>
+<pre><code>单引号（&#39;）= （\&#39;）
+双引号（&quot;） = （\&quot;）
+反斜杠（\） = （\\）
+</code></pre><p>2：假如这个网站有宽字节注入那么我们提交：</p>
+<pre><code>http://127.0.0.1/unicodeSqlTest?id=%df%27
+</code></pre><p>这时,假如我们现在使用的是<code>addslashes</code>来过滤,那么就会发生如下的转换过程</p>
+<p><strong>例子：</strong></p>
+<pre><code>%df%27===(addslashes)===&gt;%df%5c%27===(数据库GBK)===&gt;運&#39;
+</code></pre><p>这里可能有一些人没看懂，我可以粗略的解释一下。</p>
+<p>前端输入<code>%df%27</code>时首先经过上面<code>addslashes</code>函数转义变成了<code>%df%5c%27（%5c是反斜杠\)</code>，之后在数据库查询前因为设置了GBK编码，</p>
+<p>即是在汉字编码范围内两个字节都会给重新编码为一个汉字。然后MySQL服务器就会对查询语句进行GBK编码即是%df%5c转换成了汉字運，</p>
+<p>而单引号就逃逸了出来，从而造成了注入漏洞。</p>
+<p>干这样看我们可能也没能很清楚的看懂，我们可以来几个例子：</p>
+<p><strong>例子1：</strong></p>
+<p>在PHP中使用<code>$pdo-&gt;query(&#39;set names gbk&#39;)</code>;指定三个字符集（客户端、连接层、结果集）都是GBK编码。而PHP的编码等于UTF-8编码时造成的宽字节注入</p>
+<p><strong>例子代码：</strong></p>
+<pre><code>&lt;?php 
+
+if( !isset($_GET[&#39;id&#39;]) ){
+    echo &quot;Error:ID NULL&quot;;
 }
-</code></pre>
+
+$id=addslashes($_GET[&#39;id&#39;]);//获取id并且转移与定义字符
+
+//分别对应的是 地址，端口号，连接的数据库
+$dsn = &quot;mysql:host=127.0.0.1; port=3306; dbname=blog;&quot;;
+
+//账号
+$user = &#39;root&#39;;
+
+//密码
+$psw = &#39;root&#39;;
+
+//连接到MySQL
+$pdo = new PDO($dsn,$user,$psw);
+
+//准备执行的sql语句
+$sql = &#39;SELECT * FROM tp_category WHERE id =&#39;.&quot;&#39;{$id}&#39;&quot;;
+echo $sql;
+echo &#39;&lt;br/&gt;&#39;;
+echo &#39;&lt;br/&gt;&#39;;
+
+//设置编码
+
+$pdo-&gt;query(&#39;set names gbk&#39;);
+$res = $pdo-&gt;query($sql) or var_dump($pdo-&gt;errorInfo());
+
+$mon = $res-&gt;fetch(PDO::FETCH_ASSOC);
+var_dump( $mon );
+
+ ?&gt;
+</code></pre><p><img src="https://i.imgur.com/y25pkvC.png" alt=""></p>
+<p>那么如何逃过<code>addslashes</code>的限制呢？<code>addslashes</code>函数产生的效果就是，让’变成\’，让单双引号变得不再是’单双引号’，只是一撇而已。</p>
+<p>一般绕过方式就是，想办法处理掉\’前面的\：</p>
+<pre><code>1.想办法给\ 前面再加一个\，变成\\&#39;，这样\被转义了， &#39; 逃出了限制
+2.想办法把\弄没有。
+</code></pre><p>我们这里的宽字节注入是利用mysql的一个特性，mysql在使用GBK编码的时候，会认为两个字符是一个汉字（前一个ascii码要大于128，</p>
+<p>才到汉字的范围）。根据这个我们在地址栏输入%df%27看看会发生什么：</p>
+<p><img src="https://i.imgur.com/42AcQ8Z.png" alt=""></p>
+<p><img src="https://i.imgur.com/Ev4amCC.png" alt=""></p>
+<p>我们可以看到，页面已经报错了。看到报错，说明这句sql语句出错，说明我们已经绕过了<code>addslashes</code>那么就可以正常的进行注入了。</p>
+<p>我们只是在<code>%27</code>前面加了一个<code>%df</code>为什么就报错了？而且从上图中可以看到，报错的原因是多了一个单引号，而单引号前面的反斜杠已经不见了。</p>
+<p>这就是<code>mysql</code>的特性，因为<code>gbk</code>是多字节编码，他认为两个字节代表一个汉字，所以%df和后面的\也就是%5c变成了一个汉字運，而’逃逸了出来,导致了注入。</p>
+<p><strong>例子2：</strong></p>
+<p>使用set names UTF-8指定了UTF-8字符集，并且也使用转义函数进行转义。有时候在程序运行的时候，为了避免乱码，</p>
+<p>会将一些用户提交的GBK字符使用<code>iconv函数（或mb_convert_encoding）</code>先转为<code>UTF-8</code>，然后再拼接SQL语句带入数据库。</p>
+<p><strong>例子代码：</strong></p>
+<p><img src="https://i.imgur.com/tdFO95P.png" alt=""></p>
+<p><img src="https://i.imgur.com/IBcXLGF.png" alt=""></p>
+<p><img src="https://i.imgur.com/zB88YHY.png" alt=""></p>
+<p><img src="https://i.imgur.com/ItI5YXn.png" alt=""></p>
+<p><strong>转换过程：</strong></p>
+<pre><code>%df%27===(addslashes)===&gt;%df%5c%27===(iconv)===&gt;%e5%5c%5c%27
+</code></pre><p><code>$id =iconv(&#39;GBK&#39;,&#39;UTF-8&#39;, $id)</code>;如果内容是utf8编码的，将自动转成gbk编码的. 錦的utf-8编码是0xe98ca6，它的gbk编码是<code>0xe55c</code>。</p>
+<p> 有的同学可能就领悟了。<code>\</code>的ascii码正是<code>5c</code>。那么，当我们的<strong>錦</strong>被<code>iconv</code>从<code>utf-8</code>转换成<code>gbk</code>后，变成了<code>%e5%5c</code>，</p>
+<p>而后面的<code>’</code>被<code>addslashes</code>变成了<code>%5c%27</code>，这样组合起来就是<code>%e5%5c%5c%27</code>，两个<code>%5c</code>就是<code>\</code>，正好把反斜杠转义了，导致<code>’</code>逃逸出单引号，产生注入。</p>
+<p>从上面的介绍中可以看出，宽字节注入的关键点有两个：</p>
+<p><strong>（1） 需要将数据库编码与PHP编码设置为不同的两个编码那么就有可能产生宽字节注入；</strong></p>
+<p><strong>（2） 设置的宽字符集可能吃掉转义符号\（对应的编码为0x5c，即低位中包含正常的0x5c就行了）。</strong></p>
+
 					
 				</div>
 			</div>
@@ -234,15 +290,9 @@ while(N--)
 
 		<ul class="am-pagination">
     
-    	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2018/11/27/记一份github博客之page build failed/" title="记一份github博客之page build failed">
-      		&laquo; 上一篇
-		</a>
-		</li>
-	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2018/11/27/PTA刷题——跟奥巴马一起画方块/" title="PTA刷题——跟奥巴马一起画方块">
+		<a class="pull-right" href="/2018/12/07/蓝桥杯刷题——蛇行矩阵/" title="蓝桥杯刷题——蛇行矩阵">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -371,7 +421,7 @@ while(N--)
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-12-最佳情侣身高差-（10-分）"><span class="post-toc-text">7-12 最佳情侣身高差 （10 分）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目分析"><span class="post-toc-text">题目分析</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浅析宽字节注入"><span class="post-toc-text">浅析宽字节注入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#宽字节注入原理"><span class="post-toc-text">宽字节注入原理</span></a></li></ol></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
