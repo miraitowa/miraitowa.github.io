@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">我们为什么读书</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《我们为什么读书》</p>
 			
 		
 	
@@ -147,24 +147,48 @@
 		<!--main-->
 		<main> 
 		<div class="page-container">
-		<!--content start-->
+		<!-- content srart -->
 <div class="am-g am-g-fixed blog-fixed blog-content">
-    <div class="am-u-md-8 am-u-sm-12">
-        <article class="am-article blog-article-p">
+	<div class="am-u-md-8 am-u-sm-12">
 
-            <div class="page-header">
-	<div class="blog-text-center">
-		
-			
-			我们为什么读书
+		<article class="am-article blog-article-p">
 
-		  	 		
-	</div>    	 		
-</div>  	 		
+			<div class="am-article-hd">
+				
 
-                
 
-                <h2 id="我们为什么读书"><a href="#我们为什么读书" class="headerlink" title="我们为什么读书"></a>我们为什么读书</h2><p><img src="https://i.imgur.com/CkFngUA.jpg" alt=""></p>
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/12/15/我们为什么读书/" itemprop="url">		
+			我们为什么读书		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/12/15/我们为什么读书/" itemprop="url">
+	<time datetime="2018-12-15T11:47:12.199Z" itemprop="datePublished">
+  		2018-12-15
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="我们为什么读书"><a href="#我们为什么读书" class="headerlink" title="我们为什么读书"></a>我们为什么读书</h2><p><img src="https://i.imgur.com/CkFngUA.jpg" alt=""></p>
 <blockquote>
 <p>如果你想获得你想要的东西，那就得让自己配得上它。信任，成功和钦佩都是靠努力获得的。 —— 查理·芒格</p>
 </blockquote>
@@ -192,13 +216,152 @@
 <p><a href="https://www.bilibili.com/video/av10953059?t=44" title="奥巴马全美开学演讲-《我们为什么要上学》" target="_blank" rel="noopener">https://www.bilibili.com/video/av10953059?t=44</a></p>
 <p><a href="https://www.zhihu.com/question/302311885" title="看书学习的意义究竟是什么？" target="_blank" rel="noopener">https://www.zhihu.com/question/302311885</a></p>
 
+					
+				</div>
+			</div>
+		</article>
 
-            
-        </article>
-    </div>
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/12/13/由七道题目浅析RSA原理/" title="由七道题目浅析RSA原理">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
 </div>
 
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
 
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#我们为什么读书"><span class="post-toc-text">我们为什么读书</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#推荐视频以及文章"><span class="post-toc-text">推荐视频以及文章</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
 		</div>
 		</main>
 		
@@ -265,11 +428,18 @@
 </style>
 
 
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
 
 
 
 
 
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
 
 
 <script type="text/javascript" src="/js/main.js"></script>
