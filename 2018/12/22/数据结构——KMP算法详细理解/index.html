@@ -631,6 +631,20 @@ void GetNextval(char* p, int next[])
 <p>假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置<br>如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++，继续匹配下一个字符；<br>如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]。此举意味着失配时，模式串P相对于文本串S向右移动了j - next [j] 位。”</p>
 <p>我们发现如果某个字符匹配成功，模式串首字符的位置保持不动，仅仅是i++、j++；如果匹配失配，i 不变（即 i 不回溯），模式串会跳过匹配过的next [j]个字符。整个算法最坏的情况是，当模式串首字符位于i - j的位置时才匹配成功，算法结束。<br>所以，如果文本串的长度为n，模式串的长度为m，那么匹配过程的时间复杂度为O(n)，算上计算next的O(m)时间，KMP的整体时间复杂度为O(m + n)。</p>
 </blockquote>
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p><strong>《算法导论》的第十二章：字符串匹配</strong></p>
+<p>本文中模式串“ABCDABD”的部分图来自于此文：<a href="http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html</a></p>
+<p>本文3.3.7节中有限状态自动机的图由微博网友@龚陆安 绘制：<a href="http://d.pr/i/NEiz" target="_blank" rel="noopener">http://d.pr/i/NEiz</a></p>
+<p>北京7月暑假班邹博半小时KMP视频：<a href="http://www.julyedu.com/video/play/id/5" target="_blank" rel="noopener">http://www.julyedu.com/video/play/id/5</a></p>
+<p>北京7月暑假班邹博第二次课的PPT：<a href="http://yun.baidu.com/s/1mgFmw7u" target="_blank" rel="noopener">http://yun.baidu.com/s/1mgFmw7u</a></p>
+<p>理解KMP 的9张PPT：<a href="http://weibo.com/1580904460/BeCCYrKz3#_rnd1405957424876" target="_blank" rel="noopener">http://weibo.com/1580904460/BeCCYrKz3#_rnd1405957424876</a></p>
+<p>详解KMP算法（多图）：<a href="http://www.cnblogs.com/yjiyjige/p/3263858.html" target="_blank" rel="noopener">http://www.cnblogs.com/yjiyjige/p/3263858.html</a></p>
+<p>本文第4部分的BM算法参考自此文：</p>
+<p><a href="http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html</a>；</p>
+<p><a href="http://youlvconglin.blog.163.com/blog/static/5232042010530101020857" target="_blank" rel="noopener">http://youlvconglin.blog.163.com/blog/static/5232042010530101020857</a>；</p>
+<p>《数据结构 第二版》，严蔚敏 &amp; 吴伟民编著；</p>
+<p><a href="http://blog.csdn.net/v_JULY_v/article/details/6545192" target="_blank" rel="noopener">http://blog.csdn.net/v_JULY_v/article/details/6545192</a>；</p>
+<p><a href="http://blog.csdn.net/v_JULY_v/article/details/6111565" target="_blank" rel="noopener">http://blog.csdn.net/v_JULY_v/article/details/6111565</a>；</p>
+<p>一篇KMP的英文介绍：<a href="http://www.inf.fh-flensburg.de/lang/algorithmen/pattern/kmpen.htmL" target="_blank" rel="noopener">http://www.inf.fh-flensburg.de/lang/algorithmen/pattern/kmpen.htmL</a>；</p>
 
 					
 				</div>
@@ -770,7 +784,7 @@ void GetNextval(char* p, int next[])
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1：BF-暴力匹配-算法"><span class="post-toc-text">1：BF(暴力匹配)算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-KMP算法"><span class="post-toc-text">2. KMP算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1-定义"><span class="post-toc-text">2.1 定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-步骤"><span class="post-toc-text">2.2 步骤</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-3-解释"><span class="post-toc-text">2.3 解释</span></a></li></ol></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1：BF-暴力匹配-算法"><span class="post-toc-text">1：BF(暴力匹配)算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-KMP算法"><span class="post-toc-text">2. KMP算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1-定义"><span class="post-toc-text">2.1 定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-步骤"><span class="post-toc-text">2.2 步骤</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-3-解释"><span class="post-toc-text">2.3 解释</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#参考文献"><span class="post-toc-text">参考文献</span></a></li></ol></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
