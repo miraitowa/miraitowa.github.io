@@ -1,0 +1,572 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>数据结构——树与二叉树学习篇(一)</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《数据结构——树与二叉树学习篇(一)》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		12/23/2018 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/12/23/数据结构——树与二叉树学习篇(一)/" itemprop="url">		
+			数据结构——树与二叉树学习篇(一)		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/12/23/数据结构——树与二叉树学习篇(一)/" itemprop="url">
+	<time datetime="2018-12-23T14:50:19.137Z" itemprop="datePublished">
+  		2018-12-23
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h3 id="1、树的定义和基本术语"><a href="#1、树的定义和基本术语" class="headerlink" title="1、树的定义和基本术语"></a>1、树的定义和基本术语</h3><h4 id="1-1-树的定义"><a href="#1-1-树的定义" class="headerlink" title="1.1 树的定义"></a>1.1 树的定义</h4><p>定义：树(Tree)是n(n&gt;=0)个结点的有限集T，T为空时称为空树，否则它满足如下两个条件：</p>
+<blockquote>
+<p>(1)有且仅有一个特定的称为根(Root)的结点；<br>(2)其余的结点可分为m(m&gt;=0)个互不相交的子集T1,T2,T3…Tm，其中每个子集又是一棵树，并称其为子树(Subtree)。<br>要求子树都非空，使子树的个数（和树的结构）能有明确定义：</p>
+</blockquote>
+<p><strong>结点个数为0 的树称为空树</strong></p>
+<p><strong>一棵树可以只有根但没有子树（m = 0），这是一棵单结点的树，只包含一个根结点</strong></p>
+<h4 id="树是一种层次性结构："><a href="#树是一种层次性结构：" class="headerlink" title="树是一种层次性结构："></a>树是一种层次性结构：</h4><blockquote>
+<p>子树的根看作是树根的下一层元素</p>
+<p>一棵树里的元素可以根据这种关系分为一层层的元素</p>
+<p>一棵树（除树根外）可能有多棵子树，根据是否认为子树的排列顺序有</p>
+<p>意义，可以把树分为有序树和无序树两种概念。例如，普通的树一般是无序的，二叉搜索树BST是有序的。</p>
+</blockquote>
+<h4 id="1-2-树的基本术语"><a href="#1-2-树的基本术语" class="headerlink" title="1.2 树的基本术语"></a>1.2 树的基本术语</h4><p>父结点和子结点（是相对定义的）：</p>
+<blockquote>
+<p>一棵树的根结点称为该树的子树的根结点的父结点<br>子树的根是树根的子结点</p>
+</blockquote>
+<p><strong>边：</strong>从父结点到子结点的连线（注意，边有方向）</p>
+<p><strong>兄弟结点：</strong>父结点相同的结点互为兄弟结点</p>
+<p><strong>树叶、分支结点：</strong>没有子结点的结点称为树叶，树中的其余结点称为分支结点（注意：分支结点可以只有一个分支）</p>
+<p><strong>祖先和子孙：</strong>基于父结点/子结点关系和传递性，可以确定相应的传递<br>关系，称为祖先关系或子孙关系。由这两个关系决定了一个结点的祖先结点，或子孙结点</p>
+<p><strong>度数：</strong>一个结点的子结点个数称为该结点的度数，显然树叶的度数为0<br>一棵树的度数就是它里面度数最大的结点的度数</p>
+<p><strong>路径，路径长度：</strong></p>
+<blockquote>
+<p>从一个祖先结点到其子孙结点的一系列边称为树中一条路径。显然，从一棵树的根到树中任一个结点都有路径，且路径唯一<br>路径中边的条数称为路径长度，认为每个结点到自身有长0 的路径</p>
+</blockquote>
+<p><strong>结点的层数：</strong></p>
+<blockquote>
+<p>树根到结点的路径长度是该结点的层数<br>结点都有层数，根所在的层为0</p>
+</blockquote>
+<p><strong>高度（或深度）：</strong></p>
+<blockquote>
+<p>树的高度或深度是树中结点的最大层数（最长路径的长度）加1<br>是树的整体性质，空树高度为0，只有根结点的树高度为1</p>
+</blockquote>
+<p>结点的顺序（最左，…，仅在考虑有序树时有意义）</p>
+<p><strong>树林：</strong>m（m ≥ 0）棵互不相交的树的集合</p>
+<p>一棵非空树是一个二元组Tree = (r, F)，其中</p>
+<blockquote>
+<p>r 是树的根结点<br>F 是m（m ≥ 0）棵子树构成的树林<br>F = (T1, T2,…, Tm)。其中Ti 称为根r 的第i 棵子树（这是有序树的<br>情况。对于无序树F 是一个集合，F = {T1, T2,…, Tm} ）</p>
+</blockquote>
+<p>注意树与树林的关系：</p>
+<blockquote>
+<p>树由根和子树树林构成<br>树林由一集树组成<br>树和树林可以相互递归定义</p>
+</blockquote>
+<h3 id="2、二叉树"><a href="#2、二叉树" class="headerlink" title="2、二叉树"></a>2、二叉树</h3><p>二叉树在树结构的应用中起着非常重要的作用，因为对二叉树的许多操作算法简单，而任何树都可以与二叉树 相互转换，这样就解决了树的存储结构及其运算中存在的复杂性。</p>
+<h4 id="2-1-二叉树的定义"><a href="#2-1-二叉树的定义" class="headerlink" title="2.1 二叉树的定义"></a>2.1 二叉树的定义</h4><p><strong>定义：</strong>二叉树是由n(n&gt;=0)个结点的有限集合构成，此集合或者为空集，或者由一个根结点及两棵互不相交的左右子树组成，并且左右子树都是二叉树。</p>
+<p>这也是一个递归定义。二叉树可以是空集合，根可以有空的左子树或空的右子树。二查树不是树的特殊情况，它们是两个概念。</p>
+<p>二叉树结点的子树要区分左子树和右子树，即使只有一棵子树也要进行区分，说明它是左子树，还是右子树。这是二叉树与树的最主要的差别。下图列出二差树的5种基本形态。</p>
+<p><img src="https://i.imgur.com/F1DSFmL.png" alt=""></p>
+<h4 id="2-2-二叉树的性质"><a href="#2-2-二叉树的性质" class="headerlink" title="2.2 二叉树的性质"></a>2.2 二叉树的性质</h4><p>二叉树具有下列重要性质：</p>
+<p><strong>性质1：</strong> 在二叉树的第i层上至多有2i-1个结点(i&gt;=1)。</p>
+<p>采用归纳法证明此性质。</p>
+<blockquote>
+<p>当i=1时，只有一个根结点，2i-1=20 =1,命题成立。</p>
+<p>现在假定多所有的j，1&lt;=j&lt;i,命题成立，即第j层上至多有2j-2个结点，那么可以证明j＝i时命题也成立。由归纳假设可知，</p>
+<p>第i－1层上至多有2i-2结点。</p>
+<p>由于二叉树每个结点的度最大为2，故在第i层上最大结点数为第i－1层上最大结点数的二倍，</p>
+<p>即2×2i-2＝2i-1。</p>
+<p>命题得到证明。</p>
+</blockquote>
+<p><strong>性质2：</strong>深度为k的二叉树至多有2k－1个结点（k&gt;=1).</p>
+<p>深度为k的二叉树的最大的结点时为二叉树中每层上的最大结点数之和，由性质1得到每层上的最大结点数，<code>： Eki=1（第i层上的最大结点数）= Eki=12i-1=2k –1</code></p>
+<p><strong>性质3：</strong> 对任何一棵二叉树，如果其终端结点数为n0，度为2的结点数为n2，则n0＝n2＋1。</p>
+<p>设二叉树中度为1的结点数为n1，二叉树中总结点数为N，因为二叉树中所有结点均小于或等于2，所以有：N＝n0＋n1＋n2 </p>
+<p>再看二叉树中的分支数，除根结点外，其余结点都有一个进入分支，设B为二叉树中的分支总数，则有：N＝B＋1。</p>
+<p>由于这些分支都是由度为1和2的结点射出的，所有有：</p>
+<pre><code>B＝n1+2*n2 (1)
+N＝B＋1＝n1＋2×n2＋1 （2)
+</code></pre><p>由式（1）和（2）得到：</p>
+<pre><code>n0+n1+n2=n1+2*n2+1
+  n0＝n2＋1
+</code></pre><p>下面介绍两种特殊形态的二叉树：满二叉树和完全二叉树。</p>
+<p>一棵深度为k且由2k-1个结点的二叉树称为满二叉树。图(a)就是一棵满二叉树，对结点进行了顺序编号。</p>
+<p><img src="https://i.imgur.com/OoWK36c.jpg" alt=""></p>
+<p>如果深度为k、由n个结点的二叉树中个结点能够与深度为k的顺序编号的满二叉树从1到n标号的结点相对应，则称这样的二叉树为完全二叉树</p>
+<p>图（b）、（c）是2棵非完全二叉树。<strong>满二叉树是完全二叉树的特例。</strong></p>
+<p><strong>完全二叉树的特点是：</strong></p>
+<blockquote>
+<p>（1)所有的叶结点都出现在第k层或k－1层。</p>
+<p>（2）错任一结点，如果其右子树的最大层次为1，则其左子树的最大层次为1或i＋1。</p>
+</blockquote>
+<p><strong>性质4：</strong>具有n个结点的完全二叉树的深度为[log2n]＋1。</p>
+<p>符号【x】表示不大于x的最大整数。</p>
+<p>假设此二叉树的深度为k，则根据性质2及完全二叉树的定义得到：<code>2k-1－1&lt;n&lt;=2k-1 或 2k-1&lt;=n&lt;2k</code></p>
+<p>取对数得到：k－1&lt;log2n&lt;k 因为k是整数。所以有：<code>k＝【log2n】＋1。</code></p>
+<p><strong>性质5：</strong> 如果对一棵有n个结点的完全二叉树的结点按层序编号（从第1层到第【log2n】+1层，每层从左到右),则对任一结点i（1&lt;=i&lt;=n),有：</p>
+<blockquote>
+<p>（1）如果i＝1，则结点i无双亲，是二叉树的根；如果i&gt;1，则其双亲是结点【i/2】。</p>
+<p>（2）如果2i&gt;n，则结点i为叶子结点，无左孩子；否则，其左孩子是结点2i。</p>
+<p>（3）如果2i＋1&gt;n，则结点i无右孩子；否则，其右孩子是结点2i＋1。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/pF6tHFF.png" alt=""></p>
+<p>在此过程中，可以从（2）和（3）推出（1），所以先证明（2）和（3）。</p>
+<p>对于i＝1，由完全二叉树的定义，其左孩子是结点2，若2&gt;n，即不存在结点2，此是，结点i无孩子。结点i的由孩子也只能是结点3，</p>
+<p>若结点3不存在，即3&gt;n，此时结点i无右孩子。</p>
+<p>对于i&gt;1，可分为两种情况：</p>
+<blockquote>
+<p>（1）设第j（1&lt;=j&lt;=[log2n])层的第一个结点的编号为i，由二叉树的性质2和定义知i＝2j-1</p>
+<p>结点i的左孩子必定为的j＋1层的第一个结点，其编号为2j＝2×2j-1＝2i。如果2i&gt;n，则无左孩子：</p>
+<p>（2）假设第j（1&lt;=j&lt;=[log2n])层上的某个结点编号为i（2e(j-1)&lt;=i&lt;=2ej-1),且2i＋1&lt;n，其左孩子为2i，右孩子为2i＋1，</p>
+<p>则编号为i＋1的结点时编号为i的结点的右兄弟或堂兄弟。若它有左孩子，则其编号必定为2i＋2＝2×（i＋1）：若它有右孩子，</p>
+<p>则其编号必定为2i＋3＝2×（i＋1）＋1。</p>
+<p>当i＝1时，就是根，因此无双亲，当i&gt;1时，如果i为左孩子，即2×（i/2)=i,则i/2是i的双亲；</p>
+<p>如果i为右孩子，i＝2p+1,i的双亲应为p，p＝（i－1）/2=[i/2]. 证毕。</p>
+</blockquote>
+<h4 id="2-3-二叉树的存储结构"><a href="#2-3-二叉树的存储结构" class="headerlink" title="2.3 二叉树的存储结构"></a>2.3 二叉树的存储结构</h4><p><strong>2.3.1 顺序存储结构</strong></p>
+<p>它是用一组连续的存储单元存储二叉树的数据元素。因此，必须把二叉树的所有结点安排成为一个恰当的序列，</p>
+<p>结点在这个序列中的相互位置能反映出结点之间的逻辑关系，用编号的方法。</p>
+<p>从树根起，自上层至下层，每层自左至右的给所有结点编号缺点是有可能对存储空间造成极大的浪费，在最坏的情况下，</p>
+<p>一个深度为H且只有H个结点的右单支树确需要2h-1个结点存储空间。而且，若经常需要插入与删除树中结点时，顺序存储方式不是很好！</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/12/23/数据结构——串，数组和广义表学习篇(一)/" title="数据结构——串，数组和广义表学习篇(一)">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、树的定义和基本术语"><span class="post-toc-text">1、树的定义和基本术语</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-树的定义"><span class="post-toc-text">1.1 树的定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#树是一种层次性结构："><span class="post-toc-text">树是一种层次性结构：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-树的基本术语"><span class="post-toc-text">1.2 树的基本术语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、二叉树"><span class="post-toc-text">2、二叉树</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1-二叉树的定义"><span class="post-toc-text">2.1 二叉树的定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-二叉树的性质"><span class="post-toc-text">2.2 二叉树的性质</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-3-二叉树的存储结构"><span class="post-toc-text">2.3 二叉树的存储结构</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018, content by miraitowa. All Rights Reserved. 			   
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
