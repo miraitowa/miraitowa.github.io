@@ -1,0 +1,572 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>数据结构——串，数组和广义表学习篇(一)</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《数据结构——串，数组和广义表学习篇(一)》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		12/23/2018 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/12/23/数据结构——串，数组和广义表学习篇(一)/" itemprop="url">		
+			数据结构——串，数组和广义表学习篇(一)		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/12/23/数据结构——串，数组和广义表学习篇(一)/" itemprop="url">
+	<time datetime="2018-12-23T02:13:52.272Z" itemprop="datePublished">
+  		2018-12-23
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>昨天一直在做关于KMP算法的事情，今天把数据结构中串，数组和广义表的知识点梳理一下</p>
+<h3 id="串"><a href="#串" class="headerlink" title="串"></a>串</h3><p><strong>定义：</strong>是由零个或多个字符组成的有限序列，又称字符串。</p>
+<p><strong>串的长度：</strong>串中字符的数目称为串的长度。 </p>
+<p><strong>空串：</strong>由零个字符组成的串叫做空串，空串不包括任何字符，其长度为零。 </p>
+<p><strong>子串：</strong>串中任意个连续的字符组成的子序列称为该串的子串，空串是任何串的子串。 </p>
+<p><strong>主串：</strong>包含子串的串相应的称为主串。</p>
+<p><strong>串有两种表示形式</strong>：顺序存储表示和链式存储表示。 </p>
+<p><strong>顺序存储表示：</strong>串的顺序存储结构简称为顺序串，顺序串中的字符序列被顺序地存放在一组连续的存储单元中，主要有三种实现顺序串的方式。</p>
+<h4 id="串的顺序存储"><a href="#串的顺序存储" class="headerlink" title="串的顺序存储"></a>串的顺序存储</h4><pre><code>#define MAXLEN 255
+typedef struct{
+    char ch[MAXLEN+1];//存储串的一维数组
+    int length; ///串当前的长度 
+}SString; 
+</code></pre><p><strong>注意：</strong>对于上面的数组加1是为了让数组的下标从1开始，为了避免麻烦而为之</p>
+<h4 id="串的堆式顺序存储结构"><a href="#串的堆式顺序存储结构" class="headerlink" title="串的堆式顺序存储结构"></a>串的堆式顺序存储结构</h4><pre><code>typedef struct{
+    char *ch; 
+    int length; ///串当前的长度 
+}HString; 
+</code></pre><h4 id="串的链式存储"><a href="#串的链式存储" class="headerlink" title="串的链式存储"></a>串的链式存储</h4><pre><code>#define CHUNKSIZE 80
+typedef struct Chunk {
+    char ch[CHUNKSIZE];
+    struct Chunk *next;
+} Chunk;
+typedef struct {
+    Chunk *head,*tail;//串的头指针和尾指针
+    int length;
+} LString;
+</code></pre><h4 id="BF算法"><a href="#BF算法" class="headerlink" title="BF算法"></a>BF算法</h4><p>主串和字串都是从第一个位置进行比较即i=1;j=1</p>
+<pre><code>int Index_BF(SString S,SString T) {
+    int i=1,j=1; //初始化 
+    while(i&lt;=S.length&amp;&amp;j&lt;=T.length) {//两个均为到达串尾 
+        if(S.ch[i]==T.ch[j]) {//继续比较后继字符 
+            ++i;
+            ++j;
+        } else {//匹配不成功后退重新开始匹配 
+            i=i-j+2;
+            j=1;
+        }
+        if(j&gt;T.length)
+            return i-T.length;//匹配成功 
+        else return 0;
+    }
+}
+</code></pre><p>去除特殊的位置进行匹配，也就是说让主串从任意位置与字串进行匹配，只需要把i=1,变成i=pos就可以了，pos代表主串匹配的位置</p>
+<pre><code>int Index_BF(SString S,SString T int pos) {
+    int i=pos,j=1; //初始化 
+    while(i&lt;=S.length&amp;&amp;j&lt;=T.length) {//两个均为到达串尾 
+        if(S.ch[i]==T.ch[j]) {//继续比较后继字符 
+            ++i;
+            ++j;
+        } else {//匹配不成功后退重新开始匹配 
+            i=i-j+2;
+            j=1;
+        }
+        if(j&gt;T.length)
+            return i-T.length;//匹配成功 
+        else return 0;
+    }
+}
+</code></pre><p><strong>注意：</strong>其实BF算法就是一个简单的回溯，只需要一直回溯，然后进行字符串的匹配就可以了，其中的<code>i-j+2</code>可以看成是<code>(i-j)+2</code></p>
+<p>就是为了从i所在位置的下一个位置进行匹配就可以了</p>
+<p><strong>nextval[]数组计算：</strong></p>
+<p><img src="https://i.imgur.com/IhsqSfx.jpg" alt=""></p>
+<p><strong>时间复杂度：</strong>最好的情况O(m+n),最坏的情况O(m*n)</p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h4 id="数组的定义"><a href="#数组的定义" class="headerlink" title="数组的定义"></a>数组的定义</h4><p>数组是我们熟悉的数据类型，数组中各元素具有统一的类型，并且数组元素的下标一般具有固定的上界和下界，因此，数组的处理比其它复杂的结构更为简单。</p>
+<p>任何数组A都可以看作一个线性表。数组维数确定后，数据元素个数和元素之间的关系不再发生改变，适合顺序存储。</p>
+<p><strong>数组的基本操作</strong>     </p>
+<p><img src="https://i.imgur.com/0cEfdW2.png" alt=""></p>
+<p><strong>数组的顺序表示和实现</strong></p>
+<p>行优先顺序</p>
+<p><img src="https://i.imgur.com/abRoFjb.png" alt="">                      </p>
+<p>列优先顺序</p>
+<p><img src="https://i.imgur.com/1zRbbfQ.png" alt=""></p>
+<p><strong>矩阵的压缩存储</strong></p>
+<p>有些特殊矩阵，非零元素呈某种规律分布或者矩阵中出现大量的零元素的情况下，会占用许多单元去存储重复的非零元素或零元素，</p>
+<p>这对高阶矩阵会造成极大的浪费，为了节省存储空间，对这类矩阵进行压缩存储——即为多个相同的非零元素只分配一个存储空间；对零元素不分配空间。</p>
+<p>特殊矩阵：所谓特殊矩阵是指非零元素或零元素的分布有一定规律的矩阵，如对称矩阵、三角矩阵、对角矩阵等等。                                                               </p>
+<p><img src="https://i.imgur.com/lwRYWwI.png" alt=""></p>
+<p><strong>对称矩阵</strong></p>
+<p><img src="https://i.imgur.com/WZheQRI.png" alt=""></p>
+<p>对称矩阵中元素关于主对角线对称，故只要存储矩阵中上三角或下三角中的元素，让每两个对称的元素共享一个存储空间，这样能节约近一半的存储空间。n2个元素可以压缩到<code>n（n+1）/2</code>个空间中。                                                   </p>
+<p><img src="https://i.imgur.com/MglgNdI.png" alt=""></p>
+<p><img src="https://i.imgur.com/PEiHNo6.png" alt=""></p>
+<p><strong>三角矩阵</strong></p>
+<p>以主对角线划分，三角矩阵有上三角和下三角两种。上三角矩阵它的下三角中的元素均为常数。下三角矩阵正好相反，它的主对角线上方均为常数。</p>
+<p><img src="https://i.imgur.com/WTSLgak.png" alt=""></p>
+<p><img src="https://i.imgur.com/TUQ7jaa.png" alt=""></p>
+<p><img src="https://i.imgur.com/gVwC1Th.png" alt=""></p>
+<p><strong>稀疏矩阵</strong></p>
+<p><img src="https://i.imgur.com/fb7ANYB.png" alt=""></p>
+<p>除了记录非零元素的值之外，还必须同时几下它所在的行和列的位置。稀疏矩阵的存储方法一般有三种：三元组法、行逻辑连接顺序表和十字链表法。</p>
+<p><img src="https://i.imgur.com/GN19nVz.png" alt=""></p>
+<h3 id="广义表"><a href="#广义表" class="headerlink" title="广义表"></a>广义表</h3><p><strong>广义表：</strong>是由零个或多个原子或子表组成的优先序列，是线性表的推广。</p>
+<p><img src="https://i.imgur.com/l3gOEns.png" alt=""></p>
+<p><img src="https://i.imgur.com/yJm7fbo.png" alt=""></p>
+<p><img src="https://i.imgur.com/JM6vVIH.png" alt=""></p>
+<p><img src="https://i.imgur.com/K8XSUoS.png" alt=""></p>
+<p><img src="https://i.imgur.com/ukKfmM9.png" alt=""></p>
+<p><img src="https://i.imgur.com/yZr0E7y.png" alt=""></p>
+<p><img src="https://i.imgur.com/G7HeNUq.png" alt=""></p>
+<p><strong>广义表的存储结构</strong></p>
+<p>广义表中的数据元素可以具有不同的结构，因此，难以用顺序存储结构表示，通常采用链式存储结构，每个数据元素可用一个节点表示。由于广义表中有两种数据元素，因此需要有两种结构的节点——一种是表结点，一种是原子结点。</p>
+<p><strong>表结点由三个域组成：</strong>标志域、指示表头的指针的指针域和指示表尾的指针域；而原子域只需两个域：标志域和值域。                                                  </p>
+<p><img src="https://i.imgur.com/b4yrvsi.png" alt=""></p>
+<p><img src="https://i.imgur.com/s9b8wwS.png" alt=""></p>
+<p>表结点由三个域组成：标志域、指示表头的指针域和指向下一个元素的指针；原子结点的三个域为：标志域、值域和指向下一个元素的指针。</p>
+<p><img src="https://i.imgur.com/VfRl3kR.png" alt=""></p>
+<p><img src="https://i.imgur.com/oNcdUAz.png" alt=""></p>
+<h4 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h4><p>部分图片源自：<a href="https://www.jianshu.com/p/2469a4d9708e" target="_blank" rel="noopener">数据结构知识点大总汇</a></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/12/22/安恒杯十二月月赛/" title="安恒杯十二月月赛">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#串"><span class="post-toc-text">串</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#串的顺序存储"><span class="post-toc-text">串的顺序存储</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#串的堆式顺序存储结构"><span class="post-toc-text">串的堆式顺序存储结构</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#串的链式存储"><span class="post-toc-text">串的链式存储</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#BF算法"><span class="post-toc-text">BF算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数组"><span class="post-toc-text">数组</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#数组的定义"><span class="post-toc-text">数组的定义</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#广义表"><span class="post-toc-text">广义表</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#参考资料："><span class="post-toc-text">参考资料：</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018, content by miraitowa. All Rights Reserved. 			   
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
