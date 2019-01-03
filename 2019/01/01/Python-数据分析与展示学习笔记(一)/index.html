@@ -188,10 +188,8 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>此次学习的主题是围绕深度学习所需的python库展开。</p>
-<p>在学完了python的基础语法后，了解到深度学习还需要掌握一些python进阶知识：利用python爬取数据、数据分析与展示。</p>
-<p>一群大忽悠学长推荐北理工嵩天老师的python进阶MOOC系列，这几篇python学习笔记也是源于嵩天老师<code>《Python数据分析与展示》</code>。</p>
-<h4 id="NumPy库入门"><a href="#NumPy库入门" class="headerlink" title="NumPy库入门"></a>NumPy库入门</h4><p>数据的维度</p>
+						<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近的这几篇文章是基于北理工嵩天老师的python进阶MOOC系列<code>《Python数据分析与展示》</code>，简单的记录算是对自己学习的一种总结吧</p>
+<h4 id="NumPy库入门知识"><a href="#NumPy库入门知识" class="headerlink" title="NumPy库入门知识"></a>NumPy库入门知识</h4><p>数据的维度</p>
 <p>一维数据   列表、集合</p>
 <p>二维数据   表格是经典的二维数据    用列表表示</p>
 <p>多维数据   二维数据在更多维度上展开 比如时间维度  用列表表示</p>
@@ -216,8 +214,7 @@
 <p>秩(rank):轴的数量</p>
 <p><strong>N维数组对象实例</strong></p>
 <p><img src="https://i.imgur.com/2DVj4FZ.jpg" alt=""></p>
-<p><strong>ndarray属性</strong></p>
-<p><img src="https://i.imgur.com/93RjgvL.png" alt=""></p>
+<h4 id="ndarray属性"><a href="#ndarray属性" class="headerlink" title="ndarray属性"></a>ndarray属性</h4><p><img src="https://i.imgur.com/93RjgvL.png" alt=""></p>
 <pre><code>.ndim即有几行
 
 例：[[1,2,3,4][1,2,3,4]]ndim=2
@@ -225,8 +222,7 @@
 a.mean() a里所有元素的平均值
 </code></pre><p><img src="https://i.imgur.com/dAeX81n.png" alt=""></p>
 <p>里面的int32不是Python基础类型，是NumPy定义的类型，更多类型如下</p>
-<p><strong>ndarray元素类型</strong></p>
-<p><img src="https://i.imgur.com/XnFm65V.png" alt=""></p>
+<h4 id="ndarray元素类型"><a href="#ndarray元素类型" class="headerlink" title="ndarray元素类型"></a>ndarray元素类型</h4><p><img src="https://i.imgur.com/XnFm65V.png" alt=""></p>
 <p><img src="https://i.imgur.com/ylS5AZ6.png" alt=""></p>
 <p><img src="https://i.imgur.com/AI6wyQU.png" alt=""></p>
 <p><img src="https://i.imgur.com/YUOR6Ba.jpg" alt=""></p>
@@ -237,20 +233,22 @@ a.mean() a里所有元素的平均值
 <p>ndarray数组也可以由非同质对象构成</p>
 <p>非同质ndarray元素为对象类型</p>
 <p>非同质ndarray数组无法发挥numpy优势，尽量避免使用</p>
-<p><strong>ndarray数组的创建方法</strong></p>
-<p><img src="https://i.imgur.com/MvUAqP9.png" alt=""></p>
+<h4 id="ndarray数组的创建方法"><a href="#ndarray数组的创建方法" class="headerlink" title="ndarray数组的创建方法"></a>ndarray数组的创建方法</h4><p><img src="https://i.imgur.com/MvUAqP9.png" alt=""></p>
 <p>1) 从python列表元组等类型创建数组</p>
 <p>  x = np.array(list/tuple)</p>
 <p>  x = np.array(list/tuple,dtype=np.float32)   不指定类型的时候numpy自动关联一个合适的</p>
-<p><img src="https://i.imgur.com/RFOd9nG.png" alt=""></p>
+<p><img src="https://i.imgur.com/V8wbumV.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/poljv68.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/XhLj6we.png" alt=""></p>
 <p><img src="https://i.imgur.com/sM9nVza.jpg" alt=""></p>
 <p><img src="https://i.imgur.com/RyMuVH3.jpg" alt=""></p>
 <p>除了arange函数，其他都是浮点数</p>
 <p><img src="https://i.imgur.com/4JzLMVB.png" alt=""></p>
-<p><strong>ndarray数组的变换</strong></p>
-<p>维度变换、元素类型变换</p>
+<h4 id="ndarray数组的变换"><a href="#ndarray数组的变换" class="headerlink" title="ndarray数组的变换"></a>ndarray数组的变换</h4><p>维度变换、元素类型变换</p>
 <p><img src="https://i.imgur.com/VDj2puZ.png" alt=""></p>
+<p><img src="https://i.imgur.com/nagNNWf.jpg" alt=""></p>
 <p><img src="https://i.imgur.com/5qdMzUg.png" alt=""></p>
+<p><img src="https://i.imgur.com/uJg1mDE.jpg" alt=""></p>
 <p>ndarray数组向列表变换</p>
 <pre><code>ls = a.tolist()
 </code></pre>
@@ -398,7 +396,7 @@ a.mean() a里所有元素的平均值
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#NumPy库入门"><span class="post-toc-text">NumPy库入门</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#NumPy库入门知识"><span class="post-toc-text">NumPy库入门知识</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ndarray属性"><span class="post-toc-text">ndarray属性</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ndarray元素类型"><span class="post-toc-text">ndarray元素类型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ndarray数组的创建方法"><span class="post-toc-text">ndarray数组的创建方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ndarray数组的变换"><span class="post-toc-text">ndarray数组的变换</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
