@@ -344,6 +344,30 @@ int main()
     cout&lt;&lt;sum&lt;&lt;endl;
     return 0;
 }
+</code></pre><h3 id="P1980-计数问题"><a href="#P1980-计数问题" class="headerlink" title="P1980 计数问题"></a>P1980 计数问题</h3><h4 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h4><p><img src="https://i.imgur.com/eEMeFyn.png" alt=""></p>
+<h4 id="输入输出格式-4"><a href="#输入输出格式-4" class="headerlink" title="输入输出格式"></a>输入输出格式</h4><p><img src="https://i.imgur.com/FQsd0yR.png" alt=""></p>
+<p><img src="https://i.imgur.com/AYs3MXC.png" alt=""></p>
+<p>解题思路：</p>
+<p>面对的第一个问题就是，如何计算数字中有几个我们需要出现的数字，这个时候，我们可以使用短除法进行解决(i%10 ;i/10）</p>
+<p>给出源代码：</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int main(){
+int n,x,sum=0;
+cin&gt;&gt;n&gt;&gt;x;
+for(int i=1;i&lt;=n;i++)
+{
+    int df=i;
+    while(df&gt;0)
+    {
+        if(df%10==x)
+        sum=sum+1;
+        df=df/10;
+    }
+}
+cout&lt;&lt;sum&lt;&lt;endl;
+return 0;
+}
 </code></pre>
 					
 				</div>
@@ -483,7 +507,7 @@ int main()
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#洛谷学习笔记——循环循环"><span class="post-toc-text">洛谷学习笔记——循环循环</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#P1008-三连击"><span class="post-toc-text">P1008 三连击</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目背景"><span class="post-toc-text">题目背景</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目描述"><span class="post-toc-text">题目描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出格式"><span class="post-toc-text">输入输出格式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出样例"><span class="post-toc-text">输入输出样例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#P1035-级数求和"><span class="post-toc-text">P1035 级数求和</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目描述-1"><span class="post-toc-text">题目描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出格式-1"><span class="post-toc-text">输入输出格式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出样例-1"><span class="post-toc-text">输入输出样例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#P1423-小玉在游泳"><span class="post-toc-text">P1423 小玉在游泳</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目描述-2"><span class="post-toc-text">题目描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出格式-2"><span class="post-toc-text">输入输出格式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出样例-2"><span class="post-toc-text">输入输出样例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#P1424-小鱼的航程-改进版"><span class="post-toc-text">P1424 小鱼的航程(改进版)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目背景-1"><span class="post-toc-text">题目背景</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出格式-3"><span class="post-toc-text">输入输出格式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出样例-3"><span class="post-toc-text">输入输出样例</span></a></li></ol></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#洛谷学习笔记——循环循环"><span class="post-toc-text">洛谷学习笔记——循环循环</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#P1008-三连击"><span class="post-toc-text">P1008 三连击</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目背景"><span class="post-toc-text">题目背景</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目描述"><span class="post-toc-text">题目描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出格式"><span class="post-toc-text">输入输出格式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出样例"><span class="post-toc-text">输入输出样例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#P1035-级数求和"><span class="post-toc-text">P1035 级数求和</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目描述-1"><span class="post-toc-text">题目描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出格式-1"><span class="post-toc-text">输入输出格式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出样例-1"><span class="post-toc-text">输入输出样例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#P1423-小玉在游泳"><span class="post-toc-text">P1423 小玉在游泳</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目描述-2"><span class="post-toc-text">题目描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出格式-2"><span class="post-toc-text">输入输出格式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出样例-2"><span class="post-toc-text">输入输出样例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#P1424-小鱼的航程-改进版"><span class="post-toc-text">P1424 小鱼的航程(改进版)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目背景-1"><span class="post-toc-text">题目背景</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出格式-3"><span class="post-toc-text">输入输出格式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出样例-3"><span class="post-toc-text">输入输出样例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#P1980-计数问题"><span class="post-toc-text">P1980 计数问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目描述-3"><span class="post-toc-text">题目描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出格式-4"><span class="post-toc-text">输入输出格式</span></a></li></ol></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
