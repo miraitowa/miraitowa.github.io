@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>PTA刷题——奇偶分家</title>
+	<title>洛谷学习笔记——数组</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《PTA刷题——奇偶分家》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《洛谷学习笔记——数组》</p>
 			
 		
 	
@@ -161,8 +161,8 @@
 					
 					
 	
-		<a href="/2018/11/26/PTA刷题——奇偶分家/" itemprop="url">		
-			PTA刷题——奇偶分家		
+		<a href="/2019/01/14/洛谷学习笔记——数组/" itemprop="url">		
+			洛谷学习笔记——数组		
 		</a>
 	
 
@@ -171,9 +171,9 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2018/11/26/PTA刷题——奇偶分家/" itemprop="url">
-	<time datetime="2018-11-25T16:04:32.591Z" itemprop="datePublished">
-  		2018-11-26
+						<a href="/2019/01/14/洛谷学习笔记——数组/" itemprop="url">
+	<time datetime="2019-01-14T02:29:44.232Z" itemprop="datePublished">
+  		2019-01-14
   </time>
 </a>    
 &nbsp;
@@ -188,33 +188,40 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h3 id="7-5-奇偶分家-（10-分）"><a href="#7-5-奇偶分家-（10-分）" class="headerlink" title="7-5 奇偶分家 （10 分）"></a>7-5 奇偶分家 （10 分）</h3><p>给定N个正整数，请统计奇数和偶数各有多少个？</p>
-<p><strong>输入格式：</strong></p>
-<p>输入第一行给出一个正整N（≤1000）；第2行给出N个正整数，以空格分隔。</p>
-<p><strong>输出格式：</strong></p>
-<p>在一行中先后输出奇数的个数、偶数的个数。中间以1个空格分隔。</p>
-<p><strong>输入样例：</strong></p>
-<p>9<br>88 74 101 26 15 0 34 22 77</p>
-<p><strong>输出样例：</strong></p>
-<p>3 6</p>
-<h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>计算出奇数，剩余的即是偶数了</p>
+						<h2 id="洛谷学习笔记——数组"><a href="#洛谷学习笔记——数组" class="headerlink" title="洛谷学习笔记——数组"></a>洛谷学习笔记——数组</h2><h3 id="P1046-陶陶摘苹果"><a href="#P1046-陶陶摘苹果" class="headerlink" title="P1046 陶陶摘苹果"></a>P1046 陶陶摘苹果</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>陶陶家的院子里有一棵苹果树，每到秋天树上就会结出10个苹果。苹果成熟的时候，陶陶就会跑去摘苹果。陶陶有个30厘米高的板凳，</p>
+<p>当她不能直接用手摘到苹果的时候，就会踩到板凳上再试试。</p>
+<p>现在已知10个苹果到地面的高度，以及陶陶把手伸直的时候能够达到的最大高度，请帮陶陶算一下她能够摘到的苹果的数目。假设她碰到苹果，苹果就会掉下来。</p>
+<h4 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h4><p>输入格式：</p>
+<p>输入包括两行数据。第一行包含10个100到200之间（包括100和200）的整数（以厘米为单位）分别表示10个苹果到地面的高度，</p>
+<p>两个相邻的整数之间用一个空格隔开。第二行只包括一个100到120之间（包含100和120）的整数（以厘米为单位），表示陶陶把手伸直的时候能够达到的最大高度。</p>
+<p>输出格式：</p>
+<p>输出包括一行，这一行只包含一个整数，表示陶陶能够摘到的苹果的数目。</p>
+<h4 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h4><p>输入样例： </p>
+<p>100 200 150 140 129 134 167 198 200 111</p>
+<p>110</p>
+<p>输出样例：</p>
+<p>5</p>
+<p><strong>说明：NOIP2005普及组第一题</strong></p>
+<p>解题思路：</p>
+<p>如何一次性存取数字，使用数组即可，后面的比较使用一个循环,然后进行比较和需要比较的数字</p>
+<p>给出源代码：</p>
 <pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
-int main()
-{
-    int N,n,i=0,j=0,k;
-    cin&gt;&gt;N;
-    for(k=1;k&lt;=N;k++)
-{
-        cin&gt;&gt;n;
-    if(n%2==0){
-        i++;
-    }
-    else{
-        j++;
-    }
+int main() {
+int a[11]= {0};
+int n,i,ans=0,j;
+for(i=1; i&lt;=10; i++) {
+    cin&gt;&gt;a[i];
 }
-cout&lt;&lt;j&lt;&lt;&quot; &quot;&lt;&lt;i&lt;&lt;endl;
+cin&gt;&gt;n;
+for(j=1; j&lt;=10; j++){    
+    int b;
+    b=a[j]-&#39;0&#39;;
+    if(a[j]&lt;=n+30)
+    ans=ans+1;
+}
+cout&lt;&lt;ans&lt;&lt;endl;
+return 0;
 }
 </code></pre>
 					
@@ -224,15 +231,9 @@ cout&lt;&lt;j&lt;&lt;&quot; &quot;&lt;&lt;i&lt;&lt;endl;
 
 		<ul class="am-pagination">
     
-    	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2018/11/26/PTA刷题——是不是太胖了/" title="PTA刷题——是不是太胖了">
-      		&laquo; 上一篇
-		</a>
-		</li>
-	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2018/11/26/PTA刷题——买U盘/" title="PTA刷题——买U盘*">
+		<a class="pull-right" href="/2019/01/13/洛谷学习笔记——循环循环/" title="洛谷学习笔记——循环循环">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -361,7 +362,7 @@ cout&lt;&lt;j&lt;&lt;&quot; &quot;&lt;&lt;i&lt;&lt;endl;
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-5-奇偶分家-（10-分）"><span class="post-toc-text">7-5 奇偶分家 （10 分）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目分析"><span class="post-toc-text">题目分析</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#洛谷学习笔记——数组"><span class="post-toc-text">洛谷学习笔记——数组</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#P1046-陶陶摘苹果"><span class="post-toc-text">P1046 陶陶摘苹果</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目描述"><span class="post-toc-text">题目描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出格式"><span class="post-toc-text">输入输出格式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入输出样例"><span class="post-toc-text">输入输出样例</span></a></li></ol></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
