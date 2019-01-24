@@ -62,7 +62,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		1/22/2019 
+		1/24/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -189,20 +189,21 @@
 				<div class="content" id="post-content">
 					
 						<h2 id="Asset-Discovery-Doing-Reconnaissance-the-Hard-Way"><a href="#Asset-Discovery-Doing-Reconnaissance-the-Hard-Way" class="headerlink" title="Asset Discovery: Doing Reconnaissance the Hard Way"></a>Asset Discovery: Doing Reconnaissance the Hard Way</h2><p>第一次翻译文章，如有错误的地方，希望各位能够指正(Ths)</p>
+<p>首发先知社区：<a href="https://xz.aliyun.com/t/3928" target="_blank" rel="noopener">https://xz.aliyun.com/t/3928</a></p>
 <p>原文链接：<a href="https://0xpatrik.com/asset-discovery/" target="_blank" rel="noopener">https://0xpatrik.com/asset-discovery/</a></p>
-<p>在这篇文章中，我想概括和讨论一个发现某个特定实体（企业，大学……）资产的框架。什么时候有用？</p>
+<p>在这篇文章中，我想概括并讨论一下发现的某个特定实体（企业，大学……）资产的框架。什么时候有用？</p>
 <blockquote>
 <p>渗透测试 - 您拥有一个非常广泛的评估范围。您的第一个目标是找到机器和服务出现的漏洞。</p>
-<p>Bug赏金狩猎 - 与上面的一样。一些bug赏金程序没有明确列出所有目标(只是简单的给出域名)。你经常需要自己做。</p>
-<p>定期“检查” - 有时，公司将服务和应用程序暴露在互联网上。这些服务通常不会更新，可能包含公共漏洞，或者应用程序不应被公开</p>
+<p>Bug赏金狩猎 - 与上面的一样。一些bug赏金程序没有明确列出所有目标(只是简单的给出域名)你经常需要自己去解决问题。</p>
+<p>定期“检查” - 有时，公司将服务和应用程序暴露在互联网上。这些服务通常不会更新，可能包含公共漏洞，甚至有些应用程序不应该被公开</p>
 </blockquote>
-<h3 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h3><p>简单地说; 域名代表Internet上IP地址的一些标签。因为公司将他们的基础设施迁移到云端，我们需要“像大海捞针般寻找公司的服务器”。然而，域名提供某种到IP地址的链接。</p>
-<p>我们的目标是查找/关联我们感兴趣的单个实体所拥有的所有域名。我们将逐步实现垂直和水平域名相关。在下文中，单词目标表示相关过程中感兴趣的实体。</p>
-<p>垂直域名相关 - 给定域名，垂直域名相关是查找域名共享相同基础域名的过程。此过程也称为子域名枚举 <a href="https://is.muni.cz/th/byrdn/Thesis.pdf" target="_blank" rel="noopener">1</a>。</p>
+<h3 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h3><p>简单地说; 域名代表Internet上IP地址的一些标签。因为公司将他们的基础设施迁移到云端，我们需要“像大海捞针般寻找公司的服务器”。然而，域名提供某种到IP地址的链接，解决了我们搜寻服务器的麻烦。</p>
+<p>我们的目标是查找/关联我们感兴趣的单个实体所拥有的所有域名。我们将逐步实现垂直域名关联和水平域名关联。在下文中，单词目标表示相关过程中感兴趣的实体。</p>
+<p>垂直域名关联 - 给定域名，垂直域名相关是查找域名共享相同基础域名的过程。此过程也称为子域名枚举 <a href="https://is.muni.cz/th/byrdn/Thesis.pdf" target="_blank" rel="noopener">1</a>。</p>
 <p>水平域名关联 - 给定域名，水平域名关联是查找其他域名的过程，这些域名具有不同的二级域名但是连接相同的实体<a href="https://is.muni.cz/th/byrdn/Thesis.pdf" target="_blank" rel="noopener">1</a>。</p>
 <p><img src="https://0xpatrik.com/content/images/2018/04/hvv.png" alt=""></p>
 <p>为了演示，我选择了eff.org作为目标。</p>
-<h4 id="步骤1：-在eff-org上执行垂直域名关联"><a href="#步骤1：-在eff-org上执行垂直域名关联" class="headerlink" title="步骤1： 在eff.org上执行垂直域名关联"></a>步骤1： 在eff.org上执行垂直域名关联</h4><p>这可以使用<a href="https://github.com/aboul3la/Sublist3r" target="_blank" rel="noopener">Sublist3r</a>，<a href="https://github.com/caffix/amass" target="_blank" rel="noopener">amass</a>或<a href="https://github.com/michenriksen/aquatone" target="_blank" rel="noopener">aquatone</a>等工具实现。请注意，有许多用于子域名枚举的开源工具，它们提供的结果很差。</p>
+<h4 id="第一步：-在eff-org上执行垂直域名查询"><a href="#第一步：-在eff-org上执行垂直域名查询" class="headerlink" title="第一步： 在eff.org上执行垂直域名查询"></a>第一步： 在eff.org上执行垂直域名查询</h4><p>这可以使用<a href="https://github.com/aboul3la/Sublist3r" target="_blank" rel="noopener">Sublist3r</a>，<a href="https://github.com/caffix/amass" target="_blank" rel="noopener">amass</a>或<a href="https://github.com/michenriksen/aquatone" target="_blank" rel="noopener">aquatone</a>等工具实现。请注意，有许多用于子域名枚举的开源工具，它们提供的结果很差。</p>
 <p>根据我的经验，最好使用“meta-subdomain枚举”，它结合了多个枚举服务（如上面提到的工具）的结果。</p>
 <p>Sublist3r的样本（剥离）输出</p>
 <pre><code>...
@@ -219,13 +220,13 @@ redmine.eff.org
 robin.eff.org
 s.eff.org
 ...
-</code></pre><h4 id="第2步：-在eff-org上执行水平域名关联"><a href="#第2步：-在eff-org上执行水平域名关联" class="headerlink" title="第2步： 在eff.org上执行水平域名关联"></a>第2步： 在eff.org上执行水平域名关联</h4><p>这一步有点棘手。首先，让我们考虑一下。我们不能像上一步那样依赖语法匹配。潜在地，<code>abcabcabc.com</code>和<code>cbacbacba.com</code>可以由同一实体拥有。</p>
-<p>但是，它们在语法上不匹配。为此，我们可以使用WHOIS数据。有一些反向WHOIS服务允许您根据WHOIS数据库的共同价值进行搜索。让我们查询eff.org的WHOIS:</p>
+</code></pre><h4 id="第二步：-在eff-org上执行水平域名查询"><a href="#第二步：-在eff-org上执行水平域名查询" class="headerlink" title="第二步： 在eff.org上执行水平域名查询"></a>第二步： 在eff.org上执行水平域名查询</h4><p>这一步有点麻烦。首先，让我们考虑一下。我们不能像上一步那样依赖语法匹配。潜在地，<code>abcabcabc.com</code>和<code>cbacbacba.com</code>可以由同一实体拥有。</p>
+<p>但是，它们在语法上不匹配。为了解决这个问题，我们可以使用WHOIS数据。有一些反向WHOIS服务允许我们根据WHOIS数据库的共同价值进行搜索。让我们查询eff.org的WHOIS:</p>
 <p><img src="https://0xpatrik.com/content/images/2018/08/whois.png" alt=""></p>
 <p>如您所见，一封电子邮件发给了注册人。现在，我们可以进行反向WHOIS搜索，使用相同的注册人电子邮件显示其他域名：</p>
 <p><img src="https://0xpatrik.com/content/images/2018/08/reversewhois.png" alt=""></p>
 <p>对于反向WHOIS，我使用了<a href="https://viewdns.info/reversewhois/" target="_blank" rel="noopener">viewdns.info</a>服务。诸如<a href="https://github.com/vysecurity/DomLink" target="_blank" rel="noopener">domlink</a>或<a href="https://github.com/caffix/amass" target="_blank" rel="noopener">amass</a>之类的工具也可用于水平域名的查询。</p>
-<h4 id="步骤3：-迭代"><a href="#步骤3：-迭代" class="headerlink" title="步骤3： 迭代"></a>步骤3： 迭代</h4><p>在此阶段，您应该拥有与目标相关联的相当广泛的域名列表。</p>
+<h4 id="第三步：转换"><a href="#第三步：转换" class="headerlink" title="第三步：转换"></a>第三步：转换</h4><p>在此阶段，您应该拥有与目标站点相关联的域名列表。</p>
 <p><strong>IP地址</strong>如果幸运的话，您的目标将拥有专用的IP地址范围。最简单的检查方法是在从域名中找到的三个IP地址上运行IP到ASN的转换：</p>
 <p><strong>eff.org：</strong></p>
 <pre><code>$ dig a eff.org +short
@@ -290,7 +291,8 @@ AS  | IP   | AS Name
 <h3 id="整理信息"><a href="#整理信息" class="headerlink" title="整理信息"></a>整理信息</h3><p>此时，您应该在整理一下思路。您实现它的过程看起来像这样：</p>
 <p><img src="https://0xpatrik.com/content/images/2018/08/recon_steps.png" alt=""></p>
 <p>最终收集的信息应包含目标的IP地址以及端口。</p>
-<p>您仍然可以执行后处理任务以快速显示最有趣的服务。例如，您可以运行大量网站截图工具，例如<a href="https://github.com/dxa4481/Snapper" target="_blank" rel="noopener">Snapper</a>，它将提供在一个地方运行网站的绝佳概述。对于VNC或RDP可以获得类似的结果（<a href="https://github.com/FortyNorthSecurity/EyeWitness" target="_blank" rel="noopener">EyeWitness</a>是瑞士军刀）。</p>
+<p>您仍然可以执行后处理任务以快速显示最有趣的服务。例如，您可以运行大量网站截图工具</p>
+<p>（<a href="https://github.com/dxa4481/Snapper" target="_blank" rel="noopener">Snapper</a>），它将提供在一个地方运行网站的绝佳概述。对于VNC或RDP可以获得类似的结果（使用<a href="https://github.com/FortyNorthSecurity/EyeWitness" target="_blank" rel="noopener">EyeWitness</a>）。</p>
 <p><strong>其他资源：</strong></p>
 <p><a href="http://spyonweb.com/" target="_blank" rel="noopener">spyonweb.com</a></p>
 <p><a href="https://github.com/eldraco/domain_analyzer" target="_blank" rel="noopener">domain_analyzer</a></p>
@@ -307,6 +309,12 @@ AS  | IP   | AS Name
 
 		<ul class="am-pagination">
     
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/01/23/Censys.io指南：发现SCADA和网络钓鱼站点/" title="Censys.io指南：发现SCADA和网络钓鱼站点">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
 	
 		<li class="am-pagination-next">
 		<a class="pull-right" href="/2019/01/21/使用CSS选择器和基于时间的攻击的Javascript获取数据/" title="使用CSS选择器和基于时间的攻击的Javascript获取数据">
@@ -438,7 +446,7 @@ AS  | IP   | AS Name
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Asset-Discovery-Doing-Reconnaissance-the-Hard-Way"><span class="post-toc-text">Asset Discovery: Doing Reconnaissance the Hard Way</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#域名"><span class="post-toc-text">域名</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#步骤1：-在eff-org上执行垂直域名关联"><span class="post-toc-text">步骤1： 在eff.org上执行垂直域名关联</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第2步：-在eff-org上执行水平域名关联"><span class="post-toc-text">第2步： 在eff.org上执行水平域名关联</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#步骤3：-迭代"><span class="post-toc-text">步骤3： 迭代</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#服务"><span class="post-toc-text">服务</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#整理信息"><span class="post-toc-text">整理信息</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Asset-Discovery-Doing-Reconnaissance-the-Hard-Way"><span class="post-toc-text">Asset Discovery: Doing Reconnaissance the Hard Way</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#域名"><span class="post-toc-text">域名</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第一步：-在eff-org上执行垂直域名查询"><span class="post-toc-text">第一步： 在eff.org上执行垂直域名查询</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第二步：-在eff-org上执行水平域名查询"><span class="post-toc-text">第二步： 在eff.org上执行水平域名查询</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第三步：转换"><span class="post-toc-text">第三步：转换</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#服务"><span class="post-toc-text">服务</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#整理信息"><span class="post-toc-text">整理信息</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
