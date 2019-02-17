@@ -198,15 +198,19 @@
 <h3 id="0x02-常见漏洞"><a href="#0x02-常见漏洞" class="headerlink" title="0x02 常见漏洞"></a>0x02 常见漏洞</h3><h4 id="a-弱类型比较-导致的漏洞"><a href="#a-弱类型比较-导致的漏洞" class="headerlink" title="a.弱类型比较==导致的漏洞"></a>a.弱类型比较==导致的漏洞</h4><p><strong>基本说明</strong></p>
 <p>注：这些漏洞适用于所有版本的php</p>
 <p>先来复习一下基本的语法：php中有如下两种比较符号：两个等号和三个等号（这一点和JavaScript）有些类似</p>
+<blockquote>
 <ol>
 <li>$a==$b</li>
 <li>$a===$b</li>
 </ol>
+</blockquote>
 <p>关于这两种比较符号的详细说明</p>
+<blockquote>
 <ol>
 <li>当表达式 $a == $b 的结果为 TRUE 时，说明类型转换后 $a 等于 $b。</li>
 <li>当表达式 $a === $b 的结果为 TRUE 时，说明 $a 等于 $b，并且它们的类型也相同。</li>
 </ol>
+</blockquote>
 <p>如果比较一个数字和字符串或者比较涉及到数字内容的字符串，则字符串会被转换为数值并且比较按照数值来进行。</p>
 <p>此规则也适用于 switch 语句。</p>
 <p>当用 === 或 !== 进行比较时则不进行类型转换，因为此时类型和数值都要比对.</p>
@@ -247,6 +251,7 @@
 <p>当然，上面的那些等式对于===都是false的，原本一些应该用===的地方误用了==，导致了漏洞的产生。</p>
 <p><strong>案例</strong></p>
 <p>示例代码 1：利用转为数字后相等的漏洞</p>
+<blockquote>
 <ol>
 <li>&lt;?php</li>
 <li>if (isset($_GET[‘v1’]) &amp;&amp; isset($_GET[‘v2’])) {</li>
@@ -264,24 +269,32 @@
 <li>}</li>
 <li>?&gt;</li>
 </ol>
+</blockquote>
 <p>这是一个ctf的题目，非常有趣，可以看到，要求给出两字符串，一个是纯数字型，一个只能出现字符，使两个的md5哈希值相等，然而这种强碰撞在密码学上都是难以做到的。<br>其中，关于md5函数的一些细节</p>
+<blockquote>
 <ol>
 <li>string md5 ( string $str [, bool $raw_output = false ] )</li>
 <li>str原始字符串。raw_output如果可选的 raw_output 被设置为 TRUE，那么 MD5 报文摘要将以16字节长度的原始二进制格式返回。</li>
 </ol>
+</blockquote>
 <p>16进制的数据中是含有e的，可以构建使得两个数字比较的，这里有一个现成的例子：</p>
+<blockquote>
 <ol>
 <li>md5(‘240610708’)</li>
 <li>//0e462097431906509019562988736854.</li>
 <li>md5(‘QNKCDZO’)</li>
 <li>//0e830400451993494058024219903391</li>
 </ol>
+</blockquote>
 <p>可以看到，这两个字符串一个只包含数字，一个只包含字母，虽然两个的哈希不一样，但是都是一个形式：0e 纯数字这种格式的字符串在判断相等的时候会被认为是科学计数法的数字，先做字符串到数字的转换。</p>
+<blockquote>
 <ol>
 <li>md5(‘240610708’)==md5(‘QNKCDZO’); //True</li>
 <li>md5(‘240610708’)===md5(‘QNKCDZO’); //False</li>
 </ol>
-<h4 id="示例代码2-利用-类’a’-0的漏洞"><a href="#示例代码2-利用-类’a’-0的漏洞" class="headerlink" title="示例代码2: 利用 类’a’==0的漏洞"></a>示例代码2: 利用 类’a’==0的漏洞</h4><ol>
+</blockquote>
+<h4 id="示例代码2-利用-类’a’-0的漏洞"><a href="#示例代码2-利用-类’a’-0的漏洞" class="headerlink" title="示例代码2: 利用 类’a’==0的漏洞"></a>示例代码2: 利用 类’a’==0的漏洞</h4><blockquote>
+<ol>
 <li>&lt;?php</li>
 <li>if (isset($_POST[‘json’])) {</li>
 <li>$json = json_decode($_POST[‘json’]);</li>
@@ -293,6 +306,7 @@
 <li>}</li>
 <li>?&gt;</li>
 </ol>
+</blockquote>
 <p>这次这个例子是传入一个JSON的数据，JSON在RESTful的网站中是很常用的一种数据传输的格式。这个表单会把一个name为key的input的数据作为json传到服务端。</p>
 <p>php的json_decode()函数会根据json数据中的数据类型来将其转换为php中的相应类型的数据，也就是说，如果我们在json中传一个string类型，</p>
 <p>那么该变量就是string，如果传入的是number，则该变量为number。因此，我们如果传入一个数字，就可以使之相等。网页中的表单可能限制了所有的输入都是string，即使输入数字，传入的东西也是</p>
@@ -305,13 +319,16 @@
 </ol>
 <p>值得讨论的一点是，在这种方法的漏洞利用中，很难在直接表单类型的POST的数据中使用，这是为什么呢，这个和HTTP协议有关。</p>
 <p>首先，我们看一下，在POST给服务器的数据中，有几种类型，也就是HTTP header中的Content-Type:</p>
+<blockquote>
 <ol>
 <li>application/x-www-form-urlencoded</li>
 <li>multipart/form-data</li>
 <li>application/json</li>
 <li>application/xml</li>
 </ol>
+</blockquote>
 <p>但是因为在直接的POST的payload当中是无法区分字符串和数字的，因为在其中并没有引号出现，举一个抓包的例子</p>
+<blockquote>
 <ol>
 <li>POST /login HTTP/1.1</li>
 <li>Host: xxx.com</li>
@@ -324,6 +341,7 @@
 <li>Connection: close</li>
 <li>username=admin&amp;password=admin</li>
 </ol>
+</blockquote>
 <p>可以看到，payload是放在http包的最后面的，而且都是以没有引号的形式传递的，并没有办法区分到底是字符串还是数字。</p>
 <p>因此， PHP将POST的数据全部保存为字符串形式 ，也就没有办法注入数字类型的数据了而JSON则不一样，JSON本身是一个完整的字符串，经过解析之后可能有字符串，数字，布尔等多种类型。</p>
 <h4 id="b-strcmp-漏洞"><a href="#b-strcmp-漏洞" class="headerlink" title="b. strcmp 漏洞"></a>b. strcmp 漏洞</h4><p><strong>注：这一个漏洞适用与5.3之前版本的php</strong></p>
@@ -336,6 +354,7 @@
 <p>实际上，当这个函数接受到了不符合的类型，这个函数将发生错误，但是在5.3之前的php中，显示了报错的警告信息后，将return 0 !!!! </p>
 <p>也就是虽然报了错，但却判定其相等了。这对于使用这个函数来做选择语句中的判断的代码来说简直是一个致命的漏洞，</p>
 <p>当然，php官方在后面的版本中修复了这个漏洞，使得报错的时候函数不返回任何值。但是我们仍然可以使用这个漏洞对使用老版本php的网站进行渗透测试。看一段示例代码：</p>
+<blockquote>
 <ol>
 <li>&lt;?php</li>
 <li>$password=”<strong><strong><strong>***</strong></strong></strong>“</li>
@@ -348,8 +367,10 @@
 <li>}</li>
 <li>?&gt;</li>
 </ol>
+</blockquote>
 <p>对于这段代码，我们能用什么办法绕过验证呢， 只要我们 $_POST[‘password’]是一个数组或者一个object 即可，但是上一个问题的时候说到过，只能上传字符串类型，那我们又该如何做呢。</p>
 <p>其实php为了可以上传一个数组，会把结尾带一对中括号的变量，例如 xxx[]的name（就是$_POST中的key），当作一个名字为xxx的数组构造类似如下的request</p>
+<blockquote>
 <ol>
 <li>POST /login HTTP/1.1</li>
 <li>Host: xxx.com</li>
@@ -362,12 +383,15 @@
 <li>Connection: close</li>
 <li>password[]=admin</li>
 </ol>
+</blockquote>
 <h3 id="0x03-总结"><a href="#0x03-总结" class="headerlink" title="0x03 总结"></a>0x03 总结</h3><p>因此，在防御这个漏洞的过程中，保证几件事情：</p>
+<blockquote>
 <ol>
 <li>在所有可能的地方，都使用===来代替==</li>
 <li>对于用户输入做过滤和类型检查</li>
 <li>尽量使用新版本的php，apache</li>
 </ol>
+</blockquote>
 <p>而对于渗透测试人员，在 代码审计 的过程中，对于有==,strcmp的比较也应极为敏感 。在黑盒渗透的时候也可以对于代码进行猜测，结合信息搜集过程中的一些版本特性，利用这些漏洞来绕过验证。</p>
 
 					
