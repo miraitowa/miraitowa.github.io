@@ -1,0 +1,577 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>服务器解析漏洞</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《服务器解析漏洞》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		2/18/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/02/18/服务器解析漏洞/" itemprop="url">		
+			服务器解析漏洞		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/02/18/服务器解析漏洞/" itemprop="url">
+	<time datetime="2019-02-18T07:31:46.995Z" itemprop="datePublished">
+  		2019-02-18
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="服务器解析漏洞"><a href="#服务器解析漏洞" class="headerlink" title="服务器解析漏洞"></a>服务器解析漏洞</h2><p>服务器解析漏洞算是历史比较悠久了，但如今依然广泛存在。在此记录汇总一些常见服务器的解析漏洞，比如IIS6.0、IIS7.5、apache、nginx等方便以后回顾温习。</p>
+<h3 id="一、IIS文件解析漏洞"><a href="#一、IIS文件解析漏洞" class="headerlink" title="一、IIS文件解析漏洞"></a>一、IIS文件解析漏洞</h3><p>IIS文件解析漏洞存在于两个版本，一个是IIS6.0的文件解析漏洞，一个是IIS7.5的文件解析漏洞，IIS7.5的文件解析漏洞原理和IIS6.0类似，均因为存在逻辑问题，在此仅对IIS6.0的文件解析漏洞进行分析。在补充中将对IIS7.5文件解析漏洞差异性部分进行额外说明。</p>
+<h4 id="（一）漏洞原理"><a href="#（一）漏洞原理" class="headerlink" title="（一）漏洞原理"></a>（一）漏洞原理</h4><p>IIS6.0在处理含有特殊符号的文件路径时会出现逻辑错误（文件目录名称为test.asp，目录中的文件会被当做asp执行；后缀名为.asp;.jpg时，当作asp文件执行），从而造成文件解析漏洞。</p>
+<h4 id="（二）漏洞演示及利用"><a href="#（二）漏洞演示及利用" class="headerlink" title="（二）漏洞演示及利用"></a>（二）漏洞演示及利用</h4><p>当网站上传点限制后缀名时（IIS主要和asp搭配），可以利用文件解析漏洞上传如test.asp;.jpg的文件，绕过后执行。如图1.1</p>
+<p><img src="https://p3.ssl.qhimg.com/t01ef4d09634678503d.png" alt=""></p>
+<p>当允许新建目录而未对目录名做限制时，可利用文件解析漏洞新建名为test.asp的文件夹，并在其中构造需执行文件iisstart.jpg进行绕过。如图1.2</p>
+<p><img src="https://p3.ssl.qhimg.com/t0184e25523e539809b.png" alt=""></p>
+<h4 id="（三）漏洞修复"><a href="#（三）漏洞修复" class="headerlink" title="（三）漏洞修复"></a>（三）漏洞修复</h4><p>1、对新建目录文件名进行过滤，不允许新建包含.的文件夹甚至禁止新建目录</p>
+<p>2、限制上传文件的执行权限，不允许执行</p>
+<p>3、过滤.asp/xm.jpg等，在httpd.ini中加入过滤规则（此方法为网络上的解决办法，但在server2003中未搜索到该文件）。</p>
+<p>4、升级IIS版本</p>
+<h4 id="（四）补充"><a href="#（四）补充" class="headerlink" title="（四）补充"></a>（四）补充</h4><p>IIS6.0的解析漏洞同样存在于IIS 5.x的版本，而IIS7.5的畸形解析漏洞的攻击方法同样适用于IIS7.0和Nginx&lt;8.03版本。</p>
+<p>IIS7.5文件解析漏洞出现是因为url中只要看到后缀.php，无论存在与否均交给php处理，而php又默认开启“cgi.fix_pathinfo”,会对文件路径进行整理（从后向前判定是否存在，不存在则删减，存在则当作php文件执行。）</p>
+<h3 id="二、IIS命令执行漏洞"><a href="#二、IIS命令执行漏洞" class="headerlink" title="二、IIS命令执行漏洞"></a>二、IIS命令执行漏洞</h3><p>IIS6.0命令执行漏洞，编号CVE-2017-7269，在开启WebDav服务的情况下存在可远程执行漏洞。</p>
+<h4 id="（一）漏洞原理-1"><a href="#（一）漏洞原理-1" class="headerlink" title="（一）漏洞原理"></a>（一）漏洞原理</h4><p>在IIS6.0处理PROPFIND指令的时候，由于对url的长度没有进行有效的长度控制和检查，导致执行memcpy对虚拟路径进行构造的时候，引发栈溢出，该漏洞可以导致远程代码执行。如图2.1</p>
+<p><img src="https://p3.ssl.qhimg.com/t019f48432cfabfc9ef.png" alt=""></p>
+<h4 id="（二）漏洞演示及利用-1"><a href="#（二）漏洞演示及利用-1" class="headerlink" title="（二）漏洞演示及利用"></a>（二）漏洞演示及利用</h4><p>Github上的一个开源exp:<a href="https://github.com/edwardz246003/IIS_exploit" target="_blank" rel="noopener">https://github.com/edwardz246003/IIS_exploit</a></p>
+<p>修改IP地址未对应的目标机地址，如图2.2</p>
+<p><img src="https://i.imgur.com/2lfihUM.png" alt=""></p>
+<p>运行脚本，攻击目标机。如图2.3</p>
+<p><img src="https://i.imgur.com/OR8v7QV.png" alt=""></p>
+<h4 id="（三）漏洞修复-1"><a href="#（三）漏洞修复-1" class="headerlink" title="（三）漏洞修复"></a>（三）漏洞修复</h4><p>将IIS管理器中，web服务扩展下，webDAV禁用，即可修复，修复后再此运行脚本，未出现弹窗。如图2.4</p>
+<p><img src="https://i.imgur.com/08ZG4xk.png" alt=""></p>
+<h4 id="（四）补充-1"><a href="#（四）补充-1" class="headerlink" title="（四）补充"></a>（四）补充</h4><p>若能弹出计算器（calc）,则权限已经足以完成getshell的全部操作。</p>
+<h3 id="三、IIS短文件名"><a href="#三、IIS短文件名" class="headerlink" title="三、IIS短文件名"></a>三、IIS短文件名</h3><p>IIS短文件名漏洞，通过IIS短文件名机制，暴力列举短文件名，尝试猜解后台地址、敏感文件甚至直接下载对应的文件。</p>
+<p>但局限于只能猜解长文件名前6位和扩展名前3位，同时需要IIS和.net两个条件都满足。</p>
+<h4 id="（一）漏洞原理-2"><a href="#（一）漏洞原理-2" class="headerlink" title="（一）漏洞原理"></a>（一）漏洞原理</h4><p>利用了IIS短文件名机制，即为了兼容16位MS-DOS程序，Windows为文件名较长的（计算后缀后文件名长度大于9）</p>
+<p>文件（和文件夹）生成了对应的windows 8.3 短文件名。可以通过此漏洞猜解后台地址、敏感文件等。如图3.1</p>
+<p><img src="https://i.imgur.com/7Kx1hNT.png" alt=""></p>
+<h4 id="（二）漏洞演示及利用-2"><a href="#（二）漏洞演示及利用-2" class="headerlink" title="（二）漏洞演示及利用"></a>（二）漏洞演示及利用</h4><p>开启<code>winserver2003</code>虚拟机，在<code>c:/Inetpub/wwwroot</code>目录下新建对比文件夹12345678，123456789，对比文件aaaaaa.asp。在主机上打开虚拟机IP下的URL</p>
+<p>尝试<code>10.10.10.132/122~1**/a.asp</code>和<code>10.10.10.132/123~1/a.asp</code>；得到不同的结果如图3.2，图3.3。</p>
+<p><img src="https://i.imgur.com/pZfRtHz.png" alt=""></p>
+<p><img src="https://i.imgur.com/ysISnYa.png" alt=""></p>
+<p>通过如上两图我们可以看出，根据返回结果的不同可以逐个猜解短文件名。</p>
+<p>而后再尝试10.10.10.132/aaaaaa~1/a.asp（猜解无后缀，正常返回则为文件夹）和10.10.10.132/aaaaaa~1/a.asp（猜解为文件）。如图3.4，图3.5。</p>
+<p><img src="https://i.imgur.com/furwGyH.png" alt=""></p>
+<p><img src="https://i.imgur.com/xdByj5P.png" alt=""></p>
+<p>根据不同的回显我们可以判断正在猜解的对象是文件还是文件夹。</p>
+<h4 id="（三）漏洞修复-2"><a href="#（三）漏洞修复-2" class="headerlink" title="（三）漏洞修复"></a>（三）漏洞修复</h4><p>目前几种修复方式，可选择升级.net framework或者将在注册表HKEY_LOCAL_MACHINESYSTEMCurrentControlSetControlFileSystem中修改NtfsDisable8dot3NameCreation为1，但修改方法尝试多次，不易成功。</p>
+<p>除去上述方式，较易成功的方式为将web文件夹内容拷贝到其他区域，将原文件夹删除后，再将拷贝的文件夹移动回来。修复如图3.6，结果如图3.7</p>
+<p><img src="https://i.imgur.com/a9fFChZ.png" alt=""></p>
+<p><img src="https://i.imgur.com/j5gd9M7.png" alt=""></p>
+<h4 id="（四）补充-2"><a href="#（四）补充-2" class="headerlink" title="（四）补充"></a>（四）补充</h4><p>目前有比较好的IIS短文件名检查工具，下载地址为：</p>
+<p><a href="https://github.com/lijiejie/IIS_shortname_Scanner" target="_blank" rel="noopener">https://github.com/lijiejie/IIS_shortname_Scanner</a></p>
+<h3 id="四、Nginx文件解析"><a href="#四、Nginx文件解析" class="headerlink" title="四、Nginx文件解析"></a>四、Nginx文件解析</h3><p>Nginx文件解析漏洞，精心构造的恶意请求经过nginx中间件处理后，被合法的执行。php有一个选项cgi.fix_pathinfo，默认值为1，表示开启。</p>
+<h4 id="（一）漏洞原理-3"><a href="#（一）漏洞原理-3" class="headerlink" title="（一）漏洞原理"></a>（一）漏洞原理</h4><p>Nginx默认是以CGI的方式支持PHP解析的，普遍的做法是在Nginx配置文件中通过正则匹配设置SCRIPT_FILENAME。</p>
+<p>当访问<a href="http://www.xx.com/phpinfo.jpg/1.php这个URL时，$fastcgi_script_name会被设置为“phpinfo.jpg/1.php”，" target="_blank" rel="noopener">www.xx.com/phpinfo.jpg/1.php这个URL时，$fastcgi_script_name会被设置为“phpinfo.jpg/1.php”，</a></p>
+<p>然后构造成SCRIPT_FILENAME传递给PHP CGI，但是PHP为什么会接受这样的参数，并将phpinfo.jpg作为PHP文件解析呢?这就要说到fix_pathinfo这个选项了。</p>
+<p>如果开启了这个选项，那么就会触发在PHP中的如下逻辑：</p>
+<p>PHP会认为SCRIPT_FILENAME是phpinfo.jpg，而1.php是PATH_INFO，所以就会将phpinfo.jpg作为PHP文件来解析了。</p>
+<p><img src="https://i.imgur.com/Z2Jwfj6.png" alt=""></p>
+<p>同时配置文件/etc/php5/fpm/pool.d/<a href="http://www.conf中security.limit_extensions允许解析其他格式文件为php，如图4.2，二者共同作用造成了文件解析漏洞。" target="_blank" rel="noopener">www.conf中security.limit_extensions允许解析其他格式文件为php，如图4.2，二者共同作用造成了文件解析漏洞。</a></p>
+<p><img src="https://i.imgur.com/xGhWClP.png" alt=""></p>
+<h4 id="（二）漏洞演示及利用-3"><a href="#（二）漏洞演示及利用-3" class="headerlink" title="（二）漏洞演示及利用"></a>（二）漏洞演示及利用</h4><p>一是因为对任意文件名，在后面添加/任意文件名.php的解析漏洞，比如原本文件名时test.jpg，都可以添加为test.jpg/x.php进行解析攻击。如图4.3.二是对低版本的Nginx可以在任意文件名后添加%00.php进行解析攻击。</p>
+<p><img src="https://i.imgur.com/Q0Jxl6y.png" alt=""></p>
+<h4 id="（三）漏洞修复-3"><a href="#（三）漏洞修复-3" class="headerlink" title="（三）漏洞修复"></a>（三）漏洞修复</h4><p>1、将php.ini文件中的cgi.fix_pathinfo的值设为0。这样php在解析1.php/1.jpg这样的目录时，只要1.jpg不存在就会显示404。</p>
+<p>2、将/etc/php5/fpm/pool.d/<a href="http://www.conf中security.limit_extensions后面的值设为.php。" target="_blank" rel="noopener">www.conf中security.limit_extensions后面的值设为.php。</a></p>
+<p>修复结果如图4.4</p>
+<p><img src="https://i.imgur.com/ipJw6Ze.png" alt=""></p>
+<h4 id="（四）补充-3"><a href="#（四）补充-3" class="headerlink" title="（四）补充"></a>（四）补充</h4><p>Nginx文件解析漏洞的本质原因时配置文件错误。网站上线前需要确认相关配置正确。</p>
+<h3 id="五、Nginx配置不当"><a href="#五、Nginx配置不当" class="headerlink" title="五、Nginx配置不当"></a>五、Nginx配置不当</h3><p>Nginx配置不当除了造成文件解析漏洞，还可能造成两种后果：</p>
+<p>1、可以进行目录遍历（或目录穿越）；</p>
+<p>2、存在CRLF注入，CRLF是”回车+换行”（rn）的简称。</p>
+<p>目录穿越将在补充内容中进行介绍。</p>
+<h4 id="（一）漏洞原理-4"><a href="#（一）漏洞原理-4" class="headerlink" title="（一）漏洞原理"></a>（一）漏洞原理</h4><p>Nginx目录遍历漏洞和apache一样，属于配置方面的问题。错误的配置可能导致目录遍历与源码泄露。如图5.1</p>
+<p><img src="https://i.imgur.com/wicAzxK.png" alt=""></p>
+<p>CRLF利用了HTTP包Header与Body是用两个CRLF分隔的这一特性，通过控制HTTP消息头中的字符。若采用解码跳转，攻击者就可以注入一些恶意的换行来注入一些会话Cookie或者HTML代码。如图5.2。任何可设置HTTP头的场景都会出现CRLF注入问题。</p>
+<p><img src="https://i.imgur.com/tYUUt7k.png" alt=""></p>
+<h4 id="（二）漏洞演示及利用-4"><a href="#（二）漏洞演示及利用-4" class="headerlink" title="（二）漏洞演示及利用"></a>（二）漏洞演示及利用</h4><p>1、目录遍历</p>
+<p>当autoindex on;存在时，可直接访问目录。如图5.3</p>
+<p><img src="https://i.imgur.com/Th6wEVL.png" alt=""></p>
+<p>2、CRLF注入</p>
+<p>开启burp，刷新页面，抓包，修改数据包。结果如图5.4</p>
+<p><img src="https://i.imgur.com/ilogWxz.png" alt=""></p>
+<p>可以看到，经过恶意修改，攻击者构造的url中的JSPSEEID值被服务器读取成了请求头中的cookie值，达到了会话固定的目的。</p>
+<p>出去会话固定，通过两次CRLF可将URL中编写的恶意脚本（如反射型XSS）被服务器识别成请求体，从而达成攻击。如图5.5。如未弹窗可能是因为浏览器Filter对XSS特征进行了过滤，并且进行了跳转。</p>
+<p><img src="https://i.imgur.com/ZRUwB3u.png" alt=""></p>
+<h4 id="（三）漏洞修复-4"><a href="#（三）漏洞修复-4" class="headerlink" title="（三）漏洞修复"></a>（三）漏洞修复</h4><p>1、针对目录遍历，只需在配置文件中删除autoindex on即可。修复结果如图5.6</p>
+<p><img src="https://i.imgur.com/tIuhlAL.png" alt=""></p>
+<p>2、针对CRLF注入，修改配置文件使用不解码的url跳转。</p>
+<p>将return 302 https://$host$uri； 修改为return 302 https://$host$request_uri； 修复结果如图5.7</p>
+<p><img src="https://i.imgur.com/E9m2q6Z.png" alt=""></p>
+<h4 id="（四）补充-4"><a href="#（四）补充-4" class="headerlink" title="（四）补充"></a>（四）补充</h4><p>关于Nginx配置不当造成目录穿越，其成因除去目录遍历漏洞中开启的autoindex on;选项，同时在配置文件<code>/etc/nginx/conf.d/error2.conf</code>中，没有闭合跳转目录如图5.8，造成目录穿越如图5.9</p>
+<p><img src="https://i.imgur.com/eM5XJhB.png" alt=""></p>
+<p><img src="https://i.imgur.com/fIaNQno.png" alt=""></p>
+<p>修复方法也很简单，将/files闭合，变为/files/即可，效果如图5.10</p>
+<p><img src="https://i.imgur.com/FRZC5EA.png" alt=""></p>
+<h3 id="六、apache文件解析漏洞"><a href="#六、apache文件解析漏洞" class="headerlink" title="六、apache文件解析漏洞"></a>六、apache文件解析漏洞</h3><p>文件解析与文件上传漏洞往往伴生存在。apache解析文件时逻辑存在问题，造成请求某一个精心编辑过的非法文件时被当作正常的php文件来执行，造成被getshell。</p>
+<h4 id="（一）漏洞原理-5"><a href="#（一）漏洞原理-5" class="headerlink" title="（一）漏洞原理"></a>（一）漏洞原理</h4><p>Apache 解析文件的规则是从右到左开始判断解析,如果后缀名为不可识别文件解析,就再往左判断。比如 test.php.owf.rar “.owf”和”.rar” 这两种后缀是apache不可识别解析,apache就会把wooyun.php.owf.rar解析成php。</p>
+<h4 id="漏洞形式"><a href="#漏洞形式" class="headerlink" title="漏洞形式"></a>漏洞形式</h4><pre><code>www.xxxx.xxx.com/test.php.php123
+</code></pre><h4 id="其余配置问题导致漏洞"><a href="#其余配置问题导致漏洞" class="headerlink" title="其余配置问题导致漏洞"></a>其余配置问题导致漏洞</h4><p>（1）如果在 Apache 的 conf 里有这样一行配置 AddHandler php5-script .php 这时只要文件名里包含.php 即使文件名是 test2.php.jpg 也会以 php 来执行。</p>
+<p>（2）如果在 Apache 的 conf 里有这样一行配置 AddType application/x-httpd-php .jpg 即使扩展名是 jpg，一样能以 php 方式执行。</p>
+<h4 id="（二）漏洞演示及利用-5"><a href="#（二）漏洞演示及利用-5" class="headerlink" title="（二）漏洞演示及利用"></a>（二）漏洞演示及利用</h4><p>当上传1.php时，由于存在上传后缀名限制，无法完成上传如图6.1，一般情况下，若上传允许的类型则无法利用，但存在文件解析漏洞时，可以绕过。</p>
+<p><img src="https://i.imgur.com/s1Q6H3J.png" alt=""></p>
+<p>此时上传1.php.aaa文件，则可以上传成功。同时因存在解析问题，1.php.aaa文件可以被访问。如图6.2</p>
+<p><img src="https://i.imgur.com/xFAM4Nk.png" alt=""></p>
+<h4 id="（三）漏洞修复-5"><a href="#（三）漏洞修复-5" class="headerlink" title="（三）漏洞修复"></a>（三）漏洞修复</h4><p>在配置文件中，不使用AddHandler，改用SetHandler，写好正则，就不会有解析问题。</p>
+<blockquote>
+<filesmatch “.+.php$”=""><br>SetHandler application /x-httpd-php<br></filesmatch>
+</blockquote>
+<p>禁止.php.这样的文件执行</p>
+<blockquote>
+<filesmatch “.+.ph(p[3457]?|t|tml).”=""><br>Require all denied<br></filesmatch>
+</blockquote>
+<h4 id="（四）补充-5"><a href="#（四）补充-5" class="headerlink" title="（四）补充"></a>（四）补充</h4><p>此漏洞爆出后，官方进行了一次修复，采用了黑名单，如图6.3</p>
+<p><img src="https://i.imgur.com/jj9miuT.png" alt=""></p>
+<p>但之后又爆出了同类型的漏洞（编号：CVE-2017-15715），可通过上传一个包含换行符（x0A）的文件绕过检测，如图6.4、图6.5，Apache2.4.0-2.4.29均受到此漏洞影响。在后续版本中官方已经修复了此漏洞，及时更新即可修复。</p>
+<p><img src="https://i.imgur.com/JS27S3M.png" alt=""></p>
+<p><img src="https://i.imgur.com/dC81byF.png" alt=""></p>
+<p>参考资料：</p>
+<p><a href="https://www.anquanke.com/post/id/166616#h3-37" target="_blank" rel="noopener">https://www.anquanke.com/post/id/166616#h3-37</a></p>
+<p><a href="https://thief.one/2016/09/21/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E/" target="_blank" rel="noopener">https://thief.one/2016/09/21/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E/</a></p>
+<p><a href="http://www.voidcn.com/article/p-fwwpryyo-bpd.html" target="_blank" rel="noopener">http://www.voidcn.com/article/p-fwwpryyo-bpd.html</a></p>
+<p><a href="http://www.voidcn.com/article/p-odsszfoq-eh.html" target="_blank" rel="noopener">http://www.voidcn.com/article/p-odsszfoq-eh.html</a></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/02/18/部分中间件漏洞总结(不定时更新)/" title="">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#服务器解析漏洞"><span class="post-toc-text">服务器解析漏洞</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、IIS文件解析漏洞"><span class="post-toc-text">一、IIS文件解析漏洞</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（一）漏洞原理"><span class="post-toc-text">（一）漏洞原理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（二）漏洞演示及利用"><span class="post-toc-text">（二）漏洞演示及利用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（三）漏洞修复"><span class="post-toc-text">（三）漏洞修复</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（四）补充"><span class="post-toc-text">（四）补充</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、IIS命令执行漏洞"><span class="post-toc-text">二、IIS命令执行漏洞</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（一）漏洞原理-1"><span class="post-toc-text">（一）漏洞原理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（二）漏洞演示及利用-1"><span class="post-toc-text">（二）漏洞演示及利用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（三）漏洞修复-1"><span class="post-toc-text">（三）漏洞修复</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（四）补充-1"><span class="post-toc-text">（四）补充</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、IIS短文件名"><span class="post-toc-text">三、IIS短文件名</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（一）漏洞原理-2"><span class="post-toc-text">（一）漏洞原理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（二）漏洞演示及利用-2"><span class="post-toc-text">（二）漏洞演示及利用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（三）漏洞修复-2"><span class="post-toc-text">（三）漏洞修复</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（四）补充-2"><span class="post-toc-text">（四）补充</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、Nginx文件解析"><span class="post-toc-text">四、Nginx文件解析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（一）漏洞原理-3"><span class="post-toc-text">（一）漏洞原理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（二）漏洞演示及利用-3"><span class="post-toc-text">（二）漏洞演示及利用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（三）漏洞修复-3"><span class="post-toc-text">（三）漏洞修复</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（四）补充-3"><span class="post-toc-text">（四）补充</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、Nginx配置不当"><span class="post-toc-text">五、Nginx配置不当</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（一）漏洞原理-4"><span class="post-toc-text">（一）漏洞原理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（二）漏洞演示及利用-4"><span class="post-toc-text">（二）漏洞演示及利用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（三）漏洞修复-4"><span class="post-toc-text">（三）漏洞修复</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（四）补充-4"><span class="post-toc-text">（四）补充</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、apache文件解析漏洞"><span class="post-toc-text">六、apache文件解析漏洞</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（一）漏洞原理-5"><span class="post-toc-text">（一）漏洞原理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#漏洞形式"><span class="post-toc-text">漏洞形式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#其余配置问题导致漏洞"><span class="post-toc-text">其余配置问题导致漏洞</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（二）漏洞演示及利用-5"><span class="post-toc-text">（二）漏洞演示及利用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（三）漏洞修复-5"><span class="post-toc-text">（三）漏洞修复</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（四）补充-5"><span class="post-toc-text">（四）补充</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

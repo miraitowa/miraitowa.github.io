@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>CMS识别方法</title>
+	<title>miraitowa</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《CMS识别方法》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《》</p>
 			
 		
 	
@@ -160,19 +160,13 @@
 				<h1 class="am-article-title blog-text-center">
 					
 					
-	
-		<a href="/2019/02/18/CMS识别方法/" itemprop="url">		
-			CMS识别方法		
-		</a>
-	
-
 				</h1>
 
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2019/02/18/CMS识别方法/" itemprop="url">
-	<time datetime="2019-02-18T06:17:56.113Z" itemprop="datePublished">
+						<a href="/2019/02/18/部分中间件漏洞总结(不定时更新)/" itemprop="url">
+	<time datetime="2019-02-18T07:26:50.387Z" itemprop="datePublished">
   		2019-02-18
   </time>
 </a>    
@@ -188,39 +182,20 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="CMS识别方法"><a href="#CMS识别方法" class="headerlink" title="CMS识别方法"></a>CMS识别方法</h2><h3 id="根据文件robots-txt判断"><a href="#根据文件robots-txt判断" class="headerlink" title="根据文件robots.txt判断"></a>根据文件robots.txt判断</h3><p>很多robots都会有CMS的版本信息，一般在头部居多。</p>
-<p>robots.txt文件是一个文本文件，也是一个协议，而不是一个命令。robots.txt是搜索引擎中访问网站的时候要查看的第一个文件。</p>
-<p>robots.txt文件告诉爬虫程序在服务器上什么文件是可以被查看的。如果将网站视为酒店里的一个房间，</p>
-<p>robots.txt就是主人在房间门口悬挂的“请勿打扰”或“欢迎打扫”的提示牌。这个文件告诉来访的搜索引擎哪些房间可以进入和参观，</p>
-<p>哪些房间因为存放贵重物品，或可能涉及住户及访客的隐私而不对搜索引擎开放。但robots.txt不是命令，也不是防火墙，如同守门人无法阻止窃贼等恶意闯入者。</p>
-<p>一般用关键字：disallow来定义哪些不允许爬行。</p>
-<p>该文件一般存放在网站的根目录下。</p>
-<p><img src="https://i.imgur.com/4ihRCSN.png" alt=""></p>
-<p>很明显是<strong>dedecms</strong></p>
-<h3 id="工具识别"><a href="#工具识别" class="headerlink" title="工具识别"></a>工具识别</h3><p>原理：不同的cms都有自己独特的目录或者文件，工具扫描这些文件是否存在来判断cms属于哪种；</p>
-<h4 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h4><ol>
-<li>御剑Web指纹识别系统</li>
-<li>whatweb（linux平台）</li>
-</ol>
-<h3 id="查看网页底部信息"><a href="#查看网页底部信息" class="headerlink" title="查看网页底部信息"></a>查看网页底部信息</h3><p>例如，织梦的会存在powered by DedeCms：</p>
-<p><img src="https://i.imgur.com/XhECH80.png" alt=""></p>
-<h3 id="在线CMS识别网站"><a href="#在线CMS识别网站" class="headerlink" title="在线CMS识别网站"></a>在线CMS识别网站</h3><p><a href="http://www.yunsee.cn/" target="_blank" rel="noopener">http://www.yunsee.cn/</a></p>
-<p><a href="http://whatweb.bugscaner.com/" target="_blank" rel="noopener">http://whatweb.bugscaner.com/</a></p>
-<p><img src="https://i.imgur.com/jBfXUno.png" alt=""></p>
-<p><strong>参考资料：</strong></p>
-<p><a href="https://masterxsec.github.io/2017/06/05/CMS识别方法/" target="_blank" rel="noopener">https://masterxsec.github.io/2017/06/05/CMS识别方法/</a></p>
-<p><a href="https://landgrey.me/cms-identity-system/" target="_blank" rel="noopener">https://landgrey.me/cms-identity-system/</a></p>
-<p>seaii-blog.com/index.php/2017/01/17/16.html</p>
-<p><a href="https://www.hzl-fj.com/49.html" target="_blank" rel="noopener">https://www.hzl-fj.com/49.html</a></p>
-<p><a href="http://www.iguoli.cn/cms.php" target="_blank" rel="noopener">www.iguoli.cn/cms.php</a></p>
-<p><a href="http://www.yunsee.cn" target="_blank" rel="noopener">www.yunsee.cn</a></p>
-<p>whatweb.bugscaner.com/look/</p>
-<p><a href="http://www.freebuf.com/articles/web/129939.html" target="_blank" rel="noopener">www.freebuf.com/articles/web/129939.html</a></p>
-<p><a href="http://www.freebuf.com/articles/2555.html" target="_blank" rel="noopener">www.freebuf.com/articles/2555.html</a></p>
-<p><a href="https://github.com/junmoxiao/cms_identify" target="_blank" rel="noopener">https://github.com/junmoxiao/cms_identify</a></p>
-<p><a href="https://github.com/AliasIO/Wappalyzer" target="_blank" rel="noopener">https://github.com/AliasIO/Wappalyzer</a></p>
-<p><a href="https://github.com/cuijianxiong/cmscan" target="_blank" rel="noopener">https://github.com/cuijianxiong/cmscan</a></p>
-<p><a href="https://github.com/boy-hack/gwhatweb" target="_blank" rel="noopener">https://github.com/boy-hack/gwhatweb</a></p>
+						<h2 id="部分中间件漏洞总结-不定时更新"><a href="#部分中间件漏洞总结-不定时更新" class="headerlink" title="部分中间件漏洞总结(不定时更新)"></a>部分中间件漏洞总结(不定时更新)</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>中间件漏洞可以说是最容易被web管理员忽视的漏洞，原因很简单，因为这并不是应用程序代码上存在的漏洞，而是属于一种应用部署环境的配置不当或者使用不当造成的。那么从实际情况来看，预防这种漏洞最大的难点，在于中间件安全该由谁负责？</p>
+<p>我们在处理应急响应事件时经常遇到这么一种情况，客户网站代码是外包的，也就是第三方公司负责开发，而部署可能是由客户内部运维人员负责。</p>
+<p>暂不说他们对于中间件安全的重视程度与了解程度，只谈发现漏洞后如何处理，便是一团乱。开发商推卸说这并不是代码上的问题，</p>
+<p>他们完全是按照安全开发流程（SDL）走的，所以跟他无关；运维人员就一脸蒙蔽了，反驳道：你们当初没跟我说要配置什么啊，只是让我安装个程序就ok了，我怎么知道？</p>
+<p>那么除此之外，开发人员以及运维人员对中间件安全意识的缺失也是一个重要因素，有些开发商可能会对自身代码进行安全检测，</p>
+<p>但只对代码部分进行审查是远远不够的。本篇用来记录总结一些常见的web中间件漏洞以及防护问题（记录的只是一部分，不代表全部）</p>
+<h3 id="中间件、容器、服务器傻傻分不清？"><a href="#中间件、容器、服务器傻傻分不清？" class="headerlink" title="中间件、容器、服务器傻傻分不清？"></a>中间件、容器、服务器傻傻分不清？</h3><p>　　在谈中间件安全问题时，我觉得有必要先梳理下以上几种关系以及概念。当初我在接触这些概念时，脑子里就是一团浆糊，中间件、容器、服务器、webserver等等概念感觉彼此很相似，但又有所区别。因此在书写本篇时，我特意翻查了一些资料，试图梳理清这几者之间的关系，参考了文章：<a href="http://www.voidcn.com/blog/saoraozhe3hao/article/p-2428756.html" target="_blank" rel="noopener">http://www.voidcn.com/blog/saoraozhe3hao/article/p-2428756.html</a></p>
+<p>基础概念与作用<br>这里只介绍web中间件、web服务器、web容器，因为除了web以外，其概念还可以扩展为数据库等。</p>
+<p>web服务器<br>web服务器用于提供http服务，即向客户端返回信息，其可以处理HTTP协议，响应针对静态页面或图片的请求，控制页面跳转，或者把动态请求委托其它程序（中间件程序）等。</p>
+<p>web中间件<br>web中间件用于提供系统软件和应用软件之间的连接，以便于软件各部件之间的沟通，其可以为一种或多种应用程序提供容器。</p>
+<p>web容器<br>web容器用于给处于其中的应用程序组件（JSP，SERVLET）提供一个环境，是中间件的一个组成部分，它实现了对动态语言的解析。比如tomcat可以解析jsp，是因为其内部有一个jsp容器。</p>
+<p>所属的类别<br>web服务器：IIS、Apache、nginx、tomcat、weblogic、websphere等。<br>web中间件：apache tomcat、BEA WebLogic、IBM WebSphere等。<br>web容器：JSP容器、SERVLET容器、ASP容器等。</p>
+<p>注意：web中间件与web服务器是有重叠的，原因在于tomcat等web中间件也具备web服务器的功能。</p>
+<p>重点分析<br>　　web服务器只是提供静态网页解析（如apache），或者提供跳转的这么一种服务。而web中间件（其包含web容器）可以解析动态语言，比如tomcat可以解析jsp（因为tomcat含有jsp容器），当然它也可以解析静态资源，因此它既是web中间件也是web服务器。不过tomcat解析静态资源的速度不如apache，因此常常两者结合使用。</p>
 
 					
 				</div>
@@ -230,14 +205,14 @@
 		<ul class="am-pagination">
     
     	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2019/02/18/部分中间件漏洞总结(不定时更新)/" title="">
+   		<a class="pull-left" href="/2019/02/18/服务器解析漏洞/" title="服务器解析漏洞">
       		&laquo; 上一篇
 		</a>
 		</li>
 	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2019/02/18/aspcms漏洞0day/" title="aspcms漏洞0day">
+		<a class="pull-right" href="/2019/02/18/CMS识别方法/" title="CMS识别方法">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -366,7 +341,7 @@
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CMS识别方法"><span class="post-toc-text">CMS识别方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#根据文件robots-txt判断"><span class="post-toc-text">根据文件robots.txt判断</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#工具识别"><span class="post-toc-text">工具识别</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#工具："><span class="post-toc-text">工具：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查看网页底部信息"><span class="post-toc-text">查看网页底部信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在线CMS识别网站"><span class="post-toc-text">在线CMS识别网站</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#部分中间件漏洞总结-不定时更新"><span class="post-toc-text">部分中间件漏洞总结(不定时更新)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#中间件、容器、服务器傻傻分不清？"><span class="post-toc-text">中间件、容器、服务器傻傻分不清？</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
