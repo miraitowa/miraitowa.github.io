@@ -284,15 +284,24 @@
 <p><img src="https://i.imgur.com/s1Q6H3J.png" alt=""></p>
 <p>此时上传1.php.aaa文件，则可以上传成功。同时因存在解析问题，1.php.aaa文件可以被访问。如图6.2</p>
 <p><img src="https://i.imgur.com/xFAM4Nk.png" alt=""></p>
-<h4 id="（三）漏洞修复-5"><a href="#（三）漏洞修复-5" class="headerlink" title="（三）漏洞修复"></a>（三）漏洞修复</h4><p>在配置文件中，不使用AddHandler，改用SetHandler，写好正则，就不会有解析问题。</p>
-<blockquote>
-<filesmatch “.+.php$”=""><br>SetHandler application /x-httpd-php<br></filesmatch>
-</blockquote>
-<p>禁止.php.这样的文件执行</p>
-<blockquote>
-<filesmatch “.+.ph(p[3457]?|t|tml).”=""><br>Require all denied<br></filesmatch>
-</blockquote>
-<h4 id="（四）补充-5"><a href="#（四）补充-5" class="headerlink" title="（四）补充"></a>（四）补充</h4><p>此漏洞爆出后，官方进行了一次修复，采用了黑名单，如图6.3</p>
+<h4 id="（三）漏洞修复-5"><a href="#（三）漏洞修复-5" class="headerlink" title="（三）漏洞修复"></a>（三）漏洞修复</h4><p>1.apache配置文件，禁止.php.这样的文件执行，配置文件里面加入</p>
+<pre><code>1. &lt;Files ~ “.(php.|php3.)”&gt;
+1. Order Allow,Deny
+1. Deny from all
+1. &lt;/Files&gt;
+</code></pre><p>2.用伪静态能解决这个问题，重写类似.php.*这类文件，打开apache的httpd.conf找到LoadModule rewrite_module modules/mod_rewrite.so<br>把#号去掉，重启apache,在网站根目录下建立.htaccess文件,代码如下:</p>
+<pre><code>1. &lt;IfModule mod_rewrite.c&gt;
+1. RewriteEngine On
+1. RewriteRule .(php.|php3.) /index.php
+1. RewriteRule .(pHp.|pHp3.) /index.php
+1. RewriteRule .(phP.|phP3.) /index.php
+1. RewriteRule .(Php.|Php3.) /index.php
+1. RewriteRule .(PHp.|PHp3.) /index.php
+1. RewriteRule .(PhP.|PhP3.) /index.php
+1. RewriteRule .(pHP.|pHP3.) /index.php
+1. RewriteRule .(PHP.|PHP3.) /index.php
+1. &lt;/IfModule&gt;
+</code></pre><h4 id="（四）补充-5"><a href="#（四）补充-5" class="headerlink" title="（四）补充"></a>（四）补充</h4><p>此漏洞爆出后，官方进行了一次修复，采用了黑名单，如图6.3</p>
 <p><img src="https://i.imgur.com/jj9miuT.png" alt=""></p>
 <p>但之后又爆出了同类型的漏洞（编号：CVE-2017-15715），可通过上传一个包含换行符（x0A）的文件绕过检测，如图6.4、图6.5，Apache2.4.0-2.4.29均受到此漏洞影响。在后续版本中官方已经修复了此漏洞，及时更新即可修复。</p>
 <p><img src="https://i.imgur.com/JS27S3M.png" alt=""></p>
