@@ -1,0 +1,634 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>TAMUctf 2019 writeup</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《TAMUctf 2019 writeup》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		2/28/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/02/28/TAMUctf 2019 writeup/" itemprop="url">		
+			TAMUctf 2019 writeup		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/02/28/TAMUctf 2019 writeup/" itemprop="url">
+	<time datetime="2019-02-28T15:43:35.720Z" itemprop="datePublished">
+  		2019-02-28
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="TAMUctf-2019-writeup"><a href="#TAMUctf-2019-writeup" class="headerlink" title="TAMUctf 2019 writeup"></a>TAMUctf 2019 writeup</h2><h3 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h3><h4 id="Howdy"><a href="#Howdy" class="headerlink" title="Howdy!"></a>Howdy!</h4><p><img src="https://i.imgur.com/MEZUIGH.png" alt=""></p>
+<p><strong>flag:gigem{H0wdy!}</strong></p>
+<h4 id="Who-am-I"><a href="#Who-am-I" class="headerlink" title="Who am I?"></a>Who am I?</h4><p>题目描述：</p>
+<blockquote>
+<pre><code>1. What is the A record for tamuctf.com?
+1. (Not in standard gigem{flag} format)
+1. 
+1. Difficulty: easy
+</code></pre></blockquote>
+<p>简单的DNS A记录查询</p>
+<p>使用在线平台：<a href="http://tool.chinaz.com/dns/" target="_blank" rel="noopener">http://tool.chinaz.com/dns/</a></p>
+<p><img src="https://i.imgur.com/KiiGnjW.png" alt=""></p>
+<p><strong>flag:52.33.57.247 </strong></p>
+<h4 id="Who-do-I-trust"><a href="#Who-do-I-trust" class="headerlink" title="Who do I trust?"></a>Who do I trust?</h4><p>题目描述：</p>
+<blockquote>
+<pre><code>1. Who issued the certificate to tamuctf.com?
+1. (Not in standard gigem{flag} format)
+1. 
+1. Difficulty: easy
+</code></pre></blockquote>
+<p><img src="https://i.imgur.com/FXCGNFL.png" alt=""></p>
+<p><strong>flag:Let’s Encrypt Authority X3</strong></p>
+<h4 id="Where-am-I"><a href="#Where-am-I" class="headerlink" title="Where am I?"></a>Where am I?</h4><p>题目描述：</p>
+<blockquote>
+<pre><code>1. What is the name of the city where the server for tamuctf.com is located?
+1. 
+1. (Not in standard gigem{flag} format)
+1. 
+1. Difficulty: easy
+</code></pre></blockquote>
+<p>使用ip地址进行地理位置的查询即可 我使用的是在线平台：<a href="https://cn.geoipview.com/" target="_blank" rel="noopener">https://cn.geoipview.com/</a></p>
+<p><img src="https://i.imgur.com/MgOhjRV.png" alt=""></p>
+<p><strong>flag:    Boardman</strong></p>
+<h4 id="I-heard-you-like-files"><a href="#I-heard-you-like-files" class="headerlink" title="I heard you like files"></a>I heard you like files</h4><p>题目描述：</p>
+<blockquote>
+<pre><code>1. Bender B. Rodriguez was caught with a flash drive with only a single file on it. 
+
+2.We think it may contain valuable information. His area of research is PDF files, so it&#39;s strange that this file is a PNG.
+
+3. Difficulty: easy-medium
+</code></pre></blockquote>
+<p>文件下载地址：<a href="https://tamuctf.com/files/859559de17cf9f417888c69190857bf9/art.png" target="_blank" rel="noopener">https://tamuctf.com/files/859559de17cf9f417888c69190857bf9/art.png</a></p>
+<p>使用binwalk进行简单的查看 分析一下</p>
+<p><img src="https://i.imgur.com/c81gu7u.png" alt="">】</p>
+<p>使用foremost进行分离其中的文件 </p>
+<p><img src="https://i.imgur.com/1C2f3se.png" alt=""></p>
+<p>打开word文件里面有一个media文件夹其中有一张图片使用文档查看器进行查看就会在末尾处发现</p>
+<p><img src="https://i.imgur.com/r67f8Ea.png" alt=""></p>
+<p>使用在线解密工具：<a href="http://www.convertstring.com/zh_TW/EncodeDecode/Base64Decode" target="_blank" rel="noopener">http://www.convertstring.com/zh_TW/EncodeDecode/Base64Decode</a></p>
+<p><img src="https://i.imgur.com/Bxdwlfc.png" alt=""></p>
+<p>最后拿到<strong>flag:flag{P0lYt@r_D0_y0u_G3t_It_N0w?}</strong></p>
+<h4 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h4><p>题目描述：</p>
+<blockquote>
+<pre><code>1. My first program!
+1. 
+1. Difficulty: medium
+</code></pre></blockquote>
+<p>打开给出的文件链接：</p>
+<p><img src="https://i.imgur.com/LrlX6hQ.png" alt=""></p>
+<p>对于这一题，我还是很懵的，感谢大佬的指教(THS）</p>
+<p>在main函数上方有一部分有空格和制表符组成的不可见字符，前半部分是10位，观察发现规律行首可能是由于自动缩进多出来两个字符</p>
+<p>去掉行首前两个空格后将剩余8位空格转换0，制表转换1，将二进制转换成字符即可</p>
+<p>简单的写一下脚本：</p>
+<blockquote>
+<ol>
+<li>c=’01100111 01101001 01100111 01100101 01101101 01111011 0110000 01101000 01011111 01101101 01111001 01011111 01110111 01101000 0110100 01110100 01011111 01110011 01110000 0110100 01100011 0110001 01101110 01100111 01011111 01111001 0110000 01110101 01011111 01101000 0110100 01110110 0110011 01111101 0100001 01100101 01100011 01100001 01110000 01110011 01100101 01110100 01101001 01101000 01110111 0100000 01100110 01101111 0100000 01110100 01101111 01101100 0100000 01100001 0100000 01110011 01101001 0100000 01100101 01110010 01110101 01110011 0100000 01110100 01100001 01101000 01110100 0100000 0101100 01100101 01100101 01100111 0100000 01111001 01101100 01101100 01101111 01100111 0100000 01110100 01100101 01100101 01110111 01110011 0100000 01101100 01101100 01100101 01010111’</li>
+<li>flag=’’</li>
+<li>for i in c.split(‘ ‘):</li>
+<li>flag += chr(int(‘0b’+i,2))</li>
+<li>print flag</li>
+</ol>
+</blockquote>
+<p><img src="https://i.imgur.com/2dPdySk.png" alt=""></p>
+<p><strong>flag:gigem{0h_my_wh4t_sp4c1ng_y0u_h4v3}</strong></p>
+<h3 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h3><h4 id="Not-Another-SQLi-Challenge"><a href="#Not-Another-SQLi-Challenge" class="headerlink" title="Not Another SQLi Challenge"></a>Not Another SQLi Challenge</h4><p>题目描述：</p>
+<blockquote>
+<pre><code>1. http://web1.tamuctf.com
+1. 
+1. Difficulty: easy
+</code></pre></blockquote>
+<p><img src="https://i.imgur.com/6Aiwi4i.png" alt=""></p>
+<p>使用burp进行抓包即可</p>
+<p><img src="https://i.imgur.com/lg13HQ5.png" alt=""></p>
+<p>成功拿到<strong>flag:gigem{f4rm3r5_f4rm3r5_w3’r3_4ll_r16h7}</strong></p>
+<h4 id="Many-Gig’ems-to-you"><a href="#Many-Gig’ems-to-you" class="headerlink" title="Many Gig’ems to you!"></a>Many Gig’ems to you!</h4><p>题目描述：<a href="http://web7.tamuctf.com/" target="_blank" rel="noopener">http://web7.tamuctf.com/</a></p>
+<p>这一题很有趣，flag分别藏在三个不同的地方</p>
+<p>1：查看index.html中就会发现第一部分：<strong>gigem{flag_in_</strong></p>
+<p><img src="https://i.imgur.com/nNXmxz5.png" alt=""></p>
+<p>2：接着查看cookie.html就会发现第二部分：<strong>gigem{continued == source_and_</strong></p>
+<p><img src="https://i.imgur.com/5xges91.png" alt=""></p>
+<p>3：然后查看cookie就会发现第三部分：<strong>gigem_continue=cookies}</strong></p>
+<p><img src="https://i.imgur.com/bTK6fid.png" alt=""></p>
+<p>组合在一起就会得到<strong>flag: gigem{flag_in_source_and_cookies}</strong></p>
+<h3 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h3><h4 id=""><a href="#" class="headerlink" title="-.-"></a>-.-</h4><p>题目描述：</p>
+<blockquote>
+<pre><code>1. To 1337-H4X0R:
+1. 
+1. Our coworker Bob loves a good classical cipher. Unfortunately, he also loves to send everything encrypted with these ciphers. Can you go ahead and decrypt this for me?
+1. 
+1. Difficulty: easy
+</code></pre></blockquote>
+<p>给出的flag.txt文档：</p>
+<pre><code>dah-dah-dah-dah-dah dah-di-di-dah di-di-di-di-dit dah-dah-di-di-dit dah-dah-di-di-dit dah-dah-dah-dah-dah di-di-dah-dah-dah di-dah dah-di-di-di-dit dah-di-dah-dit di-di-di-di-dit dah-dah-dah-di-dit dah-dah-di-di-dit di-di-di-di-dah di-di-di-di-dah dah-dah-di-di-dit di-di-di-di-dit di-dah-dah-dah-dah di-di-di-dah-dah dah-dah-dah-di-dit dah-di-di-di-dit di-di-di-di-dit di-di-di-dah-dah dah-dah-dah-di-dit dah-dah-di-di-dit di-dah-dah-dah-dah dah-di-di-di-dit dit dah-di-di-di-dit dah-di-dit di-di-di-di-dah dah-di-dit di-di-di-di-dit dah-dah-dah-dah-dit di-di-di-di-dit di-di-di-di-dit di-di-dah-dah-dah di-dah dah-dah-di-di-dit di-di-di-dah-dah dah-dah-di-di-dit dah-di-di-di-dit di-di-di-di-dah dah-di-di-di-dit di-di-di-di-dah dah-dah-dah-di-dit dah-di-di-di-dit dah-di-di-dit dah-di-di-di-dit di-dah di-di-di-di-dah dah-dah-dah-dah-dit dah-dah-di-di-dit di-di-di-di-dah di-di-dah-dah-dah di-dah di-di-di-di-dit di-di-dah-dah-dah di-di-di-di-dit di-dah-dah-dah-dah di-di-dah-dah-dah dah-di-di-di-dit di-di-di-di-dah di-dah dah-dah-di-di-dit dah-dah-dah-dah-dah di-di-di-di-dit di-dah dah-dah-di-di-dit dah-di-di-di-dit dah-di-di-di-dit di-dah dah-di-di-di-dit dah-di-dit di-di-dah-dah-dah di-dah-dah-dah-dah di-di-dah-dah-dah di-di-di-di-dit di-di-dah-dah-dah di-di-di-di-dit di-di-di-di-dah dah-di-di-dit di-di-di-di-dah di-di-di-di-dah dah-di-di-di-dit dah-di-di-dit dah-di-di-di-dit dah-di-di-di-dit dah-dah-di-di-dit dah-dah-dah-dah-dah di-di-dah-dah-dah di-di-di-dah-dah di-di-di-di-dit dit di-di-di-di-dah dit di-di-di-dah-dah dah-dah-dah-dah-dit dah-di-di-di-dit dah-di-di-di-dit dah-di-di-di-dit dah-di-di-dit di-di-di-dah-dah di-di-di-di-dah dah-di-di-di-dit di-di-di-di-dah di-di-di-di-dit di-di-di-di-dit di-di-di-dah-dah di-di-di-di-dah dah-di-di-di-dit dah-di-dah-dit di-di-di-di-dah di-di-dah-dah-dah di-di-di-dah-dah di-di-di-dah-dah dah-dah-di-di-dit di-di-dah-dah-dah di-di-di-di-dit di-di-di-di-dah dah-di-di-di-dit di-di-dah-dit di-di-di-di-dit di-di-di-di-dah di-di-di-dah-dah dah-dah-dah-dah-dah di-di-di-di-dit dah-dah-dah-dah-dah di-di-di-di-dit di-dah di-di-di-di-dit di-dah-dah-dah-dah dah-di-di-di-dit dah-di-dit di-di-di-di-dah di-di-di-dah-dah di-di-di-di-dit di-dah-dah-dah-dah di-di-di-di-dah di-di-di-di-dit di-di-di-di-dah dah-di-di-dit di-di-di-di-dit dah-dah-dah-dah-dit di-di-di-di-dah di-di-dah-dah-dah di-di-di-dah-dah di-di-di-di-dah di-di-di-di-dit di-dah di-di-di-di-dah dah-di-dit dah-dah-di-di-dit dah-di-di-di-dit di-di-dah-dah-dah di-dah di-di-dah-dah-dah di-dah-dah-dah-dah di-di-di-di-dah dah-di-di-di-dit dah-di-di-di-dit dah-di-di-dit di-di-di-dah-dah dah-dah-dah-di-dit dah-di-di-di-dit dah-di-dah-dit di-di-dah-dah-dah di-di-di-di-dit dah-di-di-di-dit di-di-dah-dah-dah dah-di-di-di-dit di-dah dah-dah-di-di-dit di-dah-dah-dah-dah dah-di-di-di-dit dah-di-dah-dit di-di-di-di-dit dah-dah-dah-dah-dah di-di-di-di-dah dah-di-dit dah-di-di-di-dit dah-di-di-di-dit di-di-di-di-dah dah-dah-dah-dah-dit di-di-di-di-dah dah-dah-di-di-dit dah-di-di-di-dit dah-di-dit dah-di-di-di-dit di-dah-dah-dah-dah di-di-dah-dah-dah di-di-di-di-dit di-di-dah-dah-dah di-di-di-di-dit di-di-di-di-dah dah-di-di-di-dit dah-dah-di-di-dit di-dah di-di-di-di-dah dah-dah-di-di-dit di-di-dah-dah-dah dah-dah-dah-dah-dah dah-di-di-di-dit dah-dah-di-di-dit dah-di-di-di-dit dah-dah-dah-dah-dit dah-di-di-di-dit dah-dah-di-di-dit dah-di-di-di-dit di-di-di-di-dit dah-di-di-di-dit dah-di-dit dah-dah-di-di-dit dah-di-di-dit di-di-di-di-dah di-di-di-dah-dah di-di-di-dah-dah di-dah-dah-dah-dah dah-di-di-di-dit dah-dah-dah-dah-dit dah-di-di-di-dit di-di-di-dah-dah di-di-di-di-dah dah-di-di-dit di-di-di-di-dit di-di-dah-dit dah-di-di-di-dit di-di-di-dah-dah dah-di-di-di-dit dah-di-dah-dit di-di-di-dah-dah di-dah-dah-dah-dah di-di-di-di-dah di-di-di-dah-dah di-di-di-di-dah dah-di-di-dit di-di-dah-dah-dah dah-di-dit dah-dah-di-di-dit dah-dah-dah-dah-dit di-di-di-dah-dah dah-dah-dah-dah-dah dah-dah-di-di-dit di-di-di-di-dit di-di-di-di-dit di-di-dah-dit dah-di-di-di-dit dah-dah-dah-di-dit di-di-di-dah-dah di-di-di-di-dah dah-dah-di-di-dit dah-di-di-di-dit di-di-di-dah-dah di-di-di-dah-dah di-di-di-di-dit di-di-dah-dit dah-di-di-di-dit dah-di-dit di-di-di-dah-dah di-di-di-di-dah di-di-di-di-dah dah-dah-dah-dah-dit di-di-di-dah-dah di-dah-dah-dah-dah dah-dah-di-di-dit dah-di-dit di-di-dah-dah-dah dah-dah-dah-dah-dah dah-dah-di-di-dit di-di-di-di-dit dah-dah-di-di-dit dah-di-di-di-dit di-di-di-dah-dah di-di-di-di-dah dah-dah-di-di-dit dah-di-di-di-dit dah-dah-di-di-dit di-dah di-di-di-di-dah dah-di-di-dit di-di-di-di-dit di-dah dah-dah-di-di-dit di-di-di-di-dah di-di-di-dah-dah di-di-di-di-dah dah-dah-di-di-dit dah-dah-dah-dah-dit dah-di-di-di-dit di-di-dah-dit dah-di-di-di-dit dah-di-dit dah-di-di-di-dit dah-dah-dah-dah-dit di-di-di-di-dah di-di-di-di-dah di-di-di-di-dit di-di-di-dah-dah dah-di-di-di-dit dah-dah-dah-di-dit di-di-di-di-dah dah-di-dah-dit dah-di-di-di-dit dah-di-dit di-di-di-dah-dah dah-dah-dah-di-dit di-di-di-di-dit di-dah-dah-dah-dah di-di-di-di-dah di-di-di-di-dit di-di-di-di-dah dah-di-di-di-dit dah-di-di-di-dit dit di-di-di-di-dit di-di-di-di-dit dah-dah-di-di-dit di-di-di-di-dah dah-dah-di-di-dit dah-dah-di-di-dit di-di-di-di-dah di-dah di-di-di-di-dah dah-dah-dah-dah-dah di-di-di-di-dah dit dah-dah-di-di-dit di-di-di-di-dit di-di-di-di-dah di-di-dah-dit di-di-di-di-dit dah-dah-dah-dah-dit dah-di-di-di-dit dah-di-di-di-dit di-di-di-di-dit dah-dah-dah-di-dit di-di-dah-dah-dah dah-di-di-di-dit di-di-di-dah-dah dah-dah-dah-di-dit dah-dah-di-di-dit di-di-di-di-dit di-di-di-di-dah dah-dah-dah-dah-dah di-di-di-di-dah dah-dah-di-di-dit dah-di-di-di-dit dit di-di-dah-dah-dah di-dah-dah-dah-dah di-di-di-dah-dah di-dah-dah-dah-dah di-di-dah-dah-dah di-di-di-di-dit di-di-di-di-dit di-di-di-di-dah dah-dah-di-di-dit di-dah-dah-dah-dah dah-dah-di-di-dit dah-di-di-di-dit di-di-di-dah-dah dah-dah-dah-dah-dah di-di-di-di-dit dah-di-di-di-dit dah-di-di-di-dit di-di-di-dah-dah di-di-di-di-dit di-di-dah-dah-dah dah-dah-di-di-dit di-dah di-di-di-di-dit dah-di-di-di-dit di-di-dah-dah-dah di-dah-dah-dah-dah dah-di-di-di-dit di-dah di-di-dah-dah-dah di-dah-dah-dah-dah dah-dah-di-di-dit dah-di-di-di-dit dah-dah-di-di-dit di-di-di-di-dit dah-dah-di-di-dit di-di-di-di-dit dah-dah-di-di-dit dah-dah-dah-dah-dah di-di-di-dah-dah dah-dah-dah-di-dit di-di-di-di-dah di-di-dah-dah-dah dah-di-di-di-dit di-dah dah-di-di-di-dit di-di-di-di-dah di-di-di-di-dah dit di-di-di-di-dah dah-dah-dah-dah-dit dah-dah-di-di-dit di-dah-dah-dah-dah di-di-di-di-dah di-di-di-di-dit di-di-di-dah-dah di-di-di-di-dit dah-dah-di-di-dit dah-dah-di-di-dit di-di-dah-dah-dah di-di-di-dah-dah di-di-dah-dah-dah di-di-di-di-dah di-di-dah-dah-dah di-di-di-di-dit di-di-di-di-dit dah-di-di-di-dit di-di-di-dah-dah di-di-di-di-dah di-di-di-di-dit di-di-di-di-dit di-di-di-di-dit di-dah di-di-di-di-dah di-di-dah-dit di-di-di-di-dit dah-dah-dah-dah-dit di-di-di-di-dit di-dah di-di-di-dah-dah di-di-dah-dah-dah dah-dah-di-di-dit di-dah di-di-di-dah-dah dah-dah-di-di-dit di-di-di-di-dit di-di-di-di-dah di-di-di-dah-dah di-di-dah-dah-dah di-di-di-dah-dah di-di-di-di-dit dah-dah-di-di-dit di-di-di-di-dah di-di-di-dah-dah dah-dah-di-di-dit di-di-dah-dah-dah dah-di-di-di-dit dah-dah-di-di-dit dah-dah-dah-di-dit di-di-di-di-dah dah-di-dah-dit di-di-di-di-dah dah-dah-dah-dah-dah di-di-di-di-dit dah-dah-di-di-dit di-di-di-di-dah di-di-dah-dit di-di-di-dah-dah dah-dah-di-di-dit di-di-di-dah-dah di-di-di-di-dah di-di-di-dah-dah di-dah-dah-dah-dah di-di-di-dah-dah dah-dah-dah-dah-dah di-di-di-di-dit di-dah-dah-dah-dah di-di-di-di-dah dah-dah-dah-dah-dit
+</code></pre><p>这道题目主要考察的是莫斯密码，只是这种莫斯密码不常见罢了</p>
+<p>给出参考文献链接：<a href="http://www.morsemad.com/morsecode.htm" target="_blank" rel="noopener">http://www.morsemad.com/morsecode.htm</a></p>
+<p>写出一个简单的脚本即可：</p>
+<blockquote>
+<ol>
+<li>old_dict = {</li>
+<li>‘A’:’di-dah’,</li>
+<li>‘B’:’dah-di-di-dit’,</li>
+<li>‘C’:’dah-di-dah-dit’,</li>
+<li>‘D’:’dah-di-dit’,</li>
+<li>‘E’:’dit’,</li>
+<li>‘F’:’di-di-dah-dit’,</li>
+<li>‘G’:’dah-dah-dit’,</li>
+<li>‘H’:’di-di-di-dit’,</li>
+<li>‘I’:’di-dit’,</li>
+<li>‘J’:’di-dah-dah-dah’,</li>
+<li>‘K’:’dah-di-dah’,</li>
+<li>‘L’:’di-dah-di-dit’,</li>
+<li>‘M’:’dah-dah’,</li>
+<li>‘N’:’dah-dit’,</li>
+<li>‘O’:’dah-dah-dah’,</li>
+<li>‘P’:’di-dah-dah-dit’,</li>
+<li>‘Q’:’dah-dah-di-dah’,</li>
+<li>‘R’:’di-dah-dit’,</li>
+<li>‘S’:’di-di-dit’,</li>
+<li>‘T’:’dah’,</li>
+<li>‘U’:’di-di-dah’,</li>
+<li>‘V’:’di-di-di-dah’,</li>
+<li>‘W’:’di-dah-dah’,</li>
+<li>‘X’:’dah-di-di-dah’,</li>
+<li>‘Y’:’dah-di-dah-dah’,</li>
+<li>‘Z’:’dah-dah-di-dit’,</li>
+<li>‘0’:’dah-dah-dah-dah-dah’,</li>
+<li>‘1’:’di-dah-dah-dah-dah’,</li>
+<li>‘2’:’di-di-dah-dah-dah’,</li>
+<li>‘3’:’di-di-di-dah-dah’,</li>
+<li>‘4’:’di-di-di-di-dah’,</li>
+<li>‘5’:’di-di-di-di-dit’,</li>
+<li>‘6’:’dah-di-di-di-dit’,</li>
+<li>‘7’:’dah-dah-di-di-dit’,</li>
+<li>‘8’:’dah-dah-dah-di-dit’,</li>
+<li>‘9’:’dah-dah-dah-dah-dit’,</li>
+<li>}</li>
+<li></li>
+<li>f = open(‘./flag.txt’)</li>
+<li>tmp = f.read().split(‘ ‘)</li>
+<li></li>
+<li>new_dict = {v : k for k, v in old_dict.items()}</li>
+<li></li>
+<li>flag=’’</li>
+<li>for i in tmp:</li>
+<li>flag += new_dict[i]</li>
+<li>print flag[2:].decode(‘hex’)</li>
+</ol>
+</blockquote>
+<p><img src="https://i.imgur.com/t521QYH.png" alt=""></p>
+<p>得到<strong>flag:gigem{C1icK_cl1CK-y0u_h4v3_m4I1}</strong></p>
+<h3 id="MicroServices"><a href="#MicroServices" class="headerlink" title="MicroServices"></a>MicroServices</h3><h4 id="0-intrusion"><a href="#0-intrusion" class="headerlink" title="0_intrusion"></a>0_intrusion</h4><p>题目描述：</p>
+<blockquote>
+<pre><code>1. Welcome to MicroServices inc, where do all things micro and service oriented!
+1. Recently we got an alert saying there was suspicious traffic on one of our web servers. Can you help us out?
+1. 
+1. What is the IP Address of the attacker?
+</code></pre></blockquote>
+<p>一个大类中只有这一题(嘻嘻.jpg）</p>
+<p>使用wireshark打开流量包，由于问的是攻击者的ip地址，我们只需要在wireshark打开之后直接查看端点，发现第二个ip就是flag</p>
+<p><img src="https://i.imgur.com/vNKq3vt.png" alt=""></p>
+<p>拿到<strong>flag:10.91.9.93</strong></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/02/27/江阴八十一日/" title="江阴八十一日">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TAMUctf-2019-writeup"><span class="post-toc-text">TAMUctf 2019 writeup</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MISC"><span class="post-toc-text">MISC</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Howdy"><span class="post-toc-text">Howdy!</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Who-am-I"><span class="post-toc-text">Who am I?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Who-do-I-trust"><span class="post-toc-text">Who do I trust?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Where-am-I"><span class="post-toc-text">Where am I?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#I-heard-you-like-files"><span class="post-toc-text">I heard you like files</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Hello-World"><span class="post-toc-text">Hello World</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#WEB"><span class="post-toc-text">WEB</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Not-Another-SQLi-Challenge"><span class="post-toc-text">Not Another SQLi Challenge</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Many-Gig’ems-to-you"><span class="post-toc-text">Many Gig’ems to you!</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Crypto"><span class="post-toc-text">Crypto</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#"><span class="post-toc-text">-.-</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MicroServices"><span class="post-toc-text">MicroServices</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0-intrusion"><span class="post-toc-text">0_intrusion</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
