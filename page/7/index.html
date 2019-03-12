@@ -1,0 +1,794 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>miraitowa</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">主页</p>	
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/12/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		
+	<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed">
+	<div class="am-u-md-12 am-u-sm-12">
+
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2018/11/26/PTA刷题——计算天数/" itemprop="url">
+	<time datetime="2018-11-25T16:04:32.588Z" itemprop="datePublished">
+  		2018-11-26
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2018/11/26/PTA刷题——计算天数/" itemprop="url">		
+			PTA刷题——计算天数		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								7-3 计算天数 （15 分）本题要求编写程序计算某年某月某日是该年中的第几天。
+输入格式:
+输入在一行中按照格式“yyyy/mm/dd”（即“年/月/日”）给出日期。
+注意：闰年的判别条件是该年年份能被4整除但不能被100整除、或者能被400整除。闰年的2月有29天。
+输出格式:
+在一行输出日期是该年中的第几天。
+输入样例1:
+2009/03/02
+输出样例1:
+61
+输入样例2:
+2000/0	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2018/11/26/PTA刷题——计算天数/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2018/11/26/PTA刷题——龟兔赛跑/" itemprop="url">
+	<time datetime="2018-11-25T16:04:32.586Z" itemprop="datePublished">
+  		2018-11-26
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2018/11/26/PTA刷题——龟兔赛跑/" itemprop="url">		
+			PTA刷题——龟兔赛跑		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								7-4 龟兔赛跑 （20 分）乌龟与兔子进行赛跑，跑场是一个矩型跑道，跑道边可以随地进行休息。乌龟每分钟可以前进3米，兔子每分钟前进9米；兔子嫌乌龟跑得慢，
+觉得肯定能跑赢乌龟，于是，每跑10分钟回头看一下乌龟，若发现自己超过乌龟，就在路边休息，每次休息30分钟，否则继续跑10分钟；
+而乌龟非常努力，一直跑，不休息。假定乌龟与兔子在同一起点同一时刻开始起跑，请问T分钟后乌龟和兔子谁跑得快？
+输入格	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2018/11/26/PTA刷题——龟兔赛跑/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2018/11/26/PTA刷题——到底是不是太胖了/" itemprop="url">
+	<time datetime="2018-11-25T16:04:32.493Z" itemprop="datePublished">
+  		2018-11-26
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2018/11/26/PTA刷题——到底是不是太胖了/" itemprop="url">		
+			PTA刷题——到底是不是太胖了		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								7-7 到底是不是太胖了 （10 分）据说一个人的标准体重应该是其身高（单位：厘米）减去100、再乘以0.9所得到的公斤数。真实体重与标准体重误差在10%以内都是完美身材
+（即 | 真实体重 − 标准体重 | &lt; 标准体重×10%）。已知市斤是公斤的两倍。现给定一群人的身高和实际体重，请你告诉他们是否太胖或太瘦了。
+输入格式：
+输入第一行给出一个正整数N（≤ 20）。随后N行，每行给出两个整	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2018/11/26/PTA刷题——到底是不是太胖了/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2018/11/25/记一份2018CSAW 部分web writeup/" itemprop="url">
+	<time datetime="2018-11-25T09:26:52.464Z" itemprop="datePublished">
+  		2018-11-25
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2018/11/25/记一份2018CSAW 部分web writeup/" itemprop="url">		
+			记一份2018CSAW 部分web writeup		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言CSAW的题目质量相当不错，有一定的难度，有一段时间没有打过CTF了，实力退步的很明显,现在题目环境还没关，继续水一水啦(滑稽.jpg）
+如果有对题目了解不深刻的地方，欢迎各位大师傅指出，感激不尽。
+首发先知社区：CSAW 2018 部分web Writeup
+Ldabdab
+http://web.chal.csaw.io:8080
+默认进来题目有一个搜索框，感觉是和数据库差不多的,打开界面显	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2018/11/25/记一份2018CSAW 部分web writeup/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2018/11/24/2018Web测试大赛全国总决赛部分Writeup/" itemprop="url">
+	<time datetime="2018-11-24T15:40:11.502Z" itemprop="datePublished">
+  		2018-11-24
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2018/11/24/2018Web测试大赛全国总决赛部分Writeup/" itemprop="url">		
+			2018Web测试大赛全国总决赛部分Writeup		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言本来是不打算写安恒杯决赛的writeup的，自己太渣了，并且被各位大师傅吊打的节奏，自己实在是好痛苦，可是事实就是这样，
+自己就是很渣，简单记录一下题目的writeup，也算是我自己的一个总结。
+2018web安全测试秋季省赛Writeup
+
+你说不让看就不看打开链接：http://192.168.43.21/，查看源代码就会得到，index.php.bak
+直接访问：http://192.1	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2018/11/24/2018Web测试大赛全国总决赛部分Writeup/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2018/11/22/记一份C++输入与输出—cout和cin的用法/" itemprop="url">
+	<time datetime="2018-11-22T14:48:44.325Z" itemprop="datePublished">
+  		2018-11-22
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2018/11/22/记一份C++输入与输出—cout和cin的用法/" itemprop="url">		
+			记一份C++输入与输出—cout和cin的用法		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言输入和输出并不是C++语言中的正式组成成分｡C和C++本身都没有为输入和输出提供专门的语句结构｡输入输出不是由C++本身定义的,
+而是在编译系统提供的I/O库中定义的｡
+C++的输出和输入是用“流”(stream)的方式实现的｡图3.2和图3.3表示C++通过流进行输入输出的过程｡
+
+有关流对象cin､cout和流运算符的定义等信息是存放在C++的输入输出流库中的,因此如果在程序中使用cin､	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2018/11/22/记一份C++输入与输出—cout和cin的用法/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2018/11/22/记一份C++中的输入方式小结/" itemprop="url">
+	<time datetime="2018-11-22T14:48:41.167Z" itemprop="datePublished">
+  		2018-11-22
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2018/11/22/记一份C++中的输入方式小结/" itemprop="url">		
+			记一份C++中的输入方式小结		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言学C++的时候，这几个输入函数弄的有点迷糊；这里做个小结，为了自己复习，也希望对后来者能有所帮助，
+如果有差错的地方还请各位多多指教（本文所有程序均通过VC 6.0运行）
+1、cin 
+2、cin.get() 
+3、cin.getline() 
+4、getline() 
+5、gets() 
+6、getchar()
+附:cin.ignore();cin.get()//跳过一个字符,例如不想要的回	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2018/11/22/记一份C++中的输入方式小结/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2018/11/22/moCTF部分web&crypto解题思路(一)/" itemprop="url">
+	<time datetime="2018-11-22T11:48:24.564Z" itemprop="datePublished">
+  		2018-11-22
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2018/11/22/moCTF部分web&crypto解题思路(一)/" itemprop="url">		
+			moCTF部分web&amp;crypto解题思路(一)		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言本渣渣由于在比赛中被打的太狠了，找到一个新的平台感觉还不错，简单记录几题解题思路
+CTF平台 moCTF:http://www.moctf.com/challenges
+一道水题
+点击链接，点击F12键就会得到
+
+还是水题
+点击链接，打开F12进行查看就会看到方框被js禁止，更改一下就可以了
+
+最后就会得到答案：
+
+访问限制
+点击链接就会得到：只允许使用NAIVE浏览器访问！
+使用burp进行	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2018/11/22/moCTF部分web&crypto解题思路(一)/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2018/11/21/个人资料站汇总/" itemprop="url">
+	<time datetime="2018-11-21T15:54:01.678Z" itemprop="datePublished">
+  		2018-11-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2018/11/21/个人资料站汇总/" itemprop="url">		
+			个人学习资料站汇总		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言简单记录一下个人对于学习的资料以及所在站点，持续更新中
+技能树收集http://www.sec-wiki.com/skill/ 安全技能(里面渗透逆向编程都有介绍)
+http://blog.knownsec.com/Knownsec_RD_Checklist/ 知道创宇研发技能表v3.0
+CTF以及渗透测试综合学习平台http://edu.gooann.com/ 谷安网校
+http://www	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2018/11/21/个人资料站汇总/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2018/11/21/读人性的弱点有感/" itemprop="url">
+	<time datetime="2018-11-21T11:27:45.036Z" itemprop="datePublished">
+  		2018-11-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2018/11/21/读人性的弱点有感/" itemprop="url">		
+			读《人性的弱点》有感		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言《人性的弱点》并不是告诉我们我们有多么的不堪，而是希望我们能够正确认识自己，去探索一个不为人知的另类世界。
+人性是人本身自带的属性，人性的弱点有时候自己都没有发现，却是真实存在的，我们总是做一些我们自认为或者潜意识认为能让我们高兴愉悦的
+事情或者行为。毫无道理可言又真实上演一幕幕。
+有弱点，不可怕。可怕的我们自己根本没有意识到自己的弱点而一直活在自我感觉良好中。以自我为中心忽略其他人的感受。不	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2018/11/21/读人性的弱点有感/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		     
+
+		
+	<ul class="am-pagination">
+		
+			<li class="am-pagination-prev">
+				<a href="/page/6/">&laquo; 上一页 </a>
+			</li>
+		
+		
+		
+			<li class="am-pagination-next">
+				<a href="/page/8/"> 下一页 &raquo; </a>
+			</li>
+		
+	</ul>
+    	
+	</div>
+</div>
+<!-- content end -->
+
+	<!--图文风格-->
+
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
