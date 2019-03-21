@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>Bug Bounty：通过.DS_STORE文件（MACOS）进行文件泄露</title>
+	<title>Bug Bounty 通过DS_STORE文件进行文件泄露</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《Bug Bounty：通过.DS_STORE文件（MACOS）进行文件泄露》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《Bug Bounty 通过DS_STORE文件进行文件泄露》</p>
 			
 		
 	
@@ -161,8 +161,8 @@
 					
 					
 	
-		<a href="/2019/03/21/通过.DS_STORE文件（MACOS）进行文件泄露/" itemprop="url">		
-			Bug Bounty：通过.DS_STORE文件（MACOS）进行文件泄露		
+		<a href="/2019/03/21/Bug Bounty 通过DS_STORE文件进行文件泄露/" itemprop="url">		
+			Bug Bounty 通过DS_STORE文件进行文件泄露		
 		</a>
 	
 
@@ -171,7 +171,7 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2019/03/21/通过.DS_STORE文件（MACOS）进行文件泄露/" itemprop="url">
+						<a href="/2019/03/21/Bug Bounty 通过DS_STORE文件进行文件泄露/" itemprop="url">
 	<time datetime="2019-03-21T02:34:56.491Z" itemprop="datePublished">
   		2019-03-21
   </time>
@@ -188,7 +188,7 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="Bug-Bounty：通过-DS-STORE文件（MACOS）进行文件泄露"><a href="#Bug-Bounty：通过-DS-STORE文件（MACOS）进行文件泄露" class="headerlink" title="Bug Bounty：通过.DS_STORE文件（MACOS）进行文件泄露"></a>Bug Bounty：通过.DS_STORE文件（MACOS）进行文件泄露</h2><p>原文链接：<a href="https://omespino.com/write-up-file-disclosure-via-ds_store-file-macos/" target="_blank" rel="noopener">https://omespino.com/write-up-file-disclosure-via-ds_store-file-macos/</a></p>
+						<h2 id="Bug-Bounty-通过-DS-STORE文件进行文件泄露"><a href="#Bug-Bounty-通过-DS-STORE文件进行文件泄露" class="headerlink" title="Bug Bounty 通过 DS_STORE文件进行文件泄露"></a>Bug Bounty 通过 DS_STORE文件进行文件泄露</h2><p>原文链接：<a href="https://omespino.com/write-up-file-disclosure-via-ds_store-file-macos/" target="_blank" rel="noopener">https://omespino.com/write-up-file-disclosure-via-ds_store-file-macos/</a></p>
 <p>大家好，这是另一篇Facebook Whitehat报告写的（Facebook将该报告标记为N / A，但是其他一些程序接受这个错误作为有效的错误奖励，根据前Twitter。所以这可能在某些情况下有用），所以我写下个人的渗透测试报告，希望能够帮助到你们：</p>
 <h3 id="标题：目录列表通过-DS-Store文件（macOS）公开"><a href="#标题：目录列表通过-DS-Store文件（macOS）公开" class="headerlink" title="标题：目录列表通过.DS_Store文件（macOS）公开"></a>标题：目录列表通过.DS_Store文件（macOS）公开</h3><p><strong>产品/ URL：https：//live.oculus.com/</strong></p>
 <h4 id="描述和影响"><a href="#描述和影响" class="headerlink" title="描述和影响"></a>描述和影响</h4><p><code>Apple Macintosh OS X / macOS .DS_Store</code>目录列表泄露漏洞</p>
@@ -458,7 +458,7 @@
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Bug-Bounty：通过-DS-STORE文件（MACOS）进行文件泄露"><span class="post-toc-text">Bug Bounty：通过.DS_STORE文件（MACOS）进行文件泄露</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#标题：目录列表通过-DS-Store文件（macOS）公开"><span class="post-toc-text">标题：目录列表通过.DS_Store文件（macOS）公开</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#描述和影响"><span class="post-toc-text">描述和影响</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#复现过程"><span class="post-toc-text">复现过程</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Bug-Bounty-通过-DS-STORE文件进行文件泄露"><span class="post-toc-text">Bug Bounty 通过 DS_STORE文件进行文件泄露</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#标题：目录列表通过-DS-Store文件（macOS）公开"><span class="post-toc-text">标题：目录列表通过.DS_Store文件（macOS）公开</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#描述和影响"><span class="post-toc-text">描述和影响</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#复现过程"><span class="post-toc-text">复现过程</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
