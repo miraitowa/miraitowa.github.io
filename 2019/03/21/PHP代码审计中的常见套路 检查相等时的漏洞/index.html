@@ -1,0 +1,674 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>PHP代码审计中的常见套路 检查相等时的漏洞</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《PHP代码审计中的常见套路 检查相等时的漏洞》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/21/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/03/21/PHP代码审计中的常见套路 检查相等时的漏洞/" itemprop="url">		
+			PHP代码审计中的常见套路 检查相等时的漏洞		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/03/21/PHP代码审计中的常见套路 检查相等时的漏洞/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.438Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="PHP代码审计中的常见套路-检查相等时的漏洞"><a href="#PHP代码审计中的常见套路-检查相等时的漏洞" class="headerlink" title="PHP代码审计中的常见套路 检查相等时的漏洞"></a>PHP代码审计中的常见套路 检查相等时的漏洞</h2><h3 id="0x00-原文"><a href="#0x00-原文" class="headerlink" title="0x00 原文"></a>0x00 原文</h3><p>PHP网站渗透中的奇技淫巧：检查相等时的漏洞</p>
+<p><a href="http://www.freebuf.com/articles/web/129607.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/129607.html</a></p>
+<h4 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h4><p>PHP代码审计片段讲解（入门代码审计、CTF必备）</p>
+<p><a href="http://www.freebuf.com/articles/rookie/152209.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/rookie/152209.html</a></p>
+<h3 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h3><p>PHP是现在网站中最为常用的后端语言之一，是一种类型系统 动态、弱类型的面向对象式编程语言。可以嵌入HTML文本中，</p>
+<p>是目前最流行的web后端语言之一，并且可以和Web Server 如apache和nginx方便的融合。目前，已经占据了服务端市场的极大占有量。</p>
+<p>但是，其弱类型的设计，一些方便的特性被新手程序员的不当使用，造成了一些漏洞，这篇文章就来介绍一下一些渗透中可以用的特性。</p>
+<h3 id="0x02-常见漏洞"><a href="#0x02-常见漏洞" class="headerlink" title="0x02 常见漏洞"></a>0x02 常见漏洞</h3><h4 id="a-弱类型比较-导致的漏洞"><a href="#a-弱类型比较-导致的漏洞" class="headerlink" title="a.弱类型比较==导致的漏洞"></a>a.弱类型比较==导致的漏洞</h4><p><strong>基本说明</strong></p>
+<p>注：这些漏洞适用于所有版本的php</p>
+<p>先来复习一下基本的语法：php中有如下两种比较符号：两个等号和三个等号（这一点和JavaScript）有些类似</p>
+<blockquote>
+<ol>
+<li>$a==$b</li>
+<li>$a===$b</li>
+</ol>
+</blockquote>
+<p>关于这两种比较符号的详细说明</p>
+<blockquote>
+<ol>
+<li>当表达式 $a == $b 的结果为 TRUE 时，说明类型转换后 $a 等于 $b。</li>
+<li>当表达式 $a === $b 的结果为 TRUE 时，说明 $a 等于 $b，并且它们的类型也相同。</li>
+</ol>
+</blockquote>
+<p>如果比较一个数字和字符串或者比较涉及到数字内容的字符串，则字符串会被转换为数值并且比较按照数值来进行。</p>
+<p>此规则也适用于 switch 语句。</p>
+<p>当用 === 或 !== 进行比较时则不进行类型转换，因为此时类型和数值都要比对.</p>
+<p>这里明确的写出了 如果一个数值和一个字符串比较，那么会将字符串转换为数值。</p>
+<p>然而，php是如何将一个字符串转化为数值的呢，我们继续查看php手册</p>
+<p>当一个字符串被当作一个数值来取值，其结果和类型如下：如果该字符串没有包含 ‘.’，’e’ 或 ‘E’ 并且其数字值在整型的范围之内（由 PHP_INT_MAX 所定义），</p>
+<p>该字符串将被当成 integer 来取值。其它所有情况下都被作为 float 来取值。该字符串的开始部分决定了它的值。如果该字符串以合法的数值开始，则使用该数值。</p>
+<p>否则其值为 0（零）。合法数值由可选的正负号，后面跟着一个或多个数字（可能有小数点），再跟着可选的指数部分。指数部分由 ‘e’ 或 ‘E’ 后面跟着一个或多个数字构成。</p>
+<p>这是官方手册上面的几个例子</p>
+<blockquote>
+<ol>
+<li>&lt;?php</li>
+<li>$foo = 1 + “10.5”;                // $foo is float (11.5) 10.5</li>
+<li>$foo = 1 + “-1.3e3”;              // $foo is float (-1299) -1300</li>
+<li>$foo = 1 + “bob-1.3e3”;           // $foo is integer (1) 0</li>
+<li>$foo = 1 + “bob3”;                // $foo is integer (1) 0</li>
+<li>$foo = 1 + “10 Small Pigs”;       // $foo is integer (11) 10</li>
+<li>$foo = 4 + “10.2 Little Piggies”; // $foo is float (14.2) 10.2</li>
+<li>$foo = “10.0 pigs “ + 1;          // $foo is float (11) 10.0</li>
+<li>$foo = “10.0 pigs “ + 1.0;        // $foo is float (11) 10.0    </li>
+<li>?&gt;</li>
+</ol>
+</blockquote>
+<p>我们大概可以总结出如下的规则：当一个字符串被转换为数值时</p>
+<p>如果一个字符串为 “合法数字+e+合法数字”类型，将会解释为科学计数法的浮点数<br>如果一个字符串为 “合法数字+ 不可解释为合法数字的字符串”类型，</p>
+<p>将会被转换为该合法数字的值，后面的字符串将会被丢弃</p>
+<p>如果一个字符串为“不可解释为合法数字的字符串+任意”类型，则被转换为0！</p>
+<blockquote>
+<ol>
+<li>&lt;?php</li>
+<li>‘a’==0 // true</li>
+<li>‘12a’==12 //true</li>
+<li>‘1’==1 //true</li>
+<li>‘1aaaa55sss66’==1 //true</li>
+<li>?&gt;</li>
+</ol>
+</blockquote>
+<p>当然，上面的那些等式对于===都是false的，原本一些应该用===的地方误用了==，导致了漏洞的产生。</p>
+<p><strong>案例</strong></p>
+<p>示例代码 1：利用转为数字后相等的漏洞</p>
+<blockquote>
+<ol>
+<li>&lt;?php</li>
+<li>if (isset($_GET[‘v1’]) &amp;&amp; isset($_GET[‘v2’])) {</li>
+<li>$logined = true;</li>
+<li>$v1 = $_GET[‘v1’];</li>
+<li>$v2 = $_GET[‘v2’];</li>
+<li>if (!ctype_alpha($v1)) {$logined = false;}</li>
+<li>if (!is_numeric($v2) ) {$logined = false;}</li>
+<li>if (md5($v1) != md5($v2)) {$logined = false;}</li>
+<li>if ($logined){</li>
+<li>// continuue to do other things</li>
+<li>} else {</li>
+<li>echo “login failed”</li>
+<li>}</li>
+<li>}</li>
+<li>?&gt;</li>
+</ol>
+</blockquote>
+<p>这是一个ctf的题目，非常有趣，可以看到，要求给出两字符串，一个是纯数字型，一个只能出现字符，使两个的md5哈希值相等，然而这种强碰撞在密码学上都是难以做到的。<br>其中，关于md5函数的一些细节</p>
+<blockquote>
+<ol>
+<li>string md5 ( string $str [, bool $raw_output = false ] )</li>
+<li>str原始字符串。raw_output如果可选的 raw_output 被设置为 TRUE，那么 MD5 报文摘要将以16字节长度的原始二进制格式返回。</li>
+</ol>
+</blockquote>
+<p>16进制的数据中是含有e的，可以构建使得两个数字比较的，这里有一个现成的例子：</p>
+<blockquote>
+<ol>
+<li>md5(‘240610708’)</li>
+<li>//0e462097431906509019562988736854.</li>
+<li>md5(‘QNKCDZO’)</li>
+<li>//0e830400451993494058024219903391</li>
+</ol>
+</blockquote>
+<p>可以看到，这两个字符串一个只包含数字，一个只包含字母，虽然两个的哈希不一样，但是都是一个形式：0e 纯数字这种格式的字符串在判断相等的时候会被认为是科学计数法的数字，先做字符串到数字的转换。</p>
+<blockquote>
+<ol>
+<li>md5(‘240610708’)==md5(‘QNKCDZO’); //True</li>
+<li>md5(‘240610708’)===md5(‘QNKCDZO’); //False</li>
+</ol>
+</blockquote>
+<h4 id="示例代码2-利用-类’a’-0的漏洞"><a href="#示例代码2-利用-类’a’-0的漏洞" class="headerlink" title="示例代码2: 利用 类’a’==0的漏洞"></a>示例代码2: 利用 类’a’==0的漏洞</h4><blockquote>
+<ol>
+<li>&lt;?php</li>
+<li>if (isset($_POST[‘json’])) {</li>
+<li>$json = json_decode($_POST[‘json’]);</li>
+<li>$key =”<strong><strong><strong><strong><strong>**</strong></strong></strong></strong></strong>“;</li>
+<li>if ($json-&gt;key == $key) {</li>
+<li>//login success ,continue</li>
+<li>} else {</li>
+<li>//login failed ，return</li>
+<li>}</li>
+<li>?&gt;</li>
+</ol>
+</blockquote>
+<p>这次这个例子是传入一个JSON的数据，JSON在RESTful的网站中是很常用的一种数据传输的格式。这个表单会把一个name为key的input的数据作为json传到服务端。</p>
+<p>php的json_decode()函数会根据json数据中的数据类型来将其转换为php中的相应类型的数据，也就是说，如果我们在json中传一个string类型，</p>
+<p>那么该变量就是string，如果传入的是number，则该变量为number。因此，我们如果传入一个数字，就可以使之相等。网页中的表单可能限制了所有的输入都是string，即使输入数字，传入的东西也是</p>
+<ol>
+<li>{“key”:”0”}</li>
+</ol>
+<p>这是一个字符串0，我们需要让他为数字类型，用burp拦截，把两个双引号去掉，变成这样：</p>
+<ol>
+<li>{“key”:0}</li>
+</ol>
+<p>值得讨论的一点是，在这种方法的漏洞利用中，很难在直接表单类型的POST的数据中使用，这是为什么呢，这个和HTTP协议有关。</p>
+<p>首先，我们看一下，在POST给服务器的数据中，有几种类型，也就是HTTP header中的Content-Type:</p>
+<blockquote>
+<ol>
+<li>application/x-www-form-urlencoded</li>
+<li>multipart/form-data</li>
+<li>application/json</li>
+<li>application/xml</li>
+</ol>
+</blockquote>
+<p>但是因为在直接的POST的payload当中是无法区分字符串和数字的，因为在其中并没有引号出现，举一个抓包的例子</p>
+<blockquote>
+<ol>
+<li>POST /login HTTP/1.1</li>
+<li>Host: xxx.com</li>
+<li>Content-Length: 41</li>
+<li>Accept: application/json, text/javascript,application/x-www-form-urlencoded</li>
+<li>User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36</li>
+<li>Content-Type: application/x-www-form-urlencoded; charset=UTF-8</li>
+<li>Accept-Encoding: gzip, deflate</li>
+<li>Accept-Language: zh-CN,zh;q=0.8</li>
+<li>Connection: close</li>
+<li>username=admin&amp;password=admin</li>
+</ol>
+</blockquote>
+<p>可以看到，payload是放在http包的最后面的，而且都是以没有引号的形式传递的，并没有办法区分到底是字符串还是数字。</p>
+<p>因此， PHP将POST的数据全部保存为字符串形式 ，也就没有办法注入数字类型的数据了而JSON则不一样，JSON本身是一个完整的字符串，经过解析之后可能有字符串，数字，布尔等多种类型。</p>
+<h4 id="b-strcmp-漏洞"><a href="#b-strcmp-漏洞" class="headerlink" title="b. strcmp 漏洞"></a>b. strcmp 漏洞</h4><p><strong>注：这一个漏洞适用与5.3之前版本的php</strong></p>
+<p>我们首先看一下这个函数,这个函数是用于比较字符串的函数</p>
+<ol>
+<li>int strcmp ( string $str1 , string $str2 )</li>
+</ol>
+<p>参数 str1第一个字符串。str2第二个字符串。如果 str1 小于 str2 返回 &lt; 0； 如果 str1 大于 str2 返回 &gt; 0；如果两者相等，返回 0。</p>
+<p>可知，传入的期望类型是字符串类型的数据，但是如果我们传入非字符串类型的数据的时候，这个函数将会有怎么样的行为呢？</p>
+<p>实际上，当这个函数接受到了不符合的类型，这个函数将发生错误，但是在5.3之前的php中，显示了报错的警告信息后，将return 0 !!!! </p>
+<p>也就是虽然报了错，但却判定其相等了。这对于使用这个函数来做选择语句中的判断的代码来说简直是一个致命的漏洞，</p>
+<p>当然，php官方在后面的版本中修复了这个漏洞，使得报错的时候函数不返回任何值。但是我们仍然可以使用这个漏洞对使用老版本php的网站进行渗透测试。看一段示例代码：</p>
+<blockquote>
+<ol>
+<li>&lt;?php</li>
+<li>$password=”<strong><strong><strong>***</strong></strong></strong>“</li>
+<li>if(isset($_POST[‘password’])){</li>
+<li>if (strcmp($_POST[‘password’], $password) == 0) {</li>
+<li>echo “Right!!!login success”;n</li>
+<li>exit();</li>
+<li>} else {</li>
+<li>echo “Wrong password..”;</li>
+<li>}</li>
+<li>?&gt;</li>
+</ol>
+</blockquote>
+<p>对于这段代码，我们能用什么办法绕过验证呢， 只要我们 $_POST[‘password’]是一个数组或者一个object 即可，但是上一个问题的时候说到过，只能上传字符串类型，那我们又该如何做呢。</p>
+<p>其实php为了可以上传一个数组，会把结尾带一对中括号的变量，例如 xxx[]的name（就是$_POST中的key），当作一个名字为xxx的数组构造类似如下的request</p>
+<blockquote>
+<ol>
+<li>POST /login HTTP/1.1</li>
+<li>Host: xxx.com</li>
+<li>Content-Length: 41</li>
+<li>Accept: application/json, text/javascript</li>
+<li>User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36</li>
+<li>Content-Type: application/x-www-form-urlencoded; charset=UTF-8</li>
+<li>Accept-Encoding: gzip, deflate</li>
+<li>Accept-Language: zh-CN,zh;q=0.8</li>
+<li>Connection: close</li>
+<li>password[]=admin</li>
+</ol>
+</blockquote>
+<h3 id="0x03-总结"><a href="#0x03-总结" class="headerlink" title="0x03 总结"></a>0x03 总结</h3><p>因此，在防御这个漏洞的过程中，保证几件事情：</p>
+<blockquote>
+<ol>
+<li>在所有可能的地方，都使用===来代替==</li>
+<li>对于用户输入做过滤和类型检查</li>
+<li>尽量使用新版本的php，apache</li>
+</ol>
+</blockquote>
+<p>而对于渗透测试人员，在 代码审计 的过程中，对于有==,strcmp的比较也应极为敏感 。在黑盒渗透的时候也可以对于代码进行猜测，结合信息搜集过程中的一些版本特性，利用这些漏洞来绕过验证。</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/03/21/PHP伪协议/" title="PHP伪协议">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/21/noxCTF部分题目writeup/" title="noxCTF部分题目writeup">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP代码审计中的常见套路-检查相等时的漏洞"><span class="post-toc-text">PHP代码审计中的常见套路 检查相等时的漏洞</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x00-原文"><span class="post-toc-text">0x00 原文</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#延伸阅读"><span class="post-toc-text">延伸阅读</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-前言"><span class="post-toc-text">0x01 前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-常见漏洞"><span class="post-toc-text">0x02 常见漏洞</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#a-弱类型比较-导致的漏洞"><span class="post-toc-text">a.弱类型比较==导致的漏洞</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#示例代码2-利用-类’a’-0的漏洞"><span class="post-toc-text">示例代码2: 利用 类’a’==0的漏洞</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#b-strcmp-漏洞"><span class="post-toc-text">b. strcmp 漏洞</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-总结"><span class="post-toc-text">0x03 总结</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

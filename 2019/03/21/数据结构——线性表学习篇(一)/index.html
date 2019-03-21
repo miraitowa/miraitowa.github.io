@@ -1,0 +1,725 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>数据结构——线性表学习篇(一)</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《数据结构——线性表学习篇(一)》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/21/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/03/21/数据结构——线性表学习篇(一)/" itemprop="url">		
+			数据结构——线性表学习篇(一)		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/03/21/数据结构——线性表学习篇(一)/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.402Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天大概用了一天的时间算是把数据结构中的线性表复习完毕，课后一题也刷了一遍，线性表还是很重要的(虽然作为数据结构的基础吧)</p>
+<h3 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h3><p><strong>线性表：</strong>是n个数据特性相同的元素的组成有限序列，是最基本且常用的一种线性结构(线性表，栈，队列，串和数组都是线性结构），同时也是其他数据结构的基础。</p>
+<p><strong>空表：</strong> n为表长，当n=0时称为空表</p>
+<p><strong>表头：</strong>表起始位置称表头</p>
+<p><strong>表尾：</strong>表结束位置称为表尾</p>
+<p>对于非空的线性表或者线性结构的特点：</p>
+<blockquote>
+<p>（1）存在唯一的一个被称作“第一个”的数据元素；</p>
+<p>（2）存在唯一的一个被称作“最后一个”的数据元素；</p>
+<p>（3）除第一个外，结构中的每个数据元素均只有一个前驱；</p>
+<p>（4）除最后一个外，结构中的每个数据元素均只有一个后继；</p>
+</blockquote>
+<h3 id="线性表的两种实现方式"><a href="#线性表的两种实现方式" class="headerlink" title="线性表的两种实现方式"></a>线性表的两种实现方式</h3><h4 id="顺序表示（顺序表）"><a href="#顺序表示（顺序表）" class="headerlink" title="顺序表示（顺序表）"></a>顺序表示（顺序表）</h4><p><strong>概念：</strong> 用一组地址连续的存储单元依次存储线性表的数据元素，这种存储结构的线性表称为顺序表。</p>
+<p><strong>特点：</strong> 逻辑上相邻的数据元素，物理次序也是相邻的。</p>
+<p><strong>随机存取性：</strong> 只要确定好了存储线性表的起始位置，线性表中任一数据元素都可以随机存取，所以线性表的顺序存储结构是一种随机存取的储存</p>
+<p>结构，因为高级语言中的数组类型也是有随机存取的特性，所以通常我们都使用数组来描述数据结构中的顺序储存结构，用动态分配的一维数组表示线性表。</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>以最简单的学生信息管理为例：</p>
+<p>首先先创建两个数据结构，如下：</p>
+<pre><code>#define maxsize 100; //定义学生最大数量
+#define OK 1;        //正确标志
+#define ERROR 0;     //失败标志
+//学生信息的数据结构
+typedef struct
+{
+    int id;   //学生id
+    char name[30];   //学生姓名
+
+}Student;
+
+
+//顺序表数据结构
+typedef struct
+{
+    Student *elem;   //储存空间的基地址
+    int length;      //数据结构的长度
+}SqList;
+</code></pre><p>定义SqList类型的变量<br>    SqList L;</p>
+<p>这是一个十分简单的例子，这样我们就可以通过<code>L.elem[i-1]</code>访问序号为<code>i</code>的学生信息了</p>
+<p><strong>注意：</strong> c语言中的数组的下标是从0开始的，而位置序号是从1开始的</p>
+<p><strong>1：初始化</strong></p>
+<pre><code>  //初始化顺序表基本算法
+Status InitList(SqList &amp;L)
+{
+//构造一个空的顺序表L
+L.elem = new ElemType[maxsize];  //分配内存空间
+if(!L.elem) exit(OVERFLOW);      //存储分配失败退出
+L.length = 0;                    //空表长度为0
+return OK;
+}
+</code></pre><p><strong>2：取值</strong></p>
+<pre><code> //顺序表取值
+   Status Get(SqList &amp;L,int i,ElemType &amp;e)
+   {
+ if(i&lt;1||i&gt;L.length)  return ERROR;  //判断i值是否合理，若不合理，返回ERROR
+ e = L.elem[i-1];                   //elem[i-1]单元存储第i个数据元素
+ return OK;  
+
+   }
+</code></pre><p>时间复杂度为O(1)</p>
+<p><strong>3：查找</strong></p>
+<pre><code>//顺序表查找
+   int Find(SqList L,ElemType e)
+   {
+   //查找值为e的数据元素，返回其序号
+   for(i=0;i&lt;L.length;i++)
+   {
+
+   if(L.elem[i]==e) return i+1;//查找成功，返回序号i+1
+   return 0;   //查找失败，返回0
+   }
+
+   }
+</code></pre><p>平均查找长度(ASL):ASL=(n+1)/2;</p>
+<p>时间复杂度O(n)</p>
+<p><strong>4：插入</strong></p>
+<p><img src="https://i.imgur.com/xAnUoI6.png" alt=""></p>
+<p>一般情况下，在第i(1&lt;=i&lt;=n）个位置插入一个元素时，需要从最后一个元素即第n个元素开始，依次向后移动一个位置，直到第i个元素(共移动n-i+1个元素)</p>
+<pre><code>//顺序表插入
+   Status ListInsert(SqList &amp;L,int i,ElemType e)
+   {
+   if((i&lt;1)||(i&gt;L.length+1)) return ERROR;  //i不合法
+   if(L.length == maxsize) return ERROR;  //满了
+   for(j=L.length-1;j&gt;=i-1;j--)
+   L.elem[j+1]=L.elem[j]; //将第n个至i个位置的元素后移
+   L.elem[i-1]=e; //将e放进第i个位置
+   ++L.length;    //表长加1
+   return OK;
+   }
+</code></pre><p>时间复杂度O(n)</p>
+<p><strong>5：删除</strong></p>
+<p><img src="https://i.imgur.com/2rRPJVY.png" alt=""></p>
+<p>一般情况下，删除第i(1&lt;=i&lt;=n）个元素时需将第i+1个至第n个元素(共n-i个元素)依次向前移动一个位置(i=n时无需移动)</p>
+<pre><code> //顺序表删除
+  Status ListDelete(SqList &amp;L,int i)
+  {
+  //删除第i个元素,i的值为[1,L.length]
+  if((i&lt;1)||(i&gt;L.length)) return ERROR; //i的值不合法
+  for(j=i;j&lt;=L.length-1;j++)
+  L.elem[j-1]=L.elem[j];    //被删除元素之后的元素前移
+  --L.length;  //长度减一
+  return OK;
+  }
+</code></pre><p>时间复杂度O(n)</p>
+<p><strong>注意</strong></p>
+<p>算法都十分的简单，眼尖的你可能发现了，为啥有的参数用的是引用，有的不是呢？</p>
+<p>这里我就得讲下使用引用作为形参的作用了，主要有三点：</p>
+<blockquote>
+<p>（1）使用引用作为参数与使用指针作为参数的效果是一样的，形参变化时实参对应也会变化，引用只是一个别名。</p>
+<p>（2）引用类型作为形参，在内存中并没有产生实参的副本，而使用一般变量作为形参，形参和实参会分别占用不同给的存储空间，当数据量较大时，使用变量作为形参可能会浪费时间和空间。</p>
+<p>（3）虽然使用指针也可以达到引用一样的效果，但是在被调函数中需要重复使用”*指针变量名”来访问，很容易产生错误并且使程序的阅读性变差。</p>
+</blockquote>
+<p>此时你会发现，使用顺序表作为存储时，空间是一次性直接开辟的，所以可能会有空间不足或者浪费空间的情况出现，那么为啥不用一个就分配一个空间呢,再使用一个方式将这些空间串起来不就好了，是时候展现真正的技术了（链表）</p>
+<h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p><strong>概念：</strong> 用一组任意的存储单元存储线性表的数据元素（这组存储单元可以是连续的，也可以是不连续的），包括数据域和指针域，数据域存数据，指针域指示其后继的信息。</p>
+<p>这里重点讲单链表，如图：</p>
+<p><img src="https://i.imgur.com/AIQZqNh.png" alt=""></p>
+<p><strong>代码实现</strong></p>
+<pre><code>//单链表存储结构
+  typedef struct LNode
+  {
+  ElemType data;   //结点的数据域
+  struct LNode *next; //结点的指针域
+  }LNode,*LinkList;   //LinkList 为指向结构体LNode的指针类型
+</code></pre><p>为了提高程序的可阅读性，在此对同一结构体指针类型起了两个名称，<code>LinkList与LNode*</code>,本质上两者是等价的。</p>
+<p>通常习惯上用<code>LinkList</code>定义单链表，强调定义的是某个单链表的头指针，用<code>LNode *</code>定义指向单链表中任意结点的指针变量。</p>
+<p>例如，定义LinkList L,则L为单链表的头指针，若定义LNode <em>p ,则p为指向单链表中某个结点的指针，用</em>p代表该结点。</p>
+<p><strong>1：初始化</strong></p>
+<p>基本算法：</p>
+<pre><code>//初始化 
+ Status InitList(LinkList &amp;L)
+ {
+ //构造一个单链表
+ L=new LNode;  //生成头结点，用头指针L指向头结点
+ L-&gt;next =NULL;  //头结点的指针域置空
+ return OK;
+
+ }
+</code></pre><p><strong>2.取值</strong></p>
+<p>基本算法：</p>
+<pre><code>//取值
+ Status Get(LinkList L,int i,ElemType &amp;e)
+ {
+//在带头结点的单链表L中根据序号I获取元素的值，用e返回L中第i个数据元素的值
+p=L-&gt;next;     //初始化，p指向首元结点，计算器j初值赋为1
+j=1;//计数器
+while(p&amp;&amp;j&lt;i) //顺着链表向后扫描，直到j==i
+{
+p=p-&gt;next;    //p指向下一个结点
+ ++j;         //计算器j相应加1
+}
+if(!p||j&gt;i) return ERROR; //不合法i&gt;n或i&lt;=0
+e=p-&gt;data;   //找到该结点后获取该结点的数据域
+return OK;
+
+ }
+</code></pre><p>平均查找长度(ASL):ASL=(n-1)/2;</p>
+<p>时间复杂度O(n)</p>
+<p><strong>3.查找</strong></p>
+<p>基本算法：</p>
+<pre><code>//查找
+ LNode *Find(LinkList L,ElemType e)
+ {
+ p=L-&gt;next; //使p指向首元结点
+ while(p &amp;&amp; p-&gt;data!=e)//顺链域向后扫描，直到p为空或p所指结点的数据域等于e
+ {
+ p=p-&gt;next;  //不符合条件就一直滚下去
+ }
+ return p;   //这里有两种情况，找到的时候返回指针p，如果找不到那么这个p则为null,因为最后一个指向的是null
+ }
+</code></pre><p>时间复杂度O(n)</p>
+<p><strong>4.插入</strong></p>
+<p><img src="https://i.imgur.com/MRE9QK2.jpg" alt=""></p>
+<p>基本算法：</p>
+<pre><code>//插入
+Status ListInsert(LinkList &amp;L,int i,ElemType e)
+{
+//在带头结点的单链表L中第i个位置插入值为e的新结点
+p=L;j=0;
+while(p&amp;&amp;(j&lt;i-1))
+{
+p=p-&gt;next; //查找第i-1个结点，p指向该结点
+ ++j;
+}
+if(!p||j&gt;i-1) return ERROR;
+s=new LNode;   //生成一个新结点
+s-&gt;data=e;   //将结点*s的数据域置为e
+s-&gt;next=p-&gt;next; //先接尾部
+p-&gt;next=s;  //再接头部
+}
+</code></pre><p>时间复杂度O(n)</p>
+<p><strong>5.删除</strong></p>
+<p><img src="https://i.imgur.com/X1WeQDO.jpg" alt=""></p>
+<p>基本算法：</p>
+<pre><code>//删除
+Status ListDelete(LinkList &amp;L,int i)
+{
+//删除第i个元素
+p=L;j=0;
+while((p-&gt;next)&amp;&amp;(j&lt;i-1))
+{
+p=p-&gt;next;//查找i-1个结点
+ ++j;
+}
+if(!(p-&gt;next)||(j&gt;i-1)) return ERROR;  //当i&gt;n或i&lt;1时，不符合条件
+q=p-&gt;next;   //临时保存被删除的地址
+p-&gt;next=q-&gt;next;  //将前驱结点指向后驱
+delete q;  //释放删除结点的空间
+return OK;
+}
+</code></pre><p>时间复杂度O(n)</p>
+<blockquote>
+<p>其实单链表可以想象成一列人在玩游戏，每个人都把手搭到后面那个人的肩膀上，每个人身上都有一个大口袋用来放数据，</p>
+<p>最后一个人没人可以搭就一直悬空着，第一个带头领队的就不用口袋了，它是一个头结点，是用来找到第一个有口袋的人的，也就是首元结点。</p>
+<p>这样想的话就简单了，初始化的时候就是用一个人当头结点，它没有口袋，他的手是用来搭到第一个有口袋的人肩膀的，因为这个人还没来，</p>
+<p>所以它的next是Null，而取值时，通过参数i，我们就可以从首元结点开始数，数到第i个人，找到他后，就可以拿他口袋里面的东西，</p>
+<p>查找是知道口袋里面东西是什么，想找到这个东西的拥有者，也是一样从首元结点开始找。遍历下去，插入的话，比如要插入第i个位置，</p>
+<p>那么我们就先找到第i-1个人，然后让新来的手搭到第i个人身上，然后再让第i-1个人把之前放在第i个人的手挪开，放在新来的人的肩膀上，</p>
+<p>删除操作的话，例如删除第i个人，那么也是先找到第i-1个人，这里的重点是，因为链表的查询只能是从头开始找的，是不能逆回去的，</p>
+<p>所以我们需要找个变量把要删的那个人的地址先存起来，然后把第i-1个的手放到第i+1个人身上，如果我们不找个变量把那个人的地址存起来，</p>
+<p>这时候我们就没办法找到他了，因为我们用一个变量临时保存他的地址，于是我们只需要释放这个地址的空间就可以了。</p>
+</blockquote>
+<p>这就是单链表的基本操作，那么如何创建单链表呢？</p>
+<h4 id="创建单链表"><a href="#创建单链表" class="headerlink" title="创建单链表"></a>创建单链表</h4><p><strong>前插法</strong></p>
+<p><img src="https://i.imgur.com/H48oov2.png" alt=""></p>
+<pre><code> //前插法创建单链表
+ void CreateList(LinkList &amp;L,int n)
+ {
+ //逆次序输出n个元素的值
+ L=new LNode;
+ L-&gt;next=NULL;
+ for(i=0;i&lt;n;++i)
+ {
+ p=new LNode;  //生成新结点
+ cin&gt;&gt;p-&gt;data;  //输入新结点的数据域内容
+ p-&gt;next=L-&gt;next; //将新结点插到头结点之后
+ L-&gt;next=p;
+ }
+ }
+</code></pre><p><strong>后插法</strong></p>
+<p><img src="https://i.imgur.com/V9ToTJD.png" alt=""></p>
+<pre><code> void CreateList(LinkList &amp;L,int n)
+ {
+ //正次序输入n个元素的值
+ L=new LNode;
+ L-&gt;next=NULL;  //建立一个带头结点的空链表
+ r=L;   //尾指针r指向头结点
+ for(i=0;i&lt;n;++i)
+ {
+ p=new LNode; //生成新结点
+ cin&gt;&gt;p-&gt;data; //输入新结点的数据域内容
+ p-&gt;next=NULL;
+ r-&gt;next=p;  //将新结点插入尾结点之后
+ r=p;   //改变尾指针，使其指向新的尾结点
+ }
+ }
+</code></pre><p>时间复杂度O(n)</p>
+<p>两种方式的结果是一样的，区别就是前插法是把新的元素插到最前面，代替了首元结点的位置，就是明摆的插队，而后插法是插到最后面</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/03/21/数据结构——栈和队列学习篇(一)/" title="数据结构——栈和队列学习篇(一)">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/21/数据结构——线性表学习篇(二)/" title="数据结构——线性表学习篇(二)">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#线性表"><span class="post-toc-text">线性表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#线性表的两种实现方式"><span class="post-toc-text">线性表的两种实现方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#顺序表示（顺序表）"><span class="post-toc-text">顺序表示（顺序表）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#代码实现"><span class="post-toc-text">代码实现</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#链表"><span class="post-toc-text">链表</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#创建单链表"><span class="post-toc-text">创建单链表</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

@@ -1,0 +1,563 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>浅析宽字节注入</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《浅析宽字节注入》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/21/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/03/21/浅析宽字节注入/" itemprop="url">		
+			浅析宽字节注入		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/03/21/浅析宽字节注入/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.531Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="浅析宽字节注入"><a href="#浅析宽字节注入" class="headerlink" title="浅析宽字节注入"></a>浅析宽字节注入</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先我们了解下宽字节注入，宽字节注入主要是源于程序员设置数据库编码与<code>PHP</code>编码设置为不同的两个编码那么就有可能产生宽字节注入</p>
+<p>例如说PHP的编码为<code>UTF-8</code>而<code>MySql</code>的编码设置为了</p>
+<p><code>SET NAMES &#39;gbk&#39;</code>或是<code>SET character_set_client =gbk</code>，这样配置会引发编码转换从而导致的注入漏洞。</p>
+<p>这里要说明一小点的是：</p>
+<p>SET NAMES ‘x’语句与这三个语句等价：</p>
+<pre><code>mysql&gt;SET character_set_client =x;
+mysql&gt;SET character_set_results =x;
+mysql&gt;SET character_set_connection =x;
+</code></pre><p>也就是说你设置了<code>SET NAMES &#39;x&#39;</code>时就等于同时执行了上面的3条语句</p>
+<p>而我认为的宽字节注入就是PHP发送请求到MySql时使用了语句</p>
+<p><code>SET NAMES &#39;gbk&#39;</code>或是<code>SET character_set_client =gbk</code>进行了一次编码，但是又由于一些不经意的字符集转换导致了宽字节注入</p>
+<h4 id="宽字节注入原理"><a href="#宽字节注入原理" class="headerlink" title="宽字节注入原理"></a>宽字节注入原理</h4><p>1：在我们正常情况下使用<code>addslashes</code>函数或是开启<code>PHPGPC</code>（注：在php5.4已上已给删除，并且需要说明特别说明一点，</p>
+<p><code>GPC</code>无法过滤<code>$_SERVER</code>提交的参数）时过滤<code>GET、POST、COOKIE、REQUSET</code>提交的参数时，</p>
+<p>黑客们使用的预定义字符会给转义成添加反斜杠的字符串如下面的例子</p>
+<p><strong>例子：</strong></p>
+<pre><code>单引号（&#39;）= （\&#39;）
+双引号（&quot;） = （\&quot;）
+反斜杠（\） = （\\）
+</code></pre><p>2：假如这个网站有宽字节注入那么我们提交：</p>
+<pre><code>http://127.0.0.1/unicodeSqlTest?id=%df%27
+</code></pre><p>这时,假如我们现在使用的是<code>addslashes</code>来过滤,那么就会发生如下的转换过程</p>
+<p><strong>例子：</strong></p>
+<pre><code>%df%27===(addslashes)===&gt;%df%5c%27===(数据库GBK)===&gt;運&#39;
+</code></pre><p>这里可能有一些人没看懂，我可以粗略的解释一下。</p>
+<p>前端输入<code>%df%27</code>时首先经过上面<code>addslashes</code>函数转义变成了<code>%df%5c%27（%5c是反斜杠\)</code>，之后在数据库查询前因为设置了GBK编码，</p>
+<p>即是在汉字编码范围内两个字节都会给重新编码为一个汉字。然后MySQL服务器就会对查询语句进行GBK编码即是%df%5c转换成了汉字運，</p>
+<p>而单引号就逃逸了出来，从而造成了注入漏洞。</p>
+<p>干这样看我们可能也没能很清楚的看懂，我们可以来几个例子：</p>
+<p><strong>例子1：</strong></p>
+<p>在PHP中使用<code>$pdo-&gt;query(&#39;set names gbk&#39;)</code>;指定三个字符集（客户端、连接层、结果集）都是GBK编码。而PHP的编码等于UTF-8编码时造成的宽字节注入</p>
+<p><strong>例子代码：</strong></p>
+<pre><code>&lt;?php 
+
+if( !isset($_GET[&#39;id&#39;]) ){
+    echo &quot;Error:ID NULL&quot;;
+}
+
+$id=addslashes($_GET[&#39;id&#39;]);//获取id并且转移与定义字符
+
+//分别对应的是 地址，端口号，连接的数据库
+$dsn = &quot;mysql:host=127.0.0.1; port=3306; dbname=blog;&quot;;
+
+//账号
+$user = &#39;root&#39;;
+
+//密码
+$psw = &#39;root&#39;;
+
+//连接到MySQL
+$pdo = new PDO($dsn,$user,$psw);
+
+//准备执行的sql语句
+$sql = &#39;SELECT * FROM tp_category WHERE id =&#39;.&quot;&#39;{$id}&#39;&quot;;
+echo $sql;
+echo &#39;&lt;br/&gt;&#39;;
+echo &#39;&lt;br/&gt;&#39;;
+
+//设置编码
+
+$pdo-&gt;query(&#39;set names gbk&#39;);
+$res = $pdo-&gt;query($sql) or var_dump($pdo-&gt;errorInfo());
+
+$mon = $res-&gt;fetch(PDO::FETCH_ASSOC);
+var_dump( $mon );
+
+ ?&gt;
+</code></pre><p><img src="https://i.imgur.com/y25pkvC.png" alt=""></p>
+<p>那么如何逃过<code>addslashes</code>的限制呢？<code>addslashes</code>函数产生的效果就是，让’变成\’，让单双引号变得不再是’单双引号’，只是一撇而已。</p>
+<p>一般绕过方式就是，想办法处理掉\’前面的\：</p>
+<pre><code>1.想办法给\ 前面再加一个\，变成\\&#39;，这样\被转义了， &#39; 逃出了限制
+2.想办法把\弄没有。
+</code></pre><p>我们这里的宽字节注入是利用mysql的一个特性，mysql在使用GBK编码的时候，会认为两个字符是一个汉字（前一个ascii码要大于128，</p>
+<p>才到汉字的范围）。根据这个我们在地址栏输入%df%27看看会发生什么：</p>
+<p><img src="https://i.imgur.com/42AcQ8Z.png" alt=""></p>
+<p><img src="https://i.imgur.com/Ev4amCC.png" alt=""></p>
+<p>我们可以看到，页面已经报错了。看到报错，说明这句sql语句出错，说明我们已经绕过了<code>addslashes</code>那么就可以正常的进行注入了。</p>
+<p>我们只是在<code>%27</code>前面加了一个<code>%df</code>为什么就报错了？而且从上图中可以看到，报错的原因是多了一个单引号，而单引号前面的反斜杠已经不见了。</p>
+<p>这就是<code>mysql</code>的特性，因为<code>gbk</code>是多字节编码，他认为两个字节代表一个汉字，所以%df和后面的\也就是%5c变成了一个汉字運，而’逃逸了出来,导致了注入。</p>
+<p><strong>例子2：</strong></p>
+<p>使用set names UTF-8指定了UTF-8字符集，并且也使用转义函数进行转义。有时候在程序运行的时候，为了避免乱码，</p>
+<p>会将一些用户提交的GBK字符使用<code>iconv函数（或mb_convert_encoding）</code>先转为<code>UTF-8</code>，然后再拼接SQL语句带入数据库。</p>
+<p><strong>例子代码：</strong></p>
+<p><img src="https://i.imgur.com/tdFO95P.png" alt=""></p>
+<p><img src="https://i.imgur.com/IBcXLGF.png" alt=""></p>
+<p><img src="https://i.imgur.com/zB88YHY.png" alt=""></p>
+<p><img src="https://i.imgur.com/ItI5YXn.png" alt=""></p>
+<p><strong>转换过程：</strong></p>
+<pre><code>%df%27===(addslashes)===&gt;%df%5c%27===(iconv)===&gt;%e5%5c%5c%27
+</code></pre><p><code>$id =iconv(&#39;GBK&#39;,&#39;UTF-8&#39;, $id)</code>;如果内容是utf8编码的，将自动转成gbk编码的. 錦的utf-8编码是0xe98ca6，它的gbk编码是<code>0xe55c</code>。</p>
+<p> 有的同学可能就领悟了。<code>\</code>的ascii码正是<code>5c</code>。那么，当我们的<strong>錦</strong>被<code>iconv</code>从<code>utf-8</code>转换成<code>gbk</code>后，变成了<code>%e5%5c</code>，</p>
+<p>而后面的<code>’</code>被<code>addslashes</code>变成了<code>%5c%27</code>，这样组合起来就是<code>%e5%5c%5c%27</code>，两个<code>%5c</code>就是<code>\</code>，正好把反斜杠转义了，导致<code>’</code>逃逸出单引号，产生注入。</p>
+<p>从上面的介绍中可以看出，宽字节注入的关键点有两个：</p>
+<p><strong>（1） 需要将数据库编码与PHP编码设置为不同的两个编码那么就有可能产生宽字节注入；</strong></p>
+<p><strong>（2） 设置的宽字符集可能吃掉转义符号\（对应的编码为0x5c，即低位中包含正常的0x5c就行了）。</strong></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/03/21/使用CSS选择器和基于时间的攻击的Javascript获取数据/" title="使用CSS选择器和基于时间的攻击的Javascript获取数据">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/21/浅析PHP正则表达式的利用技巧/" title="浅析PHP正则表达式的利用技巧">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浅析宽字节注入"><span class="post-toc-text">浅析宽字节注入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#宽字节注入原理"><span class="post-toc-text">宽字节注入原理</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

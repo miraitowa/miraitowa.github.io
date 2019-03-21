@@ -1,0 +1,813 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>miraitowa</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">主页</p>	
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/21/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		
+	<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed">
+	<div class="am-u-md-12 am-u-sm-12">
+
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/PTA刷题——最大子列和问题/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.463Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/PTA刷题——最大子列和问题/" itemprop="url">		
+			PTA刷题——最大子列和问题		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								7-69 最大子列和问题 （20 分）给定K个整数组成的序列{N1,N2,...,NK}，“连续子列”被定义为{Ni,Ni+1 , …,Nj}，其中 1≤i≤j≤K。“最大子列和”则被定义为所有连续子列元素的和
+中最大者。例如给定序列{ -2, 11, -4, 13, -5, -2 }，其连续子列{ 11, -4, 13 }有最大的和20。现要求你编写程序，计算给定整数序列的最大子列和。
+本题旨在	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/PTA刷题——最大子列和问题/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/PTA刷题——找零/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.462Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/PTA刷题——找零/" itemprop="url">		
+			PTA刷题——找零		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言这一题折磨我好久(QAQ)，给的样例测试是正确的，提交上去就是错误的答案。
+首先：这一题找零需要考虑的有没有分这个数，有进行对分位置上的值进行考虑，而其中分上面有的有值，有的没有数
+例如：
+ 9.90   
+
+ 9.91
+这都是带有分的测试样例，但上面一个分上面有相应的数值，而下面一个却没有数值，这个是需要分开进行考虑的
+其次：
+就是输出格式的问题，空格以及最后取小数点后两位这个也需要进行注意	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/PTA刷题——找零/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/PTA刷题——统计工龄/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.461Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/PTA刷题——统计工龄/" itemprop="url">		
+			PTA刷题——统计工龄		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								PTA刷题——统计工龄给定公司N名员工的工龄，要求按工龄增序输出每个工龄段有多少员工。
+输入格式:
+输入首先给出正整数，即员工总人数；随后给出N个整数，即每个员工的工龄，范围在[0, 50]。
+输出格式:
+按工龄的递增顺序输出每个工龄的员工个数，格式为：“工龄:人数”。每项占一行。如果人数为0则不输出该项。
+输入样例:
+
+1. 8
+1. 10 2 0 5 7 2 5 2
+
+输出样例:
+
+1. 0:	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/PTA刷题——统计工龄/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/PTA刷题——帅到没朋友/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.459Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/PTA刷题——帅到没朋友/" itemprop="url">		
+			PTA刷题——帅到没朋友		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								PTA刷题——帅到没朋友 
+
+当芸芸众生忙着在朋友圈中发照片的时候，总有一些人因为太帅而没有朋友。本题就要求你找出那些帅到没有朋友的人。
+输入格式：
+输入第一行给出一个正整数N（≤100），是已知朋友圈的个数；随后N行，每行首先给出一个正整数K（≤1000），为朋友圈中的人数，
+然后列出一个朋友圈内的所有人——为方便起见，每人对应一个ID号，为5位数字（从00000到99999），ID间以空格分隔	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/PTA刷题——帅到没朋友/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/PTA刷题——输出三角形面积和周长/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.458Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/PTA刷题——输出三角形面积和周长/" itemprop="url">		
+			PTA刷题——输出三角形面积和周长		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								7-9 输出三角形面积和周长 （15 分）本题要求编写程序，根据输入的三角形的三条边a、b、c，计算并输出面积和周长。注意：在一个三角形中， 任意两边之和大于第三边。
+三角形面积计算公式：area=√s(s−a)(s−b)(s−c)，其中s=(a+b+c)/2。
+输入格式：
+输入为3个正整数，分别代表三角形的3条边a、b、c。
+输出格式：
+如果输入的边能构成一个三角形，则在一行内，按照area =	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/PTA刷题——输出三角形面积和周长/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/PTA刷题——是不是太胖了/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.456Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/PTA刷题——是不是太胖了/" itemprop="url">		
+			PTA刷题——是不是太胖了		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								7-6 是不是太胖了 （5 分）据说一个人的标准体重应该是其身高（单位：厘米）减去100、再乘以0.9所得到的公斤数。已知市斤是公斤的两倍。现给定某人身高，
+请你计算其标准体重应该是多少？（顺便也悄悄给自己算一下吧……）
+输入格式：
+输入第一行给出一个正整数H（100 &lt; H ≤ 300），为某人身高。
+输出格式：
+在一行中输出对应的标准体重，单位为市斤，保留小数点后1位。
+输入样例：
+16	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/PTA刷题——是不是太胖了/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/PTA刷题——然后是几点/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.455Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/PTA刷题——然后是几点/" itemprop="url">		
+			PTA刷题——然后是几点		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								7-10 然后是几点 （15 分）
+有时候人们用四位数字表示一个时间，比如1106表示11点零6分。现在，你的程序要根据起始时间和流逝的时间计算出终止时间。
+读入两个数字，第一个数字以这样的四位数字表示当前时间，第二个数字表示分钟数，计算当前时间经过那么多分钟后是几点，
+结果也表示为四位数字。当小时为个位数时，没有前导的零，即5点30分表示为530。注意，第二个数字表示的分钟数可能超过60，也可能	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/PTA刷题——然后是几点/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/PTA刷题——奇偶分家/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.453Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/PTA刷题——奇偶分家/" itemprop="url">		
+			PTA刷题——奇偶分家		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								7-5 奇偶分家 （10 分）给定N个正整数，请统计奇数和偶数各有多少个？
+输入格式：
+输入第一行给出一个正整N（≤1000）；第2行给出N个正整数，以空格分隔。
+输出格式：
+在一行中先后输出奇数的个数、偶数的个数。中间以1个空格分隔。
+输入样例：
+988 74 101 26 15 0 34 22 77
+输出样例：
+3 6
+题目分析计算出奇数，剩余的即是偶数了
+#include&lt;bits/s	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/PTA刷题——奇偶分家/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/PTA刷题——买U盘/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.452Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/PTA刷题——买U盘/" itemprop="url">		
+			PTA刷题——买U盘*		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								7-1 买U盘* （10 分）IT 协会举办程序设计竞赛，准备购买 U 盘作奖品。请编写程序，根据活动经费和 U 盘单价预估可购买 U 盘的最大数量。
+输入格式
+活动经费和 U 盘单价
+输出格式
+可购买 U 盘的最大数量
+输入样例1
+660.8 47.2
+输出样例1
+14
+输入样例2
+504.9 19.8
+输出样例2
+25
+提示：注意实数的误差。
+题目分析这一题主要是卡精度的，需要注意精度就可以了	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/PTA刷题——买U盘/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/PTA刷题——计算天数/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.450Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/PTA刷题——计算天数/" itemprop="url">		
+			PTA刷题——计算天数		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								7-3 计算天数 （15 分）本题要求编写程序计算某年某月某日是该年中的第几天。
+输入格式:
+输入在一行中按照格式“yyyy/mm/dd”（即“年/月/日”）给出日期。
+注意：闰年的判别条件是该年年份能被4整除但不能被100整除、或者能被400整除。闰年的2月有29天。
+输出格式:
+在一行输出日期是该年中的第几天。
+输入样例1:
+2009/03/02
+输出样例1:
+61
+输入样例2:
+2000/0	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/PTA刷题——计算天数/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		     
+
+		
+	<ul class="am-pagination">
+		
+			<li class="am-pagination-prev">
+				<a href="/page/5/">&laquo; 上一页 </a>
+			</li>
+		
+		
+		
+			<li class="am-pagination-next">
+				<a href="/page/7/"> 下一页 &raquo; </a>
+			</li>
+		
+	</ul>
+    	
+	</div>
+</div>
+<!-- content end -->
+
+	<!--图文风格-->
+
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

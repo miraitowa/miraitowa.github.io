@@ -1,0 +1,806 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>miraitowa</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">主页</p>	
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/21/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		
+	<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed">
+	<div class="am-u-md-12 am-u-sm-12">
+
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/常用端口利用总结/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.477Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/常用端口利用总结/" itemprop="url">		
+			常用端口利用总结		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								常用端口利用总结
+
+
+
+21端口渗透剖析FTP通常用作对远程服务器进行管理，典型应用就是对web系统进行管理。一旦FTP密码泄露就直接威胁web系统安全，甚至黑客通过提权可以直接控制服务器。这里剖析渗透FTP服务器的几种方法。
+
+基础爆破：ftp爆破工具很多，这里我推owasp的Bruter,hydra以及msf中的ftp爆破模块。
+ftp匿名访问：用户名：anonymous 密码：为空或者任意邮	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/常用端口利用总结/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/部分中间件漏洞总结(不定时更新)/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.476Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/部分中间件漏洞总结(不定时更新)/" itemprop="url">		
+			部分中间件漏洞总结(不定时更新)		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								部分中间件漏洞总结(不定时更新)前言中间件漏洞可以说是最容易被web管理员忽视的漏洞，原因很简单，因为这并不是应用程序代码上存在的漏洞，而是属于一种应用部署环境的配置不当或者使用不当造成的。那么从实际情况来看，预防这种漏洞最大的难点，在于中间件安全该由谁负责？
+我们在处理应急响应事件时经常遇到这么一种情况，客户网站代码是外包的，也就是第三方公司负责开发，而部署可能是由客户内部运维人员负责。
+暂不说	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/部分中间件漏洞总结(不定时更新)/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/安恒杯十一月份月赛writeup/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.475Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/安恒杯十一月份月赛writeup/" itemprop="url">		
+			安恒杯十一月份月赛writeup		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言十一月份的安恒杯好难呀(QAQ),自己太菜了，把题目总结并且复现了一波，收获还是挺多的
+web签到题—— 手速要快打开题目链接
+就会看到一个需要输入一个Password
+
+打开F12在header里面就会看到password
+
+输入后发现是文件上传题目
+
+一个简单的脚本
+&lt;?php phpinfo();
+
+?&gt;
+直接上传，更改格式，发现上传成功。
+
+并且可以被解析为PHP
+
+于是在	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/安恒杯十一月份月赛writeup/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/安恒杯十二月月赛/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.473Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/安恒杯十二月月赛/" itemprop="url">		
+			安恒杯十二月月赛		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								WEBeasy访问题目链接，给出了源码
+&lt;?php  
+@error_reporting(1); 
+include &#39;flag.php&#39;;
+class baby 
+{   
+public $file;
+function __toString()  
+{  
+if(isset($this-&gt;file)) 
+{
+$filename = &quot;./{$this-&gt;	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/安恒杯十二月月赛/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/WPScan使用完整教程之记一次对WordPress的渗透过程/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.472Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/WPScan使用完整教程之记一次对WordPress的渗透过程/" itemprop="url">		
+			WPScan使用完整教程之记一次对WordPress的渗透过程		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言本次简单的记录优下自己关于WPScan渗透实战的案例，以及对于WPScan的一些使用方法，有什么错误的地方希望各位大佬指正(Orz）
+一：什么是WPScanWPScan是一个扫描 WordPress 漏洞的黑盒子扫描器，它可以为所有 Web 开发人员扫描 WordPress 漏洞并在他们开发前找到并解决问题。
+我们还使用了 Nikto ，它是一款非常棒的Web 服务器评估工具，我们认为这个工具	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/WPScan使用完整教程之记一次对WordPress的渗透过程/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/STEM CTF Cyber Challenge 2019 WEB Writeups/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.471Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/STEM CTF Cyber Challenge 2019 WEB Writeups/" itemprop="url">		
+			STEM CTF Cyber Challenge 2019 WEB Writeups		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								STEM CTF Cyber Challenge 2019 WEB Writeups 
+
+好久没有玩CTF，跪了(QAQ）本文是关于web题目的解析后面两题是赛后，看着大佬的思路进行复现的，文末已经给出相应的参考文章
+什么都不说了，先跪就好(Orz)
+Turing Test
+http://138.247.13.111/
+这一题被称为热身题，只需要结合这个维基百科就可以得到flag:https://	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/STEM CTF Cyber Challenge 2019 WEB Writeups/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/sqlmap看sqli-labs学习篇(一)/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.469Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/sqlmap看sqli-labs学习篇(一)/" itemprop="url">		
+			sqlmap看sqli-labs学习篇(一)		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								sqlmap看sqli-labs学习篇(一)很早之前的文章，忘记搬过来了，https://www.cnblogs.com/miraitowa/p/9363151.html
+刚刚做完sqli-labs的第一节的第一题（QAQ）
+我的时间呀！！！（太笨只能一步一步的往前走）
+我使用了两种方法解决的这一题，希望能够帮助到你们
+第一题题目是 ：GET Error based- Single quotes 	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/sqlmap看sqli-labs学习篇(一)/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/RSA原理整合(附题目)/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.468Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/RSA原理整合(附题目)/" itemprop="url">		
+			RSA原理整合(附题目)		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								内容有点多，希望各位能够慢慢看，水文一篇。
+我只是一个渣渣，如有错误，希望各位大佬能够指正(THs)
+前提知识
+素数：素数又称质数，指在一个大于1的自然数中，除了1和此整数自身外，不能被其他自然数整除的数。
+互质数：公因数只有1的两个数，叫做互质数
+取模运算：两个整数a，b若它们除以正整数m所得的余数相等，则称a，b对于模m同余，记作:a≡b(mod m)；读作：a同余于b模m，或者，a与b关于模	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/RSA原理整合(附题目)/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/Python-数据分析与展示学习笔记(二)/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.466Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/Python-数据分析与展示学习笔记(二)/" itemprop="url">		
+			Python-数据分析与展示学习笔记(二)		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								Python-数据分析与展示学习笔记(二)CSV文件
+
+
+
+
+多维数据的存取
+
+
+
+
+
+
+
+NumPy的随机数函数	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/Python-数据分析与展示学习笔记(二)/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/PTA刷题——最佳情侣身高差/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.465Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/PTA刷题——最佳情侣身高差/" itemprop="url">		
+			PTA刷题——最佳情侣身高差		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								7-12 最佳情侣身高差 （10 分）专家通过多组情侣研究数据发现，最佳的情侣身高差遵循着一个公式：（女方的身高）×1.09 =（男方的身高）。
+如果符合，你俩的身高差不管是牵手、拥抱、接吻，都是最和谐的差度。
+下面就请你写个程序，为任意一位用户计算他/她的情侣的最佳身高。
+输入格式：
+输入第一行给出正整数N（≤10），为前来查询的用户数。随后N行，每行按照“性别 身高”的格式给出前来查询的用户的	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/PTA刷题——最佳情侣身高差/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		     
+
+		
+	<ul class="am-pagination">
+		
+			<li class="am-pagination-prev">
+				<a href="/page/4/">&laquo; 上一页 </a>
+			</li>
+		
+		
+		
+			<li class="am-pagination-next">
+				<a href="/page/6/"> 下一页 &raquo; </a>
+			</li>
+		
+	</ul>
+    	
+	</div>
+</div>
+<!-- content end -->
+
+	<!--图文风格-->
+
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

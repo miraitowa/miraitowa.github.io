@@ -161,8 +161,8 @@
 
 				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
 					<span class="theme-annie-post-date">
-						<a href="/2019/03/21/TAMUctf 2019 writeup/" itemprop="url">
-	<time datetime="2019-03-20T17:03:53.460Z" itemprop="datePublished">
+						<a href="/2019/03/21/数据结构——树与二叉树学习篇(一)/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.537Z" itemprop="datePublished">
   		2019-03-21
   </time>
 </a>    
@@ -170,29 +170,480 @@
 					</span>
 					<span class="theme-annie-post-title">
 						
+	
+		<a href="/2019/03/21/数据结构——树与二叉树学习篇(一)/" itemprop="url">		
+			数据结构——树与二叉树学习篇(一)		
+		</a>
+	
+
 					</span>
 					
 					
 						<p>
 							
-								TAMUctf 2019 writeupMISCHowdy!
-flag:gigem{H0wdy!}
-Who am I?题目描述：
+								1、树的定义和基本术语1.1 树的定义定义：树(Tree)是n(n&gt;=0)个结点的有限集T，T为空时称为空树，否则它满足如下两个条件：
 
-1. What is the A record for tamuctf.com?
-1. (Not in standard gigem{flag} format)
-1. 
-1. Difficulty: easy
+(1)有且仅有一个特定的称为根(Root)的结点；(2)其余的结点可分为m(m&gt;=0)个互不相交的子集T1,T2,T3…Tm，其中每个子集又是一棵树，并称其为子树(Subtree)。要求子树都非空，使子树的个数（和树的结构）能有明确定义：
 
-简单的DNS A记录查询
-使用在线平台：http://t	
+结点个数	
 							  
 						</p> 
 					
 
 					
 						<span class="continue-read">      	
-							<a href="/2019/03/21/TAMUctf 2019 writeup/" class="pull-right">
+							<a href="/2019/03/21/数据结构——树与二叉树学习篇(一)/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/数据结构——串，数组和广义表学习篇(一)/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.535Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/数据结构——串，数组和广义表学习篇(一)/" itemprop="url">		
+			数据结构——串，数组和广义表学习篇(一)		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言昨天一直在做关于KMP算法的事情，今天把数据结构中串，数组和广义表的知识点梳理一下
+串定义：是由零个或多个字符组成的有限序列，又称字符串。
+串的长度：串中字符的数目称为串的长度。 
+空串：由零个字符组成的串叫做空串，空串不包括任何字符，其长度为零。 
+子串：串中任意个连续的字符组成的子序列称为该串的子串，空串是任何串的子串。 
+主串：包含子串的串相应的称为主串。
+串有两种表示形式：顺序存储表示	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/数据结构——串，数组和广义表学习篇(一)/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/数据结构——KMP算法详细理解/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.534Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/数据结构——KMP算法详细理解/" itemprop="url">		
+			数据结构——KMP算法详细理解		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言从昨天开始看KMP算法到今天凌晨。。。。。
+把一些知识点进行总结，其实KMP还是挺简单的(HHHHHH)
+所有的痛苦，不过是过眼云烟。。。。。
+1：BF(暴力匹配)算法假设现在我们面临这样一个问题：有一个文本串S，和一个模式串P，现在要查找P在S中的位置，怎么查找呢？
+如果用暴力匹配的思路，并假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置，则有：
+如果当前字符匹配成功（即S[i] 	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/数据结构——KMP算法详细理解/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/使用CSS选择器和基于时间的攻击的Javascript获取数据/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.532Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/使用CSS选择器和基于时间的攻击的Javascript获取数据/" itemprop="url">		
+			使用CSS选择器和基于时间的攻击的Javascript获取数据		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								使用CSS选择器和基于时间的攻击的Javascript获取数据原文：https://www.netsparker.com/blog/web-security/acquiring-data-with-css-selectors-and-javascript-on-time-based-attacks/#
+jQuery是JavaScript的一个库，于2006年8月发布。jQuery通过使元素选择器，	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/使用CSS选择器和基于时间的攻击的Javascript获取数据/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/浅析宽字节注入/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.531Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/浅析宽字节注入/" itemprop="url">		
+			浅析宽字节注入		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								浅析宽字节注入前言首先我们了解下宽字节注入，宽字节注入主要是源于程序员设置数据库编码与PHP编码设置为不同的两个编码那么就有可能产生宽字节注入
+例如说PHP的编码为UTF-8而MySql的编码设置为了
+SET NAMES &#39;gbk&#39;或是SET character_set_client =gbk，这样配置会引发编码转换从而导致的注入漏洞。
+这里要说明一小点的是：
+SET NAMES 	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/浅析宽字节注入/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/浅析PHP正则表达式的利用技巧/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.529Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/浅析PHP正则表达式的利用技巧/" itemprop="url">		
+			浅析PHP正则表达式的利用技巧		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言文章首发先知社区：https://xz.aliyun.com/t/3537
+简单记录一下个人对于PHP的一些利用技巧，希望能够对各位有帮助
+正则表达式是什么正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、
+将匹配的子串替换或者从某个串中取出符合某个条件的子串等。包括普通字符（例如，a 到 z 之间的字母）和特殊	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/浅析PHP正则表达式的利用技巧/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/难忘的是念念不忘才难忘/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.528Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/难忘的是念念不忘才难忘/" itemprop="url">		
+			难忘的是念念不忘才难忘		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								难忘的是念念不忘才难忘 
+
+
+
+
+1. 难忘的是念念不忘才难忘
+
+1. 我以为若我告诉你你便会疏远我，我想说我喜欢你，可是我说不出口
+
+1. 当太阳照耀海面的时候，我就想到你。当春天出现昏暗的月光，我就想到你。
+
+1. 当天边那颗星出现，你可知我又开始想念，有多少爱恋只能遥遥相望，就像月光洒向海面
+
+1. 最幸福的时刻，就是发现你喜欢的人，正好也喜欢着你
+
+一直以来我都认为
+当自己变得优秀一点
+再	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/难忘的是念念不忘才难忘/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/洛谷学习笔记——循环循环/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.526Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/洛谷学习笔记——循环循环/" itemprop="url">		
+			洛谷学习笔记——循环循环		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								洛谷学习笔记——循环循环P1008 三连击题目背景本题为提交答案题，您可以写程序或手算在本机上算出答案后，直接提交答案文本，也可提交答案生成程序。
+题目描述将1,2,⋯,9共9个数分成3组，分别组成3个三位数，且使这3个三位数构成1:2:3的比例，试求出所有满足条件的3个三位数。
+输入输出格式输入格式：
+木有输入
+输出格式：
+若干行，每行3个数字。按照每行第1个数字升序排列。
+输入输出样例输入样例	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/洛谷学习笔记——循环循环/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/洛谷学习笔记——数组/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.525Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/洛谷学习笔记——数组/" itemprop="url">		
+			洛谷学习笔记——数组		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								洛谷学习笔记——数组P1046 陶陶摘苹果题目描述陶陶家的院子里有一棵苹果树，每到秋天树上就会结出10个苹果。苹果成熟的时候，陶陶就会跑去摘苹果。陶陶有个30厘米高的板凳，
+当她不能直接用手摘到苹果的时候，就会踩到板凳上再试试。
+现在已知10个苹果到地面的高度，以及陶陶把手伸直的时候能够达到的最大高度，请帮陶陶算一下她能够摘到的苹果的数目。假设她碰到苹果，苹果就会掉下来。
+输入输出格式输入格式：
+	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/洛谷学习笔记——数组/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/论人丑就要多读书/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.523Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/论人丑就要多读书/" itemprop="url">		
+			论人丑就要多读书		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言 
+
+
+今天和我的一位好友聊天的时候，对方回复的这一句(QAQ)，有很多人说过这句话我都未曾给予回答，你知道为什么吗？(看一下这个链接上面的视频）
+本来不想回答这种问题，但是想到好友，天天那么懒的性格，还是有必要写一些文字。
+谨以此文献给我那个傻傻的好友(人傻怪自己HHHHH)
+同时也愿你成为你想成为的那个人，当然也可以是我这种人(hhhhhh)。
+
+愿你一世长安，此生尽兴，赤诚善良
+愿你有孩	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/论人丑就要多读书/" class="pull-right">
 								展开全文
 							</a>		
 						</span>
@@ -202,7 +653,17 @@ Who am I?题目描述：
 			</article>
 		     
 
-		    	
+		
+	<ul class="am-pagination">
+		
+		
+		
+			<li class="am-pagination-next">
+				<a href="/page/2/"> 下一页 &raquo; </a>
+			</li>
+		
+	</ul>
+    	
 	</div>
 </div>
 <!-- content end -->

@@ -1,0 +1,630 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>记一次在实战靶机中使用SearchSploit的总结</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《记一次在实战靶机中使用SearchSploit的总结》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/21/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/03/21/记一次在实战靶机中使用`SearchSploit`的总结/" itemprop="url">		
+			记一次在实战靶机中使用SearchSploit的总结		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/03/21/记一次在实战靶机中使用`SearchSploit`的总结/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.497Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="什么是SearchSploit？"><a href="#什么是SearchSploit？" class="headerlink" title="什么是SearchSploit？"></a>什么是<code>SearchSploit</code>？</h3><p><a href="https://github.com/offensive-security/exploitdb" target="_blank" rel="noopener">GitHub上的漏洞数据库存储库</a>中包含 “<code>searchsploit</code>”，这是一个<strong>Exploit-DB</strong>的命令行搜索工具，它还允许您随身携带漏洞利用数据库的副本。</p>
+<p><code>SearchSploit</code>使您能够通过本地检出的存储库副本执行详细的离线搜索。此功能对于无法访问<code>Internet</code>的隔离或空中网络的安全评估特别有用。</p>
+<p>许多漏洞包含指向未包含在标准存储库中的二进制文件的链接，但可以在我们的<a href="https://github.com/offensive-security/exploitdb-bin-sploits" target="_blank" rel="noopener">漏洞利用数据库二进制漏洞存储库</a>中找到。如果您预计在评估时</p>
+<p>无法访问<code>Internet</code>，请确保检出两个存储库以获取最完整的数据集。</p>
+<p><strong>注意：</strong>此实用程序的名称是<strong><code>Search Sploit</code></strong>，正如其名称所示，它将搜索所有漏洞和<code>shellcode</code>，</p>
+<p>它不会包含<a href="https://www.exploit-db.com/google-hacking-database/" target="_blank" rel="noopener">Google Hacking Database</a>的任何结果，终端输<code>searchsploit</code>启动(已经默认在<code>Kali/Parrot</code>中安装)</p>
+<p><img src="https://i.imgur.com/QOjQG9t.png" alt=""></p>
+<h3 id="如何安装SearchSploit"><a href="#如何安装SearchSploit" class="headerlink" title="如何安装SearchSploit"></a>如何安装SearchSploit</h3><h4 id="Linux的"><a href="#Linux的" class="headerlink" title="Linux的"></a>Linux的</h4><p><strong>Kali Linux：</strong></p>
+<p>如果您使用的是<code>Kali Linux</code>的标准GNOME版本，默认情况下已经包含“<code>exploitdb</code>”软件包！但是，</p>
+<p>如果您使用的是<code>Kali Light</code>变体或您自己定制的<code>ISO</code>，则可以按如下方式手动安装软件包：</p>
+<pre><code>root @ kali：〜＃apt update &amp;&amp; apt -y install exploitdb
+</code></pre><h4 id="Apple-OS-X-macOS"><a href="#Apple-OS-X-macOS" class="headerlink" title="Apple OS X / macOS"></a>Apple OS X / macOS</h4><p>如果您安装了<a href="https://brew.sh/" target="_blank" rel="noopener">自制程序</a> （<a href="https://github.com/Homebrew/homebrew-core/blob/master/Formula/exploitdb.rb" target="_blank" rel="noopener">包</a>，<a href="https://formulae.brew.sh/formula/exploitdb" target="_blank" rel="noopener">公式</a>），运行以下命令将使您进行设置：</p>
+<pre><code>user @ MacBook：〜$ brew update &amp;&amp; brew install exploitdb
+</code></pre><h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p>对于<code>windows</code>没有简单或直接的方式来使用<code>searchsploit</code>(官方给的消息),并且建议的最佳替代方案是在虚拟机，<code>docker</code>或<code>Linux</code>子系统 <code>Linux</code>中使用<code>Kali Linux</code>。</p>
+<h4 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h4><p>我们可以通过运行以下命令轻松检出<code>git</code>存储库</p>
+<pre><code>$ git clone https://github.com/offensive-security/exploitdb.git / opt / exploitdb
+</code></pre><h3 id="使SearchSploit保持最新状态"><a href="#使SearchSploit保持最新状态" class="headerlink" title="使SearchSploit保持最新状态"></a>使SearchSploit保持最新状态</h3><p>无论您如何安装<code>SearchSploit</code>，只需运行以下命令即可进行更新</p>
+<pre><code>$ searchsploit -u
+</code></pre><p>如果您使用<code>Kali Linux</code>软件包一直未更新，您将首先需要以传统方式更新软件包：</p>
+<pre><code>root @ kali：〜＃apt update &amp;&amp; apt -y full-upgrade
+</code></pre><h3 id="使用SearchSploit"><a href="#使用SearchSploit" class="headerlink" title="使用SearchSploit"></a>使用SearchSploit</h3><p>使用“ -h ”，您可以看到可用的所有功能和选项：</p>
+<p><img src="https://i.imgur.com/Mys0KNE.png" alt=""></p>
+<h4 id="详细参数"><a href="#详细参数" class="headerlink" title="详细参数"></a>详细参数</h4><pre><code>root @ kali：〜＃searchsploit -h
+  用法：searchsploit [options] term1 [term2] ... [termN]
+
+==========
+ 例子
+==========
+  searchsploit afd windows local
+  searchsploit -t oracle windows
+  searchsploit -p 39446
+  searchsploit linux kernel 3.2 --exclude =“（PoC）| / dos /”
+  searchsploit linux反向密码
+
+  有关更多示例，请参阅手册：[https：//www.exploit-db.com/searchsploit/](https：//www.exploit-db.com/searchsploit/)
+
+=========
+ Options
+=========
+   -c, --case [Term]       区分大小写(默认不区分大小写)
+   -e, --exact[Term]       对exploit标题进行EXACT匹配 (默认为 AND) [Implies &quot;-t&quot;].
+   -h, --help 显示帮助
+   -j, --json [Term]       以JSON格式显示结果
+   -m, --mirror [EDB-ID]   把一个exp拷贝到当前工作目录,参数后加目标id
+   -o, --overflow [Term]   Exploit标题被允许溢出其列
+   -p, --path [EDB-ID]     显示漏洞利用的完整路径（如果可能，还将路径复制到剪贴板），后面跟漏洞ID号
+   -t, --title[Term]       仅仅搜索漏洞标题（默认是标题和文件的路径）
+   -u, --update            检查并安装任何exploitdb软件包更新（deb或git）
+   -w, --www  [Term]       显示Exploit-DB.com的URL而不是本地路径（在线搜索）
+   -x, --examine [EDB-ID]  使用$ PAGER检查（副本）Exp
+   --colour                搜索结果不高亮显示关键词
+   --id   显示EDB-ID
+   --nmap [file.xml]       使用服务版本检查Nmap XML输出中的所有结果（例如：nmap -sV -oX file.xml）
+                           使用“-v”（详细）来尝试更多的组合
+
+   --exclude=&quot;term&quot;   从结果中删除值。通过使用“|”分隔多个值
+                      例如--exclude=“term1 | term2 | term3”。
+
+=======
+ 笔记
+=======
+ * 你可以使用任意数量的搜索词。
+ * Search terms are not case-sensitive (by default), and ordering is irrelevant.
+   * 搜索术语不区分大小写(默认情况下)，而排序则无关紧要。
+   * 如果你想用精确的匹配来过滤结果，请使用用 -e 参数
+ * 使用&#39; - t &#39;将文件的路径排除，以过滤搜索结果
+   * 删除误报(特别是在搜索使用数字时 - i.e. 版本).
+ * 当更新或显示帮助时，搜索项将被忽略。
+</code></pre><h4 id="基本搜索"><a href="#基本搜索" class="headerlink" title="基本搜索"></a>基本搜索</h4><p>只需添加您想要查找的任意数量的搜索词：</p>
+<pre><code>root@kali:~# searchsploit afd windows local
+--------------------------------------------------------------------------------------- ------------------------------------------
+ Exploit Title |  Path
+   | (/usr/share/exploitdb/)
+--------------------------------------------------------------------------------------- ------------------------------------------
+Microsoft Windows (x86) - &#39;afd.sys&#39; Local Privilege Escalation (MS11-046)  | exploits/windows_x86/local/40564.c
+Microsoft Windows - &#39;AfdJoinLeaf&#39; Local Privilege Escalation (MS11-080) (Metasploit)   | exploits/windows/local/21844.rb
+Microsoft Windows - &#39;afd.sys&#39; Local Kernel (PoC) (MS11-046)| exploits/windows/dos/18755.c
+Microsoft Windows 7 (x64) - &#39;afd.sys&#39; Dangling Pointer Privilege Escalation (MS14-040) | exploits/windows_x86-64/local/39525.py
+Microsoft Windows 7 (x86) - &#39;afd.sys&#39; Dangling Pointer Privilege Escalation (MS14-040) | exploits/windows_x86/local/39446.py
+Microsoft Windows XP - &#39;afd.sys&#39; Local Kernel Denial of Service| exploits/windows/dos/17133.c
+Microsoft Windows XP/2003 - &#39;afd.sys&#39; Local Privilege Escalation (K-plugin) (MS08-066) | exploits/windows/local/6757.txt
+Microsoft Windows XP/2003 - &#39;afd.sys&#39; Local Privilege Escalation (MS11-080)| exploits/windows/local/18176.py
+</code></pre><p>注意:<code>SearchSploit</code>使用<code>AND</code>运算符，而不是<code>OR</code>运算符。使用的术语越多，滤除的结果越多。</p>
+<p><strong>Tip</strong>:如果你没有收到预期的结果，可以使用更通用的术语进行更广泛的搜索。如:<code>Kernel 2.6.25 - &gt;Kernel 2.6 / / Kernel 2.x。</code></p>
+<p><strong>Tip</strong>:不要使用缩写如:<code>SQLi -&gt; SQL Injection</code>。</p>
+<h4 id="标题搜索"><a href="#标题搜索" class="headerlink" title="标题搜索"></a>标题搜索</h4><p>标题搜索只匹配标题,不会对路径中的关键词进行匹配</p>
+<p>如:<code>searchsploit -t oracle windows</code></p>
+<pre><code>root@kali:~# searchsploit -t oracle windows
+--------------------------------------------------------------------------------------- ------------------------------------------
+ Exploit Title |  Path
+   | (/usr/share/exploitdb/)
+--------------------------------------------------------------------------------------- ------------------------------------------
+Oracle 10g (Windows x86) - &#39;PROCESS_DUP_HANDLE&#39; Local Privilege Escalation | exploits/windows_x86/local/3451.c
+Oracle 9i XDB (Windows x86) - FTP PASS Overflow (Metasploit)   | exploits/windows_x86/remote/16731.rb
+Oracle 9i XDB (Windows x86) - FTP UNLOCK Overflow (Metasploit) | exploits/windows_x86/remote/16714.rb
+Oracle 9i XDB (Windows x86) - HTTP PASS Overflow (Metasploit)  | exploits/windows_x86/remote/16809.rb
+Oracle MySQL (Windows) - FILE Privilege Abuse (Metasploit) | exploits/windows/remote/35777.rb
+Oracle MySQL (Windows) - MOF Execution (Metasploit)| exploits/windows/remote/23179.rb
+Oracle MySQL for Microsoft Windows - Payload Execution (Metasploit)| exploits/windows/remote/16957.rb
+Oracle VM VirtualBox 5.0.32 r112930 (x64) - Windows Process COM Injection Privilege Esc| exploits/windows_x86-64/local/41908.txt
+Oracle VirtualBox Guest Additions 5.1.18 - Unprivileged Windows User-Mode Guest Code Do| exploits/multiple/dos/41932.cpp
+--------------------------------------------------------------------------------------- ------------------------------------------
+</code></pre><h4 id="删除不想要的结果"><a href="#删除不想要的结果" class="headerlink" title="删除不想要的结果"></a>删除不想要的结果</h4><p>使用<code>--exclude=</code>选项删除不想要的结果</p>
+<p>如:<code>searchsploit linux kernel 3.2 --exclude=&quot;(PoC)|/dos/&quot;</code></p>
+<pre><code>root@kali:~# searchsploit linux kernel 3.2 --exclude=&quot;(PoC)|/dos/&quot;
+--------------------------------------------------------------------------------------- ------------------------------------------
+ Exploit Title |  Path
+   | (/usr/share/exploitdb/)
+--------------------------------------------------------------------------------------- ------------------------------------------
+Linux Kernel 2.6.39 &lt; 3.2.2 (Gentoo / Ubuntu x86/x64) - &#39;Mempodipper&#39; Local Privilege E| exploits/linux/local/18411.c
+Linux Kernel 2.6.39 &lt; 3.2.2 (x86/x64) - &#39;Mempodipper&#39; Local Privilege Escalation (2)   | exploits/linux/local/35161.c
+Linux Kernel 3.2.0-23/3.5.0-23 (Ubuntu 12.04/12.04.1/12.04.2 x64) - &#39;perf_swevent_init&#39;| exploits/linux_x86-64/local/33589.c
+Linux Kernel 3.2.x - &#39;uname()&#39; System Call Local Information Disclosure| exploits/linux/local/37937.c
+Linux Kernel 3.4 &lt; 3.13.2 (Ubuntu 13.04/13.10 x64) - &#39;CONFIG_X86_X32=y&#39; Local Privilege| exploits/linux_x86-64/local/31347.c
+Linux Kernel 3.4 &lt; 3.13.2 (Ubuntu 13.10) - &#39;CONFIG_X86_X32&#39; Arbitrary Write (2)| exploits/linux/local/31346.c
+Linux Kernel &lt; 3.2.0-23 (Ubuntu 12.04 x64) - &#39;ptrace/sysret&#39; Local Privilege Escalation| exploits/linux_x86-64/local/34134.c
+--------------------------------------------------------------------------------------- ------------------------------------------
+</code></pre><h4 id="利用管道输出-删除不想要的结果的另一种方法"><a href="#利用管道输出-删除不想要的结果的另一种方法" class="headerlink" title="利用管道输出(删除不想要的结果的另一种方法)"></a>利用管道输出(删除不想要的结果的另一种方法)</h4><p>如:<code>searchsploit XnView | grep -v &#39;/dos/&#39;</code></p>
+<pre><code>root@kali:~# searchsploit XnView | grep -v &#39;/dos/&#39;
+--------------------------------------------------------------------------------------- ------------------------------------------
+ Exploit Title |  Path
+   | (/usr/share/exploitdb/)
+--------------------------------------------------------------------------------------- ------------------------------------------
+XnView 1.90.3 - &#39;.xpm&#39; Local Buffer Overflow   | exploits/windows/local/3777.c
+XnView 1.92.1 - &#39;FontName&#39; Slideshow Buffer Overflow   | exploits/windows/local/5346.pl
+XnView 1.92.1 - Command-Line Arguments Buffer Overflow | exploits/windows/remote/31405.c
+XnView 1.93.6 - &#39;.taac&#39; Local Buffer Overflow  | exploits/windows/local/5951.c
+XnView 1.97.4 - &#39;.MBM&#39; File Remote Heap Buffer Overflow| exploits/windows/remote/34143.txt
+--------------------------------------------------------------------------------------- ------------------------------------------
+</code></pre><p><strong>Tip</strong>:建议使用“<code>/ dos /</code>”与<code>grep</code>而不是“<code>dos</code>”，以便过滤器应用于路径，而不是标题。虽然拒绝服务条目可能在其标题中不包含“<code>dos</code>”，</p>
+<p>但它们在路径中仍然具有“<code>dos</code>”。根据路径删除结果还可以确保您不会无意中过滤掉在其标题中合法包含“<code>dos</code>”的结果</p>
+<h4 id="复制到剪贴板"><a href="#复制到剪贴板" class="headerlink" title="复制到剪贴板"></a>复制到剪贴板</h4><p><code>-p</code>参数可以获取更多关于该漏洞的信息,以及将完整的路径复制到剪贴板上(如果可能的话)</p>
+<p> 如:<code>searchsploit -p 39446</code></p>
+<pre><code>root@kali:~#
+root@kali:~# searchsploit -p 39446
+
+  Exploit: Microsoft Windows 7 (x86) - &#39;afd.sys&#39; Dangling Pointer Privilege Escalation (MS14-040)
+  URL: https://www.exploit-db.com/exploits/39446/
+ Path: /usr/share/exploitdb/exploits/windows_x86/local/39446.py
+File Type: Python script, ASCII text executable, with CRLF line terminators
+</code></pre><h4 id="复制到文件夹"><a href="#复制到文件夹" class="headerlink" title="复制到文件夹"></a>复制到文件夹</h4><p>不建议在本地的漏洞数据库中修改<code>exp</code>,建议使用<code>-m</code>参数复制那些有用的到当前的工作目录</p>
+<p>如:<code>searchsploit -m 39446 win_x86-64/local/39525.py</code></p>
+<pre><code>root@kali:~# searchsploit -m 39446 win_x86-64/local/39525.py
+
+  Exploit: Microsoft Windows 7 (x86) - &#39;afd.sys&#39; Dangling Pointer Privilege Escalation (MS14-040)
+  URL: https://www.exploit-db.com/exploits/39446/
+ Path: /usr/share/exploitdb/exploits/windows_x86/local/39446.py
+File Type: Python script, ASCII text executable, with CRLF line terminators
+
+Copied to: /root/39446.py
+</code></pre><h4 id="联网搜索"><a href="#联网搜索" class="headerlink" title="联网搜索"></a>联网搜索</h4><p>一些开发的元数据没有保存在本地，如果要访问他们，需要联网搜索</p>
+<p>如:<code>searchsploit WarFTP 1.65 -w</code></p>
+<pre><code>root@kali:~# searchsploit WarFTP 1.65 -w
+--------------------------------------------------------------------------------------- ------------------------------------------
+ Exploit Title |  URL
+--------------------------------------------------------------------------------------- ------------------------------------------
+WarFTP 1.65 (Windows 2000 SP4) - &#39;USER&#39; Remote Buffer Overflow (Perl)  | https://www.exploit-db.com/exploits/3482/
+WarFTP 1.65 (Windows 2000 SP4) - &#39;USER&#39; Remote Buffer Overflow (Python)| https://www.exploit-db.com/exploits/3474/
+WarFTP 1.65 - &#39;USER&#39; Remote Buffer Overflow| https://www.exploit-db.com/exploits/3570/
+--------------------------------------------------------------------------------------- ------------------------------------------
+</code></pre><p>参考资料：SearchSploit - 手册：<a href="https://www.exploit-db.com/searchsploit/#installgit" target="_blank" rel="noopener">https://www.exploit-db.com/searchsploit/#installgit</a></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/03/21/记一份2018CSAW 部分web writeup/" title="记一份2018CSAW 部分web writeup">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/21/记一次使用Ubuntu 14.04 LTS搭建FBctf平台/" title="记一次使用Ubuntu 14.04 LTS搭建FBctf平台">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是SearchSploit？"><span class="post-toc-text">什么是SearchSploit？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何安装SearchSploit"><span class="post-toc-text">如何安装SearchSploit</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Linux的"><span class="post-toc-text">Linux的</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Apple-OS-X-macOS"><span class="post-toc-text">Apple OS X / macOS</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Windows"><span class="post-toc-text">Windows</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Git"><span class="post-toc-text">Git</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使SearchSploit保持最新状态"><span class="post-toc-text">使SearchSploit保持最新状态</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用SearchSploit"><span class="post-toc-text">使用SearchSploit</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#详细参数"><span class="post-toc-text">详细参数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#基本搜索"><span class="post-toc-text">基本搜索</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#标题搜索"><span class="post-toc-text">标题搜索</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#删除不想要的结果"><span class="post-toc-text">删除不想要的结果</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#利用管道输出-删除不想要的结果的另一种方法"><span class="post-toc-text">利用管道输出(删除不想要的结果的另一种方法)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#复制到剪贴板"><span class="post-toc-text">复制到剪贴板</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#复制到文件夹"><span class="post-toc-text">复制到文件夹</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#联网搜索"><span class="post-toc-text">联网搜索</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

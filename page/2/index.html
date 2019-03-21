@@ -1,0 +1,792 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>miraitowa</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">主页</p>	
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/21/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		
+	<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed">
+	<div class="am-u-md-12 am-u-sm-12">
+
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/蓝桥杯刷题——数字游戏/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.522Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/蓝桥杯刷题——数字游戏/" itemprop="url">		
+			蓝桥杯刷题——数字游戏		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								蓝桥杯刷题——数字游戏问题 1443: [蓝桥杯][历届试题]数字游戏题目描述
+栋栋正在和同学们玩一个数字游戏。 
+游戏的规则是这样的：栋栋和同学们一共n个人围坐在一圈。栋栋首先说出数字1。接下来，坐在栋栋左手边的同学要说下一个数字2。
+再下面的一个同学要从上一个同学说的数字往下数两个数说出来，也就是说4。下一个同学要往下数三个数，说7。依次类推。 
+为了使数字不至于太大，栋栋和同学们约定，当在心	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/蓝桥杯刷题——数字游戏/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/蓝桥杯刷题——蛇行矩阵/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.520Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/蓝桥杯刷题——蛇行矩阵/" itemprop="url">		
+			蓝桥杯刷题——蛇行矩阵		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								蓝桥杯刷题——蛇行矩阵问题 1097: 蛇行矩阵时间限制: 1Sec 内存限制: 64MB 提交: 1890 解决: 1110
+题目描述
+蛇形矩阵是由1开始的自然数依次排列成的一个矩阵上三角形。输入
+本题有多组数据，每组数据由一个正整数N组成。（N不大于100）输出
+对于每一组数据，输出一个N行的蛇形矩阵。两组输出之间不要额外的空行。矩阵三角中同一行的数字用一个空格分开。行尾不要多余的空格。
+样例	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/蓝桥杯刷题——蛇行矩阵/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/蓝桥杯刷题——拼接平方数/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.517Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/蓝桥杯刷题——拼接平方数/" itemprop="url">		
+			蓝桥杯刷题——拼接平方数		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								问题 1821: [蓝桥杯][2014年第五届真题]拼接平方数时间限制: 1Sec 内存限制: 128MB 提交: 35 解决: 18
+题目描述
+ 小明发现49很有趣，首先，它是个平方数。它可以拆分为4和9，拆分出来的部分也是平方数。169也有这个性质，我们权且称它们为：拼接平方数。
+100可拆分1 00，这有点勉强，我们规定，0 00 000 等都不算平方数。
+
+小明想：还有哪些数字是这样的呢？	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/蓝桥杯刷题——拼接平方数/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/蓝桥杯刷题——母牛的故事/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.516Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/蓝桥杯刷题——母牛的故事/" itemprop="url">		
+			蓝桥杯刷题——母牛的故事		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								蓝桥杯刷题——母牛的故事问题 1004: 母牛的故事时间限制: 1Sec 内存限制: 128MB 提交: 15678 解决: 4143
+题目描述
+有一头母牛，它每年年初生一头小母牛。每头小母牛从第四个年头开始，每年年初也生一头小母牛。请编程实现在第n年的时候，共有多少头母牛？
+输入
+输入数据由多个测试实例组成，每个测试实例占一行，包括一个整数n(0&lt;n&lt;55)，n的含义如题目中描述。n	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/蓝桥杯刷题——母牛的故事/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/蓝鲸安全打卡 第一期密码学/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.514Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/蓝鲸安全打卡 第一期密码学/" itemprop="url">		
+			蓝鲸安全打卡 第一期密码学		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言蓝鲸安全打卡 第一期密码学
+
+一：检查符号
+知识点摩斯密码、替换密码
+解题思路这道题很容易就可以看出是摩斯密码  摩斯密码就是由&#39;.&#39;和&#39;-&#39;组成的密码  先丢在notepad++里转换下
+把。换成 空格
+把o转换成.
+把0转换成-
+就会得到：....- --- ... .--- -.... -. -.-- --. --... .--. ----. -.. -.	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/蓝鲸安全打卡 第一期密码学/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/蓝鲸安全CTF打卡题——第一期MISC writeup/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.513Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/蓝鲸安全CTF打卡题——第一期MISC writeup/" itemprop="url">		
+			记一份蓝鲸安全打卡MISC writeup		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言上一篇文章：蓝鲸安全CTF打卡题——第一期密码学
+本文首发先知社区：蓝鲸安全CTF打卡题——第一期隐写术
+i春秋：蓝鲸安全CTF打卡题——第一期隐写术
+再过几天就是中秋节了，我打算尽自己最大的能力把蓝鲸安全平台上面的打卡题目的writeup整理出来。
+有什么错误的地方 希望各位大佬指正(谢谢Orz)
+
+一：雨中龙猫
+知识点图片源码隐写、base64编码
+解题思路使用普通的记事本打卡图片就可以了	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/蓝鲸安全CTF打卡题——第一期MISC writeup/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/旧游今在否，梅雪似我愁——雪落下的声音/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.512Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/旧游今在否，梅雪似我愁——雪落下的声音/" itemprop="url">		
+			旧游今在否，梅雪似我愁——雪落下的声音		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								旧游今在否，梅雪似我愁——雪落下的声音冬寒渐入扰烟火，月下温酒听雪落。时光列车已悄然进入冬季，这一年里，你曾与谁相遇？又在等谁归来？那些年曾与你作伴赏雪的人，
+此刻是否还在你身旁？“如果来生成为雪，就能够落到您的肩上了。”人们贪恋雪，因为雪是冬日的情话专属，治愈灰暗，照亮时光。
+漫天的雪，片片纷飞似流年，以及融化在掌心的片刻浪漫，都是生命中的好光景。思念积聚似雪，终会降落在美好时刻。
+相信你等的人	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/旧游今在否，梅雪似我愁——雪落下的声音/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/江阴八十一日/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.510Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/江阴八十一日/" itemprop="url">		
+			江阴八十一日		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								江阴八十一日事件概述江阴八十一日是指1645年夏江阴人民为抵制剃发令，在江阴典史阎应元和陈明遇、冯厚敦等人领导下进行的反清斗争。因为前后长达81天之久，
+故被称为“江阴八十一日”。后全城殉国，无一人投降。清军折损三个王爷，大将十八名；参加攻城的还有后来晋封为亲王的博洛（清端重亲王）
+和尼堪（清敬谨亲王）、清恭顺王孔有德；清兵二十四万大军携二百多门大炮围城，一共损失的士兵有七万五千余人。江阴方面，守	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/江阴八十一日/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/简记web常见思路一/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.509Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/简记web常见思路一/" itemprop="url">		
+			简记web常见思路一		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言信息收集1、看源代码
+2、F5审查元素
+3、抓包看回显，需要注意的头部的信息。
+4、扫目录
+5、找泄漏（.git/svn/robots.txt…..）
+6、找cms/框架特征-&gt;现有的cve/乌云
+7、各种漏洞（sql，xss，csrf，upfile…..）
+编码与解码\&amp;#75;\&amp;#69;\&amp;#89;-&gt;unincode编码
+[][(![]+[])[+[	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/简记web常见思路一/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/记一份感想——落花随笔(一)/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.508Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/记一份感想——落花随笔(一)/" itemprop="url">		
+			记一份感想——落花随笔(一)		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言  压死骆驼的最后一根稻草，竟然是一句不足轻重的话！！
+  作为一个母胎solo的人，对待感情一直都是理智的。
+偶遇  今天
+  我走在上课的路上
+  遇到一个女孩对她的男朋友
+  说一句:”我给你发消息，怎么没有回复呀!!”
+感想  微不足道的话语
+  可是在我听来却是那么的暖
+  我始终相信，总有在某个辗转在未来的人，将会偿我所愿，用心对我！
+  总会的，总会遇见一个人。跟你养狗，陪你懒床	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/记一份感想——落花随笔(一)/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		     
+
+		
+	<ul class="am-pagination">
+		
+			<li class="am-pagination-prev">
+				<a href="/">&laquo; 上一页 </a>
+			</li>
+		
+		
+		
+			<li class="am-pagination-next">
+				<a href="/page/3/"> 下一页 &raquo; </a>
+			</li>
+		
+	</ul>
+    	
+	</div>
+</div>
+<!-- content end -->
+
+	<!--图文风格-->
+
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

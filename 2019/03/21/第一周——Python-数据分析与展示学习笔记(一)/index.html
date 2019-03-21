@@ -1,0 +1,545 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>第一周——Python-数据分析与展示学习笔记(一)</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《第一周——Python-数据分析与展示学习笔记(一)》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/21/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/03/21/第一周——Python-数据分析与展示学习笔记(一)/" itemprop="url">		
+			第一周——Python-数据分析与展示学习笔记(一)		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/03/21/第一周——Python-数据分析与展示学习笔记(一)/" itemprop="url">
+	<time datetime="2019-03-21T02:08:10.480Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近的这几篇文章是基于北理工嵩天老师的python进阶MOOC系列<code>《Python数据分析与展示》</code>，简单的记录算是对自己学习的一种总结吧</p>
+<h4 id="NumPy库入门知识"><a href="#NumPy库入门知识" class="headerlink" title="NumPy库入门知识"></a>NumPy库入门知识</h4><p>数据的维度</p>
+<p>一维数据   列表、集合</p>
+<p>二维数据   表格是经典的二维数据    用列表表示</p>
+<p>多维数据   二维数据在更多维度上展开 比如时间维度  用列表表示</p>
+<p>高维数据   仅使用最基本的二元关系展示复杂关系 key-value形式组织数据   用字典类型或者其他json、xmal、yaml等</p>
+<p>NumPy的数组对象：ndarray</p>
+<p>NumPy是一个开源的Python科学计算基础库</p>
+<p><img src="https://i.imgur.com/XGYSgCI.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/MbFKMy3.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/omqxcgj.png" alt=""></p>
+<p><img src="https://i.imgur.com/nmYueLb.png" alt=""></p>
+<p>  -一个强大的N维数组对象ndarray</p>
+<p>  -广播函数功能</p>
+<p>  -整合c/c++/fortran代码的工具</p>
+<p>  -线性代数、傅里叶变换、随机数生成等功能</p>
+<p>NumPy是SciPy、Pandas等数据处理或科学计算库的基础</p>
+<p>使用 import numpy as np</p>
+<p>ndarray是一个多维数组，由两部分组成，要求数组元素类型相同，数组下标从0开始</p>
+<p>  -元数据（数据维度，数据类型等）</p>
+<p>  -实际数据</p>
+<p>np.array()                  –ndarray别名是array</p>
+<p>轴(axis):保存数据的维度</p>
+<p>秩(rank):轴的数量</p>
+<p><strong>N维数组对象实例</strong></p>
+<p><img src="https://i.imgur.com/2DVj4FZ.jpg" alt=""></p>
+<h4 id="ndarray属性"><a href="#ndarray属性" class="headerlink" title="ndarray属性"></a>ndarray属性</h4><p><img src="https://i.imgur.com/93RjgvL.png" alt=""></p>
+<pre><code>.ndim即有几行
+
+例：[[1,2,3,4][1,2,3,4]]ndim=2
+
+a.mean() a里所有元素的平均值
+</code></pre><p><img src="https://i.imgur.com/dAeX81n.png" alt=""></p>
+<p>里面的int32不是Python基础类型，是NumPy定义的类型，更多类型如下</p>
+<h4 id="ndarray元素类型"><a href="#ndarray元素类型" class="headerlink" title="ndarray元素类型"></a>ndarray元素类型</h4><p><img src="https://i.imgur.com/XnFm65V.png" alt=""></p>
+<p><img src="https://i.imgur.com/ylS5AZ6.png" alt=""></p>
+<p><img src="https://i.imgur.com/AI6wyQU.png" alt=""></p>
+<p><img src="https://i.imgur.com/YUOR6Ba.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/Of1T9mu.jpg" alt=""></p>
+<p>为啥要这么多数据类型？</p>
+<p>  -科学计算涉及大量数据，对性能和存储都有较高要求</p>
+<p>  -对元素类型精细定义，有助于numpy合理使用存储空间并优化性能，有助于程序员对程序规模由合理评估</p>
+<p>ndarray数组也可以由非同质对象构成</p>
+<p>非同质ndarray元素为对象类型</p>
+<p>非同质ndarray数组无法发挥numpy优势，尽量避免使用</p>
+<h4 id="ndarray数组的创建方法"><a href="#ndarray数组的创建方法" class="headerlink" title="ndarray数组的创建方法"></a>ndarray数组的创建方法</h4><p><img src="https://i.imgur.com/MvUAqP9.png" alt=""></p>
+<p>1) 从python列表元组等类型创建数组</p>
+<p>  x = np.array(list/tuple)</p>
+<p>  x = np.array(list/tuple,dtype=np.float32)   不指定类型的时候numpy自动关联一个合适的</p>
+<p><img src="https://i.imgur.com/V8wbumV.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/poljv68.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/XhLj6we.png" alt=""></p>
+<p><img src="https://i.imgur.com/sM9nVza.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/RyMuVH3.jpg" alt=""></p>
+<p>除了arange函数，其他都是浮点数</p>
+<p><img src="https://i.imgur.com/4JzLMVB.png" alt=""></p>
+<h4 id="ndarray数组的变换"><a href="#ndarray数组的变换" class="headerlink" title="ndarray数组的变换"></a>ndarray数组的变换</h4><p>维度变换、元素类型变换</p>
+<p><img src="https://i.imgur.com/VDj2puZ.png" alt=""></p>
+<p><img src="https://i.imgur.com/nagNNWf.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/5qdMzUg.png" alt=""></p>
+<p><img src="https://i.imgur.com/uJg1mDE.jpg" alt=""></p>
+<p>ndarray数组向列表变换</p>
+<pre><code>ls = a.tolist()
+</code></pre><h4 id="ndarray数组的操作"><a href="#ndarray数组的操作" class="headerlink" title="ndarray数组的操作"></a>ndarray数组的操作</h4><p><strong>数组的索引和切片</strong></p>
+<p>索引：获取数组中特定位置元素的过程</p>
+<p>切片：获取数组元素子集的过程</p>
+<p><img src="https://i.imgur.com/fL5Maex.png" alt=""></p>
+<p><img src="https://i.imgur.com/KTmiOjA.png" alt=""></p>
+<p><img src="https://i.imgur.com/5wq09kq.jpg" alt=""></p>
+<h4 id="ndarray数组的运算"><a href="#ndarray数组的运算" class="headerlink" title="ndarray数组的运算"></a>ndarray数组的运算</h4><p><strong>数组与标量之间的运算作用于数组的每一个元素</strong></p>
+<p><img src="https://i.imgur.com/fxmpo5c.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/dYibbos.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/iWzUGSh.png" alt=""></p>
+<p><img src="https://i.imgur.com/9rLGaBp.png" alt=""></p>
+<p><img src="https://i.imgur.com/67rshXy.png" alt=""></p>
+<p><img src="https://i.imgur.com/6O4IA9g.png" alt=""></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/03/21/读人性的弱点有感/" title="读《人性的弱点》有感">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/21/第七届山东省大学生网络安全技能大赛Writeup/" title="第七届山东省大学生网络安全技能大赛Writeup">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#NumPy库入门知识"><span class="post-toc-text">NumPy库入门知识</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ndarray属性"><span class="post-toc-text">ndarray属性</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ndarray元素类型"><span class="post-toc-text">ndarray元素类型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ndarray数组的创建方法"><span class="post-toc-text">ndarray数组的创建方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ndarray数组的变换"><span class="post-toc-text">ndarray数组的变换</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ndarray数组的操作"><span class="post-toc-text">ndarray数组的操作</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ndarray数组的运算"><span class="post-toc-text">ndarray数组的运算</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
