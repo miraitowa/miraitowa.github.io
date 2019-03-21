@@ -1,0 +1,594 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>Bug Bounty：通过.DS_STORE文件（MACOS）进行文件泄露</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《Bug Bounty：通过.DS_STORE文件（MACOS）进行文件泄露》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/21/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/03/21/通过.DS_STORE文件（MACOS）进行文件泄露/" itemprop="url">		
+			Bug Bounty：通过.DS_STORE文件（MACOS）进行文件泄露		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/03/21/通过.DS_STORE文件（MACOS）进行文件泄露/" itemprop="url">
+	<time datetime="2019-03-21T02:34:56.491Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="Bug-Bounty：通过-DS-STORE文件（MACOS）进行文件泄露"><a href="#Bug-Bounty：通过-DS-STORE文件（MACOS）进行文件泄露" class="headerlink" title="Bug Bounty：通过.DS_STORE文件（MACOS）进行文件泄露"></a>Bug Bounty：通过.DS_STORE文件（MACOS）进行文件泄露</h2><p>原文链接：<a href="https://omespino.com/write-up-file-disclosure-via-ds_store-file-macos/" target="_blank" rel="noopener">https://omespino.com/write-up-file-disclosure-via-ds_store-file-macos/</a></p>
+<p>大家好，这是另一篇Facebook Whitehat报告写的（Facebook将该报告标记为N / A，但是其他一些程序接受这个错误作为有效的错误奖励，根据前Twitter。所以这可能在某些情况下有用），所以我写下个人的渗透测试报告，希望能够帮助到你们：</p>
+<h3 id="标题：目录列表通过-DS-Store文件（macOS）公开"><a href="#标题：目录列表通过-DS-Store文件（macOS）公开" class="headerlink" title="标题：目录列表通过.DS_Store文件（macOS）公开"></a>标题：目录列表通过.DS_Store文件（macOS）公开</h3><p><strong>产品/ URL：https：//live.oculus.com/</strong></p>
+<h4 id="描述和影响"><a href="#描述和影响" class="headerlink" title="描述和影响"></a>描述和影响</h4><p><code>Apple Macintosh OS X / macOS .DS_Store</code>目录列表泄露漏洞</p>
+<p>在Apple macOS操作系统中，.DS_Store是一个存储其包含文件夹的自定义属性的文件，例如图标的位置或背景图像的选择。</p>
+<p>但也列出了由MACOS自动创建的作为隐藏文件的目录的全部文件。</p>
+<p>远程攻击者可以通过像以下形式：攻击主机的Web服务提交URL来读取Web目录内容信息：</p>
+<p><code>http://www.example.com/target_directory/.DS_store</code></p>
+<p>此信息可能为攻击者提供敏感信息，包括系统配置，已安装的应用程序等。</p>
+<p>如果被正确利用，此信息可能会使攻击者进一步损害主机的安全性。</p>
+<p>但.DS_Store文件如何在Web服务器上运行？这可以通过以下几种方式实现：</p>
+<p>用户通过FTP将整个文件夹复制到Web服务器。在这种情况下，该文件夹中包含的.DS_Store文件（或子文件夹中包含的多个.DS_Store文件）</p>
+<p>将被复制到Web服务器。（请注意，默认情况下，某些FTP客户端不会复制.DS_Store文件。）</p>
+<p>用户通过选择文件夹中的所有文件，将文件夹的全部内容通过FTP复制到Web服务器。在正常使用中，.DS_Store文件不会被复制，</p>
+<p>但是，如果在用户的FTP客户端中显示不可见的文件，用户只需选择文件夹中的所有文件并将它们复制到Web服务器目录，</p>
+<p>.DS_Store文件 - 和任何其他不可见的文件 - 将被复制到服务器。</p>
+<h3 id="复现过程"><a href="#复现过程" class="headerlink" title="复现过程"></a>复现过程</h3><blockquote>
+<ol>
+<li>OS：macOS </li>
+<li>您需要安装python2.7，pip for python2.7，ds_store和tqdm pip模块：</li>
+<li>brew install python &amp;&amp; sudo pip install ds_store &amp;&amp; sudo pip install tqdm </li>
+<li>仅用于.DS_Store解析以制作内容文件“人类可读” </li>
+<li>导航到<a href="https://live.oculus.com/assets/.DS_Store和“.DS_Store”文件，自动下载。" target="_blank" rel="noopener">https://live.oculus.com/assets/.DS_Store和“.DS_Store”文件，自动下载。</a></li>
+<li>保存代码，这是一个小的“.DS_Store”文件解析器，在同一个“.DS_Store”文件目录中为“dsstore.py”：</li>
+</ol>
+</blockquote>
+<p>*注意：这个脚本是从互联网的某些部分借来的，但我找不到来源了，如果有人知道作者，请让我知道给他/她写下参考链接。</p>
+<blockquote>
+<pre><code>1. #!/usr/bin/env python
+1. # Begin Small .DS_Store Parser
+1. # -*- encoding: utf-8 -*-
+1. from ds_store import DSStore
+1. from tqdm import tqdm
+1. import argparse
+1. parser = argparse.ArgumentParser()
+1. parser.add_argument(&quot;-p&quot;, &quot;--path&quot;, help=&quot;Path to the DS_Store file&quot;, required=True)
+1. parser.add_argument(&quot;-t&quot;, &quot;--type&quot;, help=&quot;Type : Iloc, bwsp, lsvp, lsvP, icvp&quot;, default=&#39;Iloc&#39;)
+1. args = parser.parse_args()
+1. dsstore = DSStore.open(args.path, &#39;r+&#39;)
+1. for data in tqdm(dsstore):
+1. data = str(data)
+1. entry = data.translate(None, &quot;&lt;&gt;&quot;)
+1. entry = entry.split(&#39; &#39;)
+1. if(entry[1] == args.type):
+1. print(entry[0])
+1. # Ends Small .DS_Store Parser
+</code></pre></blockquote>
+<p><strong>运行脚本得到</strong></p>
+<pre><code>1. localhost：~ds_store_py $ python dsstore.py -p .DS_Store 
+1. 0％| 
+1. fonts 
+1. images 
+1. logos 
+1. nux_bg_web.mp4 
+1. oculus-health.pdf
+</code></pre><p>然后列出文件，让我们看看其他目录会发生什么，例如“images”，导航到<code>https://live.oculus.com/assets/images/.DS_Store</code>和“.DS_Store” “文件，再次自动下载。</p>
+<p>从图像重新运行.DS_Store的脚本并查看输出</p>
+<pre><code>1. localhost：~ds_store_py $ python dsstore.py -p .DS_Store 
+1. 0％| 
+1. 24_sprite.png 
+1. 24_sprite2x.png 
+1. _temp-cesbg.jpg 
+1. _temp-ceslogo.png 
+1. _temp-e3bg.jpg 
+1. _temp-e3logo.png 
+1. bg-event-generic.jpg 
+1. bg-experiences.jpg 
+1. bg-home.jpg 
+1. bg-search.jpg 
+1. bg- search2.jpg 
+1. black-dot@2x.png 
+1. black-pin1@2x.png 
+1. black-pin2@2x.png 
+1. black-pin3@2x.png 
+1. black-pin4@2x.png 
+1. black-pin@2x.png 
+1. blue-dot @ 2x .png 
+1. blue-pin1@2x.png 
+1. blue-pin2@2x.png 
+1. blue-pin3@2x.png 
+1. blue-pin4@2x.png 
+1. blue-pin@2x.png 
+1. confirmation-bg.jpg 
+1. event_e3_feature.jpg
+1. event_tour_feature.jpg 
+1. facebook_og.jpg 
+1. facebook_share.jpg 
+1. favicon.png 
+1. new-reality-1.jpg 
+1. new-reality-3.jpg 
+1. oculus-ready.png 
+1. twitter_card.jpg
+</code></pre><p><img src="https://i.imgur.com/Lz8wlz7.png" alt=""></p>
+<p>然后在浏览器中确认列出的任何文件的可访问性，例如“<code>_temp-e3logo.png</code>”，通过任何浏览器都可以访问<code>https://live.oculus.com/assets/images/_temp-e3logo.png</code>并查看该文件。</p>
+<p>在整个目录“Three”中重复，如果您可以访问任何“.DS_Store”，则可以看到目录列表</p>
+<p>建立在<code>https://live.oculus.com/</code>上的“.DS_Store”文件：</p>
+<pre><code>1. https://live.oculus.com/assets/.DS_Store 
+1. https://live.oculus.com/assets/images/.DS_Store 
+1. https://live.oculus.com/assets/logos/.DS_Store
+</code></pre><p>攻击者如何获取文件？</p>
+<p>使用简单的google / bing dork，例如“site：live.oculus.com filetype（.DS_Store OR DS_Store）”，</p>
+<p>或者可以在资源或图像目录上手动测试，在网址末尾添加.DS_Store：“https ：//live.oculus.com/assets/“+”。DS_Store“，</p>
+<p>因为当您在macOS中压缩文件夹并将文件夹上传到服务器时，上传DS_Store文件是一个常见错误，DS_Store文件本身就存在安全问题，</p>
+<p>我认为安全问题是您在Web应用程序中发布了那种让攻击者列出整个目录的文件。</p>
+<p>这次是在无害的文件夹中，但想想如果你不小心将.DS_Store上传到服务器中错误的公共文件夹中的影响。</p>
+<p>无论如何，您应该删除任何Web应用程序公共服务器上的任何.DS_Store以防止此行为。</p>
+<p><strong>解决方案/修复：</strong></p>
+<p>清除Internet上发布的任何应用程序服务器上的任何.DS_Store文件。</p>
+<p><strong>时间表：</strong></p>
+<blockquote>
+<ol>
+<li><p>2017年6月3日：初步报告</p>
+</li>
+<li><p>2017年6月6日：安全团队成员Kurt寻求帮助以理解并重现该错误</p>
+</li>
+<li><p>06 Jun 2017：我的回复包含更多详细信息。</p>
+</li>
+<li><p>2017年6月7日：安全团队询问“攻击者”如何获取对上述文件的访问权限（.DS_Store）</p>
+</li>
+<li><p>2017年6月8日：报告分类2017年</p>
+</li>
+<li><p>6月7日：Bug确认并且Neal说修复正在进行中</p>
+</li>
+<li><p>2017年6月12日：Vic告诉我该bug已被缓解。</p>
+</li>
+<li><p>2017年6月12日：我回复确认该错误已于2017年6月</p>
+</li>
+<li><p>21日修补：报告标记为“不适用”，下一个决议“委员会开会分析问题，我们认为它没有资格获得赏金，因为没有敏感数据曝光“</p>
+</li>
+</ol>
+</blockquote>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/21/通过Server Info中的缓冲区溢出在Steam客户端上运行RCE/" title="通过Server Info中的缓冲区溢出在Steam客户端上运行RCE">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Bug-Bounty：通过-DS-STORE文件（MACOS）进行文件泄露"><span class="post-toc-text">Bug Bounty：通过.DS_STORE文件（MACOS）进行文件泄露</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#标题：目录列表通过-DS-Store文件（macOS）公开"><span class="post-toc-text">标题：目录列表通过.DS_Store文件（macOS）公开</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#描述和影响"><span class="post-toc-text">描述和影响</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#复现过程"><span class="post-toc-text">复现过程</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
