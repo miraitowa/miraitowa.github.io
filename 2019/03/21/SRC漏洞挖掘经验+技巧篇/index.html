@@ -62,7 +62,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		3/21/2019 
+		3/22/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -188,9 +188,7 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="SRC漏洞挖掘经验-技巧篇"><a href="#SRC漏洞挖掘经验-技巧篇" class="headerlink" title="SRC漏洞挖掘经验+技巧篇"></a>SRC漏洞挖掘经验+技巧篇</h2><p>原文链接：</p>
-<pre><code>&gt; [https://mp.weixin.qq.com/s?__biz=MzI5MDU1NDk2MA==&amp;mid=2247485949&amp;idx=1&amp;sn=3f08c681660acecc0bbe996619df66ed&amp;chksm=ec1f5cc2db68d5d4782eec77fa36ad329815f0b70ff34c3c0a893e3b107d2c262e8b37e85d2a&amp;xtrack=1&amp;scene=0&amp;subscene=131&amp;clicktime=1552380844&amp;ascene=7&amp;devicetype=android-25&amp;version=2700033b&amp;nettype=cmnet&amp;abtest_cookie=BAABAAoACwASABMABQAjlx4AWpkeAMOZHgDamR4A3JkeAAAA&amp;lang=zh_CN&amp;pass_ticket=o4Xs2Q3MafQUYRBnf%2BT0ECqSZcosHcfvdk%2FYBfhvUhIUqaABlg968HddUo7QwBpM&amp;wx_header=1](https://mp.weixin.qq.com/s?__biz=MzI5MDU1NDk2MA==&amp;mid=2247485949&amp;idx=1&amp;sn=3f08c681660acecc0bbe996619df66ed&amp;chksm=ec1f5cc2db68d5d4782eec77fa36ad329815f0b70ff34c3c0a893e3b107d2c262e8b37e85d2a&amp;xtrack=1&amp;scene=0&amp;subscene=131&amp;clicktime=1552380844&amp;ascene=7&amp;devicetype=android-25&amp;version=2700033b&amp;nettype=cmnet&amp;abtest_cookie=BAABAAoACwASABMABQAjlx4AWpkeAMOZHgDamR4A3JkeAAAA&amp;lang=zh_CN&amp;pass_ticket=o4Xs2Q3MafQUYRBnf%2BT0ECqSZcosHcfvdk%2FYBfhvUhIUqaABlg968HddUo7QwBpM&amp;wx_header=1)
-</code></pre><h3 id="一、漏洞挖掘的前期–信息收集"><a href="#一、漏洞挖掘的前期–信息收集" class="headerlink" title="一、漏洞挖掘的前期–信息收集"></a>一、漏洞挖掘的前期–信息收集</h3><p>虽然是前期，但是却是我认为最重要的一部分；</p>
+						<h2 id="SRC漏洞挖掘经验-技巧篇"><a href="#SRC漏洞挖掘经验-技巧篇" class="headerlink" title="SRC漏洞挖掘经验+技巧篇"></a>SRC漏洞挖掘经验+技巧篇</h2><h3 id="一、漏洞挖掘的前期–信息收集"><a href="#一、漏洞挖掘的前期–信息收集" class="headerlink" title="一、漏洞挖掘的前期–信息收集"></a>一、漏洞挖掘的前期–信息收集</h3><p>虽然是前期，但是却是我认为最重要的一部分；</p>
 <p>很多人挖洞的时候说不知道如何入手，其实挖洞就是信息收集+常规owasp top 10+逻辑漏洞（重要的可能就是思路猥琐一点），这些漏洞的测试方法本身不是特别复杂，一般混迹在安全圈子的人都能复现漏洞。接下来我就着重说一下我在信息收集方面的心得。</p>
 <h4 id="1、域名信息收集"><a href="#1、域名信息收集" class="headerlink" title="1、域名信息收集"></a>1、域名信息收集</h4><p>src一般都只收对应的漏洞，很多src的公告里面就会明确范围；然后我们就需要根据这些范围来确定域名。</p>
 <p>如果src上面没有给出范围，那么需要我们去搜集，你需要知道哪些domain是该公司的，主要通过手工来查看：</p>
@@ -673,7 +671,9 @@
 <p>5.多看师傅们的文章，学会师傅们的骚操作和思路</p>
 <p>6.运气也很重要，但是努力的人运气一般不会太差哦</p>
 </blockquote>
-
+<p>原文链接：</p>
+<pre><code>&gt; [https://mp.weixin.qq.com/s?__biz=MzI5MDU1NDk2MA==&amp;mid=2247485949&amp;idx=1&amp;sn=3f08c681660acecc0bbe996619df66ed&amp;chksm=ec1f5cc2db68d5d4782eec77fa36ad329815f0b70ff34c3c0a893e3b107d2c262e8b37e85d2a&amp;xtrack=1&amp;scene=0&amp;subscene=131&amp;clicktime=1552380844&amp;ascene=7&amp;devicetype=android-25&amp;version=2700033b&amp;nettype=cmnet&amp;abtest_cookie=BAABAAoACwASABMABQAjlx4AWpkeAMOZHgDamR4A3JkeAAAA&amp;lang=zh_CN&amp;pass_ticket=o4Xs2Q3MafQUYRBnf%2BT0ECqSZcosHcfvdk%2FYBfhvUhIUqaABlg968HddUo7QwBpM&amp;wx_header=1](https://mp.weixin.qq.com/s?__biz=MzI5MDU1NDk2MA==&amp;mid=2247485949&amp;idx=1&amp;sn=3f08c681660acecc0bbe996619df66ed&amp;chksm=ec1f5cc2db68d5d4782eec77fa36ad329815f0b70ff34c3c0a893e3b107d2c262e8b37e85d2a&amp;xtrack=1&amp;scene=0&amp;subscene=131&amp;clicktime=1552380844&amp;ascene=7&amp;devicetype=android-25&amp;version=2700033b&amp;nettype=cmnet&amp;abtest_cookie=BAABAAoACwASABMABQAjlx4AWpkeAMOZHgDamR4A3JkeAAAA&amp;lang=zh_CN&amp;pass_ticket=o4Xs2Q3MafQUYRBnf%2BT0ECqSZcosHcfvdk%2FYBfhvUhIUqaABlg968HddUo7QwBpM&amp;wx_header=1)
+</code></pre>
 					
 				</div>
 			</div>
