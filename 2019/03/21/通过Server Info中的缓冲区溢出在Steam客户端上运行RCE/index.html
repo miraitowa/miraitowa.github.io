@@ -189,30 +189,34 @@
 				<div class="content" id="post-content">
 					
 						<h2 id="通过Server-Info中的缓冲区溢出在Steam客户端上运行RCE"><a href="#通过Server-Info中的缓冲区溢出在Steam客户端上运行RCE" class="headerlink" title="通过Server Info中的缓冲区溢出在Steam客户端上运行RCE"></a>通过Server Info中的缓冲区溢出在Steam客户端上运行RCE</h2><p>原文链接：<a href="https://hackerone.com/reports/470520" target="_blank" rel="noopener">https://hackerone.com/reports/470520</a></p>
-<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>在Steam和其他阀门游戏（CSGO，Half-Life，TF2）中，有一种功能可以找到称为服务器浏览器的游戏服务器。为了检索有关这些服务器的信息，</p>
-<p>服务器浏览器与称为服务器查询的特定UDP协议进行通信。该协议在Steam的在线开发人员手册中有详细描述。我们实现了一个自定义python服务器，</p>
-<p>它只使用文档中提供的相同信息回复协议。在成功实施协议之后，我们模糊了几个参数，并注意到Steam客户端在从我们的自定义服务器</p>
-<p>接收回复时崩溃了。更具体地说，当我们回复A2S_PLAYER响应中使用的大型播放器名称时，客户端崩溃了。连接调试器时，</p>
-<p>我们注意到它由于基于堆栈的缓冲区溢出而崩溃。</p>
-<p>这清楚地表明出现了问题，我们进一步调查了它，以便能够利用缓冲区溢出。经过进一步检查，我们注意到serverbrowser库中发生了溢出。</p>
-<p>在某些时候，玩家的名字被转换为unicode，并且因为没有检查边界而发生溢出。此外，没有任何金丝雀保护，</p>
-<p>这允许我们覆盖返回地址并在Windows上执行任意代码。</p>
-<h3 id="利用细节"><a href="#利用细节" class="headerlink" title="利用细节"></a>利用细节</h3><p>我们想证明影响并建立一个漏洞。首先，我们在Linux上测试它，我们能够通过覆盖返回地址立即控制执行流程。但是，在Linux上，</p>
-<p>我们只能控制EIP寄存器的两个字节（例如0x00004141），我们没有进一步探索它。在OSX上，进程终止SIGABRT，</p>
-<p>这意味着OSX上的库中可能存在一个canary保护。然后，我们尝试在Windows上利用它，我们成功（在Windows 8.1和10上测试）。</p>
-<p>在Windows上，通过UDP发送播放器名称A*1100会导致以下堆栈布局：</p>
+<p>文章中的所有代码以及视频都在附件中。</p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>在Steam和其他valve游戏（CSGO，Half-Life，TF2）中，有一种可以找到游戏服务器的功能，被称为服务浏览器（server browser）。为了检索有关这些服务器的信息，</p>
+<p>服务浏览器会与特定UDP协议进行通信，这被称为服务查询。该协议在Steam的在线开发人员手册中有详细描述。我们实现了一个自定义python服务器，</p>
+<p>它只使用文档中提供的相同信息回复协议。在成功实施协议之后，我们fuzz了几个参数，并注意到Steam客户端在从我们的自定义服务器</p>
+<p>接收回复时崩溃了。更具体地说，当我们在<code>A2S_PLAYER</code>响应中包含使用一个超长的玩家名字时，客户端崩溃了。经过调试，我们注意到客户端是由于基于堆栈的缓冲区溢出而崩溃的。</p>
+<p>这些问题已经清晰的说明有漏洞的存在，我们进一步调查了它，以便能够利用缓冲区溢出。经过进一步检查，我们注意到serverbrowser库中发生了溢出。</p>
+<p>在某些时候，玩家的名字被转换为unicode编码，此时没有检查边界而发生溢出。而且，由于没有任何canary保护，我们得以覆盖返回地址并在Windows上实现任意代码执行。</p>
+<h3 id="利用细节"><a href="#利用细节" class="headerlink" title="利用细节"></a>利用细节</h3><p>首先，我们在Linux上测试它，我们能够通过覆盖返回地址立即控制执行流程。但是，在Linux上，</p>
+<p>我们只能控制<code>EIP</code>寄存器的两个字节（例如0x00004141），我们并没有<br>进一步探索它。</p>
+<p>程被终止，显示<code>SIGABRT</code>，这意味着OSX上的库中可能存在一个canary保护。最后，我们尝试在Windows上利用它，并成功了（Windows 8.1和10上进行测试）</p>
+<p>在Windows上，通过UDP发送玩家名称<code>A*1100</code>时会导致以下堆栈布局：</p>
 <pre><code>0x00410041
 0x00410041
 ...
-</code></pre><p>这是由于unicode转换（wide-char）而发生的，因为播放器名称可以使用unicode字符。使用unicode字符发送播放器名称u”\u4141”*1100会导致以下布局：</p>
+</code></pre><p>这是由于<code>unicode</code>转换（全角字符）而发生的，因为玩家名称可以使用unicode编码。使用unicode字符发送玩家名称<code>u&quot;\u4141&quot;*1100</code>会导致以下内容的出现：</p>
 <pre><code>0x41414141
 0x41414141
 ...
-</code></pre><p>但是，由于我们在函数返回之前破坏了堆栈和寄存器，因此我们无法控制EIP寄存器。取消引用edi寄存器后程序崩溃，但我们控制了它。我们使用Steam.exe二进制文件中的常量值满足这些特殊条件：</p>
+</code></pre><p>但是，由于我们在函数返回之前破坏了堆栈和寄存器，因此我们无法控制EIP寄存器。取消引用edi寄存器后程序崩溃，但我们想办法控制了它。我们使用<code>Steam.exe</code>二进制文件中的常量值满足这些特殊条件：</p>
 <p><img src="https://i.imgur.com/7DgtVy6.png" alt=""></p>
-<p>然后，我们构建了一个Steam.exe只带有小工具的unicode ROP链，VirtualProtect动态调用以使堆栈可执行并跳转到我们的unicode shellcode来执行cmd.exe。这是一个很大的挑战，因为我们不能使用像0x00000040我们的ROP链中的值，否则字符串将被终止。我们不能使用无效的unicode字符，u”\uda01”因为库用问号替换它们?- 0x003F。</p>
-<p>注意：所有内容都是使用Steam.exe基址计算的。如果重新启动Windows 8或Windows 10，则此地址会更改，而不是重新启动Steam。如果您在漏洞利用中编辑基址，则该漏洞100％可靠，但由于ASLR，您无法预测受害者计算机中的基址。但是，我们有两种开发方案：</p>
-<p>只有9位被随机化：攻击者可以成功利用概率为0.2％（1/512）的受害者，如果我们正在谈论攻击者大量向所有Steam用户分发此漏洞（每个新受害者1人），这就足够了平均512次尝试）<br>此漏洞可能与另一个内存泄漏漏洞链接，使其100％可靠<br>重现步骤<br>首先，确保已安装Steam。如果您使用的是测试版，请在漏洞利用代码中取消注释测试版小工具。</p>
+<p>然后，我们构建了一个Steam.exe自带有小工具的unicode编码的ROP链，<code>VirtualProtect</code>动态调用以使堆栈可执行并跳转到我们的unicode 编码的shellcode来执行cmd.exe。这是一个很大的挑战，因为我们不能在ROP链中使用<code>0x00000040</code>这样的值。我们不能使用无效的unicode字符，像<code>u&quot;\uda01&quot;</code>因为库用问号替换它们<code>?- 0x003F</code>。</p>
+<p>注意：所有内容都是使用Steam.exe基址计算的。如果重新启动Windows 8或Windows 10，则此地址会更改，而不是重新启动Steam。如果您在漏洞利用中编辑基址，则该漏洞100％可以攻击成功，但由于ASLR，您无法预测受害者计算机中的基址。但是，我们有两种方案：</p>
+<ol>
+<li>只有9位被随机化：攻击者可以成功利用概率为0.2％（1/512）的受害者，如果我们正在谈论攻击者大量向所有Steam用户分发此漏洞（每个新受害者1人），这就足够了平均512次的尝试）</li>
+<li></li>
+<li>此漏洞可能与另一个内存泄漏漏洞链接，使其100％利用成功。</li>
+</ol>
+<h3 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h3><p>首先，确保已安装Steam。如果您使用的是测试版，请在漏洞利用代码中取消注释测试版小工具。</p>
 <pre><code>1 - 下载附件：steam_serverinfo_exploit.py（F395515）
 2 - 使用像Immunity Debugger这样的调试器并附加到Steam.exe 
 3 - 获取Steam.exe（View&gt; Executable modules）的基地址并编辑STEAM_BASE变量steam_serverinfo_exploit.py以使漏洞100％可靠
@@ -401,7 +405,7 @@ if __name__ == &quot;__main__&quot;:
 shellcode = convert_shellcode(shellcode)
 for data in udp_server():
 pass
-</code></pre><h3 id="攻击手段"><a href="#攻击手段" class="headerlink" title="攻击手段"></a>攻击手段</h3><p>攻击者可以在查看恶意服务器的服务器信息的任何Steam用户的计算机上执行任意代码。通常，攻击者会启动与C2基础架构的后门连接，</p>
+</code></pre><h3 id="影响"><a href="#影响" class="headerlink" title="影响"></a>影响</h3><p>攻击者可以在查看恶意服务器的服务器信息的任何Steam用户的计算机上执行任意代码。通常，攻击者会启动与C2基础架构的后门连接，</p>
 <p>以获取对受害者计算机的访问权限。从那里攻击者可以做任何他/她想做的事情（例如，帐户接管，窃取Steam帐户中的所有项目，在操作系统中安装其他恶意软件，泄露文档等）</p>
 <p>有几种方法可以诱骗用户运行漏洞利用程序：</p>
 <ol>
@@ -579,7 +583,7 @@ pass
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#通过Server-Info中的缓冲区溢出在Steam客户端上运行RCE"><span class="post-toc-text">通过Server Info中的缓冲区溢出在Steam客户端上运行RCE</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#介绍"><span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用细节"><span class="post-toc-text">利用细节</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PoC"><span class="post-toc-text">PoC</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用代码："><span class="post-toc-text">利用代码：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#攻击手段"><span class="post-toc-text">攻击手段</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#感谢"><span class="post-toc-text">感谢</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#通过Server-Info中的缓冲区溢出在Steam客户端上运行RCE"><span class="post-toc-text">通过Server Info中的缓冲区溢出在Steam客户端上运行RCE</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#介绍"><span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用细节"><span class="post-toc-text">利用细节</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#复现"><span class="post-toc-text">复现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PoC"><span class="post-toc-text">PoC</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用代码："><span class="post-toc-text">利用代码：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#影响"><span class="post-toc-text">影响</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#感谢"><span class="post-toc-text">感谢</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
