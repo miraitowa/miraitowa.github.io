@@ -1,0 +1,562 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>OSINT Primer：域名（第1部分）</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《OSINT Primer：域名（第1部分）》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/26/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/03/26/域名（第1部分）/" itemprop="url">		
+			OSINT Primer：域名（第1部分）		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/03/26/域名（第1部分）/" itemprop="url">
+	<time datetime="2019-03-26T08:44:58.065Z" itemprop="datePublished">
+  		2019-03-26
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="OSINT-Primer：域名（第1部分）"><a href="#OSINT-Primer：域名（第1部分）" class="headerlink" title="OSINT Primer：域名（第1部分）"></a>OSINT Primer：域名（第1部分）</h2><p>翻译文章，原文链接：<a href="https://0xpatrik.com/osint-domains/" target="_blank" rel="noopener">https://0xpatrik.com/osint-domains/</a></p>
+<p>在这篇文章中，我将解释如何尽可能多地查找有关域的信息。该文章没有解决查找相关域的枚举部分，而是查找特定于域的数据，</p>
+<p>例如域名持有人，信誉或DNS设置。这篇文章的目标是致力于所有威胁情报，恶意软件分析，漏洞赏金计划，新闻业以及许多类似领域的人。</p>
+<p><img src="https://i.imgur.com/hCSfryp.png" alt=""></p>
+<p>注意：这是此OSINT入门的第一个版本。我将使用新的工具和技术逐步更新它。</p>
+<p>在深入研究具体技术或工具之前，我想简要谈谈思维方式。通常，我有以下目标之一：</p>
+<p>该域名是我的目标的主要域名，我想尽可能多地获取信息。请注意，在这种情况下，我通常会搜集一切有用的东西。<br>域名可能是恶意的，我想证实我的假设，看看它是什么。<br>域似乎是一个潜在的攻击媒介，以收集最初的攻击点。具体来说，它正在托管一些可以被利用的服务。我想看看有关这些服务的详细信息。<br>请记住，你应该始终有一个明确的目标。这能防止你做不必要的事情。</p>
+<p>请注意，域上存在的域和服务略有重叠。在某些情况下，我将解释影响服务的技术。</p>
+<h3 id="WHOIS"><a href="#WHOIS" class="headerlink" title="WHOIS"></a>WHOIS</h3><p>你应该掌握的第一个技术是WHOIS查找。WHOIS用于查询存储域名，IP块或ASN的注册用户的数据库。你可以使用CLI工具：</p>
+<p>$ whois DOMAIN<br>或选择某些Web服务，例如<a href="https://whois.icann.org/en" target="_blank" rel="noopener">ICANN WHOIS</a>。</p>
+<p>WHOIS数据提供有关注册域名的实体信息。请记住，某些域可能隐藏了WHOIS信息，有些域可能提供错误数据。</p>
+<p>WHOIS数据提供了该域名与某个特定组织相关联的线索。虽然这在枚举步骤中更有用，但WHOIS数据可以在某些特定情况下提供帮助：例如，如果你遇到试图模仿某个特定组织的域并且WHOIS记录与该组织无关，那么这是一个巨大的危险信号。</p>
+<h3 id="域分析"><a href="#域分析" class="headerlink" title="域分析"></a>域分析</h3><p>有时，你希望全面了解域管理员所做的域信息或决策。</p>
+<p>我的<a href="https://www.robtex.com/dns-lookup/eff.org" target="_blank" rel="noopener">首选工具</a>之一是<a href="https://www.robtex.com/dns-lookup/eff.org" target="_blank" rel="noopener">Robtex的DNS查找</a>。它提供了有关域的大量信息。我特别喜欢共享部分，它们为你提供有关其他相关域的概述（是的，这与枚举阶段有关，原谅我一次:-)）</p>
+<p><img src="https://i.imgur.com/JGkUUNy.png" alt=""></p>
+<p>Robtex提供了更多信息（例如，SEO详细信息，信誉……），但通常在有限的范围内。我尝试使用其他来源获取具体细节。Robtex为我提供了高层次的视角。我强烈建议在那里创建帐户，以便你可以利用更高级的功能。</p>
+<p>接下来，我想使用<a href="https://github.com/eldraco/domain_analyzer" target="_blank" rel="noopener">domain_analyzer</a>为我提供更多域设置的信息。这个工具甚至可以抓取网站来发现电子邮件等等。我喜欢以更有限的方式使用它：</p>
+<pre><code>python domain_analyzer.py -d DOMAIN -w -j -n -a
+</code></pre><p>想直接判断此输出中哪些数据有用是很困难的。但它曾多次帮助过我。我喜欢存储输出的数据并在分析过程中多次使用它。</p>
+<h3 id="被动数据"><a href="#被动数据" class="headerlink" title="被动数据"></a>被动数据</h3><p>检查过去的域名服务很有用。有两种类型的被动域数据：</p>
+<blockquote>
+<pre><code>1. 被动DNS - 过去DNS记录值是什么
+1. 被动“内容” - 过去在此域名托管上的Web服务是什么
+</code></pre></blockquote>
+<p>对于被动DNS，我喜欢使用<a href="https://community.riskiq.com/home" target="_blank" rel="noopener">RiskIQ社区版</a>。界面非常简单，搜索结果会直接显示：</p>
+<p><img src="https://i.imgur.com/caUdwoS.png" alt=""></p>
+<p>尽管RiskIQ CE旨在成为域的整体分析平台，但我专门使用它来获取被动DNS数据。与本文的许多其他方面一样，你可以自行决定是使用一个源还是使用多个源来处理不同的数据。我喜欢使用后一种方法，因为每个提供商通常只在一个领域内可靠。</p>
+<p>在RiskIQ CE之外，我也喜欢使用<a href="https://www.virustotal.com/gui/" target="_blank" rel="noopener">VirusTotal</a>：</p>
+<p><img src="https://i.imgur.com/w9pjgLq.png" alt=""></p>
+<p>同样，你将获得比被动DNS更多的数据。根据我自己的经验，RiskIQ倾向于为被动DNS提供更多数据。</p>
+<p>最后，我将提到<a href="https://www.circl.lu/services/passive-dns/" target="_blank" rel="noopener">CIRCL.LU的被动DNS</a>，我很幸运能够访问它。我有时用它来交叉关联上面两个来源。请注意，CIRCL.LU被动DNS不向公众开放。</p>
+<p>更多被动DNS来源：</p>
+<blockquote>
+<pre><code>1. mnemonic
+1. DNSTrails
+</code></pre></blockquote>
+<p>我的被动内容工具是<a href="https://web.archive.org/" target="_blank" rel="noopener">Wayback Machine</a>。它提供大多数网站过去的快照。通常有多个快照，因此你甚至可以选择要查看的快照日期：</p>
+<p><img src="https://i.imgur.com/Y0jRsHT.png" alt=""></p>
+<p>快照的频率取决于网站的受欢迎程度。最后，我想使用简单的Google Dork从Google数据库中检索网址，如下所示：</p>
+<pre><code>cache:https://eff.org/
+</code></pre><p><img src="https://i.imgur.com/zeO7Cx5.png" alt=""></p>
+<h3 id="内容分析"><a href="#内容分析" class="headerlink" title="内容分析"></a>内容分析</h3><p>你可能需要检查域中当前服务的是什么Web服务器。在处理潜在的恶意软件站点时，有必要遵循基本的OPSEC指南。当你没有VPN或虚拟机的保护时，你不应该直接访问这样的网站。我喜欢使用<a href="https://urlscan.io/" target="_blank" rel="noopener">urlscan.io</a>的服务，它代表你发出HTTP请求，为你提供屏幕截图以及可用于分析的其他一些信息。</p>
+<p><img src="https://i.imgur.com/TkSZLbT.png" alt=""></p>
+<p>有时，你想要检测某些网站上的视觉变化。当处于关闭状态的域可能在将来更改为不同的域时，这非常有用。为此，我喜欢使用<a href="https://visualping.io/" target="_blank" rel="noopener">visualping.io</a>。一旦某个域的内容发生变化，此服务将自动通知你。另一个开源替代品叫做<a href="https://github.com/thp/urlwatch" target="_blank" rel="noopener">urlwatch</a>。</p>
+<p>从内容的角度来看，短网址通常被用来伪装恶意软件/钓鱼网站，发送给受害者。名为<a href="http://checkshorturl.com/" target="_blank" rel="noopener">checkshorturl.com</a>的工具用于自动将短网址恢复到其原始形式。</p>
+<p><img src="https://i.imgur.com/tPQPl6v.png" alt=""></p>
+<p>关于内容，我通常想检查一些网站上使用了什么技术。我使用Wappalyzer作为浏览器插件。Wappalyzer会自动识别你浏览到的每个网站上的技术：</p>
+<p><img src="https://i.imgur.com/bUNDQxW.png" alt=""></p>
+<p>Wappalyzer的结果使我能够在这种情况下触发一些漏洞扫描工具，例如<a href="https://github.com/droope/droopescan" target="_blank" rel="noopener">droopescan</a>。如果你想要使用基于CLI的工具，我建议使用stacks-cli。</p>
+<h3 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h3><p>在内容分析之后，我想检查网站在网络上如何推广。我使用了几种SEO分析工具：</p>
+<blockquote>
+<pre><code>1. SimilarWeb
+1. moz Link Explorer
+1. SEMRush
+1. moonsearch
+1. Alexa
+</code></pre></blockquote>
+<h3 id="信誉"><a href="#信誉" class="headerlink" title="信誉"></a>信誉</h3><p>在事件响应或恶意软件分析期间，通常需要检查某个域的信誉。信誉可能会让你知道该域名是否与某些恶意活动相关联。有许多免费服务可用于提供此信息。你应该始终检查多个来源，因为对域的分类策略因供应商而异。信誉通常与分类密切相关。域分类由Web服务器托管的内容确定。然后这些类别将用于许多目的，例如使用代理进行Web流量过滤。然后根据类别确定信誉 - 低信任域将包含可疑，恶意等类别广告。</p>
+<p>我最常使用的信誉工具：</p>
+<blockquote>
+<pre><code>1. Bluecoat Sitereview
+1. Google安全浏览
+1. Sucuri Sitecheck
+1. ThreatMiner
+1. CyMon
+1. McAfee TrustedSource
+</code></pre></blockquote>
+<p>还有域黑名单，它是明确归类为恶意域的域列表。像CyMon这样的工具也会查看这些黑名单。这种黑名单的一个例子是Spamhause Domain Blacklist](<a href="https://www.spamhaus.org/lookup/)。" target="_blank" rel="noopener">https://www.spamhaus.org/lookup/)。</a></p>
+<h3 id="OSINT自动化"><a href="#OSINT自动化" class="headerlink" title="OSINT自动化"></a>OSINT自动化</h3><p>如你所见，域相关数据有很多来源。当你需要收集数十或数百个域的信息进行广泛分析时，手动查询每个源可能会耗费精力。据我所知目前没有工具可以查询本文中提到的每一个工具，当下我的主要OSINT工具是harpoon。它是一个非常有用的工具，可以在分析过程中为你节省大量时间。我建议仔细阅读文档并检查可用的源。harpoon的示例输出（查找网站快照）：</p>
+<blockquote>
+<pre><code>1. p@eternity:~$ harpoon cache https://eff.org
+1. Google: FOUND https://webcache.googleusercontent.com/search?num=1&amp;q=cache%3Ahttps%3A%2F%2Feff.org&amp;strip=0&amp;vwsrc=1 (2018-07-07 13:04:39+00:00)
+1. Yandex: NOT FOUND
+1. Archive.is: FOUND
+1. -2012-12-20 17:36:48+00:00: http://archive.is/20121220173648/https://eff.org/
+1. -2013-09-30 21:30:38+00:00: http://archive.is/20130930213038/http://eff.org/
+1. -2014-01-27 14:55:32+00:00: http://archive.is/20140127145532/https://eff.org/
+1. -2014-03-18 07:18:52+00:00: http://archive.is/20140318071852/http://eff.org/
+1. -2014-03-29 01:59:16+00:00: http://archive.is/20140329015916/http://eff.org/
+1. -2014-10-12 13:29:16+00:00: http://archive.is/20141012132916/http://eff.org/
+1. -2014-11-18 05:30:31+00:00: http://archive.is/20141118053031/http://eff.org/
+1. -2014-11-26 00:27:10+00:00: http://archive.is/20141126002710/http://eff.org/
+1. -2015-01-06 05:16:11+00:00: http://archive.is/20150106051611/http://eff.org/
+1. -2015-02-25 23:13:18+00:00: http://archive.is/20150225231318/http://eff.org/
+1. -2015-04-03 12:32:17+00:00: http://archive.is/20150403123217/http://eff.org/
+1. -2015-06-03 17:17:27+00:00: http://archive.is/20150603171727/http://eff.org/
+1. -2017-01-16 17:29:46+00:00: http://archive.is/20170116172946/https://eff.org/
+1. -2017-02-20 20:15:58+00:00: http://archive.is/20170220201558/https://eff.org/
+1. -2017-12-13 05:06:22+00:00: http://archive.is/20171213050622/http://eff.org/
+1. -2017-12-17 21:18:37+00:00: http://archive.is/20171217211837/http://eff.org/
+1. Archive.org: NOT FOUND
+1. Bing: FOUND http://cc.bingj.com/cache.aspx?d=4505675932894641&amp;w=enxY6wdkqMMA8cCOvykvjwxhAM6cEKCx (2018-06-07 00:00:00)
+</code></pre></blockquote>
+<p>替代品（来源少，质量差）：</p>
+<blockquote>
+<pre><code>1. QRadio
+1. Automater
+</code></pre></blockquote>
+<p>..或者你可以使用 datasploit。要获得更多处理领域开放源码软件的工具，你还应该查看开放源码软件框架。</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/22/PostgreSQL 9.3上经过身份验证的任意命令执行/" title="PostgreSQL 9.3上经过身份验证的任意命令执行漏洞 (CVE-2019-9193)">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#OSINT-Primer：域名（第1部分）"><span class="post-toc-text">OSINT Primer：域名（第1部分）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#WHOIS"><span class="post-toc-text">WHOIS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#域分析"><span class="post-toc-text">域分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#被动数据"><span class="post-toc-text">被动数据</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#内容分析"><span class="post-toc-text">内容分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#流量分析"><span class="post-toc-text">流量分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#信誉"><span class="post-toc-text">信誉</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#OSINT自动化"><span class="post-toc-text">OSINT自动化</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
