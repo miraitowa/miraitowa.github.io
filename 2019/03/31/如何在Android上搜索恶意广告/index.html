@@ -1,0 +1,534 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>如何在Android上搜索恶意广告</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《如何在Android上搜索恶意广告》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		3/31/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/03/31/如何在Android上搜索恶意广告/" itemprop="url">		
+			如何在Android上搜索恶意广告		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/03/31/如何在Android上搜索恶意广告/" itemprop="url">
+	<time datetime="2019-03-31T13:18:51.882Z" itemprop="datePublished">
+  		2019-03-31
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="如何在Android上搜索恶意广告"><a href="#如何在Android上搜索恶意广告" class="headerlink" title="如何在Android上搜索恶意广告"></a>如何在Android上搜索恶意广告</h2><p>原文链接：<a href="https://b3nac.com/posts/2019-02-16-How-to-hunt-for-Malvertising-ads-on-Android.html" target="_blank" rel="noopener">https://b3nac.com/posts/2019-02-16-How-to-hunt-for-Malvertising-ads-on-Android.html</a></p>
+<p>为了便于找到恶意广告，我大约使用7个小时，尝试了各种不同的方法终于找到一种方便的方法，由此写出本文。</p>
+<p>我被邀请参加一个特殊的计划，因为从来没有人提交过类似的信息，所以我真的很想找到一个并进行提交。</p>
+<h3 id="设置测试环境"><a href="#设置测试环境" class="headerlink" title="设置测试环境"></a>设置测试环境</h3><p>测试环境有一些非常独特的要求。我无法通过wifi使用代理，因为广告不会弹出，否则只会在移动网络上弹出。我尝试了一些本地流量捕获</p>
+<p>应用程序，但是并没有成功。最终，我在台式机上使用<code>Android Dev-Tools</code>和<code>Chrome</code>成功了，这是在我使用Android以来最开心的时刻。</p>
+<h3 id="Android手机需要的步骤"><a href="#Android手机需要的步骤" class="headerlink" title="Android手机需要的步骤"></a>Android手机需要的步骤</h3><blockquote>
+<pre><code>1. 启用USB调试
+1. 关掉wifi
+1. 在Android上打开Chrome
+1. 转到“设置”并选择“站点设置”
+1. 将Javascript，弹出窗口和重定向以及广告设置为允许。您的设置应该是这样的
+</code></pre></blockquote>
+<p><img src="https://i.imgur.com/DaoYDrL.jpg" alt=""></p>
+<h3 id="Chrome桌面需要步骤"><a href="#Chrome桌面需要步骤" class="headerlink" title="Chrome桌面需要步骤"></a>Chrome桌面需要步骤</h3><p>通常在桌面上安装Android Studio时，也会安装DevTools。当设备通过USB插入计算机时，DevTools将检测到您的设备，接受Android上的提示，如同此屏幕的截图。</p>
+<p><img src="https://i.imgur.com/BoXrJu0.jpg" alt=""></p>
+<p>现在打开Chrome并按住<code>Ctrl + Shift + I</code>打开<code>DevTools</code>，然后单击<code>Discover USB devices</code>。</p>
+<p><img src="https://i.imgur.com/2j2V3Jo.png" alt=""></p>
+<p>要查找您的设备，请转到网络&gt;远程设备，您可以在Chrome浏览器中点击手机。</p>
+<p><img src="https://i.imgur.com/z3fgprB.png" alt=""></p>
+<p>接下来，我将在Android设备上打开Chrome，并在“远程设备”窗口中检测到浏览器标签。</p>
+<p><img src="https://i.imgur.com/mqjfjes.png" alt=""></p>
+<p>在您希望DevTools监视的选项卡上单击检查。将打开一个窗口，显示您的电话屏幕以及加载选项卡时发出的所有请求。与桌面网站相比，</p>
+<p>这也是检查移动设备上是否存在不同请求的便捷方式。作为一个例子，我使用了我的网站。</p>
+<p><img src="https://i.imgur.com/1ZLjJU5.png" alt=""></p>
+<h3 id="目标网站"><a href="#目标网站" class="headerlink" title="目标网站"></a>目标网站</h3><p>由于不公开政策，我不能说我使用这种方法的网站。通过出价系统加载的广告越多越好。攻击者使用此出价系统在网站上隐藏他们的广告。</p>
+<p>在您找到一个可以加载大量广告的网站后，您就可以开展相应的业务了。</p>
+<h3 id="恶意广告有效负载如何触发"><a href="#恶意广告有效负载如何触发" class="headerlink" title="恶意广告有效负载如何触发"></a>恶意广告有效负载如何触发</h3><p>恶意广告广告的工作原理是赢取出价并使用Polyglot图像隐藏恶意广告攻击。尝试拦截这些Polyglot payloads 的最佳方法是使用DevTools并保存请求日志。这样，可以在payloads激发之后保存和分析HAR文件。</p>
+<h3 id="捕获重定向的方法"><a href="#捕获重定向的方法" class="headerlink" title="捕获重定向的方法"></a>捕获重定向的方法</h3><blockquote>
+<ol>
+<li>单击保留日志</li>
+</ol>
+</blockquote>
+<p><img src="https://i.imgur.com/a8lZ9VS.png" alt=""></p>
+<blockquote>
+<ol>
+<li>在Android手机上关闭wifi。</li>
+<li>清除cookies和历史。</li>
+<li>刷新页面并滚动。</li>
+<li>浏览另一页。</li>
+<li>Polyglot有效负载将在图像加载时无需用户交互即可触发。</li>
+</ol>
+</blockquote>
+<p>浏览需要尽可能的是手动化的，最好不要使用工具进行检查。</p>
+<p><img src="https://i.imgur.com/ZdC3mXv.png" alt=""></p>
+<p>更多恶意广告广告的示例</p>
+<p><img src="https://i.imgur.com/jqAzIHR.jpg" alt=""></p>
+<p>另一个针对谷歌。</p>
+<p><img src="https://i.imgur.com/9Qlcuav.jpg" alt=""></p>
+<p>有趣的是，除非您拥有初始重定向链接，否则网址会为广告添加一个使用令牌。所有域名都是.live或.online。</p>
+<p>他们使用的另一种技术是倒数计时器，试图让它看起来像受害者需要在该时间范围内做出选择。在计时器达到0之后没有任何事情发生。</p>
+<p>并且每次重定向页面都会增加奖励，最终导致Costco模仿网站。触发广告后，右键点击任何请求，然后选择“全部保存为包含内容的HAR”。</p>
+<p>这将把HAR文件保存为“website.har”。HAR文件是浏览会话中发出的所有请求的json格式文件。</p>
+<p><img src="https://i.imgur.com/16KWWNL.png" alt=""></p>
+<h3 id="进一步探索"><a href="#进一步探索" class="headerlink" title="进一步探索"></a>进一步探索</h3><p>我不仅仅停止收到广告，我自然想知道更多以满足我的好奇心。当我正在深入研究应用程序或方法时，这就是我最兴奋的时刻。在这种情况下，这是一个恶意广告活动。</p>
+<p>在重定向之后，我看到另一个页面作为奖励中心。我下载了这个页面，它长4134行，这本身很有趣。其次，文件扩展名为“.mhtml”。</p>
+<p>在查找mhtml文件格式之后，这完全可以理解为什么选择此文件格式。mhtml文件的摘要是“网页存档格式，</p>
+<p>用于在单个计算机文件中组合HTML代码及其伴随资源，这些资源由网页的HTML代码中的外部超链接表示”。</p>
+<p>我很快发现重定向的超链接位于Rewards Center源代码的Multipart Boundaries部分。</p>
+<p><img src="https://i.imgur.com/zSR8Gm3.png" alt=""></p>
+<p>伪造的评论被硬编码到页面中。</p>
+<p><img src="https://i.imgur.com/kXVzp2j.png" alt=""></p>
+<p>正在使用Glypicons，可能用于编码payloads 以防止检测。</p>
+<p><img src="https://i.imgur.com/ujrH1AQ.png" alt=""></p>
+<p>终于找到了文件底部附近的图像数据！看起来有些数据是由Glyphicons编码的。</p>
+<p><img src="https://i.imgur.com/YZyGsM6.png" alt=""></p>
+<p>我相信payloads 多字符在这里，但检测严重受阻。其中一个原因是Javascript注释以“* /”结尾，并且它位于其中两个图像中。</p>
+<p><img src="https://i.imgur.com/P8AxBUz.png" alt=""></p>
+<p>我的目标是解码这些图像payloads ，并在本博文中有第2部分。我希望你喜欢这个写作，因为我喜欢寻找恶意广告。</p>
+<p>PS我正在找工作，如果你喜欢我的工作，请通过<a href="b3nac.sec@gmail.com">b3nac.sec@gmail.com</a>或我的<a href="https://www.linkedin.com/in/kyle-benac" target="_blank" rel="noopener">LinkedIn</a> 联系我。</p>
+<h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><p><a href="https://developers.google.com/web/tools/chrome-devtools/remote-debugging/" target="_blank" rel="noopener">https://developers.google.com/web/tools/chrome-devtools/remote-debugging/</a></p>
+<p><a href="https://devcondetect.com/blog/2019/2/24/hacking-group-using-polyglot-images-to-hide-malvertsing-attacks" target="_blank" rel="noopener">https://devcondetect.com/blog/2019/2/24/hacking-group-using-polyglot-images-to-hide-malvertsing-attacks</a></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/31/Wiki  Red Team攻击思维/" title="Wiki  Red Team攻击思维">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何在Android上搜索恶意广告"><span class="post-toc-text">如何在Android上搜索恶意广告</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置测试环境"><span class="post-toc-text">设置测试环境</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Android手机需要的步骤"><span class="post-toc-text">Android手机需要的步骤</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Chrome桌面需要步骤"><span class="post-toc-text">Chrome桌面需要步骤</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#目标网站"><span class="post-toc-text">目标网站</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#恶意广告有效负载如何触发"><span class="post-toc-text">恶意广告有效负载如何触发</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#捕获重定向的方法"><span class="post-toc-text">捕获重定向的方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#进一步探索"><span class="post-toc-text">进一步探索</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考资料："><span class="post-toc-text">参考资料：</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
