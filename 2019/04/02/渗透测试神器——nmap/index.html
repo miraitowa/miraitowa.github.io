@@ -1,0 +1,645 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>渗透测试神器——nmap</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《渗透测试神器——nmap》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/2/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/04/02/渗透测试神器——nmap/" itemprop="url">		
+			渗透测试神器——nmap		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/04/02/渗透测试神器——nmap/" itemprop="url">
+	<time datetime="2019-04-02T14:45:42.416Z" itemprop="datePublished">
+  		2019-04-02
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="渗透测试神器——nmap"><a href="#渗透测试神器——nmap" class="headerlink" title="渗透测试神器——nmap"></a>渗透测试神器——nmap</h2><p>本篇作为渗透神器系列第一篇文章，将介绍一款经典的端口扫描工具–nmap。目前市面上成熟的端口扫描器有很多，</p>
+<p>比如massscan(全网扫描器)，zenmap(nmap的GUI版)等，但我个人还是钟爱nmap，原因很简单，因为它很强大，并且支持扩展。</p>
+<p>Nmap最新几个版本中，加入了nmap script Engine(NSE)功能，支持扩展脚本，即可以在nmap中加载自定义的nse脚本，以达到扫描的目的。</p>
+<p>目前官方的nse脚本已达500多个，nse脚本地址<a href="https://nmap.org/nsedoc/，或者查看[github库](https://github.com/nmap/nmap)。" target="_blank" rel="noopener">https://nmap.org/nsedoc/，或者查看[github库](https://github.com/nmap/nmap)。</a></p>
+<p>本篇将会介绍如何编写以及使用nse脚本，以便能最大程度地发挥出nmap的强大功能（扩展功能），当然本文后本段也会简单介绍下nmap工具的基本使用方法以及参数设置。</p>
+<h2 id="NSE"><a href="#NSE" class="headerlink" title="NSE"></a>NSE</h2><p>nse全称是nmap脚本引擎，脚本后缀名为.nse，脚本用Lua语言编写，遵循特定的规则。nse脚本存放在nmap安装目录下的scripts目录下，</p>
+<p>目前官方提供的大概有500多个，功能涵盖了常用的漏洞检测、端口检测、基线检测等。</p>
+<h3 id="nse-script-exploit"><a href="#nse-script-exploit" class="headerlink" title="nse script exploit"></a>nse script exploit</h3><p>在scripts目录下新建一个文件，如：hello.nse，写入以下内容：</p>
+<blockquote>
+<pre><code>1. -- The Head Section --
+1. -- The Rule Section --
+1. portrule = function(host, port)
+1. return port.protocol == &quot;tcp&quot; and port.number == 80 and port.state == &quot;open&quot;
+1. end
+1. -- The Action Section --
+1. action = function(host, port)
+1. return &quot;Hello world&quot;
+1. end
+</code></pre></blockquote>
+<p>以上代码运行后，会检测目标ip是否开放了80端口，若开放则返回helloworld。</p>
+<p>nse脚本遵循nmap api规范，其包含三部分内容，其中–开头的行为注释内容。</p>
+<h3 id="The-Head-Section"><a href="#The-Head-Section" class="headerlink" title="The Head Section"></a>The Head Section</h3><p>该部分包含一些元数据，主要描述脚本的功能，作者，影响力，类别及其他。</p>
+<h3 id="The-Rule-Section"><a href="#The-Rule-Section" class="headerlink" title="The Rule Section"></a>The Rule Section</h3><p>该部分定义脚本的一些规则，至少包含下面列表中的一个函数：</p>
+<blockquote>
+<pre><code>1. portrule
+1. hostrule
+1. prerule
+1. postrule
+1. The Action Section
+</code></pre></blockquote>
+<p>该部分定义脚本逻辑，即满足条件后执行的内容，比如上面例子为输出helloworld。</p>
+<h3 id="调用内置库"><a href="#调用内置库" class="headerlink" title="调用内置库"></a>调用内置库</h3><p>NSE脚本可以调用内置库，比如http库、shortport库、nmap库等。</p>
+<p>导入方式：</p>
+<blockquote>
+<pre><code>1. local http = require &quot;http&quot;
+1. local nmap = require &quot;nmap&quot;
+1. local shortport = require &quot;shortport&quot;
+</code></pre></blockquote>
+<p>更多nse-api参考：<a href="https://nmap.org/book/nse-api.html" target="_blank" rel="noopener">https://nmap.org/book/nse-api.html</a></p>
+<p>更多lua语法参考：<a href="http://www.runoob.com/lua/lua-tutorial.html" target="_blank" rel="noopener">http://www.runoob.com/lua/lua-tutorial.html</a></p>
+<h3 id="nse-script-usage"><a href="#nse-script-usage" class="headerlink" title="nse script usage"></a>nse script usage</h3><p>当在scripts下面编写完hello.nse脚本后，如何加载使用呢？</p>
+<p>方法一：</p>
+<blockquote>
+<ol>
+<li>nmap –script-updatedb 更新脚本库</li>
+<li>nmap –script=hello使用该脚本</li>
+</ol>
+</blockquote>
+<p>方法二：</p>
+<blockquote>
+<ol>
+<li>nmap –script=d:/…./hello.nse 绝对路径</li>
+</ol>
+</blockquote>
+<p>其他参数：</p>
+<blockquote>
+<pre><code>1. -sC: 等价于–script=default，使用默认类别的脚本进行扫描 可更换其他类别
+1. –script=&lt;Lua scripts&gt;: &lt;Lua scripts&gt;使用某个或某类脚本进行扫描，支持通配符描述
+1. –script-args=&lt;n1=v1,[n2=v2,...]&gt;: 为脚本提供默认参数
+1. –script-args-file=filename: 使用文件来为脚本提供参数
+1. –script-trace: 显示脚本执行过程中发送与接收的数据
+1. –script-updatedb: 更新脚本数据库
+1. –script-help=&lt;scripts&gt;: 显示脚本的帮助信息，其中&lt;scripts&gt;部分可以逗号分隔的文件或脚本类别
+</code></pre></blockquote>
+<h3 id="nse-example"><a href="#nse-example" class="headerlink" title="nse example"></a>nse example</h3><p>对目标机器进行扫描,同时对smb的用户进行枚举。</p>
+<blockquote>
+<pre><code>1. nmap  --script=smb-enum-users  target_ip
+</code></pre></blockquote>
+<p>对目标机器所开启的smb共享进行枚举。</p>
+<blockquote>
+<pre><code>1. nmap  --script=smb-enum-shares target_ip
+</code></pre></blockquote>
+<p>对目标机器的用户名和密码进行暴力猜测。</p>
+<blockquote>
+<pre><code>1. nmap  --script=smb-brute target_ip
+</code></pre></blockquote>
+<p>对目标机器测试心脏滴血漏洞。</p>
+<blockquote>
+<pre><code>1. nmap -sV --script=ssl-heartbleed target_ip
+</code></pre></blockquote>
+<p>再举几个硬件设备的例子：</p>
+<blockquote>
+<pre><code>1. modbus-discover.nse （该脚本可以调用Modbus 43（2B功能码）功能码读取设备信息）
+1. modbus-enum.nse （Modbus TCP设备枚举脚本）
+1. s7-enumerate.nse （西门子S7 PLC设备发现脚本，可以枚举PLC的一些基本信息）
+1. enip-enumerate.nse （可以读取EtherNet/IP设备的基本信息）
+1. BACnet-discover-enumerate.nse （可以读取BACnet设备的基本信息）
+1. iec-identify.nse （IEC104协议asdu address枚举脚本）
+1. mms-identify.nse （IEC-61850-8-1协议信息枚举脚本）
+</code></pre></blockquote>
+<h2 id="nmap-introduce"><a href="#nmap-introduce" class="headerlink" title="nmap introduce"></a>nmap introduce</h2><p>以上内容为nmap nse扩展脚本的基础知识，其中涉及到nse脚本编写的语法规则等，本篇暂不做详细介绍，可参考官方文档。以下内容为nmap基础使用，包含命令行参数等内容。</p>
+<h3 id="nmap-parameter"><a href="#nmap-parameter" class="headerlink" title="nmap parameter"></a>nmap parameter</h3><p>nmap参数：</p>
+<blockquote>
+<ol>
+<li>nmap [Scan Type(s)] [Options] {target specification}</li>
+<li>scan type(s) 用于指定扫描类型</li>
+<li>options 用于指定选项</li>
+<li>target specification 用于指定扫描目标</li>
+<li>-s 指定扫描类型</li>
+<li>如下：</li>
+<li>-sP (ping扫描) *存活主机探测</li>
+<li>-sS (TCP SYN扫描 隐身扫描)  *默认扫描方式</li>
+<li>-sT (tcp 扫描) * syn 不能用时就tcp扫描</li>
+<li>-sU （UDP 扫描）</li>
+<li>-sA  （ACK扫描） *三次握手 用于探测出防火墙过滤端口 实际渗透中没多大用</li>
+<li>-sV   （版本探测）</li>
+<li>-A操作系统探测</li>
+<li>-O （启用操作系统检测）</li>
+<li>-v详细</li>
+<li>选项说明</li>
+<li>-P0  [指定端口] (无ping扫描)</li>
+<li>-PU  [指定端口] (udp ping扫描)</li>
+<li>-PS [指定端口] (TCP SYN ping 扫描)</li>
+<li>-PA  [指定端口] (tcp ack ping扫描) </li>
+<li>-PI   使用真正的pingICMP echo请求来扫描目标主机是否正在运行</li>
+<li>-iL 指定扫描主机列表</li>
+<li>-iR 随机选择目标</li>
+<li>–exclude 排除扫描目标</li>
+<li>–excludefile 排除文件中目标列表</li>
+<li>-n (不用域名解析)</li>
+<li>-R (为所有目标解析域名)</li>
+<li>-T  时间优化（每隔多久发一次包 ） -T5 最快 -T0 最慢</li>
+<li>-F  快速扫描</li>
+<li>-e  指定网络接口</li>
+<li>-M 设置tcp扫描线程</li>
+</ol>
+</blockquote>
+<h3 id="nmap-output"><a href="#nmap-output" class="headerlink" title="nmap output"></a>nmap output</h3><p>输出结果：</p>
+<blockquote>
+<ol>
+<li>-oS  保存扫描结果输出</li>
+<li>-oN  把扫描结果重定向到一个可读的文件logfilename中</li>
+<li>-oM  每个结果一行输出</li>
+<li>-oA  同上</li>
+<li>–append-output 附在原来的结果前面</li>
+</ol>
+</blockquote>
+<h3 id="nmap-status"><a href="#nmap-status" class="headerlink" title="nmap status"></a>nmap status</h3><p>nmap端口状态：</p>
+<blockquote>
+<pre><code>1. open（开放的）
+1. closed（关闭的）
+1. filtered（被过滤的）不确定开放还是关闭
+1. unfiltered （未被过滤的）
+1. openfiltered （开放或者被过滤的）
+1. closedfiltered （关闭或者未被过滤的)
+</code></pre></blockquote>
+<h3 id="nmap常用命令"><a href="#nmap常用命令" class="headerlink" title="nmap常用命令"></a>nmap常用命令</h3><p>以下命令部分收集于网络，部分来自个人总结。</p>
+<p>轻量级扫描：</p>
+<blockquote>
+<ol>
+<li>nmap -sP 192.168.0.0/24   判断哪些主机存活</li>
+<li>nmap -sT 192.168.0.3   开放了哪些端口</li>
+<li>nmap -sS 192.168.0.127 开放了哪些端口（隐蔽扫描）</li>
+<li>nmap -sU 192.168.0.127 开放了哪些端口（UDP）</li>
+<li>nmap -sS -O  192.168.0.127 操作系统识别</li>
+<li>nmap -sT -p 80 -oG – 192.168.1.* | grep open列出开放了指定端口的主机列表</li>
+<li>nmap -sV -p 80 thief.one  列出服务器类型(列出操作系统，开发端口，服务器类型,网站脚本类型等)</li>
+</ol>
+</blockquote>
+<p>批量扫描：</p>
+<blockquote>
+<pre><code>1. nmap -sT -sV -O -P0 --open -n -oN result.txt -p80-89,8080-8099,8000-8009,7001-7009,9000-9099,21,443,873,2601,2604,3128,4440,6082,6379,8888,3389,9200,11211,27017,28017,389,8443,4848,8649,995,9440,9871,2222,2082,3311,18100,9956,1433,3306,1900,49705,50030,7778,5432,7080,5900,50070,5000,5560,10000 -iL ip.txt
+</code></pre></blockquote>
+<p>批量扫描：</p>
+<blockquote>
+<pre><code>1. nmap -sT -sV -p80-89,8080-8099,8000-8009,7001-7009,9000-9099,21,443,873,2601,2604,3128,4440,6082,6379,8888,3389,9200,11211,27017,28017,389,8443,4848,8649,995,9440,9871,2222,2082,3311,18100,9956,1433,3306,1900,49705,50030,7778,5432,7080,5900,50070,5000,5560,10000 --open --max-hostgroup 10 --max-parallelism 10 --max-rtt-timeout 1000ms --host-timeout 800s --max-scan-delay 2000ms -iL ~/Desktop/ip.txt -oN ~/Desktop/result/result.txt
+</code></pre></blockquote>
+<h2 id="nmap-api"><a href="#nmap-api" class="headerlink" title="nmap api"></a>nmap api</h2><p>nmap支持很多语言的扩展，本文简单介绍下python中如何使用nmap。</p>
+<h3 id="python-nmap"><a href="#python-nmap" class="headerlink" title="python-nmap"></a>python-nmap</h3><p>安装：pip install python-nmap</p>
+<p>作用：利用python调用nmap接口，实现端口扫描。</p>
+<p>使用：</p>
+<pre><code>1. &gt;&gt;import nmap
+1. &gt;&gt;nm = nmap.PortScanner()
+1. &gt;&gt;nm.scan(&#39;127.0.0.1&#39;, &#39;22-443&#39;)
+1. &gt;&gt;nm.command_line()
+</code></pre><p>更多使用方法，参考：<a href="http://xael.org/pages/python-nmap-en.html" target="_blank" rel="noopener">http://xael.org/pages/python-nmap-en.html</a></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/04/02/numpy常用知识点/" title="numpy常用知识点">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/31/如何在Android上搜索恶意广告/" title="如何在Android上搜索恶意广告">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#渗透测试神器——nmap"><span class="post-toc-text">渗透测试神器——nmap</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#NSE"><span class="post-toc-text">NSE</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nse-script-exploit"><span class="post-toc-text">nse script exploit</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#The-Head-Section"><span class="post-toc-text">The Head Section</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#The-Rule-Section"><span class="post-toc-text">The Rule Section</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#调用内置库"><span class="post-toc-text">调用内置库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nse-script-usage"><span class="post-toc-text">nse script usage</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nse-example"><span class="post-toc-text">nse example</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#nmap-introduce"><span class="post-toc-text">nmap introduce</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nmap-parameter"><span class="post-toc-text">nmap parameter</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nmap-output"><span class="post-toc-text">nmap output</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nmap-status"><span class="post-toc-text">nmap status</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nmap常用命令"><span class="post-toc-text">nmap常用命令</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#nmap-api"><span class="post-toc-text">nmap api</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#python-nmap"><span class="post-toc-text">python-nmap</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
