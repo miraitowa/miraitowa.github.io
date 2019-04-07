@@ -1,0 +1,504 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>谷歌论坛的越权漏洞</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《谷歌论坛的越权漏洞》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/7/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/04/07/谷歌论坛的越权漏洞/" itemprop="url">		
+			谷歌论坛的越权漏洞		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/04/07/谷歌论坛的越权漏洞/" itemprop="url">
+	<time datetime="2019-04-07T13:56:50.410Z" itemprop="datePublished">
+  		2019-04-07
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="谷歌论坛的越权漏洞"><a href="#谷歌论坛的越权漏洞" class="headerlink" title="谷歌论坛的越权漏洞"></a>谷歌论坛的越权漏洞</h2><p>原文链接：<a href="https://www.komodosec.com/post/google-groups-authorization-bypass" target="_blank" rel="noopener">https://www.komodosec.com/post/google-groups-authorization-bypass</a></p>
+<p>最近，我一直在测试谷歌的服务，到处寻找安全漏洞，最终找到了一些非常有意思的漏洞。在整个挖掘漏洞过程中，我的心就像坐过山车一样，</p>
+<p>既有发现漏洞的高兴，也有漏洞被拒绝时的失落。而在这篇文章中，我将介绍一个简单但有趣的谷歌论坛的授权绕过漏洞（这让我得到了500美元的赏金）。</p>
+<h3 id="First：GWT-Google-Web-Toolkit"><a href="#First：GWT-Google-Web-Toolkit" class="headerlink" title="First：GWT(Google Web Toolkit)"></a>First：GWT(Google Web Toolkit)</h3><p>你听说过Google Web Toolkit（GWT）吗？我不得不承认，尽管这并不是什么先进的技术（事实上，它早在2006年就出现了，并在2013年成为开源项目），但在我开始测试谷歌的服务之前，我从来没有真正接触过它。</p>
+<p>维基百科-<a href="https://en.wikipedia.org/wiki/Google_Web_Toolkit" target="_blank" rel="noopener">Google Web Toolkit（GWT Web Toolkit，简写：GWT）</a>，是一种允许开发人员使用 Java 编程语言快速构建和维护复杂但性能高的</p>
+<p>javascript 前端应用程序的工具集，能够降低开发难度。有了 GWT可以使用 Java 编程语言编写 AJAX 前端，然后 GWT 会交叉编译到优化的</p>
+<p>javascript 中。当第一次看到GWT的HTTP请求时，它们看起来很与众不同。乍一看，甚至像乱码。示例如下：</p>
+<p><img src="https://i.imgur.com/FaVK3nz.png" alt=""></p>
+<p>幸运的是，如今关于GWT的<a href="https://blog.gdssecurity.com/labs/2009/10/8/gwt-rpc-in-a-nutshell.html" target="_blank" rel="noopener">安全研究</a>已经有很多(我甚至找到了一个旧的OWASP ppt），我勉强能看懂一些请求含义。</p>
+<h3 id="类枚举"><a href="#类枚举" class="headerlink" title="类枚举"></a>类枚举</h3><p>现在让我们了解一下到谷歌论坛（<a href="https://groups.google.com/forum/#!overview" target="_blank" rel="noopener">Google Groups</a>）。如果你以前从来没有用过这个服务，那么你可以把它简单理解成一个论坛平台。</p>
+<p>你可以创建自己的论坛或者说组，邀请参与者讨论主题，并管理论坛的权限，决定谁能查看/更新论坛（组）的不同分区。而且，正如你所料，</p>
+<p>谷歌论坛是用GWT构建的。</p>
+<p>一般来说，我在测试GWT请求时，不会弄乱请求的签名位（就是请求的最开始和最末端用管道符分隔的数字），而是对某些参数进行测试。</p>
+<p>我很快找到了一个敏感参数。在下面的GWT请求中，我发现方框里的数字代表服务器端的特定类：</p>
+<p><img src="https://i.imgur.com/jclqAIY.png" alt=""></p>
+<p><strong>数字“4”指向“AbstractSearchKey”类</strong></p>
+<p><img src="https://i.imgur.com/VItx5hD.png" alt=""></p>
+<p><strong>数字“8”指向“Shared.Categoty”类</strong></p>
+<p>因此，我用Burp来暴力破解出所有类的名字：</p>
+<p><img src="https://i.imgur.com/GzMnHFM.png" alt=""></p>
+<p>虽然这本身不是一个巨大的安全问题（我已经向谷歌报告了这个问题，谷歌认为它是“低风险的”），但它给了我继续前进的动力，我觉得谷歌论坛的GWT实现一定存在安全缺陷。</p>
+<h3 id="查看其他组的数据"><a href="#查看其他组的数据" class="headerlink" title="查看其他组的数据"></a>查看其他组的数据</h3><p>再次出发，我查看了捕捉到的所有GWT请求。发现在其中一个请求中有一个字符串是我创建的测试组的名字：</p>
+<p><img src="https://i.imgur.com/zfhkxbh.png" alt=""></p>
+<p><strong>是的，这个“testestest…”就是我能想到的最好的名字</strong></p>
+<p>而在这个请求的回复中，包括组的基本信息，例如组的电子邮件、主题和描述。但是，我只能查看我自己创建的团队的信息吗？</p>
+<p>我很快用第二个google帐户创建了一个新组（将所有权限设置为“private”，意味着只允许受邀用户查看该组的任何内容），然后我再用第一个帐户查询这个新组的信息。结果我能够看到一些敏感信息，成功发现了一个越权漏洞：</p>
+<p><img src="https://i.imgur.com/CrbX4L5.png" alt=""></p>
+<p>设置为“private”的数据即使不是组成员也可以看到</p>
+<p>可惜的是，我无法看到组成员的对话，但只能看到组的电子邮件和描述。不过，这是我第一次发现GWT的漏洞，也许说明了它其他编程方式一样存在漏洞。</p>
+<h3 id="时间线"><a href="#时间线" class="headerlink" title="时间线"></a>时间线</h3><blockquote>
+<pre><code>1. 1月21日——提交漏洞报告给谷歌
+1. 1月21日——漏洞确认中
+1. 1月24日——漏洞确认
+1. 2月5日——发放500美元奖金
+</code></pre></blockquote>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/04/07/3种XXE不同攻击方式/" title="3种XXE不同攻击方式">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/04/02/numpy常用知识点/" title="numpy常用知识点">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#谷歌论坛的越权漏洞"><span class="post-toc-text">谷歌论坛的越权漏洞</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#First：GWT-Google-Web-Toolkit"><span class="post-toc-text">First：GWT(Google Web Toolkit)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#类枚举"><span class="post-toc-text">类枚举</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查看其他组的数据"><span class="post-toc-text">查看其他组的数据</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#时间线"><span class="post-toc-text">时间线</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
