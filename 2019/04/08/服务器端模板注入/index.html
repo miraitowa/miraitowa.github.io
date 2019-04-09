@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>PTA刷题——龟兔赛跑</title>
+	<title>服务器端模板注入</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《PTA刷题——龟兔赛跑》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《服务器端模板注入》</p>
 			
 		
 	
@@ -161,8 +161,8 @@
 					
 					
 	
-		<a href="/2019/03/21/PTA刷题——龟兔赛跑/" itemprop="url">		
-			PTA刷题——龟兔赛跑		
+		<a href="/2019/04/08/服务器端模板注入/" itemprop="url">		
+			服务器端模板注入		
 		</a>
 	
 
@@ -171,9 +171,9 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2019/03/21/PTA刷题——龟兔赛跑/" itemprop="url">
-	<time datetime="2019-03-21T02:26:04.597Z" itemprop="datePublished">
-  		2019-03-21
+						<a href="/2019/04/08/服务器端模板注入/" itemprop="url">
+	<time datetime="2019-04-08T05:22:22.404Z" itemprop="datePublished">
+  		2019-04-08
   </time>
 </a>    
 &nbsp;
@@ -188,48 +188,62 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h3 id="7-4-龟兔赛跑-（20-分）"><a href="#7-4-龟兔赛跑-（20-分）" class="headerlink" title="7-4 龟兔赛跑 （20 分）"></a>7-4 龟兔赛跑 （20 分）</h3><p>乌龟与兔子进行赛跑，跑场是一个矩型跑道，跑道边可以随地进行休息。乌龟每分钟可以前进3米，兔子每分钟前进9米；兔子嫌乌龟跑得慢，</p>
-<p>觉得肯定能跑赢乌龟，于是，每跑10分钟回头看一下乌龟，若发现自己超过乌龟，就在路边休息，每次休息30分钟，否则继续跑10分钟；</p>
-<p>而乌龟非常努力，一直跑，不休息。假定乌龟与兔子在同一起点同一时刻开始起跑，请问T分钟后乌龟和兔子谁跑得快？</p>
-<p><strong>输入格式：</strong></p>
-<p>输入在一行中给出比赛时间T（分钟）。</p>
-<p><strong>输出格式：</strong></p>
-<p>在一行中输出比赛的结果：乌龟赢输出@<em>@，兔子赢输出^</em>^，平局则输出-_-；后跟1空格，再输出胜利者跑完的距离。</p>
-<p><strong>输入样例：</strong></p>
-<p>242<br>输出样例：</p>
-<p>@_@ 726</p>
-<h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>这一题只要设置一个标志就可以了。</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main() {
-    int T,t1=0,t2=0,s1=0,s2=0;//t1:外界时间，t2：兔子的时间，s1：兔子移动的路程，s2：乌龟移动的路程
-    bool rest=false;
-    cin&gt;&gt;T;
-    while(t1!=T) {
-        s2+=3;
-        if(!rest) {
-            t2++;
-            s1+=9;
-        }
-        t1++;
-        if(t1%10==0&amp;&amp;rest==false) {
-            if(s1&gt;s2) {
-                rest=true;
-                t2+=30;
-            }
-        }
-        if(t1==t2)
-            rest=false;
-    }
-    if(s1&gt;s2)
-        printf(&quot;^_^ %d\n&quot;,s1);
-    else if(s2&gt;s1)
-        printf(&quot;@_@ %d\n&quot;,s2);
-    else
-        printf(&quot;-_- %d\n&quot;,s2);
-    return 0;
-}
-</code></pre>
+						<h2 id="服务器端模板注入"><a href="#服务器端模板注入" class="headerlink" title="服务器端模板注入"></a>服务器端模板注入</h2><p><img src="https://i.imgur.com/PhK3J69.png" alt=""></p>
+<p>您是否注意到某些电子邮件（包含大量广告的电子邮件）是如何发送给你的账号呢？这是工作中的服务器端模板引擎。</p>
+<p>最常用的一些服务器端模板引擎是Smarty，Mako，Twig和Jinja2。Web应用程序通常使用这些模板引擎在网页和电子邮件上显示动态数据。</p>
+<p>例如：wiki，博客，内容管理系统和营销应用程序等。此功能允许将用户输入嵌入到Web应用程序中，如果未正确清理，可能会使其容易受到</p>
+<p>服务器端模板注入的影响，并可能为入侵者提供远程代码执行（RCE）功能。在这篇博客中，我将教您如何识别和利用SSTI的基础知识，以及一些简单的解决方法。</p>
+<h3 id="识别SSTI漏洞"><a href="#识别SSTI漏洞" class="headerlink" title="识别SSTI漏洞"></a>识别SSTI漏洞</h3><p>识别SSTI有时可以像在用户输入中提交无效语法一样简单，并使用生成的错误消息来检测服务器模板引擎。如果输入与服务器端变量连接并在</p>
+<p>模板上呈现它，则表明模板易受SSTI攻击。例如，以下两个输入的输出显示服务器端的模板易受攻击：</p>
+<pre><code>Input: custom_email=25
+Output: 25
+
+Input: custom_email=
+Output: Object of class _TwigTemplate_7ae62e582f8a35e5ea6cc639800ecf15b96c0d6f78db3538221c1145580ca4a5 could not be converted to string
+</code></pre><p>有时，可能会抑制错误响应，从而难以识别正在使用的模板引擎以及是否容易受到攻击。但是，这些模板语言中使用的语法要求不与HTML字符冲突，</p>
+<p>因此大多数这些语言共享相同的基本语法特征。我们可以通过使用单个HTTP请求发送通用有效负载来利用此功能，并立即探测多个模板引擎。</p>
+<p>使用如下图所示的决策流程图方法，您可以识别正在使用的服务器端模板以及它是否容易受到攻击。该图显示了用于探测的不同payload，</p>
+<p>并且仅考虑了四个最常用的服务器端模板引擎。如果输出是payload的数学计算，则模板易受攻击。 </p>
+<p><img src="https://i.imgur.com/C0LvAcU.png" alt=""></p>
+<p><strong>图像：用于标识正在使用的模板引擎的决策图表</strong></p>
+<p>附加 说明：您可以使用此图表自动使用ZAP或BURP探测模板引擎。</p>
+<h3 id="利用Flask应用程序利用SSTI"><a href="#利用Flask应用程序利用SSTI" class="headerlink" title="利用Flask应用程序利用SSTI"></a>利用Flask应用程序利用SSTI</h3><p>根据适当的模板引擎，有多种方法可以利用SSTI漏洞。它可能在几秒或几分钟内发生。例如：</p>
+<p>对于Smarty模板引擎，像<code>{php}echo ‘id’;{/php}</code>之类的输入可以为你提供<strong>root命令执行（RCE）访问</strong>。</p>
+<p>对于Mako模板引擎，以下输入可以为您提供RCE访问权限。</p>
+<pre><code>&lt;％
+import os 
+x = os.popen（&#39;id&#39;）。read（）
+％&gt; 
+$ {x}
+</code></pre><p>一旦您知道哪个模板正在使用以及它是否容易受到攻击，就可以很容易地利用它。如果您是开发人员或新的安全爱好者，</p>
+<p>我使用其中一个服务器端模板引擎创建了flask应用程序。（我故意不告诉你我现在使用的是哪种引擎。你必须自己解决这个问题。）</p>
+<p>这个应用程序的主要功能是搜索存储的用户。如果您想在Flask应用程序上尝试测试此方法，则需要在此处<a href="https://hub.docker.com/r/dockerbucket/ssti_env/" target="_blank" rel="noopener">下载该应用程序</a>。（它包括如何下载和运行它以进行测试的说明）。</p>
+<p>如果 您已完成下载应用程序，我们现在就可以开始了！因此，启动应用程序并查看它的外观。</p>
+<p>首先要确定模板引擎是否易受攻击，以及正在使用哪个模板。使用我们之前讨论的决策流程图，尝试不同的输入并找出适当的模板。</p>
+<p><img src="https://i.imgur.com/OIesM7g.png" alt=""></p>
+<p><strong>图像：演示Flask应用程序主页</strong></p>
+<p>到目前为止，您应该知道哪个模板到位。根据输出，您可以将模板标识为Jinja2。</p>
+<p>现在，让我们尝试利用此漏洞。Pyja2模板由Python Web框架使用。因此，您可以注入用python编写的payload以进行利用。</p>
+<p>您可以在此阶段使用ZAP或BURP。我在这里使用BURP。如下图所示，我们将在REQUEST选项卡下注入以下有效负载。</p>
+<pre><code>%7b%7b+%27%27.__class__.__mro__%5B2%5D.__subclasses__%28%29%5B40%5D%28%27%2Fetc%2Fpasswd%27%29.read%28%29+%7D%7D
+</code></pre><p>此有效负载请求从etc目录提供passwd 的文件内容。</p>
+<p><img src="https://i.imgur.com/sRHMMpl.png" alt=""></p>
+<p><strong>图像：使用REQUEST下的Burp工具注入payload</strong></p>
+<p><img src="https://i.imgur.com/nZMnPy4.png" alt=""></p>
+<p><strong>图像：显示请求的响应</strong></p>
+<p>如果你看到（上图）的内容。如您所见，我们注入的有效负载返回200 OK响应。根据我们的REQUEST，响应是在/etc文件夹中显示来自passwd文件</p>
+<p>的内容。它显示了服务器端文件系统的详细信息。从这里，您可能会找到多种方法来使用不同的工具来利用系统。我使用TPLmap工具进一步利用它。</p>
+<p>我不会教你如何使用TPLmap（不管在这个博客中）如何利用它，但为了让你了解进一步利用SSTI的潜力，请参阅下一张图片。该图显示，</p>
+<p>在我们访问先前注入的密码后，我们可以使用它来获取对其系统的shell访问权限。</p>
+<p><img src="https://i.imgur.com/lY9ZusK.png" alt=""></p>
+<p><strong>图像：使用TPLmap工具获取shell访问权限</strong></p>
+<h3 id="修复SSTI"><a href="#修复SSTI" class="headerlink" title="修复SSTI"></a>修复SSTI</h3><p>既然你知道SSTI是什么，以及如何检测和利用它，你应该知道如何修复它。如果您是开发人员，那么这适合您。补救措施因所使用的不同模板引擎而异。因此，以下补救措施是概念性的，可以应用于所有模板引擎。</p>
+<p><strong>清理：</strong>将用户输入作为参数传递到模板中。在将输入传递到模板之前，通过在解析数据之前删除不需要的和有风险的字符来清理输入。这可以最大限度地减少任何恶意探测模板的漏洞。</p>
+<p><strong>沙盒：</strong>如果允许某些有风险的字符是呈现模板的某些属性的业务要求，则假定恶意代码执行是不可避免的。然后在docker容器中沙箱模板环境可能是一个更安全的选择。使用此选项，您可以使用docker安全性来创建一个限制任何恶意活动的安全环境。</p>
+<p>参考文献：</p>
+<p>Baris-sagdic：https：//<a href="http://www.baris-sagdic.com/en/server-side-template-injection-ssti/" target="_blank" rel="noopener">www.baris-sagdic.com/en/server-side-template-injection-ssti/</a></p>
+<p>Portswigger：http：//blog.portswigger.net/2015/08/server-side-template-injection.html</p>
+
 					
 				</div>
 			</div>
@@ -237,15 +251,9 @@ int main() {
 
 		<ul class="am-pagination">
     
-    	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2019/03/21/PTA刷题——计算天数/" title="PTA刷题——计算天数">
-      		&laquo; 上一篇
-		</a>
-		</li>
-	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2019/03/21/PTA刷题——跟奥巴马一起画方块/" title="PTA刷题——跟奥巴马一起画方块">
+		<a class="pull-right" href="/2019/04/07/3种XXE不同攻击方式/" title="3种XXE不同攻击方式">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -374,7 +382,7 @@ int main() {
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-4-龟兔赛跑-（20-分）"><span class="post-toc-text">7-4 龟兔赛跑 （20 分）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#题目分析"><span class="post-toc-text">题目分析</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#服务器端模板注入"><span class="post-toc-text">服务器端模板注入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#识别SSTI漏洞"><span class="post-toc-text">识别SSTI漏洞</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用Flask应用程序利用SSTI"><span class="post-toc-text">利用Flask应用程序利用SSTI</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修复SSTI"><span class="post-toc-text">修复SSTI</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
