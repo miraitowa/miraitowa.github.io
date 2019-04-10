@@ -1,0 +1,546 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>溢出三部曲</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《溢出三部曲》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/10/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/04/08/溢出三部曲/" itemprop="url">		
+			溢出三部曲		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/04/08/溢出三部曲/" itemprop="url">
+	<time datetime="2019-04-08T13:20:35.851Z" itemprop="datePublished">
+  		2019-04-08
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="溢出三部曲"><a href="#溢出三部曲" class="headerlink" title="溢出三部曲"></a>溢出三部曲</h2><p>溢出不仅仅是Websec中的日常术语。今天我要分享三个有趣的案例，都是关于Twitter的漏洞。</p>
+<h3 id="HTTP响应与head溢出分离"><a href="#HTTP响应与head溢出分离" class="headerlink" title="HTTP响应与head溢出分离"></a>HTTP响应与head溢出分离</h3><p>此问题清楚地说明了HTTP Response Splitting与CRLF注入的不同之处。通常99个HTTP响应拆分漏洞是由CRLF注入引起的，而这个漏洞则滥用了一个不涉及注入CRLF的不同缺陷。</p>
+<p>他们的补丁——在同一页面上的输入仍然缺乏适当的验证，这导致了这个问题的发现。在其中一个输入参数中创建足够长的值时，会直接显示HTML源代码。</p>
+<p><img src="https://i.imgur.com/qc7n7oM.png" alt=""></p>
+<p>这个不寻常的场景是由于缺少Content-Type。实际上，应该沿响应发送的一半头字段被分成两半。服务器似乎只处理响应头的第一个8kB，</p>
+<p>然后它感觉到响应可能不完整或被破坏，因此返回了HTTP 500（内部服务器错误）。有趣的是在重新发出相同的请求时返回截断的部分</p>
+<p>（让我们称之为第二个响应）,由于我们可以控制在响应头中反映的值，我们可以注入一个字符串，使其长度加上前面的头字段’略超过8kB，</p>
+<p>然后我们注入的字符串的最后一个字符突然变成下一个字符串的开头响应标题。</p>
+<p><img src="https://i.imgur.com/IvquRxG.png" alt=""></p>
+<p>在这种情况下，在report_user_id后注入像AAA[…]AAA:foobar，AAA:foobar分别变成：名称报头字段AAA和值foob​​ar的第二响应。</p>
+<p>显然，我们可以用标准化的标题字段（例如Access-Control-Request-Origin）替换它来做真正的危害。</p>
+<p>但是，要确定应该添加多少填充以填充仅8k并不容易，因为有时响应头可能会有所不同。我们需要一种确定性的方法将它截断到我们想要的</p>
+<p>任何地方。快速模糊显示服务器在标题字段名称中占用空格（U + 0020）。换句话说，我们可以使用空格作为填充。总结一下：</p>
+<pre><code>1. 前置一堆空的空格（略小于8kB，否则服务器拒绝HTTP 414的请求（Request-URI太长））到一个头字段进行攻击
+1. 将精心设计的值放入其中一个输入参数中
+1. 让访问者两次访问该页面，因为只有第二次才会触发payload
+</code></pre><p>最后一个挑战是浏览器用％20编码空白空间。问题是它花费3个字节而不是1个，这使我们的预期payload（记住请求URI需要小于8kB，如上所述）幸运的是，加号（+）也被接受为编码的空白空间。</p>
+<p>其实，我并不知道这个具体的原因。这可能是一个缓冲实现错误，但我无法确定。无论如何，这种奇怪的行为是固定的，但仍然没有任何输入验证。</p>
+<p>最终攻击payload</p>
+<pre><code>https://twitter.com/i/safety/report_story?next_view=report_story_start&amp;source=reporttweet&amp;reported_user_id=1&amp;reporter_user_id=1&amp;is_media=true&amp;is_promoted=true&amp;reported_tweet_id=+++[...]+++set-cookie:foobar
+</code></pre><p>完整的响应头：</p>
+<pre><code>HTTP/1.1 200 OK
+set-cookie: foobar
+x-response-time: 229
+x-connection-hash: 4f7c08fce85fe4801b3b24f05764fc84
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-transaction: f9709a489ba395b5
+x-twitter-response-tags: BouncerCompliant
+x-xss-protection: 1; mode=block
+</code></pre><h3 id="使用Cookie炸弹拒绝服务"><a href="#使用Cookie炸弹拒绝服务" class="headerlink" title="使用Cookie炸弹拒绝服务"></a>使用Cookie炸弹拒绝服务</h3><p>上述发现实际上是这一发现的一小部分。由于输入反映在Set-Cookie中，我们可以控制这些特定cookie的值及其属性（例如Domain，Expires）。</p>
+<p>以前这意味着CSRF保护旁路（使用逗号（，）作为cookie分隔符fwiw），但现在不再是这种情况，因为Twitter现在将cookie与会话中的cookie进行比较。但是，攻击者可以使用Cookie Bomb来利用它。</p>
+<p><a href="http://homakov.blogspot.com/2014/01/cookie-bomb-or-lets-break-internet.html" target="_blank" rel="noopener">Cookie Bomb</a>是Egor Homakov介绍的术语。攻击本身并不是什么新鲜事，但很少有人真正研究它。它的主要思想是服务器拒绝具有异常大的head</p>
+<p>请求。确切的数字可能在不同的服务器上有所不同，但通常请求标头不能大于8kB。通过滥用此功能，攻击者可以强迫被攻击者接受一堆</p>
+<p>大型cookie。它的作用是，受害者对相应网站的所有请求都将包含一个非常大的cookie，导致服务器拒绝受害者的任何请求（即拒绝服务）。</p>
+<p>通过操纵不同的cookie属性可以进一步改进攻击：</p>
+<pre><code>域名：而不仅仅是example.com，.example.com将cookie应用于所有子域名，使整个服务瘫痪。
+cookie过期：默认情况下，除非另有说明，否则在浏览器重新启动后将销毁cookie，相反，攻击者可以利用它来永久锁定受害者，直到他们手动删除cookie。
+路径：将其设置为根路径（/）可以最大化的影响页面数。
+</code></pre><p><strong>行动中的攻击</strong></p>
+<p>攻击payload（无需编码以实现可读性）：</p>
+<pre><code>1. https://twitter.com/i/safety/report_story?next_view=report_story_start&amp;reported_user_id=000[...]000;Expires=Wed, 02 Apr 2025 12:21:55 GMT;Path=/;Domain=.twitter.com&amp;reporter_user_id=1&amp;is_media=true&amp;is_promoted=true&amp;reported_tweet_id=000[...]000;Expires=Wed, 02 Apr 2025 12:21:55 GMT;Path=/;Domain=.twitter.com
+</code></pre><p>响应头：</p>
+<pre><code>1. HTTP/1.1 200 OK
+1. [...]
+1. set-cookie: reported_user_id=000[...]000;Expires=Wed, 02 Apr 2025 12:21:55 GMT;Path=/;Domain=.twitter.com
+1. set-cookie: reported_tweet_id=000[...]000;Expires=Wed, 02 Apr 2025 12:21:55 GMT;Path=/;Domain=.twitter.com
+1. [...]
+</code></pre><p>您可能想知道为什么要使用两个cookie而不是一个。那是因为一个cookie只能包含最多4kB的数据。</p>
+<p><img src="https://i.imgur.com/YRKYjXf.png" alt=""></p>
+<p>当被攻击者访问该页面后，我们的攻击已经开始进行。</p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>解决的方法：始终验证用户输入，包括长度。幸运的是，这次Twitter通过适当的输入验证来修复它。此外，知道不要让用户设置任意cookie值也很重要。</p>
+<h3 id="基于DOM的Cookie炸弹"><a href="#基于DOM的Cookie炸弹" class="headerlink" title="基于DOM的Cookie炸弹"></a>基于DOM的Cookie炸弹</h3><p>DOM上的Cookie API很乱。只有一个属性可以与之交互（即document.cookie）。开发人员需要特别注意确保正确使用它。在这里，我想在Twitter上展示另一个Cookie炸弹问题。</p>
+<p><strong>分析</strong></p>
+<p>Twitter曾经使用cookie跟踪主题标签和引用者。他们是这样做的：</p>
+<pre><code>function d(a) {
+[...]
+var b = document.referrer || &quot;none&quot;,
+d = &quot;ev_redir_&quot; + encodeURIComponent(a) + &quot;=&quot; + b + &quot;; path=/&quot;;
+document.cookie = d;
+[...]
+}
+[...]
+window.location.hash != &quot;&quot; &amp;&amp; d(window.location.hash.substr(1).toLowerCase())
+</code></pre><p>简而言之，如果访问者来自其他网站，它会将document.hash和document.referrer中的主题标签记录到cookie中。</p>
+<p>然而cookie值（引用者）未被编码或验证，允许攻击者设置任意cookie值。有一点需要知道的是，浏览器会对document.referrer中的某些字符</p>
+<p>进行编码。为了最大化影响，我们需要能够注入一些关键字符，即分号（;）和等号（=），以操纵cookie属性。所有的浏览器似乎都没有触及它们</p>
+<p>但是空的空间被编码。没有它我们不能将有效的GMT日期（Wdy，DD-Mon-YYYY HH：MM：SS GMT）分配给Expires。</p>
+<p>我们可以替换它Max-age告诉浏览器cookie应该在多少秒后失效，但某些浏览器（例如Internet Explorer）无法识别此类属性。</p>
+<p>下表显示了在每个浏览器中可以使用哪些charactors替换Expires中的空白区域：</p>
+<pre><code>Chrome
+33 (!), 34 (&quot;), 35 (#), 36 ($), 37 (%), 38 (&amp;), 39 (&#39;), 40 ((), 41 ()), 42 (*), 43 (+), 44 (,), 45 (-), 46 (.), 47 (/), 60 (&lt;), 61 (=), 62 (&gt;), 63 (?), 64 (@), 91 ([), 92 (\), 93 (]), 94 (^), 95 (_), 96 (`), 123 ({), 124 (|), 125 (}), 126 (~)
+Firefox
+9 (TAB), 40 ((), 41 ()), 44 (,), 45 (-), 47 (/), 91 ([), 93 (])
+Internet Explorer
+Anything except alphanumeric and semi-colon
+Safari
+9 (TAB)
+</code></pre><p>所以大多数浏览器都接受古怪的日期。你可以用类似的东西来测试它<code>document.cookie = &#39;foo=bar; expires=Thu,01[Jan/2025^00:00:01+GMT&#39;</code>。</p>
+<h4 id="攻击手段"><a href="#攻击手段" class="headerlink" title="攻击手段"></a>攻击手段</h4><pre><code>1. 准备一个网址为`https://attacker.com/?AAA[...]AAA;domain=.twitter.com:expires=Thu,01 [Jan / 2025 ^ 00：00：01 + GMT`
+1. 将受害者重定向到`https://twitter.com/#foo和https://twitter.com/#bar`以设置两个大型Cookie（由于每个Cookie限制为4kB）
+</code></pre><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>验证用户输入是很重要的事情，即使是冗长的输入也可能会导致您的应用出现问题</p>
+<p>原文链接：<a href="https://blog.innerht.ml/page/10/" target="_blank" rel="noopener">https://blog.innerht.ml/page/10/</a></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/04/08/服务器端模板注入/" title="服务器端模板注入">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#溢出三部曲"><span class="post-toc-text">溢出三部曲</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTP响应与head溢出分离"><span class="post-toc-text">HTTP响应与head溢出分离</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用Cookie炸弹拒绝服务"><span class="post-toc-text">使用Cookie炸弹拒绝服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决方法"><span class="post-toc-text">解决方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于DOM的Cookie炸弹"><span class="post-toc-text">基于DOM的Cookie炸弹</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#攻击手段"><span class="post-toc-text">攻击手段</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#结论"><span class="post-toc-text">结论</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
