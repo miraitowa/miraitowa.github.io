@@ -1,0 +1,553 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>跨站点WebSocket劫持如何导致完整的会话妥协</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《跨站点WebSocket劫持如何导致完整的会话妥协》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/14/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/04/13/跨站点WebSocket劫持如何导致完整的会话妥协/" itemprop="url">		
+			跨站点WebSocket劫持如何导致完整的会话妥协		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/04/13/跨站点WebSocket劫持如何导致完整的会话妥协/" itemprop="url">
+	<time datetime="2019-04-13T14:13:33.616Z" itemprop="datePublished">
+  		2019-04-13
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="跨站点WebSocket劫持如何导致完整的会话妥协"><a href="#跨站点WebSocket劫持如何导致完整的会话妥协" class="headerlink" title="跨站点WebSocket劫持如何导致完整的会话妥协"></a>跨站点WebSocket劫持如何导致完整的会话妥协</h2><p>WebSockets是一种HTML5功能，可通过单个TCP连接提供双向通信通道。这样可以通过在浏览器和服务器之间创建持久连接来构建实时应用程序。</p>
+<p>Websockets最常见的应用是向Web应用程序添加聊天功能。下面这张图片为websockets工作原理图：</p>
+<p>（参考：<a href="http：//www.websocket.org">http：//www.websocket.org</a>）</p>
+<p><img src="https://i.imgur.com/wBKhJsu.jpg" alt=""></p>
+<p>最近，我们对具有大量菜单选项和功能的相当复杂的应用程序进行了安全评估。该应用程序正在利用<strong>Web套接字</strong>技术来完成大部分操作。</p>
+<p>这实际上意味着在大多数http代理日志中都找不到日志。在访问主页时，该网站会加载一个静态HTML页面以及一些JavaScript和CSS文件。</p>
+<p>在此之后，整个通信转移到Websockets。为服务器创建websocket连接，这将加载网站的所有可见HTML部分。单击链接或提交表单会触发</p>
+<p>该页面以向服务器发送多个WebSocket消息。服务器内部处理这些消息并通过WebSocket消息发送新的HTML内容，然后在浏览器中显示。</p>
+<p>当捕获websocket消息时，很明显消息的数量是压倒性的。增加了每1秒后有一个短间隔保持活动消息交换的事实。现有工具无法完成任务。</p>
+<p>因此，我必须向IronWASP添加一个Websocket Message Analyzer和WebSocket客户端，以了解这个Websocket实现过程。</p>
+<p>你可以在这里读到它实现的全部过程。在测试应用程序时，我们发现它很容易受到跨站点WebSocket劫持的攻击</p>
+<p>（首先由christian schneider <a href="http://www.christian-schneider.net/CrossSiteWebSocketHijacking.html" target="_blank" rel="noopener">http://www.christian-schneider.net/CrossSiteWebSocketHijacking.html</a>讨论）。在讨论如何测试之前，</p>
+<p>我将先讨论这个问题的影响。对这个问题的测试非常简单，您可以在测试前10分钟内使用Websockets的应用程序完成此操作。</p>
+<p>我们应该明白，不通过浏览器在websockets上强制实施同源策略（SOP)(通过SSL加载的页面在某些浏览器中不能进行非SSL WebSocket连接）。</p>
+<p>我们测试的应用程序依赖于http cookie进行会话验证。通过WebSocket从浏览器发送的消息不包含任何会话ID或其他随机参数。</p>
+<p>这意味着，如果一个用户已经登录到他/她的浏览器漏洞的应用程序，具有HTTP://攻击者.COM在不同的标签页中打开，然后HTTP://攻击者.COM</p>
+<p>可以尝试创建一个WebSocket连接易受攻击的应用程序和有效的经过身份验证的会话ID将（与浏览器一起）与此请求一起发送。</p>
+<p>因此，现在由http://攻击者.com建立的WebSocket连接将具有与从易受攻击的应用程序中创建的WebSocket相同的访问级别。</p>
+<p>由于我们的整个应用程序都在websockets上运行，因此劫持WebSocket将等同于劫持用户的会话。因此，实质上影响相当于持久性跨站点脚本。</p>
+<p>如果你认为这很漏洞已经很严重了，那么你会惊讶地发现，在某些情况下，跨站点WebSocket脚本甚至可以导致用户系统上的远程代码执行，</p>
+<p>就像IPython Notebook一样.[<a href="http://lambdaops.com/cross-origin-websocket-hijacking-of-ipython" target="_blank" rel="noopener">http://lambdaops.com/cross-origin-websocket-hijacking-of-ipython</a>]</p>
+<p>希望到现在为止，您确信这是你必须对使用WebSockets的应用程序执行的第一次检查。在进行测试之前，你需要完成这三步才能执行此检查：</p>
+<blockquote>
+<pre><code>1. WebSocket连接的URL。这从ws://或wss://开始
+
+1. 用于创建此连接的Origin标头。这是进行WebSocket连接的页面的必要条件。
+
+1. 浏览器和服务器之间发送一些消息，以便我们知道正常连接是什么样的。
+</code></pre></blockquote>
+<p>下图显示了如何从IronWASP日志中获取Origin和WebSocket URL值。</p>
+<p><img src="https://i.imgur.com/yry8NrN.png" alt=""></p>
+<p>获得此信息后，您可以通过几种不同的方式检查跨站点WebSocket劫持。我将解释三个简单的方法：</p>
+<h3 id="通过代理工具，如Burp"><a href="#通过代理工具，如Burp" class="headerlink" title="通过代理工具，如Burp"></a>通过代理工具，如Burp</h3><p>这里应该注意，burp具有WebSockets的拦截和记录功能。到目前为止，ZAP和IronWASP是唯一能够重新发送websocket请求的软件。</p>
+<p>在burp中，我们不能重复发送websockets消息，但是我们仍然可以通过检查WebSocket握手是否成功来以有限的方式测试它。</p>
+<p>为了测试这个，我们需要识别通过http(s)连接发生的websocket升级请求，并且可以重复发送请求。</p>
+<p>下面的屏幕截图显示了一个burp Repeater日志，显示了对websocket连接的有效请求的请求和响应。</p>
+<p><img src="https://i.imgur.com/ozjE9Z6.png" alt=""></p>
+<p>为了测试这个缺陷，我们需要做的就是发送另一个带有修改过的Origin头的请求。如果我们收到101 Web套接字协议握手，则表示已建立WebSocket连接。</p>
+<p>如果未建立连接，则表示应用程序是安全的，因为它拒绝来自外部Origins的WebSocket连接。如果建立了连接，</p>
+<p>那么我们将不得不执行进一步的检查以确认应用程序是否容易受到跨站点WebSocket劫持的攻击。即使建立了连接，</p>
+<p>应用程序也只有在响应WebSocket消息时才会受到攻击，就像它对来自有效Origin的连接一样。</p>
+<p>这是因为开发人员可以将Origin验证逻辑与访问控制检查一起放置。因此，仍然会建立连接，但在这种情况下，</p>
+<p>外部Origins将无法访问经过身份验证的数据，这是一件好事。</p>
+<p>ZAP具有重新发送消息的能力，但据我所知，它确实允许篡改Origin头。下面显示的方法说明了如何对CSWSH进行更详细的检查。</p>
+<h3 id="使用跨站点WebSocket劫持在线测试程序"><a href="#使用跨站点WebSocket劫持在线测试程序" class="headerlink" title="使用跨站点WebSocket劫持在线测试程序"></a>使用跨站点WebSocket劫持在线测试程序</h3><p>打开应用程序以在浏览器中进行测试并登录。访问完毕后，在另一个选项卡中打开<a href="http://ironwasp.org/cswsh.html，" target="_blank" rel="noopener">http://ironwasp.org/cswsh.html，</a></p>
+<p>输入WebSocket URL并点击“连接”。建立连接后，您必须能够从此页面向服务器发送消息。发送从有效会话中捕获的消息，</p>
+<p>并查看服务器如何响应。如果服务器以与有效会话相同的方式响应，那么它很可能容易受到跨站点WebSocket劫持的攻击。</p>
+<p><img src="https://i.imgur.com/HkNi0fU.png" alt=""></p>
+<p><img src="https://i.imgur.com/xPsDke3.png" alt=""></p>
+<h3 id="使用IronWASP的WebSocket客户端"><a href="#使用IronWASP的WebSocket客户端" class="headerlink" title="使用IronWASP的WebSocket客户端"></a>使用IronWASP的WebSocket客户端</h3><p>使用上述方法进行测试时，发送到服务器的Origin是<a href="http://ironwasp.org" target="_blank" rel="noopener">http://ironwasp.org</a>。如果您想要更灵活地设置Origin值，</p>
+<p>那么您可以使用IronWASP的WebSocket Client实用程序。这让你定义你想要的任何Origin值并测试WebSocket连接。</p>
+<p><img src="https://i.imgur.com/hvTxw6F.png" alt=""></p>
+<p>在应用程序可能允许来自应用程序的公共Origin的WebSocket连接以及来自Origin值的连接的情况下，这可能会派上用场，</p>
+<p>这些连接来自localhost或某些内部私有IP地址。这可能是为了支持公司的开发人员和内部测试人员。通过使用IronWASP的WebSocket客户端，</p>
+<p>您可以尝试使用localhost或私有IP地址的组合来查看它是否有效。如果确实如此，那么在现实场景中利用这个问题可能有点棘手。</p>
+<p>例如，如果应用程序允许http:/127.0.0.1:8080作为Origin，那么如果被攻击者在端口8080上运行本地Web服务器并且应用程序具有跨站点脚本，则可以利用此功能。</p>
+<p><img src="https://i.imgur.com/hZOD4mL.png" alt=""></p>
+<h3 id="使用IronWASP的WebSocket-API自动检查"><a href="#使用IronWASP的WebSocket-API自动检查" class="headerlink" title="使用IronWASP的WebSocket API自动检查"></a>使用IronWASP的WebSocket API自动检查</h3><p>如果您要检查Origin标头的localhost和私有IP地址的不同组合，那么使用自定义脚本自动执行此检查可能更容易。IronWASP使您能够以Python或Ruby编写脚本。</p>
+<p>例如，以下脚本将检查专用IP地址空间中的每个IP作为Origin标头值，以查看它是否被接受。</p>
+<pre><code>import clr
+clr.AddReference(&quot;WebsocketClient.exe&quot;)
+from WebsocketClient import *
+def check_conn(origin):
+print &quot;Testing origin - &quot; + origin
+ws = SyncWebsockClient()
+ws.Connect(&quot;ws://tatgetapp.com/ws&quot;, origin, &quot;SessionID=KSDI2923EWE9DJSDS01212&quot;)
+ws.Send(&quot;first message to send&quot;)
+msg = ws.Read()
+ws.Close()
+if msg == &quot;message that is part of valid session&quot;:
+  print &quot;Connection successful!!&quot;
+  return True
+else:
+  return False
+
+def check_nw():
+  for nws in [&quot;192.168.0.0/16&quot;, &quot;172.16.0.0/12&quot;, &quot;10.0.0.0/8&quot;]:
+for ip in Tools.NwToIp(nws):
+  if check_conn(&quot;http://&quot; + ip):
+break
+
+check_nw()
+</code></pre><p><img src="https://i.imgur.com/hBJyA1c.png" alt=""></p>
+<pre><code>原文链接：https://www.notsosecure.com/how-cross-site-websocket-hijacking-could-lead-to-full-session-compromise/
+</code></pre>
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/04/14/Stanford机器学习 逻辑回归和过拟合问题的解决 logistic Regression & Regularization/" title="Stanford机器学习 逻辑回归和过拟合问题的解决 logistic Regression & Regularization">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/04/08/溢出三部曲/" title="溢出三部曲">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#跨站点WebSocket劫持如何导致完整的会话妥协"><span class="post-toc-text">跨站点WebSocket劫持如何导致完整的会话妥协</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#通过代理工具，如Burp"><span class="post-toc-text">通过代理工具，如Burp</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用跨站点WebSocket劫持在线测试程序"><span class="post-toc-text">使用跨站点WebSocket劫持在线测试程序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用IronWASP的WebSocket客户端"><span class="post-toc-text">使用IronWASP的WebSocket客户端</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用IronWASP的WebSocket-API自动检查"><span class="post-toc-text">使用IronWASP的WebSocket API自动检查</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

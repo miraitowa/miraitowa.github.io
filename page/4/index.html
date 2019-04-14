@@ -62,7 +62,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		4/12/2019 
+		4/14/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -152,6 +152,108 @@
 <div class="am-g am-g-fixed blog-fixed">
 	<div class="am-u-md-12 am-u-sm-12">
 
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/针对Resin服务的攻击向量整理/" itemprop="url">
+	<time datetime="2019-03-21T02:26:04.672Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/针对Resin服务的攻击向量整理/" itemprop="url">		
+			针对Resin服务的攻击向量整理		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								针对Resin服务的攻击向量整理0x00 弱口令
+
+http://victim.com/resin-admin/
+http://victim.com/resin-admin/status.php
+admin/admin
+
+
+0x01 CVE-2006-1953 Resin Windows远程目录遍历漏洞参考资料
+
+https://www.rapid7.com/resources/advisorie	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/针对Resin服务的攻击向量整理/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/03/21/在bugku关于CBC翻转攻击思路/" itemprop="url">
+	<time datetime="2019-03-21T02:26:04.671Z" itemprop="datePublished">
+  		2019-03-21
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/03/21/在bugku关于CBC翻转攻击思路/" itemprop="url">		
+			在bugku关于CBC翻转攻击思路		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								前言今天在bugku遇到关于CBC翻转攻击的题目，总结了一下关于CBC翻转攻击的原理，以及关于这道题目的解题思路
+CBC翻转攻击的主要目的：通过损坏密文字节来改变明文字节。(注：借助CBC内部的模式) 通过添加单引号等恶意字符来绕过过滤器，
+或通过将用户ID更改为admin来提升权限，或者更改应用程序所需的明文的任何其他后果。
+加密过程：
+上图CBC加密原理图
+1：Plaintext：待加密的数据	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/03/21/在bugku关于CBC翻转攻击思路/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
 		
 			<article class="am-g blog-entry-article">
 
@@ -541,104 +643,6 @@ typedef struct{
 					
 						<span class="continue-read">      	
 							<a href="/2019/03/21/数据结构——线性表学习篇(二)/" class="pull-right">
-								展开全文
-							</a>		
-						</span>
-					         		
-				</div>
-		
-			</article>
-		
-			<article class="am-g blog-entry-article">
-
-				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
-				</div>	
-
-				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-					<span class="theme-annie-post-date">
-						<a href="/2019/03/21/数据结构——树与二叉树学习篇(一)/" itemprop="url">
-	<time datetime="2019-03-21T02:26:04.661Z" itemprop="datePublished">
-  		2019-03-21
-  </time>
-</a>    
-
-					</span>
-					<span class="theme-annie-post-title">
-						
-	
-		<a href="/2019/03/21/数据结构——树与二叉树学习篇(一)/" itemprop="url">		
-			数据结构——树与二叉树学习篇(一)		
-		</a>
-	
-
-					</span>
-					
-					
-						<p>
-							
-								1、树的定义和基本术语1.1 树的定义定义：树(Tree)是n(n&gt;=0)个结点的有限集T，T为空时称为空树，否则它满足如下两个条件：
-
-(1)有且仅有一个特定的称为根(Root)的结点；(2)其余的结点可分为m(m&gt;=0)个互不相交的子集T1,T2,T3…Tm，其中每个子集又是一棵树，并称其为子树(Subtree)。要求子树都非空，使子树的个数（和树的结构）能有明确定义：
-
-结点个数	
-							  
-						</p> 
-					
-
-					
-						<span class="continue-read">      	
-							<a href="/2019/03/21/数据结构——树与二叉树学习篇(一)/" class="pull-right">
-								展开全文
-							</a>		
-						</span>
-					         		
-				</div>
-		
-			</article>
-		
-			<article class="am-g blog-entry-article">
-
-				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
-				</div>	
-
-				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-					<span class="theme-annie-post-date">
-						<a href="/2019/03/21/数据结构——串，数组和广义表学习篇(一)/" itemprop="url">
-	<time datetime="2019-03-21T02:26:04.660Z" itemprop="datePublished">
-  		2019-03-21
-  </time>
-</a>    
-
-					</span>
-					<span class="theme-annie-post-title">
-						
-	
-		<a href="/2019/03/21/数据结构——串，数组和广义表学习篇(一)/" itemprop="url">		
-			数据结构——串，数组和广义表学习篇(一)		
-		</a>
-	
-
-					</span>
-					
-					
-						<p>
-							
-								前言昨天一直在做关于KMP算法的事情，今天把数据结构中串，数组和广义表的知识点梳理一下
-串定义：是由零个或多个字符组成的有限序列，又称字符串。
-串的长度：串中字符的数目称为串的长度。 
-空串：由零个字符组成的串叫做空串，空串不包括任何字符，其长度为零。 
-子串：串中任意个连续的字符组成的子序列称为该串的子串，空串是任何串的子串。 
-主串：包含子串的串相应的称为主串。
-串有两种表示形式：顺序存储表示	
-							  
-						</p> 
-					
-
-					
-						<span class="continue-read">      	
-							<a href="/2019/03/21/数据结构——串，数组和广义表学习篇(一)/" class="pull-right">
 								展开全文
 							</a>		
 						</span>
