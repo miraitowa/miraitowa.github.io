@@ -62,7 +62,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		4/16/2019 
+		4/25/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -152,6 +152,107 @@
 <div class="am-g am-g-fixed blog-fixed">
 	<div class="am-u-md-12 am-u-sm-12">
 
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/04/25/梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）/" itemprop="url">
+	<time datetime="2019-04-25T07:15:49.129Z" itemprop="datePublished">
+  		2019-04-25
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/04/25/梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）/" itemprop="url">		
+			梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）上一篇是理论知识、背景介绍以及大体的实现方向，这一篇是具体代码实现
+功能模块准备
+写出sigmoid函数，返回被录取的概率，即映射到概率
+
+ 
+
+写出model函数，返回预测结果值，即X（样本值）与theta的矩阵相乘结果
+
+def sigmoid(z):
+return 1 / (1 + np.exp(-z))
+nums = np.arange	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/04/25/梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/04/25/破解实验室WiFi密码/" itemprop="url">
+	<time datetime="2019-04-25T05:13:36.776Z" itemprop="datePublished">
+  		2019-04-25
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/04/25/破解实验室WiFi密码/" itemprop="url">		
+			破解实验室WiFi密码		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								破解实验室WiFi密码1 准备工作工具：Vmware虚拟机、kali镜像文件、无线网卡一个
+PS：无线网卡一定得是外置的，虽然电脑本身带有内置网卡，但并无监听周围热点功能；我这里使用的是USB网卡RT3070
+暴力破解思路：kali系统接入无线网卡，并通过里面的aircrack程序开始监听周围热点，选择一个WiFi热点，
+用aircrack去攻击一台连接了该WiFi热点的设备，使其掉线，之后这台电	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/04/25/破解实验室WiFi密码/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
 		
 			<article class="am-g blog-entry-article">
 
@@ -526,99 +627,6 @@ https://www.bilibili.com/video/av44798895/?p=14
 					
 						<span class="continue-read">      	
 							<a href="/2019/04/02/numpy常用知识点/" class="pull-right">
-								展开全文
-							</a>		
-						</span>
-					         		
-				</div>
-		
-			</article>
-		
-			<article class="am-g blog-entry-article">
-
-				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
-				</div>	
-
-				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-					<span class="theme-annie-post-date">
-						<a href="/2019/04/02/渗透测试神器——nmap/" itemprop="url">
-	<time datetime="2019-04-02T14:45:42.416Z" itemprop="datePublished">
-  		2019-04-02
-  </time>
-</a>    
-
-					</span>
-					<span class="theme-annie-post-title">
-						
-	
-		<a href="/2019/04/02/渗透测试神器——nmap/" itemprop="url">		
-			渗透测试神器——nmap		
-		</a>
-	
-
-					</span>
-					
-					
-						<p>
-							
-								渗透测试神器——nmap本篇作为渗透神器系列第一篇文章，将介绍一款经典的端口扫描工具–nmap。目前市面上成熟的端口扫描器有很多，
-比如massscan(全网扫描器)，zenmap(nmap的GUI版)等，但我个人还是钟爱nmap，原因很简单，因为它很强大，并且支持扩展。
-Nmap最新几个版本中，加入了nmap script Engine(NSE)功能，支持扩展脚本，即可以在nmap中加载自定义的	
-							  
-						</p> 
-					
-
-					
-						<span class="continue-read">      	
-							<a href="/2019/04/02/渗透测试神器——nmap/" class="pull-right">
-								展开全文
-							</a>		
-						</span>
-					         		
-				</div>
-		
-			</article>
-		
-			<article class="am-g blog-entry-article">
-
-				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
-				</div>	
-
-				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-					<span class="theme-annie-post-date">
-						<a href="/2019/04/02/PayPal旗下Braintree网站上不寻常的漏洞/" itemprop="url">
-	<time datetime="2019-04-01T23:44:58.560Z" itemprop="datePublished">
-  		2019-04-02
-  </time>
-</a>    
-
-					</span>
-					<span class="theme-annie-post-title">
-						
-	
-		<a href="/2019/04/02/PayPal旗下Braintree网站上不寻常的漏洞/" itemprop="url">		
-			PayPal旗下Braintree网站上**不寻常**的漏洞(奖金3200美元)		
-		</a>
-	
-
-					</span>
-					
-					
-						<p>
-							
-								PayPal旗下Braintree网站上不寻常的漏洞(奖金3200美元)原文链接：https://blog.usejournal.com/an-unusal-bug-on-braintree-paypal-b8d3ec662414
-这是我关于PayPal Bug Bounty计划的第一篇文章。
-如果你正在寻找一些很优秀的渗透测试文章，请查看Harsh Jaiswal的文章。
-所以，回到这篇文章。在	
-							  
-						</p> 
-					
-
-					
-						<span class="continue-read">      	
-							<a href="/2019/04/02/PayPal旗下Braintree网站上不寻常的漏洞/" class="pull-right">
 								展开全文
 							</a>		
 						</span>

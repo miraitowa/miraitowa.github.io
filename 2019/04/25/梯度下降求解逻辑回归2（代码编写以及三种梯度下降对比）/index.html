@@ -1,0 +1,691 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/25/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/04/25/梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）/" itemprop="url">		
+			梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/04/25/梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）/" itemprop="url">
+	<time datetime="2019-04-25T07:15:49.129Z" itemprop="datePublished">
+  		2019-04-25
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）"><a href="#梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）" class="headerlink" title="梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）"></a>梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）</h2><p>上一篇是理论知识、背景介绍以及大体的实现方向，这一篇是具体代码实现</p>
+<h3 id="功能模块准备"><a href="#功能模块准备" class="headerlink" title="功能模块准备"></a>功能模块准备</h3><ol>
+<li>写出sigmoid函数，返回被录取的概率，即映射到概率</li>
+</ol>
+<p> <img src="https://i.imgur.com/HhhjElW.png" alt=""></p>
+<ol>
+<li><p>写出model函数，返回预测结果值，即X（样本值）与theta的矩阵相乘结果</p>
+<ol>
+<li>def sigmoid(z):</li>
+<li>return 1 / (1 + np.exp(-z))</li>
+<li>nums = np.arange(-10, 10 ,step=1)</li>
+<li>fig, ax = plt.subplots(figsize=(12,4))</li>
+<li>ax.plot(nums, sigmoid(nums), ‘r’)</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/KnMAHtp.png" alt=""></p>
+<p>写出model函数，返回预测结果值，即X（样本值）与theta的矩阵相乘结果</p>
+<p><img src="https://i.imgur.com/L03TF78.png" alt=""></p>
+<pre><code>1. def model(X, theta):
+1. 
+1. return sigmoid(np. dot(X, theta.T))
+1. pdData.insert(0, &#39;Ones&#39;, 1)
+1. 
+1. orig_data = pdData.as_matrix()
+1. cols = orig_data.shape[1]
+1. x = orig_data[:,0:cols-1]
+1. y = orig_data[:,cols-1:cols]
+1. 
+1. theta = np.zeros([1, 3])
+</code></pre><p><img src="https://i.imgur.com/zvjXJjq.png" alt=""></p>
+<p>写出cost函数，实现计算损失函数，目的是度量预测值与真实值的拟合程度</p>
+<p>将对数似然函数去负号</p>
+<p><img src="https://i.imgur.com/F73YTBV.png" alt=""></p>
+<pre><code>1. def cost(x, y, theta):
+1. left = np.multiply(-y, np.log(model(x, theta)))
+1. right = np.multiply(1 - y, np.log(1 - model(x,theta)))
+1. return np.sum(left - right) / (len(x))
+1. cost(x, y, theta)
+</code></pre><p>写出gradient函数，来计算每个样本的梯度方向，即学习方向，梯度下降的方向 </p>
+<p><img src="https://i.imgur.com/vY6xEsG.png" alt=""></p>
+<pre><code>1. def gradient(x, y, theta):
+1. grad = np.zeros(theta.shape)
+1. error = (model(x, theta) - y).ravel()
+1. for j in range(len(theta.ravel())):
+1. term = np.multiply(error, x[:,j])
+1. grad[0, j] = np.sum(term) / len(x)
+1. return grad
+</code></pre><p>设置停止策略模式</p>
+<p>descent函数，实现参数 θ 的更新</p>
+<p>accuracy函数，计算精度</p>
+<h3 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h3><p>比较3种不同梯度下降方法</p>
+<pre><code>1. STOP_ITER = 0
+1. STOP_COST = 1
+1. STOP_GRAD = 2
+1. 
+1. def stopCriterion(type, value, threshold):
+1. 
+1. if type == STOP_ITER: return value &gt; threshold
+1. elif type == STOP_COST: return abs(value[-1]-value[-2]) &lt; threshold
+1. elif type == STOP_GRAD: return np.linalg.norm(value) &lt; threshold
+
+1. import numpy.random
+1. 
+1. def shuffleData(data):
+1. np.random.shuffle(data)
+1. cols = data.shape[1]
+1. x = data[:, 0:cols-1]
+1. y = data[:, cols-1:]
+1. return x, y
+
+1. import time
+1. 
+1. def descent(data, theta, batchSize, stopType, thresh, alpha):
+1. #梯度下降求解
+1. 
+1. init_time = time.time()
+1. i = 0 # 迭代次数
+1. k = 0 # batch
+1. x, y = shuffleData(data)
+1. grad = np.zeros(theta.shape) # 计算的梯度
+1. costs = [cost(x, y, theta)] # 损失值
+1. 
+1. 
+1. while True:
+1. grad = gradient(x[k:k+batchSize], y[k:k+batchSize], theta)
+1. k += batchSize #取batch数量个数据
+1. if k &gt;= n: 
+1. k = 0 
+1. x, y = shuffleData(data) #重新洗牌
+1. theta = theta - alpha*grad # 参数更新
+1. costs.append(cost(x, y, theta)) # 计算新的损失
+1. i += 1 
+1. 
+1. if stopType == STOP_ITER:   value = i
+1. elif stopType == STOP_COST: value = costs
+1. elif stopType == STOP_GRAD: value = grad
+1. if stopCriterion(stopType, value, thresh): break
+1. 
+1. return theta, i-1, costs, grad, time.time() - init_time
+
+1. def runExpe(data, theta, batchSize, stopType, thresh, alpha):
+1. #import pdb; pdb.set_trace();
+1. theta, iter, costs, grad, dur = descent(data, theta, batchSize, stopType, thresh, alpha)
+1. name = &quot;Original&quot; if (data[:,1]&gt;2).sum() 1 else &quot;Scaled&quot;
+1. name += &quot; data - learning rate: {} - &quot;.format(alpha)
+1. if batchSize==n: strDescType = &quot;Gradient&quot;
+1. elif batchSize==1:  strDescType = &quot;Stochastic&quot;
+1. else: strDescType = &quot;Mini-batch ({})&quot;.format(batchSize)
+1. name += strDescType + &quot; descent - Stop: &quot;
+1. if stopType == STOP_ITER: strStop = &quot;{} iterations&quot;.format(thresh)
+1. elif stopType == STOP_COST: strStop = &quot;costs change &lt; {}&quot;.format(thresh)
+1. else: strStop = &quot;gradient norm &lt; {}&quot;.format(thresh)
+1. name += strStop
+1. print (&quot;***{}\nTheta: {} - Iter: {} - Last cost: {:03.2f} - Duration: {:03.2f}s&quot;.format(
+1. name, theta, iter, costs[-1], dur))
+1. fig, ax = plt.subplots(figsize=(12,4))
+1. ax.plot(np.arange(len(costs)), costs, &#39;r&#39;)
+1. ax.set_xlabel(&#39;Iterations&#39;)
+1. ax.set_ylabel(&#39;Cost&#39;)
+1. ax.set_title(name.upper() + &#39; - Error vs. Iteration&#39;)
+1. return theta
+</code></pre><h3 id="不同的停止策略"><a href="#不同的停止策略" class="headerlink" title="不同的停止策略"></a>不同的停止策略</h3><p>设定迭代次数</p>
+<pre><code>n = 100
+runExpe(orig_data, theta, n, STOP_ITER, thresh=5000, alpha=0.000001)
+</code></pre><blockquote>
+<p>***Original data - learning rate: 1e-06 - Gradient descent - Stop: 5000 iterations</p>
+<p>Theta: [[-0.00027127  0.00705232  0.00376711]] - Iter: 5000 - Last cost: 0.63 - Duration: 0.89s</p>
+<p>array([[-0.00027127,  0.00705232,  0.00376711]])</p>
+<p><img src="https://i.imgur.com/Ah4nsOF.png" alt=""></p>
+</blockquote>
+<h4 id="根据损失停止"><a href="#根据损失停止" class="headerlink" title="根据损失停止"></a>根据损失停止</h4><p>设置阈值1E-6，差不多需要110000次迭代</p>
+<pre><code>runExpe(orig_data,theta, n, STOP_COST, thresh=0.000001, alpha=0.001)
+</code></pre><blockquote>
+<p>***Original data - learning rate: 0.001 - Gradient descent - Stop: costs change &lt; 1e-06</p>
+<p>Theta: [[-5.13364014  0.04771429  0.04072397]] - Iter: 109901 - Last cost: 0.38 - Duration: 19.71s</p>
+<p>array([[-5.13364014,  0.04771429,  0.04072397]])</p>
+<p><img src="https://i.imgur.com/dr9IOnO.png" alt=""></p>
+</blockquote>
+<h4 id="根据梯度变化停止"><a href="#根据梯度变化停止" class="headerlink" title="根据梯度变化停止"></a>根据梯度变化停止</h4><p>设置阈值0.05，差不多需要40000次迭代</p>
+<pre><code>runExpe(orig_data,theta, n, STOP_GRAD, thresh=0.05, alpha=0.001)
+</code></pre><blockquote>
+<p>***Original data - learning rate: 0.001 - Gradient descent - Stop: gradient norm &lt; 0.05</p>
+<p>Theta: [[-2.37033409  0.02721692  0.01899456]] - Iter: 40045 - Last cost: 0.49 - Duration: 7.64s</p>
+<p>array([[-2.37033409,  0.02721692,  0.01899456]])</p>
+</blockquote>
+<blockquote>
+<p><img src="https://i.imgur.com/DmSfSGM.png" alt=""></p>
+</blockquote>
+<h3 id="对比不同的梯度下降方法"><a href="#对比不同的梯度下降方法" class="headerlink" title="对比不同的梯度下降方法"></a>对比不同的梯度下降方法</h3><p><strong>Stochastic descent</strong></p>
+<p> <code>runExpe(orig_data,theta, 1, STOP_ITER, thresh=5000, alpha=0.001)</code></p>
+<blockquote>
+<p>***Original data - learning rate: 0.001 - Stochastic descent - Stop: 5000 iterations</p>
+<p>Theta: [[-0.38738789  0.01884999 -0.02619728]] - Iter: 5000 - Last cost: 0.93 - Duration: 0.27s</p>
+<p>array([[-0.38738789,  0.01884999, -0.02619728]])</p>
+<p><img src="https://i.imgur.com/k16yE6j.png" alt=""></p>
+</blockquote>
+<p>有点爆炸。。。很不稳定,再来试试把学习率调小一些</p>
+<pre><code>runExpe(orig_data,theta, 1, STOP_ITER, thresh=15000, alpha=0.000002)
+</code></pre><blockquote>
+<p>***Original data - learning rate: 2e-06 - Stochastic descent - Stop: 15000 iterations</p>
+<p>Theta: [[-0.00202344  0.00988736  0.00084222]] - Iter: 15000 - Last cost: 0.63 - Duration: 0.77s</p>
+<p>array([[-0.00202344,  0.00988736,  0.00084222]])</p>
+</blockquote>
+<p><img src="https://i.imgur.com/IFHxlfR.png" alt=""></p>
+<p>速度快，但稳定性差，需要很小的学习率</p>
+<pre><code>runExpe(orig_data,theta, 16, STOP_ITER, thresh=15000, alpha=0.001)
+</code></pre><blockquote>
+<p>***Original data - learning rate: 0.001 - Mini-batch (16) descent - Stop: 15000 iterations</p>
+<p>Theta: [[-1.03209164  0.01062196  0.00754394]] - Iter: 15000 - Last cost: 0.59 - Duration: 1.06s</p>
+<p>array([[-1.03209164,  0.01062196,  0.00754394]])</p>
+</blockquote>
+<p><img src="https://i.imgur.com/wU38dZh.png" alt=""></p>
+<pre><code>from sklearn import preprocessing as pp
+scaled_data = orig_data.copy()
+
+scaled_data[:, 1:3] = pp.scale(orig_data[:, 1:3])
+
+runExpe(scaled_data, theta, n, STOP_ITER, thresh=5000, alpha=0.001)
+</code></pre><blockquote>
+<p>***Scaled data - learning rate: 0.001 - Gradient descent - Stop: 5000 iterations</p>
+<p>Theta: [[0.3080807  0.86494967 0.77367651]] - Iter: 5000 - Last cost: 0.38 - Duration: 0.96s</p>
+<p>array([[0.3080807 , 0.86494967, 0.77367651]])</p>
+</blockquote>
+<p><img src="https://i.imgur.com/ztjk2ON.png" alt=""></p>
+<blockquote>
+<p> 它好多了！原始数据，只能达到达到0.61，而我们得到了0.38个在这里！</p>
+<p>  所以对数据做预处理是非常重要的</p>
+</blockquote>
+<pre><code>runExpe(scaled_data, theta, n, STOP_GRAD, thresh=0.02, alpha=0.001)
+</code></pre><blockquote>
+<p>***Scaled data - learning rate: 0.001 - Gradient descent - Stop: gradient norm &lt; 0.02</p>
+<p>Theta: [[1.0707921  2.63030842 2.41079787]] - Iter: 59422 - Last cost: 0.22 - Duration: 12.57s</p>
+<p>array([[1.0707921 , 2.63030842, 2.41079787]])</p>
+</blockquote>
+<p><img src="https://i.imgur.com/F0BuQc9.png" alt=""></p>
+<p>更多的迭代次数会使得损失下降的更多！</p>
+<pre><code>theta = runExpe(scaled_data, theta, 1, STOP_GRAD, thresh=0.002/5, alpha=0.001)
+</code></pre><blockquote>
+<p>***Scaled data - learning rate: 0.001 - Stochastic descent - Stop: gradient norm &lt; 0.0004</p>
+<p>Theta: [[1.14910956 2.78978546 2.56898948]] - Iter: 72633 - Last cost: 0.22 - Duration: 5.24s</p>
+</blockquote>
+<p><img src="https://i.imgur.com/3MopZrK.png" alt=""></p>
+<pre><code>runExpe(scaled_data, theta, 16, STOP_GRAD, thresh=0.002*2, alpha=0.001)
+</code></pre><blockquote>
+<p>***Scaled data - learning rate: 0.001 - Mini-batch (16) descent - Stop: gradient norm &lt; 0.004</p>
+<p>Theta: [[1.15788009 2.80684471 2.58152883]] - Iter: 1392 - Last cost: 0.22 - Duration: 0.17s</p>
+<p>array([[1.15788009, 2.80684471, 2.58152883]])</p>
+</blockquote>
+<p><img src="https://i.imgur.com/0xO7Hht.png" alt=""></p>
+<h3 id="精度"><a href="#精度" class="headerlink" title="精度"></a>精度</h3><p><strong> 设定阈值 </strong></p>
+<pre><code>1. def predict(x, theta):
+1. 
+1. return [1 if x&gt;=0.5 else 0 for x in model(x, theta)]
+1. 
+1. scaled_X = scaled_data[:, :3]
+1. 
+1. y = scaled_data[:, 3]
+1. 
+1. predictions = predict(scaled_X, theta)
+1. 
+1. correct = [1 if ((a == 1 and b == 1) or (a == 0 and b == 0)) else 0 for (a, b) in zip(predictions, y)]
+1. 
+1. accuracy = (sum(map(int, correct)) % len(correct))
+1. 
+1. print (&#39;accuracy = {0}%&#39;.format(accuracy))
+</code></pre><p><strong> accuracy = 89%</strong></p>
+<p>​</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/04/25/破解实验室WiFi密码/" title="破解实验室WiFi密码">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）"><span class="post-toc-text">梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#功能模块准备"><span class="post-toc-text">功能模块准备</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Gradient-descent"><span class="post-toc-text">Gradient descent</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#不同的停止策略"><span class="post-toc-text">不同的停止策略</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#根据损失停止"><span class="post-toc-text">根据损失停止</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#根据梯度变化停止"><span class="post-toc-text">根据梯度变化停止</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对比不同的梯度下降方法"><span class="post-toc-text">对比不同的梯度下降方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#精度"><span class="post-toc-text">精度</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
