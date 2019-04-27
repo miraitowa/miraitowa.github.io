@@ -1,0 +1,546 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>URL 跳转漏洞的利用技巧</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《URL 跳转漏洞的利用技巧》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/27/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/04/26/URL 跳转漏洞的利用技巧/" itemprop="url">		
+			URL 跳转漏洞的利用技巧		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/04/26/URL 跳转漏洞的利用技巧/" itemprop="url">
+	<time datetime="2019-04-26T00:59:25.122Z" itemprop="datePublished">
+  		2019-04-26
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="URL-跳转漏洞的利用技巧"><a href="#URL-跳转漏洞的利用技巧" class="headerlink" title="URL 跳转漏洞的利用技巧"></a>URL 跳转漏洞的利用技巧</h2><p>URL跳转漏洞仅是重定向到另一个网址，如： <a href="https://www.example.com/?go=https://www.google.com/，当我们访问这个url时，" target="_blank" rel="noopener">https://www.example.com/?go=https://www.google.com/，当我们访问这个url时，</a></p>
+<p>将从example.com跳转到google.com。通常来说，它们被归类到低影响的一类中，甚至，有些程序将它们列入超范围的名单中，</p>
+<p>且不允许用户访问。那我们能对它们做些什么呢？一年多以前，我发布了这个教程，当时我称之为“全互联网的问题”，</p>
+<p>因为Facebook发行其APP时，没有严格要求开发人员正确设置他们的白名单。这意味着开发人员可以将他们的跳转URL设置为example.com</p>
+<p>所允许的所有子域。很多网站都采用了“用Facebook登录”的方式，所以只需要在目标网站上设置一个url跳转漏洞，就可以实现账户接管。</p>
+<p>从此之后，Facebook和其他第三方登录的开发者已经做出了相当大的改变，以防止此类攻击。但我们是否仍旧可以利用url跳转漏洞做些手脚呢？我们一起来探索吧！</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先，让我们先找到一个开放式重定向的url，并探索常见的位置来寻找它们。我们来看看当我们在google中搜索site:example.com，</p>
+<p>并且使用以下模板进行检索时会发生什么：（当然，你也可以尝试自己写的变量，你永远不知道会有怎样的发现！）</p>
+<p><img src="https://i.imgur.com/8ewSQrt.png" alt=""></p>
+<pre><code>1. inurl:go
+1. inurl:return
+1. inurl:r_url
+1. inurl:returnUrl
+1. inurl:returnUri
+1. inurl:locationUrl
+1. inurl:goTo
+1. inurl:return_url
+</code></pre><p>没有发现？好吧，也没事，让我们在试试使用其网站，并在相同的位置寻找。从我的经验看来，大多数网站会在用户发生登录、注销、改密或注册</p>
+<p>等行为后跳转url，并通过处理url参数来完成这些操作。人们通常会忽视一个关键点——邮件中的链接。这些通常是由第三方操纵的。</p>
+<p>这些地方都应该是您第一时间要查看的地方，从登录页面开始浏览并测试这些页面。</p>
+<h4 id="也不要忘记检查哈希片段！！"><a href="#也不要忘记检查哈希片段！！" class="headerlink" title="也不要忘记检查哈希片段！！"></a>也不要忘记检查哈希片段！！</h4><p><strong>提示：试试移动用户代理呢，因为通常移动站点的工作方式不同！</strong></p>
+<h3 id="利用url跳转漏洞"><a href="#利用url跳转漏洞" class="headerlink" title="利用url跳转漏洞"></a>利用url跳转漏洞</h3><p>此时，我们至少能够发现一个url跳转漏洞，如果还没有发现的话，就继续探索吧！:) 那么，我们一旦发现了一个有效的漏洞，如何利用它呢？</p>
+<p>下面就是我将使用url跳转漏洞的最常见的利用方式：</p>
+<blockquote>
+<p><strong>通过配置错误的应用程序/登录流程获取口令</strong></p>
+<p>想象下面的场景：当我们登录redacted.com时，看到url是这样的returnto=/supersecure，使用你的口令成功登录后，</p>
+<p>网站将重定向到/supersecure?token=39e9334a，然后才会跳转到主站点去。所以，这是否意味着，如果我们将其设置为</p>
+<p>returnto=//myevilsite.com，并将这个登录url发送给受害者，，当此网站存在漏洞且用户成功登录网站，那么攻击者可以通过事先准备</p>
+<p>好的站点（用户就会被重定向到这里）窃取用户的登录口令了。</p>
+</blockquote>
+<blockquote>
+<p><strong>绕过SSRF / RCE的黑名单</strong></p>
+<p>有些网站会将某些请求列入黑名单，从而只允许访问theirsite.com。在他们的域环境中配有开放式的重定向，有时你可以通过绕过这些黑名单</p>
+<p>来实现SSRF或RCE（视情况而言），但这取决于网站的框架和它们处理重定向的方式是什么。</p>
+</blockquote>
+<blockquote>
+<p><strong>通过 javascript:alert(0) 进行XSS攻击</strong></p>
+<p>这种方式不是每次都能奏效的，这取决于网站是如何重定向的。若其实302跳转，则不会奏效；但如果它是通过JavaScript跳转的，那就能成功。</p>
+</blockquote>
+<blockquote>
+<p><strong>利用文件上传和移动设备的优势</strong></p>
+<p>这种方式我还未曾公开讲过，但还是计划给大家分享。由于各种原因，许多网站允许我们上传自定义文件。通常，在访问这些网站时，</p>
+<p>系统会自动下载我们上传的这些文件。所以，举个例子来说，你上传了一个zseano.html，并将其链接发送给你的好友，你的好友打开它时，</p>
+<p>便会自动下载这个html文件。</p>
+</blockquote>
+<p>但是，你知道吗，移动设备在显示这个链接时，并不只显示其链接和标题，而是显示其内容。不要高兴太早，认为自己已经拿到了XSS，因为移动设备上的浏览器不会执行JS。但是，你可以设置可点击的链接，并添加所有精美的CSS/HTML..它们能够泄露引用者。</p>
+<p>现在，想象一下这个场景。你向redacted.com上传一个文件，并且注意到他们的登录流程中有returnUrl，且允许.theirdomain.com。那么，</p>
+<p>你刚刚上传的文件就在cdn.theirsite.com上， 堪称完美。 将returnUrl设置为cdn.theirsite.com/eg/yourfile.html，</p>
+<p>并将这个链接发送给你的 目标 让他登录。登录后，用户将被重定向到你呈现的文件页面。添加一个漂亮的“点击此处继续”按钮，</p>
+<p>按钮链接指向你自己的网站，点击后，他们的登录口令将因为引用而泄露。</p>
+<p>话虽如此，但是浏览器通常不会泄漏引用。这对我来说可能是极个别的情况，因为我以前发现过类似的问题。但是这个方法还是值得一试的，</p>
+<p>你永远不知道它可能会发现什么。</p>
+<h3 id="常见的问题和绕过"><a href="#常见的问题和绕过" class="headerlink" title="常见的问题和绕过"></a>常见的问题和绕过</h3><p>我总是遇到试图阻止第三方重定向的过滤器。然而，在考虑绕过过滤器之前，人们在测试使用一个开放式重定向的网站的登录流程时，</p>
+<p>碰到的一个最常见的问题就是没有正确编码这些值。例如，<a href="https://example.com/login?return=https://mysite.com/。" target="_blank" rel="noopener">https://example.com/login?return=https://mysite.com/。</a></p>
+<p>网站或浏览器或许不能识别其返回参数的格式，因此尝试常规编码总是好的，否则，就尝试双重编码。</p>
+<blockquote>
+<pre><code>https://example.com/login?return=https%3A%2F%2Fmysite.com%2F
+
+
+https://example.com/login?return=https%3A%2F%2Fexample.com%2F%3Freturnurl%3D%2F%2Fmysite.com%2F
+</code></pre></blockquote>
+<p>你是否注意到我们在一个链接中放了两个重定向？ 我们需要对最后一次重定向进行双重编码，以便浏览器最后对其进行解码并跳转。有时，</p>
+<p>我们没能正确的编码，那么，浏览器也不会正确地跳转。</p>
+<h3 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h3><p>下面是一些我自己发现的有趣的绕过方式，你可以随时使用，也可以提供其他新的方式。</p>
+<pre><code>1. \ /yoururl.com
+1. \ / \ / yoururl.com
+1. \\ yoururl.com
+1. //yoururl.com
+1. // theirsite@yoursite.com
+1. HTTPS：// yoursite C = .theirsite.com /
+1. HTTPS：//yoursite.com#.theirsite.com/
+1. HTTPS：//yoursite.com \ .thersite.com /
+1. //%2F/yoursite.com
+1. ////yoursite.com
+1. https://theirsite.computer/ 
+1. （如果他们只是检查* theirsite.com *，。计算机是有效的tld！
+1. https://theirsite.com.mysite.com 
+1. 将他们的域名视为子域名
+1. /%0D/yoursite.com 
+1. 也可以尝试％09，％00，％0a，％07
+2. java%0d%0ascript%0d%0a:alert(0), j%0d%0aava%0d%0aas%0d%0acrip%0d%0at%0d%0a:confirm0 ,java%07script:prompt0 ,java%09scrip%07t:prompt0
+</code></pre><p>这就是现在所有的内容，我希望你们能够喜欢，且能根据需要更新某些方式！</p>
+<p>原文链接：</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/04/25/梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）/" title="梯度下降求解逻辑回归2（代码编写以及三种梯度下降对比）">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#URL-跳转漏洞的利用技巧"><span class="post-toc-text">URL 跳转漏洞的利用技巧</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#准备工作"><span class="post-toc-text">准备工作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#也不要忘记检查哈希片段！！"><span class="post-toc-text">也不要忘记检查哈希片段！！</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用url跳转漏洞"><span class="post-toc-text">利用url跳转漏洞</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常见的问题和绕过"><span class="post-toc-text">常见的问题和绕过</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#绕过"><span class="post-toc-text">绕过</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
