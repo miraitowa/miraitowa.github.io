@@ -1,0 +1,1570 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>机器学习算法整理——贝叶斯算法(实现拼写检查器)</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《机器学习算法整理——贝叶斯算法(实现拼写检查器)》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/28/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/04/28/机器学习算法整理——贝叶斯算法(实现拼写检查器)/" itemprop="url">		
+			机器学习算法整理——贝叶斯算法(实现拼写检查器)		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/04/28/机器学习算法整理——贝叶斯算法(实现拼写检查器)/" itemprop="url">
+	<time datetime="2019-04-28T11:12:41.799Z" itemprop="datePublished">
+  		2019-04-28
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h3 id="机器学习算法整理——贝叶斯算法-实现拼写检查器"><a href="#机器学习算法整理——贝叶斯算法-实现拼写检查器" class="headerlink" title="机器学习算法整理——贝叶斯算法(实现拼写检查器)"></a>机器学习算法整理——贝叶斯算法(实现拼写检查器)</h3><p><img src="https://i.imgur.com/ekD8vRg.png" alt=""></p>
+<p><img src="https://i.imgur.com/qxGFnb2.png" alt=""></p>
+<p><img src="https://i.imgur.com/SwUkkIL.png" alt=""></p>
+<p><img src="https://i.imgur.com/wz9qwi8.png" alt=""></p>
+<p><img src="https://i.imgur.com/6kqPe8B.png" alt=""></p>
+<p><img src="https://i.imgur.com/ugAjG69.png" alt=""></p>
+<p><img src="https://i.imgur.com/RCc3bdN.png" alt=""></p>
+<p><img src="https://i.imgur.com/GkCfJDS.png" alt=""></p>
+<p><img src="https://i.imgur.com/4biYJrH.png" alt=""></p>
+<p><img src="https://i.imgur.com/1d9GL1x.png" alt=""></p>
+<p><img src="https://i.imgur.com/M1e0eTu.png" alt=""></p>
+<p><img src="https://i.imgur.com/2KVkOfo.png" alt=""></p>
+<p><img src="https://i.imgur.com/moqZUeQ.png" alt=""></p>
+<p><img src="https://i.imgur.com/uYvbn69.png" alt=""></p>
+<h3 id="贝叶斯拼写检查器实现"><a href="#贝叶斯拼写检查器实现" class="headerlink" title="贝叶斯拼写检查器实现"></a>贝叶斯拼写检查器实现</h3><blockquote>
+<pre><code>1. import re, collections
+1.  
+1. def words(text): return re.findall(&#39;[a-z]+&#39;, text.lower()) 
+1.  
+1. def train(features):
+1. model = collections.defaultdict(lambda: 1)
+1. for f in features:
+1. model[f] += 1
+1. return model
+1.  
+1. NWORDS = train(words(open(&#39;big.txt&#39;).read()))
+1.  
+1. alphabet = &#39;abcdefghijklmnopqrstuvwxyz&#39;
+1.  
+1. def edits1(word):
+1. n = len(word)
+1. return set([word[0:i]+word[i+1:] for i in range(n)] + # deletion
+1.[word[0:i]+word[i+1]+word[i]+word[i+2:] for i in range(n-1)] + # transposition
+1.[word[0:i]+c+word[i+1:] for i in range(n) for c in alphabet] + # alteration
+1.[word[0:i]+c+word[i:] for i in range(n+1) for c in alphabet])  # insertion
+1.  
+1. def known_edits2(word):
+1. return set(e2 for e1 in edits1(word) for e2 in edits1(e1) if e2 in NWORDS)
+1.  
+1. def known(words): return set(w for w in words if w in NWORDS)
+1.  
+1. def correct(word):
+1. candidates = known([word]) or known(edits1(word)) or known_edits2(word) or [word]
+1. return max(candidates, key=lambda w: NWORDS[w])
+</code></pre></blockquote>
+<p><img src="https://i.imgur.com/M9orah4.png" alt=""></p>
+<h3 id="求解：argmaxc-P-c-w-gt-argmaxc-P-w-c-P-c-P-w"><a href="#求解：argmaxc-P-c-w-gt-argmaxc-P-w-c-P-c-P-w" class="headerlink" title="求解：argmaxc P(c|w) -&gt; argmaxc P(w|c) P(c) / P(w)"></a>求解：argmaxc P(c|w) -&gt; argmaxc P(w|c) P(c) / P(w)</h3><ul>
+<li>P(c), 文章中出现一个正确拼写词 c 的概率, 也就是说, 在英语文章中, c 出现的概率有多大</li>
+<li>P(w|c), 在用户想键入 c 的情况下敲成 w 的概率. 因为这个是代表用户会以多大的概率把 c 敲错成 w</li>
+<li>argmaxc, 用来枚举所有可能的 c 并且选取概率最大的</li>
+</ul>
+<blockquote>
+<pre><code>1. # 把语料中的单词全部抽取出来, 转成小写, 并且去除单词中间的特殊符号
+1. def words(text): return re.findall(&#39;[a-z]+&#39;, text.lower()) 
+1.  
+1. def train(features):
+1. model = collections.defaultdict(lambda: 1)
+1. for f in features:
+1. model[f] += 1
+1. return model
+1.  
+1. nwords = train(words(open(&#39;big.txt&#39;).read()))
+</code></pre></blockquote>
+<p>要是遇到我们从来没有过见过的新词怎么办. 假如说一个词拼写完全正确, 但是语料库中没有包含这个词, 从而这个词也永远不会出现在训练集中. </p>
+<p>于是, 我们就要返回出现这个词的概率是0. 这个情况不太妙, 因为概率为0这个代表了这个事件绝对不可能发生, 而在我们的概率模型中, </p>
+<p>我们期望用一个很小的概率来代表这种情况. lambda: 1</p>
+<blockquote>
+<pre><code>nwords
+</code></pre></blockquote>
+<blockquote>
+<pre><code>1. defaultdict(&lt;function __main__.train.&lt;locals&gt;.&lt;lambda&gt;()&gt;,
+1. {&#39;the&#39;: 80031,
+1.  &#39;project&#39;: 289,
+1.  &#39;gutenberg&#39;: 264,
+1.  &#39;ebook&#39;: 88,
+1.  &#39;of&#39;: 40026,
+1.  &#39;adventures&#39;: 18,
+1.  &#39;sherlock&#39;: 102,
+1.  &#39;holmes&#39;: 468,
+1.  &#39;by&#39;: 6739,
+1.  &#39;sir&#39;: 178,
+1.  &#39;arthur&#39;: 35,
+1.  &#39;conan&#39;: 5,
+1.  &#39;doyle&#39;: 6,
+1.  &#39;in&#39;: 22048,
+1.  &#39;our&#39;: 1067,
+1.  &#39;series&#39;: 129,
+1.  &#39;copyright&#39;: 70,
+1.  &#39;laws&#39;: 234,
+1.  &#39;are&#39;: 3631,
+1.  &#39;changing&#39;: 45,
+1.  &#39;all&#39;: 4145,
+1.  &#39;over&#39;: 1283,
+1.  &#39;world&#39;: 363,
+1.  &#39;be&#39;: 6156,
+1.  &#39;sure&#39;: 124,
+1.  &#39;to&#39;: 28767,
+1.  &#39;check&#39;: 39,
+1.  &#39;for&#39;: 6940,
+1.  &#39;your&#39;: 1280,
+1.  &#39;country&#39;: 424,
+1.  &#39;before&#39;: 1364,
+1.  &#39;downloading&#39;: 6,
+1.  &#39;or&#39;: 5353,
+1.  &#39;redistributing&#39;: 8,
+1.  &#39;this&#39;: 4064,
+1.  &#39;any&#39;: 1205,
+1.  &#39;other&#39;: 1503,
+1.  &#39;header&#39;: 8,
+1.  &#39;should&#39;: 1298,
+1.  &#39;first&#39;: 1178,
+1.  &#39;thing&#39;: 304,
+1.  &#39;seen&#39;: 445,
+1.  &#39;when&#39;: 2924,
+1.  &#39;viewing&#39;: 8,
+1.  &#39;file&#39;: 22,
+1.  &#39;please&#39;: 173,
+1.  &#39;do&#39;: 1504,
+1.  &#39;not&#39;: 6626,
+1.  &#39;remove&#39;: 54,
+1.  &#39;it&#39;: 10682,
+1.  &#39;change&#39;: 151,
+1.  &#39;edit&#39;: 5,
+1.  &#39;without&#39;: 1016,
+1.  &#39;written&#39;: 118,
+1.  &#39;permission&#39;: 53,
+1.  &#39;read&#39;: 219,
+1.  &#39;legal&#39;: 53,
+1.  &#39;small&#39;: 528,
+1.  &#39;print&#39;: 48,
+1.  &#39;and&#39;: 38313,
+1.  &#39;information&#39;: 74,
+1.  &#39;about&#39;: 1498,
+1.  &#39;at&#39;: 6792,
+1.  &#39;bottom&#39;: 43,
+1.  &#39;included&#39;: 44,
+1.  &#39;is&#39;: 9775,
+1.  &#39;important&#39;: 286,
+1.  &#39;specific&#39;: 38,
+1.  &#39;rights&#39;: 169,
+1.  &#39;restrictions&#39;: 24,
+1.  &#39;how&#39;: 1316,
+1.  &#39;may&#39;: 2552,
+1.  &#39;used&#39;: 277,
+1.  &#39;you&#39;: 5623,
+1.  &#39;can&#39;: 1096,
+1.  &#39;also&#39;: 779,
+1.  &#39;find&#39;: 295,
+1.  &#39;out&#39;: 1988,
+1.  &#39;make&#39;: 505,
+1.  &#39;a&#39;: 21156,
+1.  &#39;donation&#39;: 11,
+1.  &#39;get&#39;: 469,
+1.  &#39;involved&#39;: 108,
+1.  &#39;welcome&#39;: 19,
+1.  &#39;free&#39;: 422,
+1.  &#39;plain&#39;: 109,
+1.  &#39;vanilla&#39;: 7,
+1.  &#39;electronic&#39;: 59,
+1.  &#39;texts&#39;: 8,
+1.  &#39;ebooks&#39;: 55,
+1.  &#39;readable&#39;: 14,
+1.  &#39;both&#39;: 530,
+1.  &#39;humans&#39;: 3,
+1.  &#39;computers&#39;: 8,
+1.  &#39;since&#39;: 261,
+1.  &#39;these&#39;: 1232,
+1.  &#39;were&#39;: 4290,
+1.  &#39;prepared&#39;: 139,
+1.  &#39;thousands&#39;: 94,
+1.  &#39;volunteers&#39;: 23,
+1.  &#39;title&#39;: 40,
+1.  &#39;author&#39;: 30,
+1.  &#39;release&#39;: 29,
+1.  &#39;date&#39;: 49,
+1.  &#39;march&#39;: 136,
+1.  &#39;most&#39;: 909,
+1.  &#39;recently&#39;: 31,
+1.  &#39;updated&#39;: 5,
+1.  &#39;november&#39;: 42,
+1.  &#39;edition&#39;: 22,
+1.  &#39;language&#39;: 62,
+1.  &#39;english&#39;: 212,
+1.  &#39;character&#39;: 175,
+1.  &#39;set&#39;: 325,
+1.  &#39;encoding&#39;: 6,
+1.  &#39;ascii&#39;: 12,
+1.  &#39;start&#39;: 68,
+1.  &#39;additional&#39;: 31,
+1.  &#39;editing&#39;: 7,
+1.  &#39;jose&#39;: 2,
+1.  &#39;menendez&#39;: 2,
+1.  &#39;contents&#39;: 51,
+1.  &#39;i&#39;: 7683,
+1.  &#39;scandal&#39;: 20,
+1.  &#39;bohemia&#39;: 16,
+1.  &#39;ii&#39;: 78,
+1.  &#39;red&#39;: 289,
+1.  &#39;headed&#39;: 38,
+1.  &#39;league&#39;: 54,
+1.  &#39;iii&#39;: 92,
+1.  &#39;case&#39;: 439,
+1.  &#39;identity&#39;: 12,
+1.  &#39;iv&#39;: 56,
+1.  &#39;boscombe&#39;: 17,
+1.  &#39;valley&#39;: 79,
+1.  &#39;mystery&#39;: 40,
+1.  &#39;v&#39;: 52,
+1.  &#39;five&#39;: 280,
+1.  &#39;orange&#39;: 24,
+1.  &#39;pips&#39;: 13,
+1.  &#39;vi&#39;: 38,
+1.  &#39;man&#39;: 1653,
+1.  &#39;with&#39;: 9741,
+1.  &#39;twisted&#39;: 22,
+1.  &#39;lip&#39;: 57,
+1.  &#39;vii&#39;: 35,
+1.  &#39;adventure&#39;: 35,
+1.  &#39;blue&#39;: 144,
+1.  &#39;carbuncle&#39;: 18,
+1.  &#39;viii&#39;: 40,
+1.  &#39;speckled&#39;: 6,
+1.  &#39;band&#39;: 55,
+1.  &#39;ix&#39;: 29,
+1.  &#39;engineer&#39;: 13,
+1.  &#39;s&#39;: 5632,
+1.  &#39;thumb&#39;: 52,
+1.  &#39;x&#39;: 137,
+1.  &#39;noble&#39;: 49,
+1.  &#39;bachelor&#39;: 19,
+1.  &#39;xi&#39;: 29,
+1.  &#39;beryl&#39;: 5,
+1.  &#39;coronet&#39;: 30,
+1.  &#39;xii&#39;: 29,
+1.  &#39;copper&#39;: 27,
+1.  &#39;beeches&#39;: 13,
+1.  &#39;she&#39;: 3947,
+1.  &#39;always&#39;: 609,
+1.  &#39;woman&#39;: 326,
+1.  &#39;have&#39;: 3494,
+1.  &#39;seldom&#39;: 77,
+1.  &#39;heard&#39;: 637,
+1.  &#39;him&#39;: 5231,
+1.  &#39;mention&#39;: 47,
+1.  &#39;her&#39;: 5285,
+1.  &#39;under&#39;: 964,
+1.  &#39;name&#39;: 263,
+1.  &#39;his&#39;: 10035,
+1.  &#39;eyes&#39;: 940,
+1.  &#39;eclipses&#39;: 3,
+1.  &#39;predominates&#39;: 4,
+1.  &#39;whole&#39;: 745,
+1.  &#39;sex&#39;: 12,
+1.  &#39;was&#39;: 11411,
+1.  &#39;that&#39;: 12513,
+1.  &#39;he&#39;: 12402,
+1.  &#39;felt&#39;: 698,
+1.  &#39;emotion&#39;: 37,
+1.  &#39;akin&#39;: 15,
+1.  &#39;love&#39;: 485,
+1.  &#39;irene&#39;: 19,
+1.  &#39;adler&#39;: 17,
+1.  &#39;emotions&#39;: 11,
+1.  &#39;one&#39;: 3372,
+1.  &#39;particularly&#39;: 175,
+1.  &#39;abhorrent&#39;: 2,
+1.  &#39;cold&#39;: 258,
+1.  &#39;precise&#39;: 14,
+1.  &#39;but&#39;: 5654,
+1.  &#39;admirably&#39;: 8,
+1.  &#39;balanced&#39;: 7,
+1.  &#39;mind&#39;: 342,
+1.  &#39;take&#39;: 617,
+1.  &#39;perfect&#39;: 40,
+1.  &#39;reasoning&#39;: 42,
+1.  &#39;observing&#39;: 22,
+1.  &#39;machine&#39;: 40,
+1.  &#39;has&#39;: 1604,
+1.  &#39;as&#39;: 8065,
+1.  &#39;lover&#39;: 27,
+1.  &#39;would&#39;: 1954,
+1.  &#39;placed&#39;: 183,
+1.  &#39;himself&#39;: 1159,
+1.  &#39;false&#39;: 65,
+1.  &#39;position&#39;: 433,
+1.  &#39;never&#39;: 594,
+1.  &#39;spoke&#39;: 219,
+1.  &#39;softer&#39;: 11,
+1.  &#39;passions&#39;: 30,
+1.  &#39;save&#39;: 111,
+1.  &#39;gibe&#39;: 3,
+1.  &#39;sneer&#39;: 7,
+1.  &#39;they&#39;: 3939,
+1.  &#39;admirable&#39;: 15,
+1.  &#39;things&#39;: 322,
+1.  &#39;observer&#39;: 14,
+1.  &#39;excellent&#39;: 63,
+1.  &#39;drawing&#39;: 241,
+1.  &#39;veil&#39;: 17,
+1.  &#39;from&#39;: 5710,
+1.  &#39;men&#39;: 1146,
+1.  &#39;motives&#39;: 15,
+1.  &#39;actions&#39;: 78,
+1.  &#39;trained&#39;: 24,
+1.  &#39;reasoner&#39;: 7,
+1.  &#39;admit&#39;: 66,
+1.  &#39;such&#39;: 1437,
+1.  &#39;intrusions&#39;: 2,
+1.  &#39;into&#39;: 2125,
+1.  &#39;own&#39;: 786,
+1.  &#39;delicate&#39;: 55,
+1.  &#39;finely&#39;: 12,
+1.  &#39;adjusted&#39;: 17,
+1.  &#39;temperament&#39;: 6,
+1.  &#39;introduce&#39;: 24,
+1.  &#39;distracting&#39;: 2,
+1.  &#39;factor&#39;: 42,
+1.  &#39;which&#39;: 4843,
+1.  &#39;might&#39;: 537,
+1.  &#39;throw&#39;: 49,
+1.  &#39;doubt&#39;: 153,
+1.  &#39;upon&#39;: 1112,
+1.  &#39;mental&#39;: 38,
+1.  &#39;results&#39;: 230,
+1.  &#39;grit&#39;: 2,
+1.  &#39;sensitive&#39;: 36,
+1.  &#39;instrument&#39;: 36,
+1.  &#39;crack&#39;: 21,
+1.  &#39;high&#39;: 291,
+1.  &#39;power&#39;: 549,
+1.  &#39;lenses&#39;: 2,
+1.  &#39;more&#39;: 1998,
+1.  &#39;disturbing&#39;: 10,
+1.  &#39;than&#39;: 1207,
+1.  &#39;strong&#39;: 169,
+1.  &#39;nature&#39;: 171,
+1.  &#39;yet&#39;: 489,
+1.  &#39;there&#39;: 2973,
+1.  &#39;late&#39;: 166,
+1.  &#39;dubious&#39;: 2,
+1.  &#39;questionable&#39;: 4,
+1.  &#39;memory&#39;: 56,
+1.  &#39;had&#39;: 7384,
+1.  &#39;little&#39;: 1002,
+1.  &#39;lately&#39;: 23,
+1.  &#39;my&#39;: 2250,
+1.  &#39;marriage&#39;: 97,
+1.  &#39;drifted&#39;: 6,
+1.  &#39;us&#39;: 685,
+1.  &#39;away&#39;: 839,
+1.  &#39;each&#39;: 412,
+1.  &#39;complete&#39;: 146,
+1.  &#39;happiness&#39;: 144,
+1.  &#39;home&#39;: 296,
+1.  &#39;centred&#39;: 3,
+1.  &#39;interests&#39;: 119,
+1.  &#39;rise&#39;: 241,
+1.  &#39;up&#39;: 2285,
+1.  &#39;around&#39;: 272,
+1.  &#39;who&#39;: 3051,
+1.  &#39;finds&#39;: 24,
+1.  &#39;master&#39;: 142,
+1.  &#39;establishment&#39;: 41,
+1.  &#39;sufficient&#39;: 76,
+1.  &#39;absorb&#39;: 5,
+1.  &#39;attention&#39;: 192,
+1.  &#39;while&#39;: 769,
+1.  &#39;loathed&#39;: 2,
+1.  &#39;every&#39;: 651,
+1.  &#39;form&#39;: 508,
+1.  &#39;society&#39;: 170,
+1.  &#39;bohemian&#39;: 9,
+1.  &#39;soul&#39;: 169,
+1.  &#39;remained&#39;: 232,
+1.  &#39;lodgings&#39;: 12,
+1.  &#39;baker&#39;: 50,
+1.  &#39;street&#39;: 181,
+1.  &#39;buried&#39;: 22,
+1.  &#39;among&#39;: 452,
+1.  &#39;old&#39;: 1181,
+1.  &#39;books&#39;: 60,
+1.  &#39;alternating&#39;: 3,
+1.  &#39;week&#39;: 96,
+1.  &#39;between&#39;: 655,
+1.  &#39;cocaine&#39;: 5,
+1.  &#39;ambition&#39;: 14,
+1.  &#39;drowsiness&#39;: 5,
+1.  &#39;drug&#39;: 22,
+1.  &#39;fierce&#39;: 13,
+1.  &#39;energy&#39;: 46,
+1.  &#39;keen&#39;: 33,
+1.  &#39;still&#39;: 923,
+1.  &#39;ever&#39;: 275,
+1.  &#39;deeply&#39;: 78,
+1.  &#39;attracted&#39;: 37,
+1.  &#39;study&#39;: 145,
+1.  &#39;crime&#39;: 62,
+1.  &#39;occupied&#39;: 117,
+1.  &#39;immense&#39;: 78,
+1.  &#39;faculties&#39;: 9,
+1.  &#39;extraordinary&#39;: 75,
+1.  &#39;powers&#39;: 150,
+1.  &#39;observation&#39;: 40,
+1.  &#39;following&#39;: 209,
+1.  &#39;those&#39;: 1202,
+1.  &#39;clues&#39;: 4,
+1.  &#39;clearing&#39;: 30,
+1.  &#39;mysteries&#39;: 10,
+1.  &#39;been&#39;: 2600,
+1.  &#39;abandoned&#39;: 73,
+1.  &#39;hopeless&#39;: 18,
+1.  &#39;official&#39;: 92,
+1.  &#39;police&#39;: 95,
+1.  &#39;time&#39;: 1530,
+1.  &#39;some&#39;: 1537,
+1.  &#39;vague&#39;: 40,
+1.  &#39;account&#39;: 178,
+1.  &#39;doings&#39;: 12,
+1.  &#39;summons&#39;: 12,
+1.  &#39;odessa&#39;: 4,
+1.  &#39;trepoff&#39;: 2,
+1.  &#39;murder&#39;: 31,
+1.  &#39;singular&#39;: 37,
+1.  &#39;tragedy&#39;: 10,
+1.  &#39;atkinson&#39;: 2,
+1.  &#39;brothers&#39;: 51,
+1.  &#39;trincomalee&#39;: 2,
+1.  &#39;finally&#39;: 157,
+1.  &#39;mission&#39;: 35,
+1.  &#39;accomplished&#39;: 40,
+1.  &#39;so&#39;: 3018,
+1.  &#39;delicately&#39;: 4,
+1.  &#39;successfully&#39;: 26,
+1.  &#39;reigning&#39;: 4,
+1.  &#39;family&#39;: 211,
+1.  &#39;holland&#39;: 13,
+1.  &#39;beyond&#39;: 226,
+1.  &#39;signs&#39;: 99,
+1.  &#39;activity&#39;: 132,
+1.  &#39;however&#39;: 431,
+1.  &#39;merely&#39;: 190,
+1.  &#39;shared&#39;: 26,
+1.  &#39;readers&#39;: 12,
+1.  &#39;daily&#39;: 45,
+1.  &#39;press&#39;: 82,
+1.  &#39;knew&#39;: 497,
+1.  &#39;former&#39;: 178,
+1.  &#39;friend&#39;: 284,
+1.  &#39;companion&#39;: 82,
+1.  &#39;night&#39;: 386,
+1.  &#39;on&#39;: 6644,
+1.  &#39;twentieth&#39;: 20,
+1.  &#39;returning&#39;: 69,
+1.  &#39;journey&#39;: 70,
+1.  &#39;patient&#39;: 384,
+1.  &#39;now&#39;: 1698,
+1.  &#39;returned&#39;: 195,
+1.  &#39;civil&#39;: 178,
+1.  &#39;practice&#39;: 96,
+1.  &#39;way&#39;: 860,
+1.  &#39;led&#39;: 197,
+1.  &#39;me&#39;: 1921,
+1.  &#39;through&#39;: 816,
+1.  &#39;passed&#39;: 368,
+1.  &#39;well&#39;: 1199,
+1.  &#39;remembered&#39;: 121,
+1.  &#39;door&#39;: 499,
+1.  &#39;must&#39;: 956,
+1.  &#39;associated&#39;: 197,
+1.  &#39;wooing&#39;: 3,
+1.  &#39;dark&#39;: 182,
+1.  &#39;incidents&#39;: 15,
+1.  &#39;scarlet&#39;: 23,
+1.  &#39;seized&#39;: 115,
+1.  &#39;desire&#39;: 97,
+1.  &#39;see&#39;: 1102,
+1.  &#39;again&#39;: 867,
+1.  &#39;know&#39;: 1049,
+1.  &#39;employing&#39;: 8,
+1.  &#39;rooms&#39;: 87,
+1.  &#39;brilliantly&#39;: 6,
+1.  &#39;lit&#39;: 75,
+1.  &#39;even&#39;: 947,
+1.  &#39;looked&#39;: 761,
+1.  &#39;saw&#39;: 600,
+1.  &#39;tall&#39;: 75,
+1.  &#39;spare&#39;: 28,
+1.  &#39;figure&#39;: 104,
+1.  &#39;pass&#39;: 155,
+1.  &#39;twice&#39;: 85,
+1.  &#39;silhouette&#39;: 2,
+1.  &#39;against&#39;: 661,
+1.  &#39;blind&#39;: 24,
+1.  &#39;pacing&#39;: 27,
+1.  &#39;room&#39;: 961,
+1.  &#39;swiftly&#39;: 39,
+1.  &#39;eagerly&#39;: 40,
+1.  &#39;head&#39;: 726,
+1.  &#39;sunk&#39;: 28,
+1.  &#39;chest&#39;: 82,
+1.  &#39;hands&#39;: 456,
+1.  &#39;clasped&#39;: 12,
+1.  &#39;behind&#39;: 402,
+1.  &#39;mood&#39;: 52,
+1.  &#39;habit&#39;: 56,
+1.  &#39;attitude&#39;: 73,
+1.  &#39;manner&#39;: 136,
+1.  &#39;told&#39;: 491,
+1.  &#39;their&#39;: 2956,
+1.  &#39;story&#39;: 134,
+1.  &#39;work&#39;: 383,
+1.  &#39;risen&#39;: 31,
+1.  &#39;created&#39;: 63,
+1.  &#39;dreams&#39;: 17,
+1.  &#39;hot&#39;: 120,
+1.  &#39;scent&#39;: 18,
+1.  &#39;new&#39;: 1212,
+1.  &#39;problem&#39;: 77,
+1.  &#39;rang&#39;: 30,
+1.  &#39;bell&#39;: 66,
+1.  &#39;shown&#39;: 114,
+1.  &#39;chamber&#39;: 36,
+1.  &#39;formerly&#39;: 78,
+1.  &#39;part&#39;: 705,
+1.  &#39;effusive&#39;: 3,
+1.  &#39;glad&#39;: 151,
+1.  &#39;think&#39;: 558,
+1.  &#39;hardly&#39;: 174,
+1.  &#39;word&#39;: 299,
+1.  &#39;spoken&#39;: 93,
+1.  &#39;kindly&#39;: 87,
+1.  &#39;eye&#39;: 111,
+1.  &#39;waved&#39;: 30,
+1.  &#39;an&#39;: 3424,
+1.  &#39;armchair&#39;: 50,
+1.  &#39;threw&#39;: 97,
+1.  &#39;across&#39;: 223,
+1.  &#39;cigars&#39;: 8,
+1.  &#39;indicated&#39;: 89,
+1.  &#39;spirit&#39;: 168,
+1.  &#39;gasogene&#39;: 2,
+1.  &#39;corner&#39;: 129,
+1.  &#39;then&#39;: 1559,
+1.  &#39;stood&#39;: 384,
+1.  &#39;fire&#39;: 275,
+1.  &#39;introspective&#39;: 4,
+1.  &#39;fashion&#39;: 50,
+1.  &#39;wedlock&#39;: 2,
+1.  &#39;suits&#39;: 9,
+1.  &#39;remarked&#39;: 170,
+1.  &#39;watson&#39;: 84,
+1.  &#39;put&#39;: 436,
+1.  &#39;seven&#39;: 133,
+1.  &#39;half&#39;: 319,
+1.  &#39;pounds&#39;: 27,
+1.  &#39;answered&#39;: 227,
+1.  &#39;indeed&#39;: 140,
+1.  &#39;thought&#39;: 903,
+1.  &#39;just&#39;: 768,
+1.  &#39;trifle&#39;: 12,
+1.  &#39;fancy&#39;: 51,
+1.  &#39;observe&#39;: 38,
+1.  &#39;did&#39;: 1876,
+1.  &#39;tell&#39;: 493,
+1.  &#39;intended&#39;: 59,
+1.  &#39;go&#39;: 906,
+1.  &#39;harness&#39;: 28,
+1.  &#39;deduce&#39;: 15,
+1.  &#39;getting&#39;: 93,
+1.  &#39;yourself&#39;: 163,
+1.  &#39;very&#39;: 1341,
+1.  &#39;wet&#39;: 61,
+1.  &#39;clumsy&#39;: 9,
+1.  &#39;careless&#39;: 15,
+1.  &#39;servant&#39;: 47,
+1.  &#39;girl&#39;: 167,
+1.  &#39;dear&#39;: 450,
+1.  &#39;said&#39;: 3465,
+1.  &#39;too&#39;: 549,
+1.  &#39;much&#39;: 672,
+1.  &#39;certainly&#39;: 120,
+1.  &#39;burned&#39;: 78,
+1.  &#39;lived&#39;: 114,
+1.  &#39;few&#39;: 459,
+1.  &#39;centuries&#39;: 13,
+1.  &#39;ago&#39;: 109,
+1.  &#39;true&#39;: 206,
+1.  &#39;walk&#39;: 76,
+1.  &#39;thursday&#39;: 8,
+1.  &#39;came&#39;: 980,
+1.  &#39;dreadful&#39;: 69,
+1.  &#39;mess&#39;: 11,
+1.  &#39;changed&#39;: 135,
+1.  &#39;clothes&#39;: 63,
+1.  &#39;t&#39;: 1319,
+1.  &#39;imagine&#39;: 97,
+1.  &#39;mary&#39;: 706,
+1.  &#39;jane&#39;: 3,
+1.  &#39;incorrigible&#39;: 3,
+1.  &#39;wife&#39;: 368,
+1.  &#39;given&#39;: 365,
+1.  &#39;notice&#39;: 99,
+1.  &#39;fail&#39;: 41,
+1.  &#39;chuckled&#39;: 8,
+1.  &#39;rubbed&#39;: 33,
+1.  &#39;long&#39;: 992,
+1.  &#39;nervous&#39;: 55,
+1.  &#39;together&#39;: 261,
+1.  &#39;simplicity&#39;: 31,
+1.  &#39;itself&#39;: 274,
+1.  &#39;inside&#39;: 44,
+1.  &#39;left&#39;: 835,
+1.  &#39;shoe&#39;: 12,
+1.  &#39;where&#39;: 978,
+1.  &#39;firelight&#39;: 3,
+1.  &#39;strikes&#39;: 20,
+1.  &#39;leather&#39;: 36,
+1.  &#39;scored&#39;: 5,
+1.  &#39;six&#39;: 177,
+1.  &#39;almost&#39;: 326,
+1.  &#39;parallel&#39;: 18,
+1.  &#39;cuts&#39;: 6,
+1.  &#39;obviously&#39;: 39,
+1.  &#39;caused&#39;: 103,
+1.  &#39;someone&#39;: 161,
+1.  &#39;carelessly&#39;: 15,
+1.  &#39;scraped&#39;: 22,
+1.  &#39;round&#39;: 557,
+1.  &#39;edges&#39;: 71,
+1.  &#39;sole&#39;: 71,
+1.  &#39;order&#39;: 405,
+1.  &#39;crusted&#39;: 3,
+1.  &#39;mud&#39;: 37,
+1.  &#39;hence&#39;: 33,
+1.  &#39;double&#39;: 50,
+1.  &#39;deduction&#39;: 13,
+1.  &#39;vile&#39;: 17,
+1.  &#39;weather&#39;: 43,
+1.  &#39;malignant&#39;: 89,
+1.  &#39;boot&#39;: 23,
+1.  &#39;slitting&#39;: 3,
+1.  &#39;specimen&#39;: 15,
+1.  &#39;london&#39;: 77,
+1.  &#39;slavey&#39;: 2,
+1.  &#39;if&#39;: 2373,
+1.  &#39;gentleman&#39;: 100,
+1.  &#39;walks&#39;: 11,
+1.  &#39;smelling&#39;: 6,
+1.  &#39;iodoform&#39;: 44,
+1.  &#39;black&#39;: 236,
+1.  &#39;mark&#39;: 39,
+1.  &#39;nitrate&#39;: 8,
+1.  &#39;silver&#39;: 129,
+1.  &#39;right&#39;: 711,
+1.  &#39;forefinger&#39;: 8,
+1.  &#39;bulge&#39;: 3,
+1.  &#39;side&#39;: 512,
+1.  &#39;top&#39;: 43,
+1.  &#39;hat&#39;: 106,
+1.  &#39;show&#39;: 214,
+1.  &#39;secreted&#39;: 3,
+1.  &#39;stethoscope&#39;: 3,
+1.  &#39;dull&#39;: 75,
+1.  &#39;pronounce&#39;: 10,
+1.  &#39;active&#39;: 97,
+1.  &#39;member&#39;: 51,
+1.  &#39;medical&#39;: 23,
+1.  &#39;profession&#39;: 23,
+1.  &#39;could&#39;: 1701,
+1.  &#39;help&#39;: 231,
+1.  &#39;laughing&#39;: 116,
+1.  &#39;ease&#39;: 45,
+1.  &#39;explained&#39;: 61,
+1.  &#39;process&#39;: 220,
+1.  &#39;hear&#39;: 184,
+1.  &#39;give&#39;: 524,
+1.  &#39;reasons&#39;: 65,
+1.  &#39;appears&#39;: 109,
+1.  &#39;ridiculously&#39;: 2,
+1.  &#39;simple&#39;: 140,
+1.  &#39;easily&#39;: 115,
+1.  &#39;myself&#39;: 228,
+1.  &#39;though&#39;: 651,
+1.  &#39;successive&#39;: 18,
+1.  &#39;instance&#39;: 51,
+1.  &#39;am&#39;: 747,
+1.  &#39;baffled&#39;: 9,
+1.  &#39;until&#39;: 326,
+1.  &#39;explain&#39;: 124,
+1.  &#39;believe&#39;: 184,
+1.  &#39;good&#39;: 745,
+1.  &#39;yours&#39;: 47,
+1.  &#39;quite&#39;: 503,
+1.  &#39;lighting&#39;: 17,
+1.  &#39;cigarette&#39;: 7,
+1.  &#39;throwing&#39;: 47,
+1.  &#39;down&#39;: 1129,
+1.  &#39;distinction&#39;: 20,
+1.  &#39;clear&#39;: 234,
+1.  &#39;example&#39;: 287,
+1.  &#39;frequently&#39;: 219,
+1.  &#39;steps&#39;: 189,
+1.  &#39;lead&#39;: 138,
+1.  &#39;hall&#39;: 84,
+1.  &#39;often&#39;: 444,
+1.  &#39;hundreds&#39;: 49,
+1.  &#39;times&#39;: 237,
+1.  &#39;many&#39;: 610,
+1.  &#39;don&#39;: 582,
+1.  &#39;observed&#39;: 132,
+1.  &#39;point&#39;: 224,
+1.  &#39;seventeen&#39;: 11,
+1.  &#39;because&#39;: 631,
+1.  &#39;interested&#39;: 66,
+1.  &#39;problems&#39;: 79,
+1.  &#39;enough&#39;: 176,
+1.  &#39;chronicle&#39;: 8,
+1.  &#39;two&#39;: 1139,
+1.  &#39;trifling&#39;: 13,
+1.  &#39;experiences&#39;: 12,
+1.  &#39;sheet&#39;: 30,
+1.  &#39;thick&#39;: 78,
+1.  &#39;pink&#39;: 28,
+1.  &#39;tinted&#39;: 10,
+1.  &#39;notepaper&#39;: 3,
+1.  &#39;lying&#39;: 119,
+1.  &#39;open&#39;: 326,
+1.  &#39;table&#39;: 297,
+1.  &#39;last&#39;: 566,
+1.  &#39;post&#39;: 118,
+1.  &#39;aloud&#39;: 29,
+1.  &#39;note&#39;: 116,
+1.  &#39;undated&#39;: 2,
+1.  &#39;either&#39;: 294,
+1.  &#39;signature&#39;: 10,
+1.  &#39;address&#39;: 77,
+1.  &#39;will&#39;: 1578,
+1.  &#39;call&#39;: 198,
+1.  &#39;quarter&#39;: 47,
+1.  &#39;eight&#39;: 129,
+1.  &#39;o&#39;: 258,
+1.  &#39;clock&#39;: 121,
+1.  &#39;desires&#39;: 23,
+1.  &#39;consult&#39;: 20,
+1.  &#39;matter&#39;: 366,
+1.  &#39;deepest&#39;: 16,
+1.  &#39;moment&#39;: 488,
+1.  &#39;recent&#39;: 55,
+1.  &#39;services&#39;: 39,
+1.  &#39;royal&#39;: 112,
+1.  &#39;houses&#39;: 118,
+1.  &#39;europe&#39;: 154,
+1.  &#39;safely&#39;: 12,
+1.  &#39;trusted&#39;: 17,
+1.  &#39;matters&#39;: 137,
+1.  &#39;importance&#39;: 118,
+1.  &#39;exaggerated&#39;: 29,
+1.  &#39;we&#39;: 1907,
+1.  &#39;quarters&#39;: 73,
+1.  &#39;received&#39;: 281,
+1.  &#39;hour&#39;: 158,
+1.  &#39;amiss&#39;: 7,
+1.  &#39;visitor&#39;: 75,
+1.  &#39;wear&#39;: 31,
+1.  &#39;mask&#39;: 13,
+1.  &#39;what&#39;: 3012,
+1.  &#39;means&#39;: 254,
+1.  &#39;no&#39;: 2349,
+1.  &#39;data&#39;: 18,
+1.  &#39;capital&#39;: 145,
+1.  &#39;mistake&#39;: 40,
+1.  &#39;theorise&#39;: 2,
+1.  &#39;insensibly&#39;: 3,
+1.  &#39;begins&#39;: 48,
+1.  &#39;twist&#39;: 15,
+1.  &#39;facts&#39;: 73,
+1.  &#39;suit&#39;: 26,
+1.  &#39;theories&#39;: 22,
+1.  &#39;instead&#39;: 138,
+1.  &#39;carefully&#39;: 73,
+1.  &#39;examined&#39;: 50,
+1.  &#39;writing&#39;: 70,
+1.  &#39;paper&#39;: 178,
+1.  &#39;wrote&#39;: 150,
+1.  &#39;presumably&#39;: 9,
+1.  &#39;endeavouring&#39;: 9,
+1.  &#39;imitate&#39;: 8,
+1.  &#39;processes&#39;: 36,
+1.  &#39;bought&#39;: 56,
+1.  &#39;crown&#39;: 62,
+1.  &#39;packet&#39;: 12,
+1.  &#39;peculiarly&#39;: 15,
+1.  &#39;stiff&#39;: 21,
+1.  &#39;peculiar&#39;: 85,
+1.  &#39;hold&#39;: 115,
+1.  &#39;light&#39;: 279,
+1.  &#39;large&#39;: 484,
+1.  &#39;e&#39;: 137,
+1.  &#39;g&#39;: 56,
+1.  &#39;p&#39;: 67,
+1.  &#39;woven&#39;: 6,
+1.  &#39;texture&#39;: 7,
+1.  &#39;asked&#39;: 778,
+1.  &#39;maker&#39;: 5,
+1.  &#39;monogram&#39;: 5,
+1.  &#39;rather&#39;: 220,
+1.  &#39;stands&#39;: 20,
+1.  &#39;gesellschaft&#39;: 2,
+1.  &#39;german&#39;: 197,
+1.  &#39;company&#39;: 193,
+1.  &#39;customary&#39;: 20,
+1.  &#39;contraction&#39;: 62,
+1.  &#39;like&#39;: 1081,
+1.  &#39;co&#39;: 31,
+1.  &#39;course&#39;: 390,
+1.  &#39;papier&#39;: 2,
+1.  &#39;eg&#39;: 2,
+1.  &#39;let&#39;: 507,
+1.  &#39;glance&#39;: 92,
+1.  &#39;continental&#39;: 47,
+1.  &#39;gazetteer&#39;: 2,
+1.  &#39;took&#39;: 574,
+1.  &#39;heavy&#39;: 140,
+1.  &#39;brown&#39;: 72,
+1.  &#39;volume&#39;: 31,
+1.  &#39;shelves&#39;: 4,
+1.  &#39;eglow&#39;: 2,
+1.  &#39;eglonitz&#39;: 2,
+1.  &#39;here&#39;: 692,
+1.  &#39;egria&#39;: 2,
+1.  &#39;speaking&#39;: 186,
+1.  &#39;far&#39;: 409,
+1.  &#39;carlsbad&#39;: 2,
+1.  &#39;remarkable&#39;: 78,
+1.  &#39;being&#39;: 919,
+1.  &#39;scene&#39;: 50,
+1.  &#39;death&#39;: 331,
+1.  &#39;wallenstein&#39;: 2,
+1.  &#39;its&#39;: 1636,
+1.  &#39;numerous&#39;: 51,
+1.  &#39;glass&#39;: 117,
+1.  &#39;factories&#39;: 30,
+1.  &#39;mills&#39;: 40,
+1.  &#39;ha&#39;: 76,
+1.  &#39;boy&#39;: 170,
+1.  &#39;sparkled&#39;: 6,
+1.  &#39;sent&#39;: 320,
+1.  &#39;great&#39;: 793,
+1.  &#39;triumphant&#39;: 17,
+1.  &#39;cloud&#39;: 31,
+1.  &#39;made&#39;: 1008,
+1.  &#39;precisely&#39;: 25,
+1.  &#39;construction&#39;: 26,
+1.  &#39;sentence&#39;: 27,
+1.  &#39;frenchman&#39;: 103,
+1.  &#39;russian&#39;: 462,
+1.  &#39;uncourteous&#39;: 2,
+1.  &#39;verbs&#39;: 2,
+1.  &#39;only&#39;: 1874,
+1.  &#39;remains&#39;: 74,
+1.  &#39;therefore&#39;: 187,
+1.  &#39;discover&#39;: 29,
+1.  &#39;wanted&#39;: 214,
+1.  &#39;writes&#39;: 21,
+1.  &#39;prefers&#39;: 3,
+1.  &#39;wearing&#39;: 88,
+1.  &#39;showing&#39;: 105,
+1.  &#39;face&#39;: 1126,
+1.  &#39;comes&#39;: 92,
+1.  &#39;mistaken&#39;: 60,
+1.  &#39;resolve&#39;: 15,
+1.  &#39;doubts&#39;: 40,
+1.  &#39;sharp&#39;: 84,
+1.  &#39;sound&#39;: 220,
+1.  &#39;horses&#39;: 263,
+1.  &#39;hoofs&#39;: 25,
+1.  &#39;grating&#39;: 11,
+1.  &#39;wheels&#39;: 48,
+1.  &#39;curb&#39;: 5,
+1.  &#39;followed&#39;: 330,
+1.  &#39;pull&#39;: 24,
+1.  &#39;whistled&#39;: 14,
+1.  &#39;pair&#39;: 41,
+1.  &#39;yes&#39;: 689,
+1.  &#39;continued&#39;: 292,
+1.  &#39;glancing&#39;: 99,
+1.  &#39;window&#39;: 187,
+1.  &#39;nice&#39;: 54,
+1.  &#39;brougham&#39;: 5,
+1.  &#39;beauties&#39;: 3,
+1.  &#39;hundred&#39;: 230,
+1.  &#39;fifty&#39;: 95,
+1.  &#39;guineas&#39;: 4,
+1.  &#39;apiece&#39;: 8,
+1.  &#39;money&#39;: 327,
+1.  &#39;nothing&#39;: 647,
+1.  &#39;else&#39;: 202,
+1.  &#39;better&#39;: 267,
+1.  &#39;bit&#39;: 64,
+1.  &#39;doctor&#39;: 184,
+1.  &#39;stay&#39;: 75,
+1.  &#39;lost&#39;: 225,
+1.  &#39;boswell&#39;: 2,
+1.  &#39;promises&#39;: 16,
+1.  &#39;interesting&#39;: 72,
+1.  &#39;pity&#39;: 76,
+1.  &#39;miss&#39;: 113,
+1.  &#39;client&#39;: 34,
+1.  &#39;want&#39;: 324,
+1.  &#39;sit&#39;: 90,
+1.  &#39;best&#39;: 269,
+1.  &#39;slow&#39;: 66,
+1.  &#39;step&#39;: 140,
+1.  &#39;stairs&#39;: 32,
+1.  &#39;passage&#39;: 111,
+1.  &#39;paused&#39;: 80,
+1.  &#39;immediately&#39;: 183,
+1.  &#39;outside&#39;: 111,
+1.  &#39;loud&#39;: 65,
+1.  &#39;authoritative&#39;: 3,
+1.  &#39;tap&#39;: 11,
+1.  &#39;come&#39;: 935,
+1.  &#39;entered&#39;: 283,
+1.  &#39;less&#39;: 368,
+1.  &#39;feet&#39;: 180,
+1.  &#39;inches&#39;: 17,
+1.  &#39;height&#39;: 37,
+1.  &#39;limbs&#39;: 68,
+1.  &#39;hercules&#39;: 5,
+1.  &#39;dress&#39;: 139,
+1.  &#39;rich&#39;: 93,
+1.  &#39;richness&#39;: 3,
+1.  &#39;england&#39;: 312,
+1.  &#39;bad&#39;: 156,
+1.  &#39;taste&#39;: 24,
+1.  &#39;bands&#39;: 28,
+1.  &#39;astrakhan&#39;: 2,
+1.  &#39;slashed&#39;: 4,
+1.  &#39;sleeves&#39;: 31,
+1.  &#39;fronts&#39;: 2,
+1.  &#39;breasted&#39;: 2,
+1.  &#39;coat&#39;: 173,
+1.  &#39;deep&#39;: 216,
+1.  &#39;cloak&#39;: 63,
+1.  &#39;thrown&#39;: 93,
+1.  &#39;shoulders&#39;: 126,
+1.  &#39;lined&#39;: 33,
+1.  &#39;flame&#39;: 16,
+1.  &#39;coloured&#39;: 22,
+1.  &#39;silk&#39;: 51,
+1.  &#39;secured&#39;: 49,
+1.  &#39;neck&#39;: 204,
+1.  &#39;brooch&#39;: 2,
+1.  &#39;consisted&#39;: 39,
+1.  &#39;single&#39;: 174,
+1.  &#39;flaming&#39;: 9,
+1.  &#39;boots&#39;: 92,
+1.  &#39;extended&#39;: 76,
+1.  &#39;halfway&#39;: 20,
+1.  &#39;calves&#39;: 4,
+1.  &#39;trimmed&#39;: 9,
+1.  &#39;tops&#39;: 4,
+1.  &#39;fur&#39;: 39,
+1.  &#39;completed&#39;: 26,
+1.  &#39;impression&#39;: 68,
+1.  &#39;barbaric&#39;: 3,
+1.  &#39;opulence&#39;: 4,
+1.  &#39;suggested&#39;: 70,
+1.  &#39;appearance&#39;: 136,
+1.  &#39;carried&#39;: 283,
+1.  &#39;broad&#39;: 93,
+1.  &#39;brimmed&#39;: 5,
+1.  &#39;hand&#39;: 835,
+1.  &#39;wore&#39;: 59,
+1.  &#39;upper&#39;: 131,
+1.  &#39;extending&#39;: 36,
+1.  &#39;past&#39;: 224,
+1.  &#39;cheekbones&#39;: 5,
+1.  &#39;vizard&#39;: 2,
+1.  &#39;apparently&#39;: 69,
+1.  &#39;raised&#39;: 213,
+1.  &#39;lower&#39;: 197,
+1.  &#39;appeared&#39;: 198,
+1.  &#39;hanging&#39;: 43,
+1.  &#39;straight&#39;: 125,
+1.  &#39;chin&#39;: 31,
+1.  &#39;suggestive&#39;: 12,
+1.  &#39;resolution&#39;: 58,
+1.  &#39;pushed&#39;: 82,
+1.  &#39;length&#39;: 64,
+1.  &#39;obstinacy&#39;: 8,
+1.  &#39;harsh&#39;: 23,
+1.  &#39;voice&#39;: 463,
+1.  &#39;strongly&#39;: 42,
+1.  &#39;marked&#39;: 139,
+1.  &#39;accent&#39;: 19,
+1.  &#39;uncertain&#39;: 31,
+1.  &#39;pray&#39;: 80,
+1.  &#39;seat&#39;: 171,
+1.  &#39;colleague&#39;: 8,
+1.  &#39;dr&#39;: 49,
+1.  &#39;occasionally&#39;: 90,
+1.  &#39;cases&#39;: 454,
+1.  &#39;whom&#39;: 490,
+1.  &#39;honour&#39;: 17,
+1.  &#39;count&#39;: 749,
+1.  &#39;von&#39;: 12,
+1.  &#39;kramm&#39;: 3,
+1.  &#39;nobleman&#39;: 12,
+1.  &#39;understand&#39;: 413,
+1.  &#39;discretion&#39;: 14,
+1.  &#39;trust&#39;: 69,
+1.  &#39;extreme&#39;: 73,
+1.  &#39;prefer&#39;: 22,
+1.  &#39;communicate&#39;: 16,
+1.  &#39;alone&#39;: 338,
+1.  &#39;rose&#39;: 244,
+1.  &#39;caught&#39;: 91,
+1.  &#39;wrist&#39;: 69,
+1.  &#39;back&#39;: 747,
+1.  &#39;chair&#39;: 136,
+1.  &#39;none&#39;: 111,
+1.  &#39;say&#39;: 756,
+1.  &#39;anything&#39;: 380,
+1.  &#39;shrugged&#39;: 36,
+1.  &#39;begin&#39;: 98,
+1.  &#39;binding&#39;: 19,
+1.  &#39;absolute&#39;: 57,
+1.  &#39;secrecy&#39;: 19,
+1.  &#39;years&#39;: 572,
+1.  &#39;end&#39;: 466,
+1.  &#39;present&#39;: 330,
+1.  &#39;weight&#39;: 71,
+1.  &#39;influence&#39;: 139,
+1.  &#39;european&#39;: 100,
+1.  &#39;history&#39;: 440,
+1.  &#39;promise&#39;: 68,
+1.  &#39;excuse&#39;: 54,
+1.  &#39;strange&#39;: 221,
+1.  &#39;august&#39;: 71,
+1.  &#39;person&#39;: 186,
+1.  &#39;employs&#39;: 3,
+1.  &#39;wishes&#39;: 43,
+1.  &#39;agent&#39;: 26,
+1.  &#39;unknown&#39;: 88,
+1.  &#39;confess&#39;: 37,
+1.  &#39;once&#39;: 570,
+1.  &#39;called&#39;: 451,
+1.  &#39;exactly&#39;: 48,
+1.  &#39;aware&#39;: 53,
+1.  &#39;dryly&#39;: 6,
+1.  &#39;circumstances&#39;: 108,
+1.  &#39;delicacy&#39;: 12,
+1.  &#39;precaution&#39;: 10,
+1.  &#39;taken&#39;: 439,
+1.  &#39;quench&#39;: 4,
+1.  &#39;grow&#39;: 75,
+1.  &#39;seriously&#39;: 64,
+1.  &#39;compromise&#39;: 72,
+1.  &#39;families&#39;: 46,
+1.  &#39;speak&#39;: 256,
+1.  &#39;plainly&#39;: 40,
+1.  &#39;implicates&#39;: 6,
+1.  &#39;house&#39;: 662,
+1.  &#39;ormstein&#39;: 3,
+1.  &#39;hereditary&#39;: 15,
+1.  &#39;kings&#39;: 28,
+1.  &#39;murmured&#39;: 19,
+1.  &#39;settling&#39;: 17,
+1.  &#39;closing&#39;: 36,
+1.  &#39;glanced&#39;: 177,
+1.  ...})
+</code></pre></blockquote>
+<h3 id="编辑距离"><a href="#编辑距离" class="headerlink" title="编辑距离:"></a>编辑距离:</h3><p>两个词之间的编辑距离定义为使用了几次插入(在词中插入一个单字母), 删除(删除一个单字母), 交换(交换相邻两个字母), 替换(把一个字母换成另一个)的操作从一个词变到另一个词.</p>
+<blockquote>
+<pre><code>1. #返回所有与单词 w 编辑距离为 1 的集合
+1. alphabet = &#39;abcdefghijklmnopqrstuvwxyz&#39;
+1. def edits1(word):
+1. n = len(word)
+1. return set([word[0:i]+word[i+1:] for i in range(n)] + # deletion
+1.[word[0:i]+word[i+1]+word[i]+word[i+2:] for i in range(n-1)] + # transposition
+1.[word[0:i]+c+word[i+1:] for i in range(n) for c in alphabet] + # alteration
+1.[word[0:i]+c+word[i:] for i in range(n+1) for c in alphabet])  # insertion
+</code></pre></blockquote>
+<p>与 something 编辑距离为2的单词居然达到了 114,324 个</p>
+<p>优化:在这些编辑距离小于2的词中间, 只把那些正确的词作为候选词,只能返回 3 个单词: ‘smoothing’, ‘something’ 和 ‘soothing’</p>
+<blockquote>
+<ol>
+<li>#返回所有与单词 w 编辑距离为 2 的集合</li>
+<li>#在这些编辑距离小于2的词中间, 只把那些正确的词作为候选词</li>
+<li>def edits2(word):</li>
+<li>return set(e2 for e1 in edits1(word) for e2 in edits1(e1))</li>
+</ol>
+</blockquote>
+<p>正常来说把一个元音拼成另一个的概率要大于辅音 (因为人常常把 hello 打成 hallo 这样); 把单词的第一个字母拼错的概率会相对小, 等等.</p>
+<p>但是为了简单起见, 选择了一个简单的方法: 编辑距离为1的正确单词比编辑距离为2的优先级高, 而编辑距离为0的正确单词优先级比编辑距离为1的高. </p>
+<blockquote>
+<pre><code>1. def known(words): return set(w for w in words if w in nwords)
+1. 
+1. #如果known(set)非空, candidate 就会选取这个集合, 而不继续计算后面的
+1. def correct(word):
+1. candidates = known([word]) or known(edits1(word)) or known_edits2(word) or [word]
+1. return max(candidates, key=lambda w: nwords[w])
+</code></pre></blockquote>
+<blockquote>
+<pre><code>correct(&#39;knona&#39;)
+</code></pre></blockquote>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/04/26/URL 跳转漏洞的利用技巧/" title="URL 跳转漏洞的利用技巧">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#机器学习算法整理——贝叶斯算法-实现拼写检查器"><span class="post-toc-text">机器学习算法整理——贝叶斯算法(实现拼写检查器)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#贝叶斯拼写检查器实现"><span class="post-toc-text">贝叶斯拼写检查器实现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#求解：argmaxc-P-c-w-gt-argmaxc-P-w-c-P-c-P-w"><span class="post-toc-text">求解：argmaxc P(c|w) -&gt; argmaxc P(w|c) P(c) / P(w)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编辑距离"><span class="post-toc-text">编辑距离:</span></a></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
