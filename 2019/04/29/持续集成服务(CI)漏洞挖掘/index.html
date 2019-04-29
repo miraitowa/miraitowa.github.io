@@ -1,0 +1,572 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>持续集成服务(CI)漏洞挖掘</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《持续集成服务(CI)漏洞挖掘》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		4/29/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/04/29/持续集成服务(CI)漏洞挖掘/" itemprop="url">		
+			持续集成服务(CI)漏洞挖掘		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/04/29/持续集成服务(CI)漏洞挖掘/" itemprop="url">
+	<time datetime="2019-04-29T06:09:18.478Z" itemprop="datePublished">
+  		2019-04-29
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="持续集成服务-CI-漏洞挖掘"><a href="#持续集成服务-CI-漏洞挖掘" class="headerlink" title="持续集成服务(CI)漏洞挖掘"></a>持续集成服务(CI)漏洞挖掘</h2><p>原文链接：<a href="https://edoverflow.com/2019/ci-knew-there-would-be-bugs-here/" target="_blank" rel="noopener">https://edoverflow.com/2019/ci-knew-there-would-be-bugs-here/</a></p>
+<p><img src="https://i.imgur.com/96bTkqQ.png" alt=""></p>
+<p>在挖漏洞的时候，熟悉供应商和公司所依赖的技术至关重要。引起我们注意的一个特别有趣的环境是各种开源项目使用的流行集成，</p>
+<p>主要是作为其开发生命周期的一部分。包括<a href="https://travis-ci.org/" target="_blank" rel="noopener">Travis CI</a>，<a href="https://circleci.com/" target="_blank" rel="noopener">Circle CI</a>和<a href="https://about.gitlab.com/product/continuous-integration/" target="_blank" rel="noopener">GitLab CI</a>在内的持续集成服务（“CI服务”）的一些主要示例对于我们</p>
+<p>来说是非常有益的，因为它们是bug赏金猎人的目标。</p>
+<p><img src="https://i.imgur.com/DW12h0W.png" alt=""></p>
+<p>我们开始自动从这些CI服务中获取和搜索大型数据集。这篇技术文章将涉及我们面临的众多挑战，我们如何减少搜索中的误报数量，显着的发现，</p>
+<p>最后列出我们在此过程中采取的一些技巧。</p>
+<p>关于这一研究工作的团队包括贾斯汀·加德纳（<a href="https://twitter.com/Rhynorater" target="_blank" rel="noopener">@Rhynorater</a>），Corben狮子座（<a href="https://twitter.com/hacker_" target="_blank" rel="noopener">@hacker_</a>）和EdOverflow（<a href="https://twitter.com/EdOverflow" target="_blank" rel="noopener">@EdOverflow</a>） -由卡里姆·拉哈尔（一些测试和有益的建议<a href="https://twitter.com/KarimPwnz" target="_blank" rel="noopener">@KarimPwnz</a>），<a href="https://twitter.com/streaak" target="_blank" rel="noopener">@streaak</a>，<a href="https://twitter.com/d0nutptr" target="_blank" rel="noopener">@ d0nutptr</a>和BBAC。</p>
+<h3 id="持续集成服务简介"><a href="#持续集成服务简介" class="headerlink" title="持续集成服务简介"></a>持续集成服务简介</h3><p>持续集成（CI）是提交代码更改并自动构建和测试每个更改的实践。如今，很少有人偶然发现在开发周期的某个阶段没有使用持续集成服务的开源项目。各种服务提供简单的设置配置步骤和漂亮的界面，可以持续快速测试和构建代码。</p>
+<p><img src="https://i.imgur.com/iWvGHof.png" alt=""></p>
+<p>该<a href="https://github.com/securitytxt/security-txt" target="_blank" rel="noopener">security.txt项目</a>，例如，使用特拉维斯CI只要提交代码推到建立新的文件草案。</p>
+<p>这允许团队快速确定对规范的任何进一步更改是否可能在编译时破坏Internet草稿kramdown-rfc2629- </p>
+<p>一种工具使得人们可以在Markdown中编写所有内容，然后将其转换为XML2RFC XML标记。</p>
+<h3 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h3><p>读者过去所要求的是有一个指定部分，介绍作者如何提出研究主题，例如我们在这里展示的工作类型。本节将有希望说明这个想法最初的起源。</p>
+<p>本文的所有作者都有很多在GitHub上开源项目的经验，并且多年来学习了简化开源项目维护者开发过程的技术。</p>
+<p>GitHub在<a href="https://github.com/marketplace上提供了大量集成，其中一个特定类别脱颖而出：[“持续集成”](https://github.com/marketplace/category/continuous-integration)。" target="_blank" rel="noopener">https://github.com/marketplace上提供了大量集成，其中一个特定类别脱颖而出：[“持续集成”](https://github.com/marketplace/category/continuous-integration)。</a></p>
+<p>这就是我们发现由于许多开源团队在开发过程中争取完全透明和开放的方式，项目对于在持续集成平台上隐藏构建日志数据犹豫不决。不可否认</p>
+<p>像Travis CI这样的集成确实提供私人资料作为travis-ci.com的高级功能，但在我们的研究中，绝大多数项目似乎只使用公共实例</p>
+<p><a href="travis-ci.org">travis-ci.org</a> - 请注意“.org “顶级域名。</p>
+<p>值得注意的是，持续集成服务过去已成为赏金猎人和第三方敏感信息的目标，如“<a href="https://hackerone.com/reports/215625" target="_blank" rel="noopener">在Travis CI构建日志中暴露的HackerOne员工的GitHub个人访问令牌</a>”和<a href="https://www.traviscistatus.com/incidents/3f8mwqxbh127" target="_blank" rel="noopener">“API下的”攻击“</a> Travis CI事件报告：</p>
+<blockquote>
+<p>“我们目前正在对我们的公共API进行分布式攻击，我们认为这些攻击旨在揭示GitHub身份验证令牌。应对策略正在讨论中，我们将进行相应的更新。“</p>
+<ul>
+<li>Travis CI（2015年9月）</li>
+</ul>
+</blockquote>
+<p>因此Travis CI等平台引入了内置机密检测，以防止敏感信息的意外泄露，如下所示。<a href="https://docs.travis-ci.com/user/best-practices-security/" target="_blank" rel="noopener">[1]</a></p>
+<p><img src="https://i.imgur.com/dRlpY1g.png" alt=""></p>
+<p>Travis CI <code>[secure]</code>在运行时使用关键字替换潜在的敏感信息。</p>
+<blockquote>
+<p>为了防止这些组件发生泄漏，我们会自动过滤运行时超过三个字符的安全环境变量和标记，从而有效地将它们从构建日志中删除，[secure]而不是显示字符串。</p>
+</blockquote>
+<h3 id="自动化检测"><a href="#自动化检测" class="headerlink" title="自动化检测"></a>自动化检测</h3><p>手动接近大型攻击面（例如Travis CI提出的）将是一项非常繁琐的任务。因此，我们必须使用这些CI供应商提供的可用API文档，并开发工具来自动快速获取构建日志。</p>
+<p>为了更好地说明从bug赏金计划到广泛的数据集以进行进一步调查的过程，我们将使用<a href="https://docs.travis-ci.com/user/developer/" target="_blank" rel="noopener">Travis CI的API文档</a>作为示例。</p>
+<p>首先是获取bug赏金计划的GitHub组织，有多种方法可以做到这一点，但为了获得最佳效果，谷歌搜索“公司名称”和“GitHub”就可以完成这项工作。</p>
+<p>接下来，我们必须检查GitHub是否在Travis CI上。为了使这个过程更顺畅，我们使用了一个浏览器书签，它使用GitHub将我们从GitHub重定向到Travis CI。</p>
+<pre><code>javascript:window.location=&quot;https://travis-ci.org&quot;+window.location.pathname;
+</code></pre><p><img src="https://i.imgur.com/O1JDEBT.jpg" alt=""></p>
+<p><strong>书签将从GitHub页面重定向到Travis CI</strong></p>
+<p>如果目标存在于GitHub上，我们就会访问Travis CI上的项目API端点并检索所有项目的列表。</p>
+<pre><code>https://api.travis-ci.org/owner/%s/repos?limit=100&amp;offset=%d
+</code></pre><p>Travis CI的API区分大小写; 由于，bookmarklet需要确保你在发出API请求时使用正确的语句要收集构建日志的内容，我们需要点击构建ID API端点然后<code>/log.txt</code>。</p>
+<pre><code>1. https://api.travis-ci.org/repo/%s/builds?limit=100&amp;offset=%d
+1. https://api.travis-ci.org/job/%d/log.txt
+</code></pre><p>现在属于目标的所有构建日志的内容都存储在本地，我们可以开始<code>grepping</code>。由于我们正在分析的数据大小，我们<code>ripgrep</code>在本地筛选日志时采取了措施。</p>
+<pre><code>$ rg -ia &quot;$1&quot; -j 12 --no-filename --no-line-number --pretty
+</code></pre><p>除了bug赏金计划的GitHub帐户，作者还收集了属于GitHub组织所有成员的构建日志。事实证明，有些成员在他们的帐户上运行构建而没有意识到他们的秘密在构建日志中暴露。</p>
+<blockquote>
+<pre><code>1. #!/bin/bash
+1. 
+1. users=$(curl -s -H &quot;application/vnd.github.hellcat-preview+json&quot; -H &quot;Authorization: token $GH_TOKEN&quot; https://api.github.com/orgs/&quot;$1&quot;/members | jq -r .[].login);
+1. 
+1. while read -r hehe; do 
+1. secretz -t &quot;$hehe&quot;; 
+1. done &lt;&lt;&lt; &quot;$users&quot;
+</code></pre></blockquote>
+<p>该项目背后的团队决定不发布任何为获取构建日志而构建的工具，因为我们不希望直接对CI平台性能的任何中断负责。这种写作将不可避免地</p>
+<p>引起一些CI平台存在的大型攻击面的关注; 因此，作者想提醒读者，在使用平台的API时，请注意不要立即接收每个端点的大量请求。</p>
+<p>我们非常谨慎，不会在整个过程中取消任何服务。</p>
+<h3 id="漏洞发现"><a href="#漏洞发现" class="headerlink" title="漏洞发现"></a>漏洞发现</h3><p>总的来说，最有影响力的发现主要是GitHub访问令牌泄漏。在本节中，我们将介绍我们团队提交的四份值得注意的报告。</p>
+<p>在公共程序中点击员工帐户的Travis CI构建日志时，我们发现了一个GitHub访问令牌，具有对GitHub组织的读写权限。</p>
+<p>此令牌将允许我们将代码推送到GitHub组织下列出的任何存储库。根据他们的HackerOne “Program Statistics”，该计划授予我们迄今为止最高的奖金。</p>
+<p>为扩大我们漏洞的影响范围，我们考虑了多个平台。在2013年的私人Bugcrowd计划的Travis CI构建日志中，我们发现了一个GitHub访问令牌，</p>
+<p>并获得了P1严重性支付 - Bugcrowd上可能的最高严重性分数。<a href="https://bugcrowd.com/vulnerability-rating-taxonomy" target="_blank" rel="noopener">[2]</a></p>
+<p>我们报告调查结果的所有供应商最令人惊讶的回应是Discourse的bug赏金计划。Karim Rahal发现了一个员工的GitHub访问令牌，</p>
+<p>该令牌具有对Discourse GitHub组织下所有公共存储库的读写访问权限。为了证明这个问题的潜在影响，我们将一个无害的文件推送到该组织</p>
+<p>最不活跃的存储库之一，以免引起太多关注。随后从存储库中<a href="https://github.com/discourse/errorpages/commit/09dc71dc6e20b192a54d9ede0e3ff2c08aa3e400" target="_blank" rel="noopener">删除了该文件</a>。</p>
+<p><img src="https://i.imgur.com/EZpAFr8.png" alt=""></p>
+<p>话语授予卡里姆最低可能的128美元奖金。我们要求进一步确定赏金金额，但我们尚未收到Discourse团队的回复 - 这是60天没有回复。<a href="https://hackerone.com/reports/497669" target="_blank" rel="noopener">[3]</a></p>
+<p>另一个关键错误是在HackerOne上的公共加密货币程序中发现的。该程序在Travis CI中使用秘密变量来创建SSH密钥。</p>
+<p>此配置的详细信息可在<a href="https://github.com/dwyl/learn-travis/blob/master/encrypted-ssh-keys-deployment.md#5-encrypt-the-private-key" target="_blank" rel="noopener">此处</a>和<a href="https://github.com/dwyl/learn-travis/blob/master/encrypted-ssh-keys-deployment.md#5-encrypt-the-private-key" target="_blank" rel="noopener">此处</a>找到。在挖掘了数千个日志后，Justin Gardner写道，工具检测到以下行：</p>
+<blockquote>
+<p>—–BEGIN RSA PRIVATE KEY—–</p>
+</blockquote>
+<p>开发人员<code>cat deploy_key</code>在他们的CI配置文件中添加了在日志中输出SSH密钥的文件。使用SSH密钥，</p>
+<p>攻击者可以登录到程序基础结构中并且部署多个服务器。由于漏洞涉及到服务器，因此获得了1000美元的奖励。</p>
+<h3 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h3><p>通常，export构建日志中的语句的简单grep 将是一个很好的起点。该export命令用于在日志提示中设置环境变量，因此可以公开敏感信息。</p>
+<blockquote>
+<p>$ rg -ia “export “ -j 12 –no-filename –no-line-number –pretty</p>
+</blockquote>
+<p>当然，不应仅限于使用该export命令设置的变量; 将搜索术语精炼为 “token”, “key”, “password”和“secret”可以帮助发现特定的泄漏。</p>
+<p>为了减少误报的数量，我们建议搜索词中追加”=”和”:”</p>
+<p>我们鼓励读者使用<code>[secure]</code>关键字创建所有变量的列表，然后在所有项目中使用这些变量名称进行搜索。这将使用常见的变量命名约定帮助您</p>
+<p>查找不安全的敏感数据实例。Karim Rahal收集<code>[secure]</code>了5,302,677个构建日志中的变量，其中最常见的50个可以在下面看到。</p>
+<p><img src="https://i.imgur.com/Z499Apq.png" alt=""></p>
+<p><a href="https://gist.githubusercontent.com/EdOverflow/8bd2faad513626c413b8fc6e9d955669/raw/06a0ef0fd83920d513c65767aae258ecf8382bdf/gistfile1.txt" target="_blank" rel="noopener">完整列表可以在这里找到。</a></p>
+<p>此外，设置连续监控您最喜欢的bug赏金计划的CI构建，并在每次团队向GitHub推送新提交时运行您的工具，这是在团队在行动之前实时捕获暴露的秘密的好方法。</p>
+<p>不要局限于keys 和 tokens; CI平台也是侦察信息的重要来源。通过日志筛选以查找属于目标的隐藏端点和URL。</p>
+<p>检查GitHub上的CI配置文件，以确定目标使用的CI集成。可能还有其他CI平台在这篇文章中没有涉及秘密暴露的内容。</p>
+<p>我们在grep过程中包含的一个有趣的任务是查找通常与缺失或损坏的依赖项相关联的字符串和错误消息。由于缺少npm包，</p>
+<p>这有时可以通过在远程注册表中声明包名来导致代码执行，如<a href="https://hackerone.com/reports/399166" target="_blank" rel="noopener">https://hackerone.com/reports/399166</a>中所示。一些示例错误消息包括：</p>
+<blockquote>
+<ol>
+<li>“不在npm注册表中。”（<a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm</a>）</li>
+<li>“没有匹配的发行版”（<a href="https://pypi.org/" target="_blank" rel="noopener">PyPI</a>）</li>
+<li>“找不到有效的宝石”（<a href="https://rubygems.org/" target="_blank" rel="noopener">RubyGems</a>）</li>
+</ol>
+</blockquote>
+<h3 id="结论和进一步的研究"><a href="#结论和进一步的研究" class="headerlink" title="结论和进一步的研究"></a>结论和进一步的研究</h3><p>这项研究帮助我们更好地了解了连续整合服务所呈现的大型攻击面 - 几乎隐藏在普通视线中 - 并且当bug赏金时已经证明是非常富有成效的。</p>
+<p>由于本研究中包含了相当有限的平台数量，未来的研究和项目可以考虑进一步覆盖CI平台和集成。</p>
+<p>我们赞赏Travis CI等平台，允许用户在其日志中隐藏敏感的环境变量。在我们看来，这是朝着正确方向迈出的一步，以防止我们遇到的安全泄漏类型。</p>
+<p>这项工作不仅为我们提供了许多成功的bug赏金故事和有效的发现，而且还表明，与此项目一起看到的协作可以在bug赏金狩猎的同时取得很大进展。</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/04/29/朴素贝叶斯之新浪新闻分类(Sklearn)/" title="朴素贝叶斯之新浪新闻分类(Sklearn)">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/04/28/机器学习算法整理——贝叶斯算法(实现拼写检查器)/" title="机器学习算法整理——贝叶斯算法(实现拼写检查器)">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#持续集成服务-CI-漏洞挖掘"><span class="post-toc-text">持续集成服务(CI)漏洞挖掘</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#持续集成服务简介"><span class="post-toc-text">持续集成服务简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#信息收集"><span class="post-toc-text">信息收集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自动化检测"><span class="post-toc-text">自动化检测</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#漏洞发现"><span class="post-toc-text">漏洞发现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小技巧"><span class="post-toc-text">小技巧</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#结论和进一步的研究"><span class="post-toc-text">结论和进一步的研究</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
