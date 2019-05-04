@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>《机器学习实战》学习笔记(一) k-近邻算法(手写识别系统实战)</title>
+	<title>机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《《机器学习实战》学习笔记(一) k-近邻算法(手写识别系统实战)》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)》</p>
 			
 		
 	
@@ -161,8 +161,8 @@
 					
 					
 	
-		<a href="/2019/05/03/《机器学习实战》学习笔记(一) k-近邻算法(手写识别系统实战)/" itemprop="url">		
-			《机器学习实战》学习笔记(一) k-近邻算法(手写识别系统实战)		
+		<a href="/2019/05/03/机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)/" itemprop="url">		
+			机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)		
 		</a>
 	
 
@@ -171,7 +171,7 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2019/05/03/《机器学习实战》学习笔记(一) k-近邻算法(手写识别系统实战)/" itemprop="url">
+						<a href="/2019/05/03/机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)/" itemprop="url">
 	<time datetime="2019-05-03T11:53:29.157Z" itemprop="datePublished">
   		2019-05-03
   </time>
@@ -188,7 +188,7 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="《机器学习实战》学习笔记-一-k-近邻算法-手写识别系统实战"><a href="#《机器学习实战》学习笔记-一-k-近邻算法-手写识别系统实战" class="headerlink" title="《机器学习实战》学习笔记(一): k-近邻算法(手写识别系统实战)"></a>《机器学习实战》学习笔记(一): k-近邻算法(手写识别系统实战)</h2><h3 id="一、k-近邻法简介"><a href="#一、k-近邻法简介" class="headerlink" title="一、k-近邻法简介"></a>一、k-近邻法简介</h3><p>k近邻法(k-nearest neighbor, k-NN)是1967年由Cover T和Hart P提出的一种基本分类与回归方法。它的工作原理是：存在一个样本数据集合，</p>
+						<h2 id="机器学习实战——学习笔记-一-k-近邻算法-手写识别系统实战"><a href="#机器学习实战——学习笔记-一-k-近邻算法-手写识别系统实战" class="headerlink" title="机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)"></a>机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)</h2><h3 id="一、k-近邻法简介"><a href="#一、k-近邻法简介" class="headerlink" title="一、k-近邻法简介"></a>一、k-近邻法简介</h3><p>k近邻法(k-nearest neighbor, k-NN)是1967年由Cover T和Hart P提出的一种基本分类与回归方法。它的工作原理是：存在一个样本数据集合，</p>
 <p>也称作为训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一个数据与所属分类的对应关系。输入没有标签的新数据后，</p>
 <p>将新的数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本最相似数据(最近邻)的分类标签。一般来说，我们只选择样本数据集</p>
 <p>中前k个最相似的数据，这就是k-近邻算法中k的出处，通常k是不大于20的整数。最后，选择k个最相似数据中出现次数最多的分类，作为新数据的分类。</p>
@@ -535,7 +535,7 @@ if __name__ == &#39;__main__&#39;:
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#《机器学习实战》学习笔记-一-k-近邻算法-手写识别系统实战"><span class="post-toc-text">《机器学习实战》学习笔记(一): k-近邻算法(手写识别系统实战)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、k-近邻法简介"><span class="post-toc-text">一、k-近邻法简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、手写识别系统问题"><span class="post-toc-text">二、手写识别系统问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1：背景知识"><span class="post-toc-text">1：背景知识</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、sklearn简介"><span class="post-toc-text">2、sklearn简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、sklearn安装"><span class="post-toc-text">3、sklearn安装</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sklearn小试牛刀"><span class="post-toc-text">sklearn小试牛刀</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、总结"><span class="post-toc-text">四、总结</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#机器学习实战——学习笔记-一-k-近邻算法-手写识别系统实战"><span class="post-toc-text">机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、k-近邻法简介"><span class="post-toc-text">一、k-近邻法简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、手写识别系统问题"><span class="post-toc-text">二、手写识别系统问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1：背景知识"><span class="post-toc-text">1：背景知识</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、sklearn简介"><span class="post-toc-text">2、sklearn简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、sklearn安装"><span class="post-toc-text">3、sklearn安装</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sklearn小试牛刀"><span class="post-toc-text">sklearn小试牛刀</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、总结"><span class="post-toc-text">四、总结</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
