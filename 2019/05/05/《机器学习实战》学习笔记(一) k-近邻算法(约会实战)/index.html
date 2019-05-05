@@ -1,0 +1,1021 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>《机器学习实战》学习笔记(一) k-近邻算法(约会实战)</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《《机器学习实战》学习笔记(一) k-近邻算法(约会实战)》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		5/5/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/05/05/《机器学习实战》学习笔记(一) k-近邻算法(约会实战)/" itemprop="url">		
+			《机器学习实战》学习笔记(一) k-近邻算法(约会实战)		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/05/05/《机器学习实战》学习笔记(一) k-近邻算法(约会实战)/" itemprop="url">
+	<time datetime="2019-05-05T05:16:51.958Z" itemprop="datePublished">
+  		2019-05-05
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="《机器学习实战》学习笔记-一-k-近邻算法-约会实战"><a href="#《机器学习实战》学习笔记-一-k-近邻算法-约会实战" class="headerlink" title="《机器学习实战》学习笔记(一) k-近邻算法(约会实战)"></a>《机器学习实战》学习笔记(一) k-近邻算法(约会实战)</h2><h3 id="一、k-近邻法简介"><a href="#一、k-近邻法简介" class="headerlink" title="一、k-近邻法简介"></a>一、k-近邻法简介</h3><p>k近邻法(k-nearest neighbor, k-NN)是1967年由Cover T和Hart P提出的一种基本分类与回归方法。它的工作原理是：存在一个样本数据集合，</p>
+<p>也称作为训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一个数据与所属分类的对应关系。输入没有标签的新数据后，</p>
+<p>将新的数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本最相似数据(最近邻)的分类标签。一般来说，我们只选择样本数据集</p>
+<p>中前k个最相似的数据，这就是k-近邻算法中k的出处，通常k是不大于20的整数。最后，选择k个最相似数据中出现次数最多的分类，作为新数据的分类。</p>
+<p>说白了，就是将新数据和训练集中每个数据进行比较，找到距离新数据最近的K个数据，对这K个数据的标签进行统计，支持数最高的标签即可认为</p>
+<p>是新数据的标签。比如K=10，其中有9的标签是A类，1个的标签是B类，那么这个新数据的标签被认为是A。</p>
+<h3 id="k-近邻算法的一般流程："><a href="#k-近邻算法的一般流程：" class="headerlink" title="k-近邻算法的一般流程："></a>k-近邻算法的一般流程：</h3><blockquote>
+<ol>
+<li>收集数据：可以使用爬虫进行数据的收集，也可以使用第三方提供的免费或收费的数据。一般来讲，数据放在txt文本文件中，按照一定的格式进行存储，便于解析及处理。</li>
+<li>准备数据：使用Python解析、预处理数据。</li>
+<li>分析数据：可以使用很多方法对数据进行分析，例如使用Matplotlib将数据可视化。</li>
+<li>测试算法：计算错误率。</li>
+<li>使用算法：错误率在可接受范围内，就可以运行k-近邻算法进行分类。</li>
+</ol>
+</blockquote>
+<p>已经了解了k-近邻算法的一般流程，下面开始进入实战内容。</p>
+<h3 id="1：实战背景"><a href="#1：实战背景" class="headerlink" title="1：实战背景"></a>1：实战背景</h3><p>海伦女士一直使用在线约会网站寻找适合自己的约会对象。尽管约会网站会推荐不同的任选，但她并不是喜欢每一个人。经过一番总结，她发现自己交往过的人可以进行如下分类：</p>
+<blockquote>
+<ol>
+<li>不喜欢的人</li>
+<li>魅力一般的人</li>
+<li>极具魅力的人</li>
+</ol>
+</blockquote>
+<p>海伦收集约会数据已经有了一段时间，她把这些数据存放在文本文件datingTestSet.txt中，每个样本数据占据一行，总共有1000行。</p>
+<p>datingTestSet.txt数据下载： <a href="https://github.com/miraitowa/Machine-Learning/blob/master/KNN/2.%E6%B5%B7%E4%BC%A6%E7%BA%A6%E4%BC%9A/datingTestSet.txt" target="_blank" rel="noopener">数据集下载</a></p>
+<p>海伦收集的样本数据主要包含以下3种特征：</p>
+<blockquote>
+<ol>
+<li>每年获得的飞行常客里程数</li>
+<li>玩视频游戏所消耗时间百分比</li>
+<li>每周消费的冰淇淋公升数</li>
+</ol>
+</blockquote>
+<p>这里不得不吐槽一句，海伦是个小吃货啊，冰淇淋公斤数都影响自己择偶标准。打开txt文本文件，数据格式如图所示。</p>
+<p><img src="https://i.imgur.com/giMYYYa.png" alt=""></p>
+<h3 id="2、准备数据：数据解析"><a href="#2、准备数据：数据解析" class="headerlink" title="2、准备数据：数据解析"></a>2、准备数据：数据解析</h3><p>在将上述特征数据输入到分类器前，必须将待处理的数据的格式改变为分类器可以接收的格式。分类器接收的数据是什么格式的？</p>
+<p>从上小结已经知道，要将数据分类两部分，即特征矩阵和对应的分类标签向量。</p>
+<pre><code>import numpy as np
+&quot;&quot;&quot;函数说明：创建数据集&quot;&quot;&quot;
+
+def file2matrix(filename):
+    fr = open(filename)
+    arrayolines = fr.readlines()
+    numberoflines = len(arrayolines)
+    returnmat = np.zeros((numberoflines,3))
+    classlabelvector = []
+    index = 0
+    for line in arrayolines:
+        line = line.strip()
+        listfromline = line.split(&#39;\t&#39;)
+        returnmat[index,:] = listfromline[0:3]
+        #根据文本中标记的喜欢的程度进行分类,1代表不喜欢,2代表魅力一般,3代表极具魅力
+        if listfromline[-1] == &#39;didntLike&#39;:
+            classlabelvector.append(1)
+        elif listfromline[-1] == &#39;smallDoses&#39;:
+            classlabelvector.append(2)
+        elif listfromline[-1] == &#39;largeDoses&#39;:
+            classlabelvector.append(3)
+        index +=1
+    return returnmat,classlabelvector
+
+
+if __name__ == &#39;__main__&#39;:
+    #打开的文件名
+    filename = &quot;datingTestSet.txt&quot;
+    #打开并处理数据
+    datingDatamat,datinglabels = file2matrix(filename)
+    print(datingDatamat)
+    print(datinglabels)
+</code></pre><p>运行上述代码，得到的数据解析结果</p>
+<p><img src="https://i.imgur.com/4FklUh5.png" alt=""></p>
+<p>可以看到，我们已经顺利导入数据，并对数据进行解析，格式化为分类器需要的数据格式。接着我们需要了解数据的真正含义。</p>
+<p>可以通过友好、直观的图形化的方式观察数据。</p>
+<h3 id="3、分析数据：数据可视化"><a href="#3、分析数据：数据可视化" class="headerlink" title="3、分析数据：数据可视化"></a>3、分析数据：数据可视化</h3><p>使用showdatas函数进行可视化处理</p>
+<pre><code># -*- coding: UTF-8 -*-
+
+from matplotlib.font_manager import FontProperties
+import matplotlib.lines as mlines
+import matplotlib.pyplot as plt
+import numpy as np
+
+&quot;&quot;&quot;
+函数说明:打开并解析文件，对数据进行分类：1代表不喜欢,2代表魅力一般,3代表极具魅力
+
+&quot;&quot;&quot;
+def file2matrix(filename):
+    #打开文件
+    fr = open(filename)
+    #读取文件所有内容
+    arrayOLines = fr.readlines()
+    #得到文件行数
+    numberOfLines = len(arrayOLines)
+    #返回的NumPy矩阵,解析完成的数据:numberOfLines行,3列
+    returnMat = np.zeros((numberOfLines,3))
+    #返回的分类标签向量
+    classLabelVector = []
+    #行的索引值
+    index = 0
+    for line in arrayOLines:
+        #s.strip(rm)，当rm空时,默认删除空白符(包括&#39;\n&#39;,&#39;\r&#39;,&#39;\t&#39;,&#39; &#39;)
+        line = line.strip()
+        #使用s.split(str=&quot;&quot;,num=string,cout(str))将字符串根据&#39;\t&#39;分隔符进行切片。
+        listFromLine = line.split(&#39;\t&#39;)
+        #将数据前三列提取出来,存放到returnMat的NumPy矩阵中,也就是特征矩阵
+        returnMat[index,:] = listFromLine[0:3]
+        #根据文本中标记的喜欢的程度进行分类,1代表不喜欢,2代表魅力一般,3代表极具魅力
+        if listFromLine[-1] == &#39;didntLike&#39;:
+            classLabelVector.append(1)
+        elif listFromLine[-1] == &#39;smallDoses&#39;:
+            classLabelVector.append(2)
+        elif listFromLine[-1] == &#39;largeDoses&#39;:
+            classLabelVector.append(3)
+        index += 1
+    return returnMat, classLabelVector
+
+&quot;&quot;&quot;
+函数说明:可视化数据
+
+
+&quot;&quot;&quot;
+def showdatas(datingDataMat, datingLabels):
+    #设置汉字格式
+    font = FontProperties(fname=r&quot;c:\windows\fonts\simsun.ttc&quot;, size=14)
+    #将fig画布分隔成1行1列,不共享x轴和y轴,fig画布的大小为(13,8)
+    #当nrow=2,nclos=2时,代表fig画布被分为四个区域,axs[0][0]表示第一行第一个区域
+    fig, axs = plt.subplots(nrows=2, ncols=2,sharex=False, sharey=False, figsize=(13,8))
+
+    numberOfLabels = len(datingLabels)
+    LabelsColors = []
+    for i in datingLabels:
+        if i == 1:
+            LabelsColors.append(&#39;black&#39;)
+        if i == 2:
+            LabelsColors.append(&#39;orange&#39;)
+        if i == 3:
+            LabelsColors.append(&#39;red&#39;)
+    #画出散点图,以datingDataMat矩阵的第一(飞行常客例程)、第二列(玩游戏)数据画散点数据,散点大小为15,透明度为0.5
+    axs[0][0].scatter(x=datingDataMat[:,0], y=datingDataMat[:,1], color=LabelsColors,s=15, alpha=.5)
+    #设置标题,x轴label,y轴label
+    axs0_title_text = axs[0][0].set_title(u&#39;每年获得的飞行常客里程数与玩视频游戏所消耗时间占比&#39;,FontProperties=font)
+    axs0_xlabel_text = axs[0][0].set_xlabel(u&#39;每年获得的飞行常客里程数&#39;,FontProperties=font)
+    axs0_ylabel_text = axs[0][0].set_ylabel(u&#39;玩视频游戏所消耗时间占&#39;,FontProperties=font)
+    plt.setp(axs0_title_text, size=9, weight=&#39;bold&#39;, color=&#39;red&#39;) 
+    plt.setp(axs0_xlabel_text, size=7, weight=&#39;bold&#39;, color=&#39;black&#39;) 
+    plt.setp(axs0_ylabel_text, size=7, weight=&#39;bold&#39;, color=&#39;black&#39;)
+
+    #画出散点图,以datingDataMat矩阵的第一(飞行常客例程)、第三列(冰激凌)数据画散点数据,散点大小为15,透明度为0.5
+    axs[0][1].scatter(x=datingDataMat[:,0], y=datingDataMat[:,2], color=LabelsColors,s=15, alpha=.5)
+    #设置标题,x轴label,y轴label
+    axs1_title_text = axs[0][1].set_title(u&#39;每年获得的飞行常客里程数与每周消费的冰激淋公升数&#39;,FontProperties=font)
+    axs1_xlabel_text = axs[0][1].set_xlabel(u&#39;每年获得的飞行常客里程数&#39;,FontProperties=font)
+    axs1_ylabel_text = axs[0][1].set_ylabel(u&#39;每周消费的冰激淋公升数&#39;,FontProperties=font)
+    plt.setp(axs1_title_text, size=9, weight=&#39;bold&#39;, color=&#39;red&#39;) 
+    plt.setp(axs1_xlabel_text, size=7, weight=&#39;bold&#39;, color=&#39;black&#39;) 
+    plt.setp(axs1_ylabel_text, size=7, weight=&#39;bold&#39;, color=&#39;black&#39;)
+
+    #画出散点图,以datingDataMat矩阵的第二(玩游戏)、第三列(冰激凌)数据画散点数据,散点大小为15,透明度为0.5
+    axs[1][0].scatter(x=datingDataMat[:,1], y=datingDataMat[:,2], color=LabelsColors,s=15, alpha=.5)
+    #设置标题,x轴label,y轴label
+    axs2_title_text = axs[1][0].set_title(u&#39;玩视频游戏所消耗时间占比与每周消费的冰激淋公升数&#39;,FontProperties=font)
+    axs2_xlabel_text = axs[1][0].set_xlabel(u&#39;玩视频游戏所消耗时间占比&#39;,FontProperties=font)
+    axs2_ylabel_text = axs[1][0].set_ylabel(u&#39;每周消费的冰激淋公升数&#39;,FontProperties=font)
+    plt.setp(axs2_title_text, size=9, weight=&#39;bold&#39;, color=&#39;red&#39;) 
+    plt.setp(axs2_xlabel_text, size=7, weight=&#39;bold&#39;, color=&#39;black&#39;) 
+    plt.setp(axs2_ylabel_text, size=7, weight=&#39;bold&#39;, color=&#39;black&#39;)
+    #设置图例
+    didntLike = mlines.Line2D([], [], color=&#39;black&#39;, marker=&#39;.&#39;,
+                      markersize=6, label=&#39;didntLike&#39;)
+    smallDoses = mlines.Line2D([], [], color=&#39;orange&#39;, marker=&#39;.&#39;,
+                      markersize=6, label=&#39;smallDoses&#39;)
+    largeDoses = mlines.Line2D([], [], color=&#39;red&#39;, marker=&#39;.&#39;,
+                      markersize=6, label=&#39;largeDoses&#39;)
+    #添加图例
+    axs[0][0].legend(handles=[didntLike,smallDoses,largeDoses])
+    axs[0][1].legend(handles=[didntLike,smallDoses,largeDoses])
+    axs[1][0].legend(handles=[didntLike,smallDoses,largeDoses])
+    #显示图片
+    plt.show()
+
+&quot;&quot;&quot;
+函数说明:main函数
+
+&quot;&quot;&quot;
+if __name__ == &#39;__main__&#39;:
+    #打开的文件名
+    filename = &quot;datingTestSet.txt&quot;
+    #打开并处理数据
+    datingDataMat, datingLabels = file2matrix(filename)
+    showdatas(datingDataMat, datingLabels)
+</code></pre><p>运行结果如下图：</p>
+<p><img src="https://i.imgur.com/QBdhVFi.png" alt=""></p>
+<p>通过数据可以很直观的发现数据的规律，比如以玩游戏所消耗时间占比与每年获得的飞行常客里程数，只考虑这二维的特征信息，</p>
+<p>给我的感觉就是海伦喜欢有生活质量的男人。为什么这么说呢？每年获得的飞行常客里程数表明，海伦喜欢能享受飞行常客奖励计划的男人，</p>
+<p>但是不能经常坐飞机，疲于奔波，满世界飞。同时，这个男人也要玩视频游戏，并且占一定时间比例。能到处飞，又能经常玩游戏的男人</p>
+<p>是什么样的男人？很显然，有生活质量，并且生活悠闲的人。我的分析，仅仅是通过可视化的数据总结的个人看法。我想，每个人的感受应该也是不尽相同。</p>
+<h3 id="4、准备数据：数据归一化"><a href="#4、准备数据：数据归一化" class="headerlink" title="4、准备数据：数据归一化"></a>4、准备数据：数据归一化</h3><p>下表给出了四组样本，如果想要计算样本3和样本4之间的距离，可以使用欧式距离公式计算。</p>
+<p><img src="https://i.imgur.com/aiV0pme.jpg" alt=""></p>
+<p>计算方法如图</p>
+<p><img src="https://i.imgur.com/9VlVKaH.jpg" alt=""></p>
+<p>我们很容易发现，上面方程中数字差值最大的属性对计算结果的影响最大，也就是说，每年获取的飞行常客里程数对于计算结果的影响将远远大于</p>
+<p>表中其他两个特征-玩视频游戏所耗时间占比和每周消费冰淇淋公斤数的影响。而产生这种现象的唯一原因，仅仅是因为飞行常客里程数远大于其他</p>
+<p>特征值。但海伦认为这三种特征是同等重要的，因此作为三个等权重的特征之一，飞行常客里程数并不应该如此严重地影响到计算结果。</p>
+<p>在处理这种不同取值范围的特征值时，我们通常采用的方法是将数值归一化，如将取值范围处理为０到１或者-１到１之间。下面的公式可以将任意取值范围的特征值转化为０到１区间内的值：</p>
+<p><strong>newValue = (oldValue - min) / (max - min)</strong></p>
+<p>其中min和max分别是数据集中的最小特征值和最大特征值。虽然改变数值取值范围增加了分类器的复杂度，但为了得到准确结果，我们必须这样做。</p>
+<p>使用名为autoNorm的函数，用该函数自动将数据归一化。代码如下：</p>
+<pre><code>&quot;&quot;&quot;函数说明：对数据进行归一化
+newValue = (oldValue - min) / (max - min)
+&quot;&quot;&quot;
+
+def autoNorm(dataSet):
+    #获得数据的最小值
+    minVals = dataSet.min(0)
+    maxVals = dataSet.max(0)
+    ranges = maxVals - minVals
+    normDataSet = np.zeros(np.shape(dataSet))
+    m = dataSet.shape[0]
+    normDataSet = dataSet - np.tile(minVals, (m,1))
+    normDataSet = normDataSet/np.tile(ranges, (m,1))
+    return normDataSet, ranges, minVals
+
+if __name__ == &#39;__main__&#39;:
+    #打开的文件名
+    filename = &quot;datingTestSet.txt&quot;
+    #打开并处理数据
+    datingDataMat, datingLabels = file2matrix(filename)
+    normDataSet, ranges, minVals = autoNorm(datingDataMat)
+    print(normDataSet)
+    print(ranges)
+    print(minVals)
+</code></pre><p>运行代码之后得到结果如下</p>
+<p><img src="https://i.imgur.com/RQbvRaU.png" alt=""></p>
+<p>从图的运行结果可以看到，我们已经顺利将数据归一化了，并且求出了数据的取值范围和数据的最小值，这两个值是在分类的时候需要用到的，直接先求解出来，也算是对数据预处理了。</p>
+<h3 id="5、测试算法：验证分类器"><a href="#5、测试算法：验证分类器" class="headerlink" title="5、测试算法：验证分类器"></a>5、测试算法：验证分类器</h3><p>机器学习算法一个很重要的工作就是评估算法的正确率，通常我们只提供已有数据的90%作为训练样本来训练分类器，而使用其余的10%数据去测试</p>
+<p>分类器，检测分类器的正确率。需要注意的是，10%的测试数据应该是随机选择的，由于海伦提供的数据并没有按照特定目的来排序，所以我们可以随意选择10%数据而不影响其随机性。</p>
+<p>为了测试分类器效果，在代码中函数datingClassTest，编写代码如下：</p>
+<pre><code># -*- coding: UTF-8 -*-
+&quot;&quot;&quot;验证分类器&quot;&quot;&quot;
+
+
+import numpy as np
+import operator
+
+&quot;&quot;&quot;
+函数说明:kNN算法,分类器
+
+Parameters:
+    inX - 用于分类的数据(测试集)
+    dataSet - 用于训练的数据(训练集)
+    labes - 分类标签
+    k - kNN算法参数,选择距离最小的k个点
+Returns:
+    sortedClassCount[0][0] - 分类结果
+
+&quot;&quot;&quot;
+def classify0(inX, dataSet, labels, k):
+    #numpy函数shape[0]返回dataSet的行数
+    dataSetSize = dataSet.shape[0]
+    #在列向量方向上重复inX共1次(横向),行向量方向上重复inX共dataSetSize次(纵向)
+    diffMat = np.tile(inX, (dataSetSize, 1)) - dataSet
+    #二维特征相减后平方
+    sqDiffMat = diffMat**2
+    #sum()所有元素相加,sum(0)列相加,sum(1)行相加
+    sqDistances = sqDiffMat.sum(axis=1)
+    #开方,计算出距离
+    distances = sqDistances**0.5
+    #返回distances中元素从小到大排序后的索引值
+    sortedDistIndices = distances.argsort()
+    #定一个记录类别次数的字典
+    classCount = {}
+    for i in range(k):
+        #取出前k个元素的类别
+        voteIlabel = labels[sortedDistIndices[i]]
+        #dict.get(key,default=None),字典的get()方法,返回指定键的值,如果值不在字典中返回默认值。
+        #计算类别次数
+        classCount[voteIlabel] = classCount.get(voteIlabel,0) + 1
+    #python3中用items()替换python2中的iteritems()
+    #key=operator.itemgetter(1)根据字典的值进行排序
+    #key=operator.itemgetter(0)根据字典的键进行排序
+    #reverse降序排序字典
+    sortedClassCount = sorted(classCount.items(),key=operator.itemgetter(1),reverse=True)
+    #返回次数最多的类别,即所要分类的类别
+    return sortedClassCount[0][0]
+
+&quot;&quot;&quot;
+函数说明:打开并解析文件，对数据进行分类：1代表不喜欢,2代表魅力一般,3代表极具魅力
+
+Parameters:
+    filename - 文件名
+Returns:
+    returnMat - 特征矩阵
+    classLabelVector - 分类Label向量
+
+&quot;&quot;&quot;
+def file2matrix(filename):
+    #打开文件
+    fr = open(filename)
+    #读取文件所有内容
+    arrayOLines = fr.readlines()
+    #得到文件行数
+    numberOfLines = len(arrayOLines)
+    #返回的NumPy矩阵,解析完成的数据:numberOfLines行,3列
+    returnMat = np.zeros((numberOfLines,3))
+    #返回的分类标签向量
+    classLabelVector = []
+    #行的索引值
+    index = 0
+    for line in arrayOLines:
+        #s.strip(rm)，当rm空时,默认删除空白符(包括&#39;\n&#39;,&#39;\r&#39;,&#39;\t&#39;,&#39; &#39;)
+        line = line.strip()
+        #使用s.split(str=&quot;&quot;,num=string,cout(str))将字符串根据&#39;\t&#39;分隔符进行切片。
+        listFromLine = line.split(&#39;\t&#39;)
+        #将数据前三列提取出来,存放到returnMat的NumPy矩阵中,也就是特征矩阵
+        returnMat[index,:] = listFromLine[0:3]
+        #根据文本中标记的喜欢的程度进行分类,1代表不喜欢,2代表魅力一般,3代表极具魅力
+        if listFromLine[-1] == &#39;didntLike&#39;:
+            classLabelVector.append(1)
+        elif listFromLine[-1] == &#39;smallDoses&#39;:
+            classLabelVector.append(2)
+        elif listFromLine[-1] == &#39;largeDoses&#39;:
+            classLabelVector.append(3)
+        index += 1
+    return returnMat, classLabelVector
+
+&quot;&quot;&quot;
+函数说明:对数据进行归一化
+
+Parameters:
+    dataSet - 特征矩阵
+Returns:
+    normDataSet - 归一化后的特征矩阵
+    ranges - 数据范围
+    minVals - 数据最小值
+&quot;&quot;&quot;
+def autoNorm(dataSet):
+    #获得数据的最小值
+    minVals = dataSet.min(0)
+    maxVals = dataSet.max(0)
+    #最大值和最小值的范围
+    ranges = maxVals - minVals
+    #shape(dataSet)返回dataSet的矩阵行列数
+    normDataSet = np.zeros(np.shape(dataSet))
+    #返回dataSet的行数
+    m = dataSet.shape[0]
+    #原始值减去最小值
+    normDataSet = dataSet - np.tile(minVals, (m, 1))
+    #除以最大和最小值的差,得到归一化数据
+    normDataSet = normDataSet / np.tile(ranges, (m, 1))
+    #返回归一化数据结果,数据范围,最小值
+    return normDataSet, ranges, minVals
+
+
+&quot;&quot;&quot;
+函数说明:分类器测试函数
+
+Parameters:
+    无
+Returns:
+    normDataSet - 归一化后的特征矩阵
+    ranges - 数据范围
+    minVals - 数据最小值
+
+&quot;&quot;&quot;
+def datingClassTest():
+    #打开的文件名
+    filename = &quot;datingTestSet.txt&quot;
+    #将返回的特征矩阵和分类向量分别存储到datingDataMat和datingLabels中
+    datingDataMat, datingLabels = file2matrix(filename)
+    #取所有数据的百分之十
+    hoRatio = 0.10
+    #数据归一化,返回归一化后的矩阵,数据范围,数据最小值
+    normMat, ranges, minVals = autoNorm(datingDataMat)
+    #获得normMat的行数
+    m = normMat.shape[0]
+    #百分之十的测试数据的个数
+    numTestVecs = int(m * hoRatio)
+    #分类错误计数
+    errorCount = 0.0
+
+    for i in range(numTestVecs):
+        #前numTestVecs个数据作为测试集,后m-numTestVecs个数据作为训练集
+        classifierResult = classify0(normMat[i,:], normMat[numTestVecs:m,:],
+            datingLabels[numTestVecs:m], 4)
+        print(&quot;分类结果:%d\t真实类别:%d&quot; % (classifierResult, datingLabels[i]))
+        if classifierResult != datingLabels[i]:
+            errorCount += 1.0
+    print(&quot;错误率:%f%%&quot; %(errorCount/float(numTestVecs)*100))
+
+&quot;&quot;&quot;
+函数说明:main函数
+&quot;&quot;&quot;
+if __name__ == &#39;__main__&#39;:
+    datingClassTest()
+</code></pre><p>运行上述代码结果如下图：</p>
+<p><img src="https://i.imgur.com/skRpGED.png" alt=""></p>
+<p>从上图验证分类器结果中可以看出，错误率是4%，这是一个想当不错的结果。我们可以改变函数datingClassTest内变量hoRatio和分类器k的值，</p>
+<p>检测错误率是否随着变量值的变化而增加。依赖于分类算法、数据集和程序设置，分类器的输出结果可能有很大的不同。</p>
+<h3 id="6、使用算法：构建完整可用系统"><a href="#6、使用算法：构建完整可用系统" class="headerlink" title="6、使用算法：构建完整可用系统"></a>6、使用算法：构建完整可用系统</h3><p>我们可以给海伦一个小段程序，通过该程序海伦会在约会网站上找到某个人并输入他的信息。程序会给出她对男方喜欢程度的预测值。</p>
+<p>在代码中创建函数classifyPerson，代码如下：</p>
+<pre><code># -*- coding: UTF-8 -*-
+
+&quot;&quot;&quot;构建完整可用系统&quot;&quot;&quot;
+
+import numpy as np
+import operator
+
+&quot;&quot;&quot;
+函数说明:kNN算法,分类器
+
+Parameters:
+    inX - 用于分类的数据(测试集)
+    dataSet - 用于训练的数据(训练集)
+    labes - 分类标签
+    k - kNN算法参数,选择距离最小的k个点
+Returns:
+    sortedClassCount[0][0] - 分类结果
+&quot;&quot;&quot;
+def classify0(inX, dataSet, labels, k):
+    #numpy函数shape[0]返回dataSet的行数
+    dataSetSize = dataSet.shape[0]
+    #在列向量方向上重复inX共1次(横向),行向量方向上重复inX共dataSetSize次(纵向)
+    diffMat = np.tile(inX, (dataSetSize, 1)) - dataSet
+    #二维特征相减后平方
+    sqDiffMat = diffMat**2
+    #sum()所有元素相加,sum(0)列相加,sum(1)行相加
+    sqDistances = sqDiffMat.sum(axis=1)
+    #开方,计算出距离
+    distances = sqDistances**0.5
+    #返回distances中元素从小到大排序后的索引值
+    sortedDistIndices = distances.argsort()
+    #定一个记录类别次数的字典
+    classCount = {}
+    for i in range(k):
+        #取出前k个元素的类别
+        voteIlabel = labels[sortedDistIndices[i]]
+        #dict.get(key,default=None),字典的get()方法,返回指定键的值,如果值不在字典中返回默认值。
+        #计算类别次数
+        classCount[voteIlabel] = classCount.get(voteIlabel,0) + 1
+    #python3中用items()替换python2中的iteritems()
+    #key=operator.itemgetter(1)根据字典的值进行排序
+    #key=operator.itemgetter(0)根据字典的键进行排序
+    #reverse降序排序字典
+    sortedClassCount = sorted(classCount.items(),key=operator.itemgetter(1),reverse=True)
+    #返回次数最多的类别,即所要分类的类别
+    return sortedClassCount[0][0]
+
+
+&quot;&quot;&quot;
+函数说明:打开并解析文件，对数据进行分类：1代表不喜欢,2代表魅力一般,3代表极具魅力
+
+Parameters:
+    filename - 文件名
+Returns:
+    returnMat - 特征矩阵
+    classLabelVector - 分类Label向量
+&quot;&quot;&quot;
+def file2matrix(filename):
+    #打开文件
+    fr = open(filename)
+    #读取文件所有内容
+    arrayOLines = fr.readlines()
+    #得到文件行数
+    numberOfLines = len(arrayOLines)
+    #返回的NumPy矩阵,解析完成的数据:numberOfLines行,3列
+    returnMat = np.zeros((numberOfLines,3))
+    #返回的分类标签向量
+    classLabelVector = []
+    #行的索引值
+    index = 0
+    for line in arrayOLines:
+        #s.strip(rm)，当rm空时,默认删除空白符(包括&#39;\n&#39;,&#39;\r&#39;,&#39;\t&#39;,&#39; &#39;)
+        line = line.strip()
+        #使用s.split(str=&quot;&quot;,num=string,cout(str))将字符串根据&#39;\t&#39;分隔符进行切片。
+        listFromLine = line.split(&#39;\t&#39;)
+        #将数据前三列提取出来,存放到returnMat的NumPy矩阵中,也就是特征矩阵
+        returnMat[index,:] = listFromLine[0:3]
+        #根据文本中标记的喜欢的程度进行分类,1代表不喜欢,2代表魅力一般,3代表极具魅力
+        if listFromLine[-1] == &#39;didntLike&#39;:
+            classLabelVector.append(1)
+        elif listFromLine[-1] == &#39;smallDoses&#39;:
+            classLabelVector.append(2)
+        elif listFromLine[-1] == &#39;largeDoses&#39;:
+            classLabelVector.append(3)
+        index += 1
+    return returnMat, classLabelVector
+
+&quot;&quot;&quot;
+函数说明:对数据进行归一化
+
+Parameters:
+    dataSet - 特征矩阵
+Returns:
+    normDataSet - 归一化后的特征矩阵
+    ranges - 数据范围
+    minVals - 数据最小值
+&quot;&quot;&quot;
+def autoNorm(dataSet):
+    #获得数据的最小值
+    minVals = dataSet.min(0)
+    maxVals = dataSet.max(0)
+    #最大值和最小值的范围
+    ranges = maxVals - minVals
+    #shape(dataSet)返回dataSet的矩阵行列数
+    normDataSet = np.zeros(np.shape(dataSet))
+    #返回dataSet的行数
+    m = dataSet.shape[0]
+    #原始值减去最小值
+    normDataSet = dataSet - np.tile(minVals, (m, 1))
+    #除以最大和最小值的差,得到归一化数据
+    normDataSet = normDataSet / np.tile(ranges, (m, 1))
+    #返回归一化数据结果,数据范围,最小值
+    return normDataSet, ranges, minVals
+
+&quot;&quot;&quot;
+函数说明:通过输入一个人的三维特征,进行分类输出
+&quot;&quot;&quot;
+def classifyPerson():
+    #输出结果
+    resultList = [&#39;讨厌&#39;,&#39;有些喜欢&#39;,&#39;非常喜欢&#39;]
+    #三维特征用户输入
+    precentTats = float(input(&quot;玩视频游戏所耗时间百分比:&quot;))
+    ffMiles = float(input(&quot;每年获得的飞行常客里程数:&quot;))
+    iceCream = float(input(&quot;每周消费的冰激淋公升数:&quot;))
+    #打开的文件名
+    filename = &quot;datingTestSet.txt&quot;
+    #打开并处理数据
+    datingDataMat, datingLabels = file2matrix(filename)
+    #训练集归一化
+    normMat, ranges, minVals = autoNorm(datingDataMat)
+    #生成NumPy数组,测试集
+    inArr = np.array([precentTats, ffMiles, iceCream])
+    #测试集归一化
+    norminArr = (inArr - minVals) / ranges
+    #返回分类结果
+    classifierResult = classify0(norminArr, normMat, datingLabels, 3)
+    #打印结果
+    print(&quot;你可能%s这个人&quot; % (resultList[classifierResult-1]))
+
+&quot;&quot;&quot;
+函数说明:main函数
+
+&quot;&quot;&quot;
+if __name__ == &#39;__main__&#39;:
+    classifyPerson()
+</code></pre><p>在Anadonda中，运行程序，并输入数据(12,44000,0.5)，预测结果是”你可能有些喜欢这个人”，也就是这个人魅力一般。一共有三个档次：讨厌、有些喜欢、非常喜欢，对应着不喜欢的人、魅力一般的人、极具魅力的人。结果如图所示。</p>
+<p><img src="https://i.imgur.com/6KllcGS.png" alt=""></p>
+<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p>1、kNN算法的优缺点</p>
+<p>优点</p>
+<p>简单好用，容易理解，精度高，理论成熟，既可以用来做分类也可以用来做回归；</p>
+<p>可用于数值型数据和离散型数据；</p>
+<p>训练时间复杂度为O(n)；无数据输入假定；</p>
+<p>对异常值不敏感</p>
+<p>缺点</p>
+<p>计算复杂性高；空间复杂性高；</p>
+<p>样本不平衡问题（即有些类别的样本数量很多，而其它样本的数量很少）；</p>
+<p>一般数值很大的时候不用这个，计算量太大。但是单个样本又不能太少，否则容易发生误分。</p>
+<p>最大的缺点是无法给出数据的内在含义。</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/05/04/对网络信任服务中的逻辑缺陷的分析/" title="对WOT服务中逻辑缺陷漏洞的分析">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#《机器学习实战》学习笔记-一-k-近邻算法-约会实战"><span class="post-toc-text">《机器学习实战》学习笔记(一) k-近邻算法(约会实战)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、k-近邻法简介"><span class="post-toc-text">一、k-近邻法简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#k-近邻算法的一般流程："><span class="post-toc-text">k-近邻算法的一般流程：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1：实战背景"><span class="post-toc-text">1：实战背景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、准备数据：数据解析"><span class="post-toc-text">2、准备数据：数据解析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、分析数据：数据可视化"><span class="post-toc-text">3、分析数据：数据可视化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4、准备数据：数据归一化"><span class="post-toc-text">4、准备数据：数据归一化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5、测试算法：验证分类器"><span class="post-toc-text">5、测试算法：验证分类器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6、使用算法：构建完整可用系统"><span class="post-toc-text">6、使用算法：构建完整可用系统</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、总结"><span class="post-toc-text">四、总结</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
