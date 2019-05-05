@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)</title>
+	<title>《机器学习实战》学习笔记(一) k-近邻算法(手写识别系统实战)</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《《机器学习实战》学习笔记(一) k-近邻算法(手写识别系统实战)》</p>
 			
 		
 	
@@ -161,8 +161,8 @@
 					
 					
 	
-		<a href="/2019/05/03/机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)/" itemprop="url">		
-			机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)		
+		<a href="/2019/05/03/《机器学习实战》学习笔记(一) k-近邻算法(手写识别系统实战)/" itemprop="url">		
+			《机器学习实战》学习笔记(一) k-近邻算法(手写识别系统实战)		
 		</a>
 	
 
@@ -171,7 +171,7 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2019/05/03/机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)/" itemprop="url">
+						<a href="/2019/05/03/《机器学习实战》学习笔记(一) k-近邻算法(手写识别系统实战)/" itemprop="url">
 	<time datetime="2019-05-03T11:53:29.157Z" itemprop="datePublished">
   		2019-05-03
   </time>
@@ -188,7 +188,7 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="机器学习实战——学习笔记-一-k-近邻算法-手写识别系统实战"><a href="#机器学习实战——学习笔记-一-k-近邻算法-手写识别系统实战" class="headerlink" title="机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)"></a>机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)</h2><h3 id="一、k-近邻法简介"><a href="#一、k-近邻法简介" class="headerlink" title="一、k-近邻法简介"></a>一、k-近邻法简介</h3><p>k近邻法(k-nearest neighbor, k-NN)是1967年由Cover T和Hart P提出的一种基本分类与回归方法。它的工作原理是：存在一个样本数据集合，</p>
+						<h2 id="《机器学习实战》学习笔记-一-k-近邻算法-手写识别系统实战"><a href="#《机器学习实战》学习笔记-一-k-近邻算法-手写识别系统实战" class="headerlink" title="《机器学习实战》学习笔记(一): k-近邻算法(手写识别系统实战)"></a>《机器学习实战》学习笔记(一): k-近邻算法(手写识别系统实战)</h2><h3 id="一、k-近邻法简介"><a href="#一、k-近邻法简介" class="headerlink" title="一、k-近邻法简介"></a>一、k-近邻法简介</h3><p>k近邻法(k-nearest neighbor, k-NN)是1967年由Cover T和Hart P提出的一种基本分类与回归方法。它的工作原理是：存在一个样本数据集合，</p>
 <p>也称作为训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一个数据与所属分类的对应关系。输入没有标签的新数据后，</p>
 <p>将新的数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本最相似数据(最近邻)的分类标签。一般来说，我们只选择样本数据集</p>
 <p>中前k个最相似的数据，这就是k-近邻算法中k的出处，通常k是不大于20的整数。最后，选择k个最相似数据中出现次数最多的分类，作为新数据的分类。</p>
@@ -213,6 +213,32 @@
 <h4 id="3、sklearn安装"><a href="#3、sklearn安装" class="headerlink" title="3、sklearn安装"></a>3、sklearn安装</h4><p>由于我使用Anaconda安装，推荐Anaconda，因为里面已经内置了NumPy，SciPy等常用工具</p>
 <pre><code>conda install scikit-learn
 </code></pre><p>具体安装教程以及步骤可以查阅：<a href="http://blackblog.tech/2018/02/05/%E5%8D%81%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8Bsklearn-1/" target="_blank" rel="noopener">http://blackblog.tech/2018/02/05/%E5%8D%81%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8Bsklearn-1/</a></p>
+<h4 id="sklearn参数简介"><a href="#sklearn参数简介" class="headerlink" title="sklearn参数简介"></a>sklearn参数简介</h4><blockquote>
+<p><strong>KNneighborsClassifier参数说明：</strong></p>
+<ol>
+<li><p>n_neighbors：默认为5，就是k-NN的k的值，选取最近的k个点。</p>
+</li>
+<li><p>weights：默认是uniform，参数可以是uniform、distance，也可以是用户自己定义的函数。uniform是均等的权重，就说所有的邻近点的权重都是相等的。distance是不均等的权重，距离近的点比距离远的点的影响大。用户自定义的函数，接收距离的数组，返回一组维数相同的权重。</p>
+</li>
+<li><p>algorithm：快速k近邻搜索算法，默认参数为auto，可以理解为算法自己决定合适的搜索算法。除此之外，用户也可以自己指定搜索算法ball_tree、kd_tree、brute方法进行搜索，brute是蛮力搜索，也就是线性扫描，当训练集很大时，计算非常耗时。kd_tree，构造kd树存储数据以便对其进行快速检索的树形数据结构，kd树也就是数据结构中的二叉树。以中值切分构造的树，每个结点是一个超矩形，在维数小于20时效率高。ball tree是为了克服kd树高纬失效而发明的，其构造过程是以质心C和半径r分割样本空间，每个节点是一个超球体。</p>
+</li>
+</ol>
+<ol>
+<li>leaf_size：默认是30，这个是构造的kd树和ball树的大小。这个值的设置会影响树构建的速度和搜索速度，同样也影响着存储树所需的内存大小。需要根据问题的性质选择最优的大小。</li>
+</ol>
+<ol>
+<li>metric：用于距离度量，默认度量是minkowski，也就是p=2的欧氏距离(欧几里德度量)。</li>
+</ol>
+<ol>
+<li>p：距离度量公式。在上小结，我们使用欧氏距离公式进行距离度量。除此之外，还有其他的度量方法，例如曼哈顿距离。这个参数默认为2，也就是默认使用欧式距离公式进行距离度量。也可以设置为1，使用曼哈顿距离公式进行距离度量。</li>
+</ol>
+<ol>
+<li>metric_params：距离公式的其他关键参数，这个可以不管，使用默认的None即可。</li>
+</ol>
+<ol>
+<li>n_jobs：并行处理设置。默认为1，临近点搜索并行工作数。如果为-1，那么CPU的所有cores都用于并行工作</li>
+</ol>
+</blockquote>
 <h3 id="sklearn小试牛刀"><a href="#sklearn小试牛刀" class="headerlink" title="sklearn小试牛刀"></a>sklearn小试牛刀</h3><p>我们知道数字图片是32x32的二进制图像，为了方便计算，我们可以将32x32的二进制图像转换为1x1024的向量。对于sklearn的KNeighborsClassifier输入可以是矩阵，不用一定转换为向量，不过为了跟自己写的k-近邻算法分类器对应上，这里也做了向量化处理。</p>
 <p>然后构建kNN分类器，利用分类器做预测</p>
 <pre><code># -*- coding: UTF-8 -*-
@@ -399,14 +425,14 @@ if __name__ == &#39;__main__&#39;:
 		<ul class="am-pagination">
     
     	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2019/05/03/《机器学习实战》学习笔记(一) k-近邻算法(手写识别系统实战)/" title="《机器学习实战》学习笔记(一) k-近邻算法(手写识别系统实战)">
+   		<a class="pull-left" href="/2019/05/04/对网络信任服务中的逻辑缺陷的分析/" title="对WOT服务中逻辑缺陷漏洞的分析">
       		&laquo; 上一篇
 		</a>
 		</li>
 	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2019/04/29/朴素贝叶斯之新浪新闻分类(Sklearn)/" title="朴素贝叶斯之新浪新闻分类(Sklearn)">
+		<a class="pull-right" href="/2019/05/03/机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)/" title="机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -535,7 +561,7 @@ if __name__ == &#39;__main__&#39;:
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#机器学习实战——学习笔记-一-k-近邻算法-手写识别系统实战"><span class="post-toc-text">机器学习实战——学习笔记(一) k-近邻算法(手写识别系统实战)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、k-近邻法简介"><span class="post-toc-text">一、k-近邻法简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、手写识别系统问题"><span class="post-toc-text">二、手写识别系统问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1：背景知识"><span class="post-toc-text">1：背景知识</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、sklearn简介"><span class="post-toc-text">2、sklearn简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、sklearn安装"><span class="post-toc-text">3、sklearn安装</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sklearn小试牛刀"><span class="post-toc-text">sklearn小试牛刀</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、总结"><span class="post-toc-text">四、总结</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#《机器学习实战》学习笔记-一-k-近邻算法-手写识别系统实战"><span class="post-toc-text">《机器学习实战》学习笔记(一): k-近邻算法(手写识别系统实战)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、k-近邻法简介"><span class="post-toc-text">一、k-近邻法简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、手写识别系统问题"><span class="post-toc-text">二、手写识别系统问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1：背景知识"><span class="post-toc-text">1：背景知识</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、sklearn简介"><span class="post-toc-text">2、sklearn简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、sklearn安装"><span class="post-toc-text">3、sklearn安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#sklearn参数简介"><span class="post-toc-text">sklearn参数简介</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sklearn小试牛刀"><span class="post-toc-text">sklearn小试牛刀</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、总结"><span class="post-toc-text">四、总结</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
