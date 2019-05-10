@@ -1,0 +1,1138 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>《机器学习实战》学习笔记(一)决策树之隐形眼镜漫谈</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《《机器学习实战》学习笔记(一)决策树之隐形眼镜漫谈》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		5/10/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/05/08/《机器学习实战》学习笔记(一)决策树之隐形眼镜漫谈/" itemprop="url">		
+			《机器学习实战》学习笔记(一)决策树之隐形眼镜漫谈		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/05/08/《机器学习实战》学习笔记(一)决策树之隐形眼镜漫谈/" itemprop="url">
+	<time datetime="2019-05-08T01:53:00.000Z" itemprop="datePublished">
+  		2019-05-08
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="《机器学习实战》学习笔记-一-决策树之隐形眼镜漫谈"><a href="#《机器学习实战》学习笔记-一-决策树之隐形眼镜漫谈" class="headerlink" title="《机器学习实战》学习笔记(一)决策树之隐形眼镜漫谈"></a>《机器学习实战》学习笔记(一)决策树之隐形眼镜漫谈</h2><h3 id="一、决策树构建"><a href="#一、决策树构建" class="headerlink" title="一、决策树构建"></a>一、决策树构建</h3><p>本篇文章只使用ID3算法构建决策树</p>
+<h4 id="1、ID3算法"><a href="#1、ID3算法" class="headerlink" title="1、ID3算法"></a>1、ID3算法</h4><p>ID3算法的核心是在决策树各个结点上对应信息增益准则选择特征，递归地构建决策树。具体方法是：从根结点(root node)开始，</p>
+<p>对结点计算所有可能的特征的信息增益，选择信息增益最大的特征作为结点的特征，由该特征的不同取值建立子节点；再对子结点递归地调用以</p>
+<p>上方法，构建决策树；直到所有特征的信息增益均很小或没有特征可以选择为止。最后得到一个决策树。ID3相当于用极大似然法进行概率模型的选择。</p>
+<p>在使用ID3构造决策树之前，我们再分析下数据。</p>
+<p><img src="https://i.imgur.com/qoUtA4W.png" alt=""></p>
+<h4 id="2、编写代码构建决策树"><a href="#2、编写代码构建决策树" class="headerlink" title="2、编写代码构建决策树"></a>2、编写代码构建决策树</h4><p>创建函数majorityCnt统计classList中出现此处最多的元素(类标签)，创建函数createTree用来递归构建决策树。编写代码如下：</p>
+<pre><code># -*- coding: UTF-8 -*-
+from math import log
+import operator
+&quot;&quot;&quot;
+函数说明:计算给定数据集的经验熵(香农熵)
+
+Parameters:
+    dataSet - 数据集
+Returns:
+    shannonEnt - 经验熵(香农熵)
+&quot;&quot;&quot;
+def calcShannonEnt(dataSet):
+    numEntires = len(dataSet)                        #返回数据集的行数
+    labelCounts = {}                                #保存每个标签(Label)出现次数的字典
+    for featVec in dataSet:                            #对每组特征向量进行统计
+        currentLabel = featVec[-1]                    #提取标签(Label)信息
+        if currentLabel not in labelCounts.keys():    #如果标签(Label)没有放入统计次数的字典,添加进去
+            labelCounts[currentLabel] = 0
+        labelCounts[currentLabel] += 1                #Label计数
+    shannonEnt = 0.0                                #经验熵(香农熵)
+    for key in labelCounts:                            #计算香农熵
+        prob = float(labelCounts[key]) / numEntires    #选择该标签(Label)的概率
+        shannonEnt -= prob * log(prob, 2)            #利用公式计算
+    return shannonEnt                                #返回经验熵(香农熵)
+
+&quot;&quot;&quot;
+函数说明:创建测试数据集
+
+Parameters:
+    无
+Returns:
+    dataSet - 数据集
+    labels - 分类属性
+&quot;&quot;&quot;
+def createDataSet():
+    dataSet = [[1,1,&#39;yes&#39;],
+               [1,1,&#39;yes&#39;],
+              [1,0,&#39;no&#39;],
+              [0,1,&#39;no&#39;],
+              [0,1,&#39;no&#39;]]
+    labels = [&#39;no surfacing&#39;,&#39;flippers&#39;]             #分类属性
+    return dataSet, labels                             #返回数据集和分类属性
+
+&quot;&quot;&quot;
+函数说明:按照给定特征划分数据集
+
+Parameters:
+    dataSet - 待划分的数据集
+    axis - 划分数据集的特征
+    value - 需要返回的特征的值
+Returns:
+    无
+&quot;&quot;&quot;
+def splitDataSet(dataSet, axis, value):       
+    retDataSet = []                                        #创建返回的数据集列表
+    for featVec in dataSet:                             #遍历数据集
+        if featVec[axis] == value:
+            reducedFeatVec = featVec[:axis]                #去掉axis特征
+            reducedFeatVec.extend(featVec[axis+1:])     #将符合条件的添加到返回的数据集
+            retDataSet.append(reducedFeatVec)
+    return retDataSet                                      #返回划分后的数据集
+
+&quot;&quot;&quot;函数说明：构造子节点&quot;&quot;&quot;
+
+def majorityCnt(classList):
+    classCount={}
+    for vote in classList:
+        if vote not in classCount.key(): classCount[vote] = 0
+        classCount[vote] +=1
+    sortedClassCount = sorted(classCount.iteritems(),\
+                             key=operator.itemgetter(1),reverse=True)
+    return sortedClassCount[0][0]
+
+&quot;&quot;&quot;
+函数说明:选择最优特征
+
+Parameters:
+    dataSet - 数据集
+Returns:
+    bestFeature - 信息增益最大的(最优)特征的索引值
+&quot;&quot;&quot;
+def chooseBestFeatureToSplit(dataSet):
+    numFeatures = len(dataSet[0]) - 1                    #特征数量
+    baseEntropy = calcShannonEnt(dataSet)                 #计算数据集的香农熵
+    bestInfoGain = 0.0                                  #信息增益
+    bestFeature = -1                                    #最优特征的索引值
+    for i in range(numFeatures):                         #遍历所有特征
+        #获取dataSet的第i个所有特征
+        featList = [example[i] for example in dataSet]
+        uniqueVals = set(featList)                         #创建set集合{},元素不可重复
+        newEntropy = 0.0                                  #经验条件熵
+        for value in uniqueVals:                         #计算信息增益
+            subDataSet = splitDataSet(dataSet, i, value)         #subDataSet划分后的子集
+            prob = len(subDataSet) / float(len(dataSet))           #计算子集的概率
+            newEntropy += prob * calcShannonEnt(subDataSet)     #根据公式计算经验条件熵
+        infoGain = baseEntropy - newEntropy                     #信息增益
+       # print(&quot;第%d个特征的增益为%.3f&quot; % (i, infoGain))            #打印每个特征的信息增益
+        if (infoGain &gt; bestInfoGain):                             #计算信息增益
+            bestInfoGain = infoGain                             #更新信息增益，找到最大的信息增益
+            bestFeature = i                                     #记录信息增益最大的特征的索引值
+    return bestFeature                                             #返回信息增益最大的特征的索引值
+
+&quot;&quot;&quot;
+函数说明:创建决策树
+
+Parameters:
+    dataSet - 训练数据集
+    labels - 分类属性标签
+    featLabels - 存储选择的最优特征标签
+Returns:
+    myTree - 决策树
+
+&quot;&quot;&quot;
+def createTree(dataSet, labels, featLabels):
+    classList = [example[-1] for example in dataSet]            #取分类标签(是否放贷:yes or no)
+    if classList.count(classList[0]) == len(classList):            #如果类别完全相同则停止继续划分
+        return classList[0]
+    if len(dataSet[0]) == 1:                                    #遍历完所有特征时返回出现次数最多的类标签
+        return majorityCnt(classList)
+    bestFeat = chooseBestFeatureToSplit(dataSet)                #选择最优特征
+    bestFeatLabel = labels[bestFeat]                            #最优特征的标签
+    featLabels.append(bestFeatLabel)
+    myTree = {bestFeatLabel:{}}                                    #根据最优特征的标签生成树
+    del(labels[bestFeat])                                        #删除已经使用特征标签
+    featValues = [example[bestFeat] for example in dataSet]        #得到训练集中所有最优特征的属性值
+    uniqueVals = set(featValues)                                #去掉重复的属性值
+    for value in uniqueVals:                                    #遍历特征，创建决策树。                       
+        myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet, bestFeat, value), labels, featLabels)
+    return myTree
+
+if __name__ == &#39;__main__&#39;:
+    dataSet, labels = createDataSet()
+    featLabels = []
+    myTree = createTree(dataSet, labels, featLabels)
+    print(myTree)
+</code></pre><p>递归创建决策树时，递归有两个终止条件：第一个停止条件是所有的类标签完全相同，则直接返回该类标签；第二个停止条件是使用完了所有特征，</p>
+<p>仍然不能将数据划分仅包含唯一类别的分组，即决策树构建失败，特征不够用。此时说明数据纬度不够，由于第二个停止条件无法简单地返回唯一的类标签，这里挑选出现数量最多的类别作为返回值。</p>
+<p>运行上述代码，我们可以看到如下结果：</p>
+<p><img src="https://i.imgur.com/KRkxHAy.png" alt=""></p>
+<p>可见，我们的决策树已经构建完成了。这时候，有的朋友可能会说，这个决策树看着好别扭，虽然这个能看懂，但是如果多点的结点，就不好看了。能直观点吗？完全没有问题，我们可以使用强大的Matplotlib绘制决策树。</p>
+<h3 id="三、决策树可视化"><a href="#三、决策树可视化" class="headerlink" title="三、决策树可视化"></a>三、决策树可视化</h3><p>这里代码都是关于Matplotlib的，如果对于Matplotlib不了解的，可以先学习下，Matplotlib的内容这里就不再累述。可视化需要用到的函数：</p>
+<blockquote>
+<ol>
+<li>getNumLeafs：获取决策树叶子结点的数目</li>
+<li>getTreeDepth：获取决策树的层数</li>
+<li>plotNode：绘制结点</li>
+<li>plotMidText：标注有向边属性值</li>
+<li>plotTree：绘制决策树</li>
+<li>createPlot：创建绘制面板</li>
+</ol>
+</blockquote>
+<p>我对可视化决策树的程序进行了详细的注释，直接看代码，调试查看即可。为了显示中文，需要设置FontProperties，代码编写如下：</p>
+<pre><code># -*- coding: UTF-8 -*-
+from matplotlib.font_manager import FontProperties
+import matplotlib.pyplot as plt
+from math import log
+import operator
+
+&quot;&quot;&quot;
+函数说明:计算给定数据集的经验熵(香农熵)
+
+Parameters:
+    dataSet - 数据集
+Returns:
+    shannonEnt - 经验熵(香农熵)
+
+&quot;&quot;&quot;
+def calcShannonEnt(dataSet):
+    numEntires = len(dataSet)                        #返回数据集的行数
+    labelCounts = {}                                #保存每个标签(Label)出现次数的字典
+    for featVec in dataSet:                            #对每组特征向量进行统计
+        currentLabel = featVec[-1]                    #提取标签(Label)信息
+        if currentLabel not in labelCounts.keys():    #如果标签(Label)没有放入统计次数的字典,添加进去
+            labelCounts[currentLabel] = 0
+        labelCounts[currentLabel] += 1                #Label计数
+    shannonEnt = 0.0                                #经验熵(香农熵)
+    for key in labelCounts:                            #计算香农熵
+        prob = float(labelCounts[key]) / numEntires    #选择该标签(Label)的概率
+        shannonEnt -= prob * log(prob, 2)            #利用公式计算
+    return shannonEnt                                #返回经验熵(香农熵)
+
+&quot;&quot;&quot;
+函数说明:创建测试数据集
+
+Parameters:
+    无
+Returns:
+    dataSet - 数据集
+    labels - 特征标签
+&quot;&quot;&quot;
+def createDataSet():
+    dataSet = [[1,1,&#39;yes&#39;],
+               [1,1,&#39;yes&#39;],
+              [1,0,&#39;no&#39;],
+              [0,1,&#39;no&#39;],
+              [0,1,&#39;no&#39;]]
+    labels = [&#39;no surfacing&#39;,&#39;flippers&#39;]         #特征标签
+    return dataSet, labels                             #返回数据集和分类属性
+
+&quot;&quot;&quot;
+函数说明:按照给定特征划分数据集
+
+Parameters:
+    dataSet - 待划分的数据集
+    axis - 划分数据集的特征
+    value - 需要返回的特征的值
+&quot;&quot;&quot;
+def splitDataSet(dataSet, axis, value):       
+    retDataSet = []                                        #创建返回的数据集列表
+    for featVec in dataSet:                             #遍历数据集
+        if featVec[axis] == value:
+            reducedFeatVec = featVec[:axis]                #去掉axis特征
+            reducedFeatVec.extend(featVec[axis+1:])     #将符合条件的添加到返回的数据集
+            retDataSet.append(reducedFeatVec)
+    return retDataSet                                      #返回划分后的数据集
+
+&quot;&quot;&quot;
+函数说明:选择最优特征
+
+Parameters:
+    dataSet - 数据集
+Returns:
+    bestFeature - 信息增益最大的(最优)特征的索引值
+&quot;&quot;&quot;
+def chooseBestFeatureToSplit(dataSet):
+    numFeatures = len(dataSet[0]) - 1                    #特征数量
+    baseEntropy = calcShannonEnt(dataSet)                 #计算数据集的香农熵
+    bestInfoGain = 0.0                                  #信息增益
+    bestFeature = -1                                    #最优特征的索引值
+    for i in range(numFeatures):                         #遍历所有特征
+        #获取dataSet的第i个所有特征
+        featList = [example[i] for example in dataSet]
+        uniqueVals = set(featList)                         #创建set集合{},元素不可重复
+        newEntropy = 0.0                                  #经验条件熵
+        for value in uniqueVals:                         #计算信息增益
+            subDataSet = splitDataSet(dataSet, i, value)         #subDataSet划分后的子集
+            prob = len(subDataSet) / float(len(dataSet))           #计算子集的概率
+            newEntropy += prob * calcShannonEnt(subDataSet)     #根据公式计算经验条件熵
+        infoGain = baseEntropy - newEntropy                     #信息增益
+        # print(&quot;第%d个特征的增益为%.3f&quot; % (i, infoGain))            #打印每个特征的信息增益
+        if (infoGain &gt; bestInfoGain):                             #计算信息增益
+            bestInfoGain = infoGain                             #更新信息增益，找到最大的信息增益
+            bestFeature = i                                     #记录信息增益最大的特征的索引值
+    return bestFeature                                             #返回信息增益最大的特征的索引值
+
+
+&quot;&quot;&quot;
+函数说明:统计classList中出现此处最多的元素(类标签)
+
+Parameters:
+    classList - 类标签列表
+Returns:
+    sortedClassCount[0][0] - 出现此处最多的元素(类标签)
+&quot;&quot;&quot;
+def majorityCnt(classList):
+    classCount = {}
+    for vote in classList:                                        #统计classList中每个元素出现的次数
+        if vote not in classCount.keys():classCount[vote] = 0   
+        classCount[vote] += 1
+    sortedClassCount = sorted(classCount.items(), key = operator.itemgetter(1), reverse = True)        #根据字典的值降序排序
+    return sortedClassCount[0][0]                                #返回classList中出现次数最多的元素
+
+&quot;&quot;&quot;
+函数说明:创建决策树
+
+Parameters:
+    dataSet - 训练数据集
+    labels - 分类属性标签
+    featLabels - 存储选择的最优特征标签
+Returns:
+    myTree - 决策树
+&quot;&quot;&quot;
+def createTree(dataSet, labels, featLabels):
+    classList = [example[-1] for example in dataSet]            #取分类标签(是否放贷:yes or no)
+    if classList.count(classList[0]) == len(classList):            #如果类别完全相同则停止继续划分
+        return classList[0]
+    if len(dataSet[0]) == 1 or len(labels) == 0:                                    #遍历完所有特征时返回出现次数最多的类标签
+        return majorityCnt(classList)
+    bestFeat = chooseBestFeatureToSplit(dataSet)                #选择最优特征
+    bestFeatLabel = labels[bestFeat]                            #最优特征的标签
+    featLabels.append(bestFeatLabel)
+    myTree = {bestFeatLabel:{}}                                    #根据最优特征的标签生成树
+    del(labels[bestFeat])                                        #删除已经使用特征标签
+    featValues = [example[bestFeat] for example in dataSet]        #得到训练集中所有最优特征的属性值
+    uniqueVals = set(featValues)                                #去掉重复的属性值
+    for value in uniqueVals:                                    #遍历特征，创建决策树。                       
+        myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet, bestFeat, value), labels, featLabels)
+    return myTree
+
+&quot;&quot;&quot;
+函数说明:获取决策树叶子结点的数目
+
+Parameters:
+    myTree - 决策树
+Returns:
+    numLeafs - 决策树的叶子结点的数目
+&quot;&quot;&quot;
+def getNumLeafs(myTree):
+    numLeafs = 0                                                #初始化叶子
+    firstStr = next(iter(myTree))                                #python3中myTree.keys()返回的是dict_keys,不在是list,所以不能使用myTree.keys()[0]的方法获取结点属性，可以使用list(myTree.keys())[0]
+    secondDict = myTree[firstStr]                                #获取下一组字典
+    for key in secondDict.keys():
+        if type(secondDict[key]).__name__==&#39;dict&#39;:                #测试该结点是否为字典，如果不是字典，代表此结点为叶子结点
+            numLeafs += getNumLeafs(secondDict[key])
+        else:   numLeafs +=1
+    return numLeafs
+
+&quot;&quot;&quot;
+函数说明:获取决策树的层数
+
+Parameters:
+    myTree - 决策树
+Returns:
+    maxDepth - 决策树的层数
+&quot;&quot;&quot;
+def getTreeDepth(myTree):
+    maxDepth = 0                                                #初始化决策树深度
+    firstStr = next(iter(myTree))                                #python3中myTree.keys()返回的是dict_keys,不在是list,所以不能使用myTree.keys()[0]的方法获取结点属性，可以使用list(myTree.keys())[0]
+    secondDict = myTree[firstStr]                                #获取下一个字典
+    for key in secondDict.keys():
+        if type(secondDict[key]).__name__==&#39;dict&#39;:                #测试该结点是否为字典，如果不是字典，代表此结点为叶子结点
+            thisDepth = 1 + getTreeDepth(secondDict[key])
+        else:   thisDepth = 1
+        if thisDepth &gt; maxDepth: maxDepth = thisDepth            #更新层数
+    return maxDepth
+
+&quot;&quot;&quot;
+函数说明:绘制结点
+
+Parameters:
+    nodeTxt - 结点名
+    centerPt - 文本位置
+    parentPt - 标注的箭头位置
+    nodeType - 结点格式
+Returns:
+    无
+&quot;&quot;&quot;
+def plotNode(nodeTxt, centerPt, parentPt, nodeType):
+    arrow_args = dict(arrowstyle=&quot;&lt;-&quot;)                                            #定义箭头格式
+    font = FontProperties(fname=r&quot;c:\windows\fonts\simsun.ttc&quot;, size=14)        #设置中文字体
+    createPlot.ax1.annotate(nodeTxt, xy=parentPt,  xycoords=&#39;axes fraction&#39;,    #绘制结点
+        xytext=centerPt, textcoords=&#39;axes fraction&#39;,
+        va=&quot;center&quot;, ha=&quot;center&quot;, bbox=nodeType, arrowprops=arrow_args, FontProperties=font)
+
+&quot;&quot;&quot;
+函数说明:标注有向边属性值
+
+Parameters:
+    cntrPt、parentPt - 用于计算标注位置
+    txtString - 标注的内容
+Returns:
+    无
+&quot;&quot;&quot;
+def plotMidText(cntrPt, parentPt, txtString):
+    xMid = (parentPt[0]-cntrPt[0])/2.0 + cntrPt[0]                                            #计算标注位置                   
+    yMid = (parentPt[1]-cntrPt[1])/2.0 + cntrPt[1]
+    createPlot.ax1.text(xMid, yMid, txtString, va=&quot;center&quot;, ha=&quot;center&quot;, rotation=30)
+
+&quot;&quot;&quot;
+函数说明:绘制决策树
+
+Parameters:
+    myTree - 决策树(字典)
+    parentPt - 标注的内容
+    nodeTxt - 结点名
+Returns:
+    无
+&quot;&quot;&quot;
+def plotTree(myTree, parentPt, nodeTxt):
+    decisionNode = dict(boxstyle=&quot;sawtooth&quot;, fc=&quot;0.8&quot;)                                        #设置结点格式
+    leafNode = dict(boxstyle=&quot;round4&quot;, fc=&quot;0.8&quot;)                                            #设置叶结点格式
+    numLeafs = getNumLeafs(myTree)                                                          #获取决策树叶结点数目，决定了树的宽度
+    depth = getTreeDepth(myTree)                                                            #获取决策树层数
+    firstStr = next(iter(myTree))                                                            #下个字典                                                 
+    cntrPt = (plotTree.xOff + (1.0 + float(numLeafs))/2.0/plotTree.totalW, plotTree.yOff)    #中心位置
+    plotMidText(cntrPt, parentPt, nodeTxt)                                                    #标注有向边属性值
+    plotNode(firstStr, cntrPt, parentPt, decisionNode)                                        #绘制结点
+    secondDict = myTree[firstStr]                                                            #下一个字典，也就是继续绘制子结点
+    plotTree.yOff = plotTree.yOff - 1.0/plotTree.totalD                                        #y偏移
+    for key in secondDict.keys():                               
+        if type(secondDict[key]).__name__==&#39;dict&#39;:                                            #测试该结点是否为字典，如果不是字典，代表此结点为叶子结点
+            plotTree(secondDict[key],cntrPt,str(key))                                        #不是叶结点，递归调用继续绘制
+        else:                                                                                #如果是叶结点，绘制叶结点，并标注有向边属性值                                             
+            plotTree.xOff = plotTree.xOff + 1.0/plotTree.totalW
+            plotNode(secondDict[key], (plotTree.xOff, plotTree.yOff), cntrPt, leafNode)
+            plotMidText((plotTree.xOff, plotTree.yOff), cntrPt, str(key))
+    plotTree.yOff = plotTree.yOff + 1.0/plotTree.totalD
+
+&quot;&quot;&quot;
+函数说明:创建绘制面板
+
+Parameters:
+    inTree - 决策树(字典)
+Returns:
+    无
+&quot;&quot;&quot;
+def createPlot(inTree):
+    fig = plt.figure(1, facecolor=&#39;white&#39;)                                                    #创建fig
+    fig.clf()                                                                                #清空fig
+    axprops = dict(xticks=[], yticks=[])
+    createPlot.ax1 = plt.subplot(111, frameon=False, **axprops)                                #去掉x、y轴
+    plotTree.totalW = float(getNumLeafs(inTree))                                            #获取决策树叶结点数目
+    plotTree.totalD = float(getTreeDepth(inTree))                                            #获取决策树层数
+    plotTree.xOff = -0.5/plotTree.totalW; plotTree.yOff = 1.0;                                #x偏移
+    plotTree(inTree, (0.5,1.0), &#39;&#39;)                                                            #绘制决策树
+    plt.show()                                                                                 #显示绘制结果     
+
+if __name__ == &#39;__main__&#39;:
+    dataSet, labels = createDataSet()
+    featLabels = []
+    myTree = createTree(dataSet, labels, featLabels)
+    print(myTree)  
+    createPlot(myTree)
+</code></pre><p><img src="https://i.imgur.com/WIbSCha.png" alt=""></p>
+<h3 id="四、Sklearn之使用决策树预测隐形眼睛漫谈"><a href="#四、Sklearn之使用决策树预测隐形眼睛漫谈" class="headerlink" title="四、Sklearn之使用决策树预测隐形眼睛漫谈"></a>四、Sklearn之使用决策树预测隐形眼睛漫谈</h3><p>进入本文的正题：眼科医生是如何判断患者需要佩戴隐形眼镜的类型的？一旦理解了决策树的工作原理，我们甚至也可以帮助人们判断需要佩戴的镜片类型。</p>
+<p>隐形眼镜数据集是非常著名的数据集，它包含很多换着眼部状态的观察条件以及医生推荐的隐形眼镜类型。隐形眼镜类型包括硬材质(hard)、软材质(soft)以及不适合佩戴隐形眼镜(no lenses)。</p>
+<p>数据来源与UCI数据库，数据集下载地址：<a href="https://github.com/miraitowa/Machine-Learning/blob/master/Decision%20Tree/lenses.txt" target="_blank" rel="noopener">https://github.com/miraitowa/Machine-Learning/blob/master/Decision%20Tree/lenses.txt</a></p>
+<p>一共有24组数据，数据的Labels依次是age、prescript、astigmatic、tearRate、class，也就是第一列是年龄，第二列是症状，第三列是是否散光，第四列是眼泪数量，第五列是最终的分类标签。数据如下图所示：</p>
+<p><img src="https://i.imgur.com/N21YpZU.png" alt=""></p>
+<pre><code># -*- coding: UTF-8 -*-
+from sklearn import tree
+
+if __name__ == &#39;__main__&#39;:
+    fr = open(&#39;lenses.txt&#39;)
+    lenses = [inst.strip().split(&#39;\t&#39;) for inst in fr.readlines()]
+    print(lenses)
+    lensesLabels = [&#39;age&#39;, &#39;prescript&#39;, &#39;astigmatic&#39;, &#39;tearRate&#39;]
+    clf = tree.DecisionTreeClassifier()
+    lenses = clf.fit(lenses, lensesLabels)
+</code></pre><p><img src="https://i.imgur.com/fMWdvAq.png" alt=""></p>
+<p>我们可以看到程序报错了，这是为什么？因为在fit()函数不能接收string类型的数据，通过打印的信息可以看到，数据都是string类型的。在使用fit()函数之前，我们需要对数据集进行编码，这里可以使用两种方法：</p>
+<blockquote>
+<ol>
+<li>LabelEncoder ：将字符串转换为增量值</li>
+<li>OneHotEncoder：使用One-of-K算法将字符串转换为整数</li>
+</ol>
+</blockquote>
+<p>为了对string类型的数据序列化，需要先生成pandas数据，这样方便我们的序列化工作。这里我使用的方法是，原始数据-&gt;字典-&gt;pandas数据，编写代码如下：</p>
+<pre><code># -*- coding: UTF-8 -*-
+import pandas as pd
+
+if __name__ == &#39;__main__&#39;:
+    with open(&#39;lenses.txt&#39;, &#39;r&#39;) as fr:                                        #加载文件
+        lenses = [inst.strip().split(&#39;\t&#39;) for inst in fr.readlines()]        #处理文件
+    lenses_target = []                                                        #提取每组数据的类别，保存在列表里
+    for each in lenses:
+        lenses_target.append(each[-1])
+
+    lensesLabels = [&#39;age&#39;, &#39;prescript&#39;, &#39;astigmatic&#39;, &#39;tearRate&#39;]            #特征标签       
+    lenses_list = []                                                        #保存lenses数据的临时列表
+    lenses_dict = {}                                                        #保存lenses数据的字典，用于生成pandas
+    for each_label in lensesLabels:                                            #提取信息，生成字典
+        for each in lenses:
+            lenses_list.append(each[lensesLabels.index(each_label)])
+        lenses_dict[each_label] = lenses_list
+        lenses_list = []
+    print(lenses_dict)                                                        #打印字典信息
+    lenses_pd = pd.DataFrame(lenses_dict)                                    #生成pandas.DataFrame
+    print(lenses_pd)   
+</code></pre><p>运行之后得到数据：</p>
+<p><img src="https://i.imgur.com/UFYOjRb.png" alt=""></p>
+<p>接下来，将数据序列化，编写代码如下：</p>
+<pre><code># -*- coding: UTF-8 -*-
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+
+import pydotplus
+from sklearn.externals.six import StringIO
+
+if __name__ == &#39;__main__&#39;:
+    with open(&#39;lenses.txt&#39;, &#39;r&#39;) as fr:                                        #加载文件
+        lenses = [inst.strip().split(&#39;\t&#39;) for inst in fr.readlines()]        #处理文件
+    lenses_target = []                                                        #提取每组数据的类别，保存在列表里
+    for each in lenses:
+        lenses_target.append(each[-1])
+
+    lensesLabels = [&#39;age&#39;, &#39;prescript&#39;, &#39;astigmatic&#39;, &#39;tearRate&#39;]            #特征标签       
+    lenses_list = []                                                        #保存lenses数据的临时列表
+    lenses_dict = {}                                                        #保存lenses数据的字典，用于生成pandas
+    for each_label in lensesLabels:                                            #提取信息，生成字典
+        for each in lenses:
+            lenses_list.append(each[lensesLabels.index(each_label)])
+        lenses_dict[each_label] = lenses_list
+        lenses_list = []
+    # print(lenses_dict)                                                        #打印字典信息
+    lenses_pd = pd.DataFrame(lenses_dict)                                    #生成pandas.DataFrame
+    print(lenses_pd)                                                        #打印pandas.DataFrame
+    le = LabelEncoder()                                                        #创建LabelEncoder()对象，用于序列化            
+    for col in lenses_pd.columns:                                            #为每一列序列化
+        lenses_pd[col] = le.fit_transform(lenses_pd[col])
+    print(lenses_pd)   
+</code></pre><p>从打印结果可以看到，我们已经将数据顺利序列化，接下来。我们就可以fit()数据，构建决策树了</p>
+<p><img src="https://i.imgur.com/C0bFuwE.png" alt=""></p>
+<h3 id="3、使用Graphviz可视化决策树"><a href="#3、使用Graphviz可视化决策树" class="headerlink" title="3、使用Graphviz可视化决策树"></a>3、使用Graphviz可视化决策树</h3><p>Graphviz的是AT&amp;T Labs Research开发的图形绘制工具，他可以很方便的用来绘制结构化的图形网络，支持多种格式输出，生成图片的质量</p>
+<p>和速度都不错。它的输入是一个用dot语言编写的绘图脚本，通过对输入脚本的解析，分析出其中的点，边以及子图，然后根据属性进行绘制。</p>
+<p>是使用Sklearn生成的决策树就是dot格式的，因此我们可以直接利用Graphviz将决策树可视化。</p>
+<h4 id="（4）-编写代码计算信息增益"><a href="#（4）-编写代码计算信息增益" class="headerlink" title="（4） 编写代码计算信息增益"></a>（4） 编写代码计算信息增益</h4><pre><code># -*- coding: UTF-8 -*-
+from math import log
+import operator
+&quot;&quot;&quot;
+函数说明:计算给定数据集的经验熵(香农熵)
+
+Parameters:
+    dataSet - 数据集
+Returns:
+    shannonEnt - 经验熵(香农熵)
+&quot;&quot;&quot;
+def calcShannonEnt(dataSet):
+    numEntires = len(dataSet)                        #返回数据集的行数
+    labelCounts = {}                                #保存每个标签(Label)出现次数的字典
+    for featVec in dataSet:                            #对每组特征向量进行统计
+        currentLabel = featVec[-1]                    #提取标签(Label)信息
+        if currentLabel not in labelCounts.keys():    #如果标签(Label)没有放入统计次数的字典,添加进去
+            labelCounts[currentLabel] = 0
+        labelCounts[currentLabel] += 1                #Label计数
+    shannonEnt = 0.0                                #经验熵(香农熵)
+    for key in labelCounts:                            #计算香农熵
+        prob = float(labelCounts[key]) / numEntires    #选择该标签(Label)的概率
+        shannonEnt -= prob * log(prob, 2)            #利用公式计算
+    return shannonEnt                                #返回经验熵(香农熵)
+
+&quot;&quot;&quot;
+函数说明:创建测试数据集
+
+Parameters:
+    无
+Returns:
+    dataSet - 数据集
+    labels - 分类属性
+&quot;&quot;&quot;
+def createDataSet():
+    dataSet = [[1,1,&#39;yes&#39;],
+               [1,1,&#39;yes&#39;],
+              [1,0,&#39;no&#39;],
+              [0,1,&#39;no&#39;],
+              [0,1,&#39;no&#39;]]
+    labels = [&#39;no surfacing&#39;,&#39;flippers&#39;]             #分类属性
+    return dataSet, labels                             #返回数据集和分类属性
+
+&quot;&quot;&quot;
+函数说明:按照给定特征划分数据集
+
+Parameters:
+    dataSet - 待划分的数据集
+    axis - 划分数据集的特征
+    value - 需要返回的特征的值
+Returns:
+    无
+&quot;&quot;&quot;
+def splitDataSet(dataSet, axis, value):       
+    retDataSet = []                                        #创建返回的数据集列表
+    for featVec in dataSet:                             #遍历数据集
+        if featVec[axis] == value:
+            reducedFeatVec = featVec[:axis]                #去掉axis特征
+            reducedFeatVec.extend(featVec[axis+1:])     #将符合条件的添加到返回的数据集
+            retDataSet.append(reducedFeatVec)
+    return retDataSet                                      #返回划分后的数据集
+
+&quot;&quot;&quot;
+函数说明:选择最优特征
+
+Parameters:
+    dataSet - 数据集
+Returns:
+    bestFeature - 信息增益最大的(最优)特征的索引值
+&quot;&quot;&quot;
+def chooseBestFeatureToSplit(dataSet):
+    numFeatures = len(dataSet[0]) - 1                    #特征数量
+    baseEntropy = calcShannonEnt(dataSet)                 #计算数据集的香农熵
+    bestInfoGain = 0.0                                  #信息增益
+    bestFeature = -1                                    #最优特征的索引值
+    for i in range(numFeatures):                         #遍历所有特征
+        #获取dataSet的第i个所有特征
+        featList = [example[i] for example in dataSet]
+        uniqueVals = set(featList)                         #创建set集合{},元素不可重复
+        newEntropy = 0.0                                  #经验条件熵
+        for value in uniqueVals:                         #计算信息增益
+            subDataSet = splitDataSet(dataSet, i, value)         #subDataSet划分后的子集
+            prob = len(subDataSet) / float(len(dataSet))           #计算子集的概率
+            newEntropy += prob * calcShannonEnt(subDataSet)     #根据公式计算经验条件熵
+        infoGain = baseEntropy - newEntropy                     #信息增益
+        print(&quot;第%d个特征的增益为%.3f&quot; % (i, infoGain))            #打印每个特征的信息增益
+        if (infoGain &gt; bestInfoGain):                             #计算信息增益
+            bestInfoGain = infoGain                             #更新信息增益，找到最大的信息增益
+            bestFeature = i                                     #记录信息增益最大的特征的索引值
+    return bestFeature                                             #返回信息增益最大的特征的索引值
+
+if __name__ == &#39;__main__&#39;:
+    dataSet, features = createDataSet()
+    print(&quot;最优特征索引值:&quot; + str(chooseBestFeatureToSplit(dataSet)))
+</code></pre><p>chooseBestFeatureToSplit是选择选择最优特征的函数。运行代码结果如下：</p>
+<p><img src="https://i.imgur.com/D5vlWGl.png" alt=""></p>
+<p>对比我们自己计算的结果，发现结果完全正确！最优特征的索引值为0，也就是特征1的值。</p>
+<h3 id="2、决策树生成和修剪"><a href="#2、决策树生成和修剪" class="headerlink" title="2、决策树生成和修剪"></a>2、决策树生成和修剪</h3><p>我们已经学习了从数据集构造决策树算法所需要的子功能模块，包括经验熵的计算和最优特征的选择，其工作原理如下：得到原始数据集，</p>
+<p>然后基于最好的属性值划分数据集，由于特征值可能多于两个，因此可能存在大于两个分支的数据集划分。第一次划分之后，数据集被向下传递</p>
+<p>到树的分支的下一个结点。在这个结点上，我们可以再次划分数据。因此我们可以采用递归的原则处理数据集。</p>
+<p>构建决策树的算法有很多，比如C4.5、ID3和CART，这些算法在运行时并不总是在每次划分数据分组时都会消耗特征。由于特征数目并不是每次</p>
+<p>划分数据分组时都减少，因此这些算法在实际使用时可能引起一定的问题。目前我们并不需要考虑这个问题，只需要在算法开始运行前计算列的数目，查看算法是否使用了所有属性即可。</p>
+<p>决策树生成算法递归地产生决策树，直到不能继续下去未为止。这样产生的树往往对训练数据的分类很准确，但对未知的测试数据的分类却没有</p>
+<p>那么准确，即出现过拟合现象。过拟合的原因在于学习时过多地考虑如何提高对训练数据的正确分类，从而构建出过于复杂的决策树。解决这个</p>
+<p>问题的办法是考虑决策树的复杂度，对已生成的决策树进行简化。</p>
+<pre><code># -*- coding: UTF-8 -*-
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.externals.six import StringIO
+from sklearn import tree
+import pandas as pd
+import numpy as np
+import pydotplus
+
+if __name__ == &#39;__main__&#39;:
+    with open(&#39;lenses.txt&#39;, &#39;r&#39;) as fr:                                        #加载文件
+        lenses = [inst.strip().split(&#39;\t&#39;) for inst in fr.readlines()]        #处理文件
+    lenses_target = []                                                        #提取每组数据的类别，保存在列表里
+    for each in lenses:
+        lenses_target.append(each[-1])
+    print(lenses_target)
+
+    lensesLabels = [&#39;age&#39;, &#39;prescript&#39;, &#39;astigmatic&#39;, &#39;tearRate&#39;]            #特征标签       
+    lenses_list = []                                                        #保存lenses数据的临时列表
+    lenses_dict = {}                                                        #保存lenses数据的字典，用于生成pandas
+    for each_label in lensesLabels:                                            #提取信息，生成字典
+        for each in lenses:
+            lenses_list.append(each[lensesLabels.index(each_label)])
+        lenses_dict[each_label] = lenses_list
+        lenses_list = []
+    # print(lenses_dict)                                                        #打印字典信息
+    lenses_pd = pd.DataFrame(lenses_dict)                                    #生成pandas.DataFrame
+    # print(lenses_pd)                                                        #打印pandas.DataFrame
+    le = LabelEncoder()                                                        #创建LabelEncoder()对象，用于序列化           
+    for col in lenses_pd.columns:                                            #序列化
+        lenses_pd[col] = le.fit_transform(lenses_pd[col])
+    # print(lenses_pd)                                                        #打印编码信息
+
+    clf = tree.DecisionTreeClassifier(max_depth = 4)                        #创建DecisionTreeClassifier()类
+    clf = clf.fit(lenses_pd.values.tolist(), lenses_target)                    #使用数据，构建决策树
+    dot_data = StringIO()
+    tree.export_graphviz(clf, out_file = dot_data,                            #绘制决策树
+                        feature_names = lenses_pd.keys(),
+                        class_names = clf.classes_,
+                        filled=True, rounded=True,
+                        special_characters=True)
+    graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
+    graph.write_pdf(&quot;tree.pdf&quot;)                                                #保存绘制好的决策树，以PDF的形式存储。
+</code></pre><p>打开打印出来的PDF文档：</p>
+<p><img src="https://i.imgur.com/01VFzTI.png" alt=""></p>
+<h3 id="四：总结"><a href="#四：总结" class="headerlink" title="四：总结"></a>四：总结</h3><p>决策树的一些优点：</p>
+<ol>
+<li>易于理解和解释。决策树可以可视化。</li>
+<li>几乎不需要数据预处理。其他方法经常需要数据标准化，创建虚拟变量和删除缺失值。决策树还不支持缺失值。</li>
+<li>使用树的花费（例如预测数据）是训练数据点(data points)数量的对数。</li>
+<li>可以同时处理数值变量和分类变量。其他方法大都适用于分析一种变量的集合。</li>
+<li>可以处理多值输出变量问题。</li>
+<li>使用白盒模型。如果一个情况被观察到，使用逻辑判断容易表示这种规则。相反，如果是黑盒模型（例如人工神经网络），结果会非常难解释。</li>
+<li>即使对真实模型来说，假设无效的情况下，也可以较好的适用。</li>
+</ol>
+<p>决策树的一些缺点：</p>
+<ol>
+<li>决策树学习可能创建一个过于复杂的树，并不能很好的预测数据。也就是过拟合。修剪机制（现在不支持），设置一个叶子节点需要的最小样本数量，或者数的最大深度，可以避免过拟合。</li>
+<li>决策树可能是不稳定的，因为即使非常小的变异，可能会产生一颗完全不同的树。这个问题通过decision trees with an ensemble来缓解。</li>
+<li>概念难以学习，因为决策树没有很好的解释他们，例如，XOR, parity or multiplexer problems。</li>
+<li>如果某些分类占优势，决策树将会创建一棵有偏差的树。因此，建议在训练之前，先抽样使样本均衡。</li>
+</ol>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/05/08/《机器学习实战》学习笔记决策树基础篇之决策树构造/" title="《机器学习实战》学习笔记决策树基础篇之决策树构造">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/05/05/《机器学习实战》学习笔记(一) k-近邻算法(约会实战)/" title="《机器学习实战》学习笔记(一) k-近邻算法(约会实战)">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#《机器学习实战》学习笔记-一-决策树之隐形眼镜漫谈"><span class="post-toc-text">《机器学习实战》学习笔记(一)决策树之隐形眼镜漫谈</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、决策树构建"><span class="post-toc-text">一、决策树构建</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、ID3算法"><span class="post-toc-text">1、ID3算法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、编写代码构建决策树"><span class="post-toc-text">2、编写代码构建决策树</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、决策树可视化"><span class="post-toc-text">三、决策树可视化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、Sklearn之使用决策树预测隐形眼睛漫谈"><span class="post-toc-text">四、Sklearn之使用决策树预测隐形眼睛漫谈</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、使用Graphviz可视化决策树"><span class="post-toc-text">3、使用Graphviz可视化决策树</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#（4）-编写代码计算信息增益"><span class="post-toc-text">（4） 编写代码计算信息增益</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、决策树生成和修剪"><span class="post-toc-text">2、决策树生成和修剪</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四：总结"><span class="post-toc-text">四：总结</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
