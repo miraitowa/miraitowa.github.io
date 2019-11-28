@@ -1,0 +1,555 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>miraitowa</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		11/28/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/11/28/bugbounty 利用文件上传 打存储型xss/" itemprop="url">
+	<time datetime="2019-11-28T04:06:46.042Z" itemprop="datePublished">
+  		2019-11-28
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="bugbounty：利用文件上传-MIME嗅探到存储型XSS"><a href="#bugbounty：利用文件上传-MIME嗅探到存储型XSS" class="headerlink" title="bugbounty：利用文件上传 MIME嗅探到存储型XSS"></a>bugbounty：利用文件上传 MIME嗅探到存储型XSS</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在私有程序上查找漏洞时，我能够通过文件上传功能找到存储的XSS漏洞。由于滥用<code>IE/Edge</code>处理文件的方式，我能够绕过文件类型检查</p>
+<p>并将恶意HTML文件创建为GIF。我还分解了文件上传过滤器，并在利用它时我会进行相应的思考。</p>
+<h3 id="第一步：FUZZ探测"><a href="#第一步：FUZZ探测" class="headerlink" title="第一步：FUZZ探测"></a>第一步：FUZZ探测</h3><p>当我开始查看新程序时，我总是喜欢的一件事是FUZZ一下文件上传的点。文件上传中的漏洞通常会给你带来高严重性错误，而且开发人员似乎</p>
+<p>很难保护它们。简单的FUZZ这个私人程序，我注意到它有一个联系支持的功能。在此联系表单中，您可以上传附件。我注意到的第一件事是，</p>
+<p>当我上传图片时，它将其上传到同一个域名下。</p>
+<p><strong>示例：文件上传请求</strong></p>
+<p><img src="https://i.imgur.com/Fu5dUB2.jpg" alt=""></p>
+<p><strong>请求上传文件</strong></p>
+<p><strong>示例：响应</strong></p>
+<pre><code>{&quot;result&quot;:true,&quot;message&quot;:&quot;/UploadFiles/redacted/redacted/3021d74f18ddasdasd50abe934f.png,&quot;code&quot;:0}
+</code></pre><p>这立刻引起了我的注意。通常，存储用户信息，可以在同一位置/域名下上传的文件并不是一个很好的做法，因为它可能导致非常大的漏洞，包括远程代码执行漏洞。</p>
+<h3 id="过滤1：Bypass"><a href="#过滤1：Bypass" class="headerlink" title="过滤1：Bypass"></a>过滤1：Bypass</h3><p>接下来我们需要弄清楚，为了利用这个，是如何上传恶意文件。我尝试的第一件事就是将文件扩展名更改为<code>.html</code>。当然，这不起作用，我们得到：</p>
+<pre><code>{&quot;result&quot;:false,&quot;message&quot;:&quot;That file type is not supported.&quot;,&quot;code&quot;:0}
+</code></pre><p>我们可以得出结论，文件扩展名有一个过滤器。我们可以快速找到允许哪些文件的方法是通过<code>Burp Intruder</code>爆破扩展。</p>
+<p>SecLists有一个很好的文件扩展名单，我们可以使用。不幸的是，端点具有速率限制，在几十个请求之后，我们的IP地址会暂停。</p>
+<p>切换VPN服务器，我回来后开始手动测试一些扩展。我注意到只接受了网页应用：<strong>jpg，jpeg，png和gif</strong>。我还尝试了所有可以想到的扩展，</p>
+<p>例如nullbytes，unicode编码等。在第一个实例之前的任何事情<strong>“.”</strong>被忽略，因为应用程序创建了自己唯一的文件名。但是，</p>
+<p>我注意到检查扩展中的特殊字符时，其中的特殊字符未被删除，但在检查期间被忽略。例如，使用文件名<strong>badfile.”gif</strong>被接受，但是，<strong>badfile.foo”gif</strong> 并没有。</p>
+<p><strong>发送以下请求：</strong></p>
+<pre><code>-----------------------------6683303835495
+Content-Disposition: form-data; name=&quot;upload&quot;; filename=&quot;badfile.&#39;&#39;gif&quot;
+Content-Type: image/png
+
+GIF89a
+@HackerOn2Wheels
+-----------------------------6683303835495--
+</code></pre><p><strong>响应信息：</strong></p>
+<pre><code>{&quot;result&quot;:true,&quot;message&quot;:&quot;/UploadFiles/redacted/redacted/3021d74f18f649f5ac943ff50abe934f.&#39;&#39;gif&quot;,&quot;code&quot;:0}
+</code></pre><p>所以文件扩展名过滤器似乎按以下方式工作：</p>
+<pre><code>1. 在最后一个`“.”`实例之后从[filename]获取扩展名。
+1. 删除所有非字母数字字符（不是a-z A-Z 0-9）。
+1. 从扩展中得到的白名单（gif，png，jpg，jpeg）。
+1. 如果文件扩展名在列表中，请从第一步获取扩展名并创建文件。
+</code></pre><p>我们将在一点点看到为什么这是危险的。</p>
+<h3 id="过滤2：忽略-Bypass"><a href="#过滤2：忽略-Bypass" class="headerlink" title="过滤2：忽略 Bypass"></a>过滤2：忽略 Bypass</h3><p>Web应用程序也在关注的另一件事是文件签名，或者某些人称之为“魔术字节”。因此，如果我只是尝试上传一个包含随机数据的文件，例如：</p>
+<pre><code>-----------------------------6683303835495
+Content-Disposition: form-data; name=&quot;upload&quot;; filename=&quot;badfile.&#39;&#39;gif&quot;
+Content-Type: image/png
+
+foobar
+@HackerOn2Wheels
+-----------------------------6683303835495--
+</code></pre><p><strong>响应信息：</strong></p>
+<pre><code>{&quot;result&quot;:false,&quot;message&quot;:&quot;That file type is not supported.&quot;,&quot;code&quot;:0}
+</code></pre><p>但是，文件上传过滤器非常常见的一点是它们只查看文件签名的前4个字节。这些是文件上载功能通常在每种图像类型中查找的字节：</p>
+<pre><code>JPEG  - FF D8 FF DB - ÿØÿÛ 
+GIF   - 47 49 46 38 - GIF8
+PNG   - 89 50 4E 47 - ‰PNG
+</code></pre><p>因此，只要我在文件内容中有其中一个，我们的文件就会成功上传。但是，遗憾的是，这还不足以防范恶意文件。大多数浏览器“寻找”实际的完整文件签名头，而其他浏览器（IE/Edge）根本不关心。例如，对于GIF和PNG文件，签名不仅仅是4个字节。完整签名是：</p>
+<pre><code>GIF - 47 49 46 38 39 61 - GIF89a ( or GIF87a )
+PNG - 89 50 4E 47 0D 0A 1A 0A  - .PNG.... 
+</code></pre><p><a href="https://en.wikipedia.org/wiki/List_of_file_signatures" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/List_of_file_signatures</a></p>
+<p>我将在帖子的#TakeAways部分详细介绍这一点。</p>
+<h3 id="成功绕过"><a href="#成功绕过" class="headerlink" title="成功绕过"></a>成功绕过</h3><p>好吧那我们怎么实际利用这个呢？我们需要做的就是上传一个带有错误扩展名的文件来“ 混淆”浏览器，并将神奇的GIF8字节添加到文件的开头。</p>
+<p><strong>最终payload</strong></p>
+<pre><code>-----------------------------6683303835495
+Content-Disposition: form-data; name=&quot;upload&quot;; filename=&quot;badfile.&#39;&#39;gif&quot;
+Content-Type: image/png
+
+GIF8
+&lt;html&gt;&lt;script&gt;alert(&#39;XSS is easy&#39;);&lt;/script&gt;&lt;/html&gt;
+-----------------------------6683303835495--
+</code></pre><p><strong>返回：</strong></p>
+<pre><code>{&quot;result&quot;:true,&quot;message&quot;:&quot;/UploadFiles/redacted/redacted/5060bddf6e024def9a8f5f8b9c42ba1f.&#39;&#39;gif&quot;,&quot;code&quot;:0}
+</code></pre><p>现在，如果我们 使用<strong>Microsoft Edge或Internet Explorer</strong>访问<code>https://redacted.com/UploadFiles/redacted/redacted/5060bddf6e024def9a8f5f8b9c42ba1f.&quot; gif</code>（以下有更多内容），我们将获得：</p>
+<p><img src="https://i.imgur.com/CA0sP4L.jpg" alt=""></p>
+<h3 id="TakeAways-为什么这样做？"><a href="#TakeAways-为什么这样做？" class="headerlink" title="TakeAways - 为什么这样做？"></a>TakeAways - 为什么这样做？</h3><p>我们首先需要问自己的是：浏览器如何实际运作？</p>
+<p>让我们了解浏览器如何呈现文件让我们创建一些示例文件进行测试。我创建了三个GIF文件。第一个文件只包含四个字节的GIF</p>
+<p>图像签名（“GIF8”），第二个文件包含完整的GIF图像签名（“GIF89a”），第三个文件没有任何GIF文件签名，但它确实具有<strong>“.gif“</strong>扩展。</p>
+<p><img src="https://i.imgur.com/WUcVW6v.jpg" alt=""></p>
+<p>GIF只有4字节签名</p>
+<p><img src="https://i.imgur.com/RjTQbnv.jpg" alt=""></p>
+<p>带全签名的GIF</p>
+<p><img src="https://i.imgur.com/ljpPNsK.jpg" alt=""></p>
+<p>GIF没有签名但具有正确的扩展名</p>
+<p>如果我们在Linux中使用文件工具，我们可以看到如何识别这些文件。</p>
+<p><img src="https://i.imgur.com/UAT3aLR.jpg" alt=""></p>
+<p>正如我们在这里看到的，使用文件前两个文件基于文件签名被识别为GIF，包括仅具有4字节签名的文件，并且仅具有扩展名的最后一个文件被标识</p>
+<p>为HTML。但是，如果我们在浏览器中打开这3个文件，我们可以看到它以不同方式处理这些文件。</p>
+<p>例如，Edge和IE似乎根本不关心GIF文件签名头。它将呈现HTML而不会跳过一个节拍。</p>
+<p><img src="https://i.imgur.com/IBqoGIG.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/lz1XQIx.jpg" alt=""></p>
+<p>但它确实关心文件扩展名。谢谢MICROSOFT！</p>
+<p><img src="https://i.imgur.com/x7E1PG1.jpg" alt=""></p>
+<p>事实上，IE和Edge默认是“vulnerable”，称为MIME嗅探/内容嗅探。简而言之，Edge和IE将“检查”它尝试访问的文件内容，并根据它设置</p>
+<p>内容类型。因此，当我们创建一个 <strong>“badfile.”gif”</strong>时，它将首先读取它的内容并将内容类型设置为<strong>text/html</strong>，因为我们在内容中</p>
+<p>有<html>标记。你可以在<a href="https://en.wikipedia.org/wiki/Content_sniffing" target="_blank" rel="noopener">这里阅读更多相关信息</a>。</html></p>
+<p>这是它有趣的地方。Firefox和Chrome确实关心扩展和签名。但是，它实际上只考虑了完整的签名。例如，在Firefox中打开四字节签名与完整签名将表现得非常不同。</p>
+<p><img src="https://i.imgur.com/OEOvW6F.jpg" alt=""></p>
+<p><strong>具有完整签名且无扩展名的文件</strong></p>
+<p><img src="https://i.imgur.com/KF2RFty.jpg" alt=""></p>
+<p><strong>文件只有4字节签名，没有扩展名</strong></p>
+<p>正如我们从上图中看到的那样，只是简单地拥有GIF文件签名的前四个字节就不会使Firefox（也不是Chrome）将其渲染为GIF文件。</p>
+<p>但是，较新版本的Firefox和Chrome确实会对文件内容添加预包装，如上所示，这会破坏html执行。现在可以打破这个吗？或者改变这种行为？</p>
+<p>我还不知道。如果你这样做，请告诉我！但是，由于我们的文本显示，我们可能会使用它来社交工程师我们的受害者禁用about：config中的</p>
+<p>预包装功能。然而，它确实使得可利用性变得更加困难，因为它需要大量的用户交互，并且在那时可以说它将是自我XSS的情况。</p>
+<p>总之，如果你曾经面对一个图像文件上传，让你用特殊字符“破坏”GIF/PNG文件扩展名或创建没有扩展名的文件，你可以通过MIME/内容嗅探在Edge和IE中执行JS和html 。</p>
+<p>原文链接：<a href="https://anotherhackerblog.com/exploiting-file-uploads-pt1/" target="_blank" rel="noopener">https://anotherhackerblog.com/exploiting-file-uploads-pt1/</a></p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/05/08/《机器学习实战》学习笔记决策树基础篇之决策树构造/" title="《机器学习实战》学习笔记决策树基础篇之决策树构造">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#bugbounty：利用文件上传-MIME嗅探到存储型XSS"><span class="post-toc-text">bugbounty：利用文件上传 MIME嗅探到存储型XSS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一步：FUZZ探测"><span class="post-toc-text">第一步：FUZZ探测</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#过滤1：Bypass"><span class="post-toc-text">过滤1：Bypass</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#过滤2：忽略-Bypass"><span class="post-toc-text">过滤2：忽略 Bypass</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#成功绕过"><span class="post-toc-text">成功绕过</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TakeAways-为什么这样做？"><span class="post-toc-text">TakeAways - 为什么这样做？</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
