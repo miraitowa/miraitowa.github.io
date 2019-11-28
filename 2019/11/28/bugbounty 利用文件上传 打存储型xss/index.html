@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>miraitowa</title>
+	<title>bugbounty 利用文件上传 MIME嗅探到存储型XSS</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -55,7 +55,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《bugbounty 利用文件上传 MIME嗅探到存储型XSS》</p>
 			
 		
 	
@@ -160,6 +160,12 @@
 				<h1 class="am-article-title blog-text-center">
 					
 					
+	
+		<a href="/2019/11/28/bugbounty 利用文件上传 打存储型xss/" itemprop="url">		
+			bugbounty 利用文件上传 MIME嗅探到存储型XSS		
+		</a>
+	
+
 				</h1>
 
 				<p class="am-article-meta blog-text-center">
@@ -182,7 +188,7 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="bugbounty：利用文件上传-MIME嗅探到存储型XSS"><a href="#bugbounty：利用文件上传-MIME嗅探到存储型XSS" class="headerlink" title="bugbounty：利用文件上传 MIME嗅探到存储型XSS"></a>bugbounty：利用文件上传 MIME嗅探到存储型XSS</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在私有程序上查找漏洞时，我能够通过文件上传功能找到存储的XSS漏洞。由于滥用<code>IE/Edge</code>处理文件的方式，我能够绕过文件类型检查</p>
+						<h2 id="bugbounty-利用文件上传-MIME嗅探到存储型XSS"><a href="#bugbounty-利用文件上传-MIME嗅探到存储型XSS" class="headerlink" title="bugbounty 利用文件上传 MIME嗅探到存储型XSS"></a>bugbounty 利用文件上传 MIME嗅探到存储型XSS</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在私有程序上查找漏洞时，我能够通过文件上传功能找到存储的XSS漏洞。由于滥用<code>IE/Edge</code>处理文件的方式，我能够绕过文件类型检查</p>
 <p>并将恶意HTML文件创建为GIF。我还分解了文件上传过滤器，并在利用它时我会进行相应的思考。</p>
 <h3 id="第一步：FUZZ探测"><a href="#第一步：FUZZ探测" class="headerlink" title="第一步：FUZZ探测"></a>第一步：FUZZ探测</h3><p>当我开始查看新程序时，我总是喜欢的一件事是FUZZ一下文件上传的点。文件上传中的漏洞通常会给你带来高严重性错误，而且开发人员似乎</p>
 <p>很难保护它们。简单的FUZZ这个私人程序，我注意到它有一个联系支持的功能。在此联系表单中，您可以上传附件。我注意到的第一件事是，</p>
@@ -419,7 +425,7 @@ GIF8
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#bugbounty：利用文件上传-MIME嗅探到存储型XSS"><span class="post-toc-text">bugbounty：利用文件上传 MIME嗅探到存储型XSS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一步：FUZZ探测"><span class="post-toc-text">第一步：FUZZ探测</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#过滤1：Bypass"><span class="post-toc-text">过滤1：Bypass</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#过滤2：忽略-Bypass"><span class="post-toc-text">过滤2：忽略 Bypass</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#成功绕过"><span class="post-toc-text">成功绕过</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TakeAways-为什么这样做？"><span class="post-toc-text">TakeAways - 为什么这样做？</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#bugbounty-利用文件上传-MIME嗅探到存储型XSS"><span class="post-toc-text">bugbounty 利用文件上传 MIME嗅探到存储型XSS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一步：FUZZ探测"><span class="post-toc-text">第一步：FUZZ探测</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#过滤1：Bypass"><span class="post-toc-text">过滤1：Bypass</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#过滤2：忽略-Bypass"><span class="post-toc-text">过滤2：忽略 Bypass</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#成功绕过"><span class="post-toc-text">成功绕过</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TakeAways-为什么这样做？"><span class="post-toc-text">TakeAways - 为什么这样做？</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
