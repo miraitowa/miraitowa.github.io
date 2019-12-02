@@ -1,0 +1,594 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>MATLAB——画图（经典）</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="miraitowa">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《MATLAB——画图（经典）》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		12/2/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="友链">友链</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/12/02/MATLAB——画图（经典）/" itemprop="url">		
+			MATLAB——画图（经典）		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/12/02/MATLAB——画图（经典）/" itemprop="url">
+	<time datetime="2019-12-02T14:36:36.869Z" itemprop="datePublished">
+  		2019-12-02
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<h2 id="MATLAB——画图（经典）"><a href="#MATLAB——画图（经典）" class="headerlink" title="MATLAB——画图（经典）"></a>MATLAB——画图（经典）</h2><p>plot<br>二维线图全页折叠</p>
+<p>#语法<br>plot(X,Y)<br>plot(X,Y,LineSpec)<br>plot(X1,Y1,…,Xn,Yn)<br>plot(X1,Y1,LineSpec1,…,Xn,Yn,LineSpecn)<br>plot(Y)<br>plot(Y,LineSpec)<br>plot(<strong><em>,Name,Value)<br>plot(ax,</em></strong>)<br>h = plot(___)<br>说明<br>示例<br>plot(X,Y) 创建 Y 中数据对 X 中对应值的二维线图。</p>
+<p>如果 X 和 Y 都是向量，则它们的长度必须相同。plot 函数绘制 Y 对 X 的图。</p>
+<p>如果 X 和 Y 均为矩阵，则它们的大小必须相同。plot 函数绘制 Y 的列对 X 的列的图。</p>
+<p>如果 X 或 Y 中的一个是向量而另一个是矩阵，则矩阵的各维中必须有一维与向量的长度相等。如果矩阵的行数等于向量长度，则 plot 函数绘制矩阵中的每一列对向量的图。如果矩阵的列数等于向量长度，则该函数绘制矩阵中的每一行对向量的图。如果矩阵为方阵，则该函数绘制每一列对向量的图。</p>
+<p>如果 X 或 Y 之一为标量，而另一个为标量或向量，则 plot 函数会绘制离散点。但是，要查看这些点，您必须指定标记符号，例如 plot(X,Y,’o’)。</p>
+<p>plot(X,Y,LineSpec) 设置线型、标记符号和颜色。</p>
+<p>示例<br>plot(X1,Y1,…,Xn,Yn) 绘制多个 X、Y 对组的图，所有线条都使用相同的坐标区。</p>
+<p>示例<br>plot(X1,Y1,LineSpec1,…,Xn,Yn,LineSpecn) 设置每个线条的线型、标记符号和颜色。您可以混用 X、Y、LineSpec 三元组和 X、Y 对组：例如，plot(X1,Y1,X2,Y2,LineSpec2,X3,Y3)。</p>
+<p>示例<br>plot(Y) 创建 Y 中数据对每个值索引的二维线图。</p>
+<p>如果 Y 是向量，x 轴的刻度范围是从 1 至 length(Y)。</p>
+<p>如果 Y 是矩阵，则 plot 函数绘制 Y 中各列对其行号的图。x 轴的刻度范围是从 1 到 Y 的行数。</p>
+<p>如果 Y 是复数，则 plot 函数绘制 Y 的虚部对 Y 的实部的图，使得 plot(Y) 等效于 plot(real(Y),imag(Y))。</p>
+<p>plot(Y,LineSpec) 设置线型、标记符号和颜色。</p>
+<p>示例<br>plot(___,Name,Value) 使用一个或多个 Name,Value 对组参数指定线条属性。有关属性列表，请参阅 Line 属性。可以将此选项与前面语法中的任何输入参数组合一起使用。名称-值对组设置将应用于绘制的所有线条。</p>
+<p>示例<br>plot(ax,___) 将在由 ax 指定的坐标区中，而不是在当前坐标区 (gca) 中创建线条。选项 ax 可以位于前面的语法中的任何输入参数组合之前。</p>
+<p>示例<br>h = plot(___) 返回由图形线条对象组成的列向量。在创建特定的图形线条后，可以使用 h 修改其属性。有关属性列表，请参阅 Line 属性。</p>
+<p>示例<br>全部折叠</p>
+<p>#创建线图<br>将 x 创建为由 0 和  之间的线性间隔值组成的向量。在各值之间使用递增量 。将 y 创建为 x 的正弦值。创建数据的线图。</p>
+<p>x = 0:pi/100:2*pi;<br>y = sin(x);<br>plot(x,y)</p>
+<p><img src="https://img-blog.csdn.net/20180404220708881?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>#绘制多个线条<br>将 x 定义为 100 个介于  和  之间的线性间隔值。将 y1 和 y2 定义为 x 的正弦和余弦值。创建上述两个数据集的线图。</p>
+<p>x = linspace(-2<em>pi,2</em>pi);<br>y1 = sin(x);<br>y2 = cos(x);</p>
+<p>figure<br>plot(x,y1,x,y2)</p>
+<p><img src="https://img-blog.csdn.net/20180404220740672?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>#根据矩阵创建线图<br>将 Y 定义为 magic 函数返回的 4×4 矩阵。</p>
+<p>Y = magic(4)<br>Y = </p>
+<pre><code>16     2     3    13
+ 5    11    10     8
+ 9     7     6    12
+ 4    14    15     1
+</code></pre><p>创建 Y 的二维线图。MATLAB® 将矩阵的每一列绘制为单独的线条。</p>
+<p>figure<br>plot(Y)</p>
+<p><img src="https://img-blog.csdn.net/20180404220801108?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>#指定线型<br>绘制三条正弦曲线，每条曲线之间存在较小的相位偏移。第一条曲线使用默认的线型。为第二条曲线指定虚线样式，第三条曲线指定点式线样式。</p>
+<p>x = 0:pi/100:2*pi;<br>y1 = sin(x);<br>y2 = sin(x-0.25);<br>y3 = sin(x-0.5);</p>
+<p>figure<br>plot(x,y1,x,y2,’–’,x,y3,’:’)</p>
+<p><img src="https://img-blog.csdn.net/20180404220833624?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>MATLAB® 按默认的色序循环使用线条颜色。</p>
+<p>#指定线型、颜色和标记<br>绘制三条正弦曲线，每条曲线之间存在较小的相位偏移。第一条正弦曲线使用绿色线条，不带标记。第二条正弦曲线使用蓝色虚线，带圆圈标记。第三条正弦曲线只使用青蓝色星号标记。</p>
+<p>x = 0:pi/10:2*pi;<br>y1 = sin(x);<br>y2 = sin(x-0.25);<br>y3 = sin(x-0.5);</p>
+<p>figure<br>plot(x,y1,’g’,x,y2,’b–o’,x,y3,’c*’)</p>
+<p><img src="https://img-blog.csdn.net/20180404220851715?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>#在特定的数据点显示标记<br>通过指定标记符号并将 MarkerIndices 属性设置为名称-值对组，创建一个线图并每隔四个数据点显示一个标记。</p>
+<p>x = linspace(0,10);<br>y = sin(x);<br>plot(x,y,’-o’,’MarkerIndices’,1:5:length(y))</p>
+<p><img src="https://img-blog.csdn.net/20180404220910324?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>#指定线宽、标记大小和标记颜色<br>创建线图并使用 LineSpec 选项指定带正方形标记的绿色虚线。使用 Name,Value 对组来指定线宽、标记大小和标记颜色。将标记边颜色设置为蓝色，并使用 RGB 颜色值设置标记面颜色。</p>
+<p>x = -pi:pi/10:pi;<br>y = tan(sin(x)) - sin(tan(x));</p>
+<p>figure<br>plot(x,y,’–gs’,…<br>    ‘LineWidth’,2,…<br>    ‘MarkerSize’,10,…<br>    ‘MarkerEdgeColor’,’b’,…<br>    ‘MarkerFaceColor’,[0.5,0.5,0.5])</p>
+<p><img src="https://img-blog.csdn.net/20180404220924878?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>#添加标题和轴标签<br>使用 linspace 函数将 x 定义为 0 到 10 之间 150 个值组成的向量。将 y 定义为 x 的余弦值。</p>
+<p>x = linspace(0,10,150);<br>y = cos(5*x);<br>创建余弦曲线的二维线图。使用 RGB 颜色值将线条颜色更改为蓝绿色。使用 title、xlabel 和 ylabel 函数为图形添加标题和轴标签。</p>
+<p>figure<br>plot(x,y,’Color’,[0,0.7,0.9])</p>
+<p>title(‘2-D Line Plot’)<br>xlabel(‘x’)<br>ylabel(‘cos(5x)’)</p>
+<p><img src="https://img-blog.csdn.net/20180404220949134?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>#绘制持续时间并指定刻度格式<br>将 t 定义为 7 个介于 0 到 3 分钟之间的 duration 线性间隔值。绘制随机数据并使用 ‘DurationTickFormat’ 名称-值对组参数指定 duration 刻度线的格式。</p>
+<p>t = 0:seconds(30):minutes(3);<br>y = rand(1,7);</p>
+<p>plot(t,y,’DurationTickFormat’,’mm:ss’)</p>
+<p><img src="https://img-blog.csdn.net/20180404221003447?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>#指定线图的坐标区<br>创建一个包含两个子图的图窗，并将 Axes 对象返回为 ax1 和 ax2。通过引用 Axes 对象在每个坐标区上创建一个二维线图。通过将 Axes 对象传递给 title 和 ylabel 函数，为每个坐标区添加标题和 y 轴标签。</p>
+<p>ax1 = subplot(2,1,1); % top subplot<br>x = linspace(0,3);<br>y1 = sin(5*x);<br>plot(ax1,x,y1)<br>title(ax1,’Top Subplot’)<br>ylabel(ax1,’sin(5x)’)</p>
+<p>ax2 = subplot(2,1,2); % bottom subplot<br>y2 = sin(15*x);<br>plot(ax2,x,y2)<br>title(ax2,’Bottom Subplot’)<br>ylabel(ax2,’sin(15x)’)</p>
+<p><img src="https://img-blog.csdn.net/20180404221021484?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>#创建并修改线条<br>将 x 定义为 100 个介于  和  之间的线性间隔值。将 y1 和 y2 定义为 x 的正弦和余弦值。为上述两个数据集分别创建线图，并在 p 中返回两个图形线条。</p>
+<p>x = linspace(-2<em>pi,2</em>pi);<br>y1 = sin(x);<br>y2 = cos(x);<br>p = plot(x,y1,x,y2);</p>
+<p><img src="https://img-blog.csdn.net/20180404221051318?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>将第一个线条的线宽更改为 2。向第二行添加星形标记。从 R2014b 开始，您可以使用圆点表示法设置属性。如果您使用的是早期版本，请改用 set 函数。</p>
+<p>p(1).LineWidth = 2;<br>p(2).Marker = ‘*’;</p>
+<p><img src="https://img-blog.csdn.net/20180404221059361?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>#绘制圆形<br>绘制以点 (4,3) 为中心以 2 为半径的圆。使用 axis equal 可沿每个坐标方向使用相等的数据单位。</p>
+<p>r = 2;<br>xc = 4;<br>yc = 3;</p>
+<p>theta = linspace(0,2<em>pi);<br>x = r</em>cos(theta) + xc;<br>y = r*sin(theta) + yc;<br>plot(x,y)<br>axis equal<br><img src="https://img-blog.csdn.net/20180404221107221?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>#输入参数<br>全部折叠<br>Y - y 值<br>标量 | 向量 | 矩阵<br>y 值，指定为标量、向量或矩阵。要根据特定的 x 值绘图，还必须指定 X。</p>
+<p>数据类型： single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | categorical | datetime | duration</p>
+<p>X - x 值<br>标量 | 向量 | 矩阵<br>x 值，指定为标量、向量或矩阵。</p>
+<p>数据类型： single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | categorical | datetime | duration</p>
+<p>LineSpec - 线型、标记和颜色<br>字符向量 | 字符串<br>线型、标记和颜色，指定为包含符号的字符向量或字符串。符号可以按任意顺序显示。您不需要同时指定所有三个特征（线型、标记和颜色）。例如，如果忽略线型，只指定标记，则绘图只显示标记，不显示线条。</p>
+<p>示例： ‘–or’ 是带有圆圈标记的红色虚线</p>
+<p><img src="https://img-blog.csdn.net/20180404220506478?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br><img src="https://img-blog.csdn.net/20180404220514796?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br><img src="https://img-blog.csdn.net/20180404220303873?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写颜色说明图片描述"><br>ax - 目标坐标区<br>Axes 对象 | PolarAxes 对象<br>目标坐标区，指定为 Axes 对象或 PolarAxes 对象。如果不指定坐标区或当前坐标区是笛卡尔坐标区，plot 函数将使用当前坐标区。要在极坐标区上绘图，请指定 PolarAxes 对象作为第一个输入参数，或者使用 polarplot 函数。</p>
+<p>名称-值对组参数<br>示例： ‘Marker’,’o’,’MarkerFaceColor’,’red’<br>此处列出的图形线条属性只是一个子集。有关完整列表，请参阅 Line 属性。</p>
+<p>全部折叠<br>‘Color’ - 线条颜色<br>[0 0.4470 0.7410] （默认） | RGB 三元数 | ‘r’ | ‘g’ | ‘b’ | …<br>线条颜色，指定为 RGB 三元数或表中列出的颜色选项之一。</p>
+<p>如果想自定义颜色，请指定一个 RGB 三元数。RGB 三元数是包含三个元素的行向量，其元素分别指定颜色中红、绿、蓝分量的强度。强度值必须位于 [0,1] 范围内，例如 [0.4 0.6 0.7]。此外，还可以按名称指定一些常见的颜色。下表列出长和短颜色名称选项以及对应的 RGB 三元数值。</p>
+<p><img src="https://img-blog.csdn.net/20180404221817684?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>‘LineStyle’ - 线型<br>‘-‘ （默认） | ‘–’ | ‘:’ | ‘-.’ | ‘none’<br>线型，指定为下表中列出的线型之一。</p>
+<p><img src="https://img-blog.csdn.net/20180404221907534?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>‘LineWidth’ - 线条宽度<br>0.5 （默认） | 正值<br>线宽，指定为以磅为单位的正值。如果该线条具有标记，则线条宽度也会影响标记边缘。</p>
+<p>示例： 0.75</p>
+<p>‘Marker’ - 标记符号<br>‘none’ （默认） | ‘o’ | ‘+’ | ‘*’ | ‘.’ | ‘x’ | …<br>标记符号，指定为下表中的标记之一。默认情况下，图形线条没有标记。通过指定标记符号沿该线条上的每个数据点添加标记。</p>
+<p><img src="https://img-blog.csdn.net/20180404221934702?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>示例： ‘Marker’,’+’</p>
+<p>示例： ‘Marker’,’diamond’</p>
+<p>‘MarkerIndices’ - 要显示标记的数据点的索引<br>1:length(YData) （默认） | 正整数向量 | 正整数标量<br>要显示标记的数据点的索引，指定为正整数向量。如果不指定索引，MATLAB® 将在每个数据点显示一个标记。</p>
+<p>注意<br>要查看标记，还必须指定标记符号。</p>
+<p>示例： plot(x,y,’-o,’MarkerIndices’,[1 5 10]) 在第一、第五和第十个数据点显示一个圆形标记。</p>
+<p>示例： plot(x,y,’-x’,’MarkerIndices’,1:3:length(y)) 每隔三个数据点显示一个交叉标记。</p>
+<p>示例： plot(x,y,’Marker’,’square’,’MarkerIndices’,5) 在第五个数据点显示一个正方形标记。</p>
+<p>‘MarkerEdgeColor’ - 标记轮廓颜色<br>‘auto’ （默认） | RGB 三元数 | ‘r’ | ‘g’ | ‘b’ | …<br>标记轮廓颜色，指定为 ‘auto’、RGB 三元数或表中列出的颜色选项之一。默认值 ‘auto’ 使用与 Color 属性相同的颜色。</p>
+<p>如果想自定义颜色，请指定一个 RGB 三元数。RGB 三元数是包含三个元素的行向量，其元素分别指定颜色中红、绿、蓝分量的强度。强度值必须位于 [0,1] 范围内，例如 [0.4 0.6 0.7]。此外，还可以按名称指定一些常见的颜色。下表列出长和短颜色名称选项以及对应的 RGB 三元数值。</p>
+<p><img src="https://img-blog.csdn.net/20180404222003459?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>‘MarkerFaceColor’ - 标记填充颜色<br>‘none’ （默认） | ‘auto’ | RGB 三元数 | ‘r’ | ‘g’ | ‘b’ | …<br>标记填充颜色，指定为 ‘auto’、RGB 三元数或表中列出的颜色选项之一。’auto’ 值使用与坐标区的 Color 属性相同的颜色。</p>
+<p>如果想自定义颜色，请指定一个 RGB 三元数。RGB 三元数是包含三个元素的行向量，其元素分别指定颜色中红、绿、蓝分量的强度。强度值必须位于 [0,1] 范围内，例如 [0.4 0.6 0.7]。此外，还可以按名称指定一些常见的颜色。下表列出长和短颜色名称选项以及对应的 RGB 三元数值。</p>
+<p><img src="https://img-blog.csdn.net/20180404222051138?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>‘MarkerSize’ - 标记大小<br>6 （默认） | 正值<br>标记大小，指定为以磅为单位的正值。</p>
+<p>示例： 10</p>
+<p>‘DatetimeTickFormat’ - datetime 刻度标签的格式<br>字符向量 | 字符串<br>datetime 刻度标签的格式，指定为以逗号分隔的对组，该对组由 ‘DatetimeTickFormat’ 和一个包含日期格式的字符向量或字符串组成。可使用字母 A-Z 和 a-z 构造一个自定义格式。这些字母对应于日期的 Unicode® 区域设置数据标记语言 (LDML) 标准。可以使用连字符、空格或冒号等非 ASCII 字母字符来分隔字段。</p>
+<p>如果未为 ‘DatetimeTickFormat’ 指定值，则 plot 将基于轴范围自动优化和更新刻度标签。</p>
+<p>示例： ‘DatetimeTickFormat’,’eeee, MMMM d, yyyy HH:mm:ss’ 显示日期和时间，例如 Saturday, April 19, 2014 21:41:06。</p>
+<p>下表列举了多种常见的显示格式和纽约市 2014 年 4 月 19 日（星期六）下午 9:41:06 的格式化输出示例。</p>
+<p><img src="https://img-blog.csdn.net/2018040422211861?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>有关有效字母标识符的完整列表，请参阅日期时间数组的 Format 属性。</p>
+<p>DatetimeTickFormat 不是图形线条属性。创建绘图时，必须使用名称-值对组参数设置刻度格式。或者，使用 xtickformat 和 ytickformat 函数设置格式。</p>
+<p>日期时间标尺的 TickLabelFormat 属性存储格式。</p>
+<p>‘DurationTickFormat’ - duration 刻度标签的格式<br>字符向量 | 字符串<br>duration 刻度标签的格式，指定为以逗号分隔的对组，该对组由 ‘DurationTickFormat’ 和一个包含持续时间格式的字符向量或字符串组成。</p>
+<p>如果未为 ‘DurationTickFormat’ 指定值，则 plot 将基于轴范围自动优化和更新刻度标签。</p>
+<p>要将持续时间显示为包含小数部分的单个数字，例如 1.234 小时，请指定下表中的值之一。</p>
+<p><img src="https://img-blog.csdn.net/20180404222138364?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTg3MjU2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>示例： ‘DurationTickFormat’,’h’ 以固定长度的天数显示持续时间值。</p>
+<p>要以数字计时器的形式显示持续时间，请指定下列值之一。</p>
+<p>‘dd:hh:mm:ss’</p>
+<p>‘hh:mm:ss’</p>
+<p>‘mm:ss’</p>
+<p>‘hh:mm’</p>
+<p>此外，可以通过附加多达 9 个 S 字符显示多达 9 位小数的秒位。</p>
+<p>示例： ‘DurationTickFormat’,’hh:mm:ss.SSS’ 以三位数显示持续时间的毫秒数。</p>
+<p>DurationTickFormat 不是图形线条属性。创建绘图时，必须使用名称-值对组参数设置刻度格式。或者，使用 xtickformat 和 ytickformat 函数设置格式。</p>
+<p>持续时间标尺的 TickLabelFormat 属性存储格式。</p>
+<p>输出参数<br>全部折叠<br>h - 一个或多个图形线条对象<br>标量 | 向量<br>一个或多个图形线条对象，以标量或向量的形式返回。这些是唯一标识符，可以用来查询和修改特定图形线条的属性。有关属性列表，请参阅 Line 属性。</p>
+<p>提示<br>使用 NaN 和 Inf 值将行断开。例如，以下代码绘制前两个元素，跳过第三个元素，并使用最后两个元素绘制另一线条：</p>
+<p>plot([1,2,NaN,4,5])<br>plot 使用基于坐标区的 ColorOrder 和 LineStyleOrder 属性的颜色和线型。plot 循环使用具有第一种线型的颜色。然后对其他每种线型上再次按顺序循环使用颜色。</p>
+<p>您可以通过设置 ColorOrder 和 LineStyleOrder 属性的默认值更改默认颜色和线型。例如，要将默认线型设置为带星号标记的实线、点线、无线条的圆圈标记，请使用以下命令：</p>
+<p>set(groot,’defaultAxesLineStyleOrder’,{‘-*’,’:’,’o’}) </p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/12/02/ISCC2018（最新的考核解析）/" title="ISCC2018（最新的考核解析）">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/12/02/sublime text3简体中文版汉化教程/" title="sublime text3简体中文版汉化教程">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '74a83cc9b15a1cf53e10',
+		clientSecret: 'b62af8b132c33178adcb0098e2315806e2e57cae',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Annie-Gitalk',
+		owner: 'miraitowa',
+		admin: 'miraitowa',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MATLAB——画图（经典）"><span class="post-toc-text">MATLAB——画图（经典）</span></a></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="https://github.com/miraitowa" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="https://miraitowa.github.io/about/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2018 11 11 - 2019, content by miraitowa. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://miraitowa.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
